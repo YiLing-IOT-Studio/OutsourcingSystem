@@ -9,41 +9,13 @@
 
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-
-    <style type="text/css">
-        body{
-            background:#eee;
-        }
-        .container{
-            margin-top:40px;
-        }
-        .row1{
-            width:80%;
-        }
-        .row2{
-          width:40%;
-          margin:0 auto;
-        }
-        .row3{
-            width:40%;
-            margin:0 auto;
-        }
-        .btn1{
-            margin-left:270px;
-        }
-        input{
-            width:246px;
-            height:40px;
-            border:none;
-            outline:none;
-            border-radius:10px;
-        }
-    </style>
+    <!--login_register.css-->
+    <link href="../static/css/login_register.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
     <div class="row row1">
-        <p class="h4 text-right" id="myTabs"><a href="#sign_up" data-toggle="tab" class="active">注册</a> &nbsp; <a href="#log_in" data-toggle="tab">登录</a></p>
+        <p class="h4 text-right" id="myTabs"><a href="#sign_up" data-toggle="tab" class="active" style="color:black;">注册</a> &nbsp; <a href="#log_in" data-toggle="tab" style="color:black;">登录</a></p>
     </div>
     <div class="tab-content">
         <div class="row row2 tab-pane fade in active" id="sign_up">
@@ -54,17 +26,35 @@
                     <input type="text" id="number" placeholder="请输入手机号码"/>
                 </div>
                 <div class="form-group">
+                    <label for="number">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 昵称</label>
+                    <input type="text" id="username" placeholder="请输入昵称，至少2个字符，至多20个"/>
+                </div>
+                <div class="form-group">
                     <label for="password1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 密码</label>
                     <input type="text" id="password1" placeholder="至少6位，字母或特殊符号和数字结合"/>
                 </div>
                 <div class="form-group">
+                    <label for="number">&nbsp;&nbsp;&nbsp;&nbsp;确认密码</label>
+                    <input type="text" id="password2" placeholder="请再次输入密码"/>
+                </div>
+                <div class="form-group">
                     <label for="image_code">图片验证码</label>
                     <input type="text" id="image_code" placeholder="不区分大小写"/>
+                    <img class="code" src="#"/><a href="#" onclick="change()">看不清，换一张</a>
+
                 </div>
                 <div class="form-group">
                     <label for="message_code">短信验证码</label>
                     <input type="text" id="message_code" placeholder="请输入短信验证码"/>
                     <a href="#">获取短信验证码</a>
+                </div>
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">男士
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">女士
+                    </label>
                 </div>
                 <div class="form-group ">
                     <button type="submit" class="btn btn-primary btn1">注册</button>
@@ -80,7 +70,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 密码</label>
-                    <input type="text" id="password2" placeholder="至少6位，字母或特殊符号和数字结合"/>
+                    <input type="text" id="password3" placeholder="至少6位，字母或特殊符号和数字结合"/>
                 </div>
                 <div class="form-group ">
                     <button type="submit" class="btn btn-primary btn1">登录</button>
