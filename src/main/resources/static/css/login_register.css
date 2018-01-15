@@ -30,8 +30,15 @@ input[type=radio]{
     width:auto;
 
 }
+input[type=checkbox]{
+    width:auto;
+    height:14px;
+}
 .form-horizontal .form-group:nth-child(7){
     margin-left:100px;
+}
+.checkbox{
+    margin-left:80px;
 }
 img .code{
     display:inline-block;
