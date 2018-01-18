@@ -8,40 +8,22 @@ body{
     width:80%;
 }
 .row2{
-    width:40%;
+    width:34%;
     margin:0 auto;
-}
-.row3{
-    width:40%;
-    margin:0 auto;
-}
-.btn1{
-    margin-left:270px;
 }
 input{
-    width:246px;
-    height:40px;
-    border:none;
-    outline:none;
     border-radius:10px;
 }
 input[type=radio]{
     height:15px;
     width:auto;
-
 }
 input[type=checkbox]{
     width:auto;
-    height:14px;
+    height:16px;
 }
-.form-horizontal .form-group:nth-child(7){
-    margin-left:100px;
-}
-.checkbox{
-    margin-left:80px;
-}
-img .code{
-    display:inline-block;
-    width:100px;
-    height:40px;
-}
+
+
+
+
+
