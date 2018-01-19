@@ -22,15 +22,19 @@
         <div class="row row2 tab-pane fade in active" id="sign_up">
 
             <form class="form-horizontal" id="register_form">
-                <div class="col-sm-4"></div>
-                <h2 class="text-center col-sm-5">注册</h2>
+                <div class="col-sm-3"></div>
+                <h2 class="text-center col-sm-6">注册</h2>
                 <div class="col-sm-3"></div>
                 <div class="form-group col-sm-12" id="telephone">
-                    <label for="phone" class="col-sm-4 control-label">手机号码</label>
-                        <div class="col-sm-5">
-                    <input class="form-control has-feedback" type="text" id="phone" name="phone" placeholder="请输入手机号码"/>
+                    <!--<label for="phone" class="col-sm-4 control-label">手机号码</label>-->
+                        <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                            <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-phone"></i></span>
+                            <input class="form-control has-feedback" type="text" id="phone" name="phone" placeholder="请输入手机号码" aria-describedby="basic-addon1"/>
                             <i class="glyphicon glyphicon-remove form-control-feedback" id="phone_f"></i>
                             <i class="glyphicon glyphicon-ok form-control-feedback" id="phone_t"></i>
+                            </div>
                         </div>
                         <div class="col-sm-3">
                         <span class="help-block " id="phone_null">手机号码不能为空</span>
@@ -38,11 +42,14 @@
                         </div>
                 </div>
                 <div class="form-group col-sm-12" id="name">
-                    <label for="username" class="col-sm-4 control-label">昵称</label>
-                    <div class="col-sm-5">
-                    <input class="form-control" type="text" id="username" name="username" placeholder="请输入昵称，至少2个字符，至多20个"/>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2"><i class="glyphicon glyphicon-user"></i></span>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="请输入昵称，至少2个字符，至多20个" aria-describedby="basic-addon2"/>
                         <i class="glyphicon glyphicon-remove form-control-feedback" id="username_f"></i>
                         <i class="glyphicon glyphicon-ok form-control-feedback" id="username_t"></i>
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <span class="help-block " id="username_null">昵称不能为空</span>
@@ -50,36 +57,47 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-12" id="psw1">
-                    <label for="password1" class="col-sm-4 control-label">密码</label>
-                    <div class="col-sm-5">
-                    <input class="form-control" type="password" id="password1" name="password1" placeholder="至少6位，字母或特殊符号和数字结合"/>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3"><i class="glyphicon glyphicon-wrench"></i></span>
+                    <input class="form-control" type="password" id="password1" name="password1" placeholder="至少6位，字母或特殊符号和数字结合" aria-describedby="basic-addon3"/>
                         <i class="glyphicon glyphicon-remove form-control-feedback" id="psw1_f"></i>
                         <i class="glyphicon glyphicon-ok form-control-feedback" id="psw1_t"></i>
-                    </div>
+                        </div>
+                        </div>
                     <div class="col-sm-3">
                         <span class="help-block " id="psw1_null">密码不能为空</span>
                         <span class="help-block " id="psw1_error">密码至少六位，字母或特殊符号和数字结合</span>
                     </div>
                 </div>
                 <div class="form-group col-sm-12" id="psw2">
-                    <label for="password2" class="col-sm-4 control-label">确认密码</label>
-                    <div class="col-sm-5">
-                    <input class="form-control" type="password" id="password2" name="password2" placeholder="请再次输入密码"/>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon4"><i class="glyphicon glyphicon-wrench"></i></span>
+                    <input class="form-control" type="password" id="password2" name="password2" placeholder="请再次输入密码" aria-describedby="basic-addon4"/>
                         <i class="glyphicon glyphicon-remove form-control-feedback" id="psw2_f"></i>
                         <i class="glyphicon glyphicon-ok form-control-feedback" id="psw2_t"></i>
-                    </div>
+                        </div>
+                        </div>
                     <div class="col-sm-3">
                         <span class="help-block " id="psw2_null">确认密码不能为空</span>
                         <span class="help-block " id="psw2_error">确认密码必须和密码一致</span>
                     </div>
                 </div>
                 <div class="form-group col-sm-12" id="img_code">
-                    <label for="image_code" class="col-sm-4 control-label">图片验证码</label>
-                    <div class="col-sm-3">
-                        <input class="form-control" type="text" id="image_code" name="image_code" placeholder="不区分大小写"/>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon5">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input class="form-control" type="text" id="image_code" name="image_code" placeholder="不区分大小写" aria-describedby="basic-addon5"/>
                         <i class="glyphicon glyphicon-remove form-control-feedback" id="code1_f"></i>
                         <i class="glyphicon glyphicon-ok form-control-feedback" id="code1_t"></i>
-                    </div>
+                        </div>
+                        </div>
                     <div class="col-sm-2">
                         <img src="../static/img/validate.jpeg" style="width:100%;height:35px;border-radius:4px;"/>
                     </div>
@@ -91,11 +109,16 @@
                 </div>
 
                 <div class="form-group col-sm-12" id="msg_code">
-                    <label for="message_code" class="col-sm-4 control-label">短信验证码</label>
-                    <div class="col-sm-3">
-                        <input class="form-control" type="text" id="message_code" name="message_code" placeholder="请输入短信验证码"/>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon6">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input class="form-control" type="text" id="message_code" name="message_code" placeholder="请输入短信验证码" aria-describedby="basic-addon6"/>
                         <i class="glyphicon glyphicon-remove form-control-feedback" id="code2_f"></i>
                         <i class="glyphicon glyphicon-ok form-control-feedback" id="code2_t"></i>
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         <a href="#" class="btn btn-primary">获取验证码</a>
@@ -135,39 +158,49 @@
         </div>
         <div class="row row2 tab-pane fade" id="login_form">
             <form class="form-horizontal">
-                <div class="col-sm-2"></div>
-                <h2 class="text-center col-sm-5">登录</h2>
-                <div class="col-sm-5"></div>
+                <div class="col-sm-3"></div>
+                <h2 class="text-center col-sm-6">登录</h2>
+                <div class="col-sm-3"></div>
                 <div class="form-group col-sm-12" id="account_login">
-                    <label for="account" class="col-sm-2 control-label">账号/用户名</label>
-                    <div class="col-sm-5">
-                    <input class="form-control" type="text" id="account" name="account" placeholder="请输入账号"/>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                         <span class="input-group-addon" id="basic-addon7">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                    <input class="form-control" type="text" id="account" name="account" placeholder="请输入账号" aria-describedby="basic-addon7"/>
                         <i class="glyphicon glyphicon-remove form-control-feedback" id="account_f"></i>
                         <i class="glyphicon glyphicon-ok form-control-feedback" id="account_t"></i>
+                        </div>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <span class="help-block " id="account_null">账号不能为空</span>
                         <span class="help-block " id="account_error">未找到该账号</span>
                     </div>
                 </div>
                 <div class="form-group col-sm-12" id="password_login">
-                    <label for="password3" class="col-sm-2 control-label">密码</label>
-                    <div class="col-sm-5">
-                    <input class="form-control" type="password" id="password3" name="password3" placeholder="请输入密码"/>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon8">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input class="form-control" type="password" id="password3" name="password3" placeholder="请输入密码" aria-describedby="basic-addon8"/>
                         <i class="glyphicon glyphicon-remove form-control-feedback" id="psw3_f"></i>
                         <i class="glyphicon glyphicon-ok form-control-feedback" id="psw3_t"></i>
+                        </div>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <span class="help-block " id="psw3_null">密码不能为空</span>
                         <span class="help-block " id="psw3_error">密码和账号不匹配</span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-2"></div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-4"></div>
                     <div class="col-sm-5 text-right">
-                    <button type="submit" name="submit2" class="btn btn-primary btn2">登录</button>
+                        <button type="submit" name="submit2" class="btn btn-primary btn2">登录</button>
                     </div>
-                    <div class="col-sm-5"></div>
+                    <div class="col-sm-3"></div>
                 </div>
             </form>
         </div>
