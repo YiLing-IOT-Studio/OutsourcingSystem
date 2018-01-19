@@ -5,10 +5,10 @@ body{
     margin-top:40px;
 }
 .row1{
-    width:80%;
+    width:100%;
 }
 .row2{
-    width:34%;
+    width:65%;
     margin:0 auto;
 }
 input{
@@ -22,7 +22,9 @@ input[type=checkbox]{
     width:auto;
     height:16px;
 }
-
+.form-control-feedback{
+    right:10px;!important;
+}
 
 
 
