@@ -13,8 +13,9 @@ $(document).ready(function() {
         // alert(len);
         if (len == 0) {
             $("#phone_error").hide();
-            $("#phone_null").show();
             $("#phone_f").show();
+            $("#phone_null").show();
+
             $("#telephone").addClass("has-error");
         }
         $("#phone").keyup(function () {
