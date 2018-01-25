@@ -4,12 +4,9 @@ body{
 .container{
     margin-top:40px;
 }
-.row1{
-    width:100%;
-}
 .row2{
     width:65%;
-    margin:0 auto;
+    margin:0 30%;
 }
 input{
     border-radius:10px;
@@ -22,6 +19,16 @@ input[type=checkbox]{
     width:auto;
     height:16px;
 }
+.form-control-feedback{
+    position:absolute;
+    top:0;
+    right:10px;
+}
+#btn1,#btn2{
+    margin-left:-25px;
+}
+
+
 
 
 
