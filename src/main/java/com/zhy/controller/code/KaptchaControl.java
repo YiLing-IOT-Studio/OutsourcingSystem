@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 /**
  * @author: zhangocean
  * @Date: Created in 21:31 2018/1/14
- * Describe:
+ * Describe: 获取图片验证码图片
  */
 @CommonsLog
 @Controller
@@ -35,16 +35,16 @@ public class KaptchaControl{
         response.setContentType("image/jpeg");
 
         String capText = kaptchaProducer.createText();
-        int first = Integer.parseInt(capText.substring(0,1));
-        int end = Integer.parseInt(capText.substring(1,2));
-        String pic = first + "+" + end + "=" + "?";
-        String result = String.valueOf(first+end);
+//        int first = Integer.parseInt(capText.substring(0,1));
+//        int end = Integer.parseInt(capText.substring(1,2));
+//        String pic = first + "+" + end + "=" + "?";
+//        String result = String.valueOf(first+end);
 //        将结果值放入session中
-        request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, result);
+        request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
 
 //        log.info(pic);
 //        绘制图片
-        BufferedImage bi = kaptchaProducer.createImage(pic);
+        BufferedImage bi = kaptchaProducer.createImage(capText);
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(bi, "jpg", out);
         try {

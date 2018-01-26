@@ -1,10 +1,10 @@
 package com.zhy.controller.code;
 
-import com.zhy.component.checkcode.CheckPicCodeComponent;
+
+import com.zhy.component.checkcode.CheckPicCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author: zhangocean
  * @Date: Created in 16:47 2018/1/20
- * Describe:
+ * Describe: 检查图片验证码
  */
 @Controller
-public class CheckPicCode {
+public class CheckPicCodeControl {
 
     @Autowired
-    CheckPicCodeComponent checkPicCodeComponent;
+    CheckPicCode checkPicCode;
 
     @GetMapping("/checkPicCode")
     @ResponseBody
@@ -26,9 +26,7 @@ public class CheckPicCode {
 
         String userPicCode = request.getParameter("image_code");
 
-        int checkPicCodeResult;
-
-        checkPicCodeResult = checkPicCodeComponent.checkPicCode(request, userPicCode);
+        int checkPicCodeResult = checkPicCode.checkPicCode(request, userPicCode);
 
         return checkPicCodeResult;
     }

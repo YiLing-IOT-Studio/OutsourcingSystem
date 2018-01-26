@@ -103,7 +103,7 @@ $(document).ready(function() {
                     //获得手机号的值，验证是否已经注册
                     $.ajax({
                         type: "POST",
-                        url: "/users",
+                        url: "/checkRegisterPhone",
                         dataType: 'json',
                         data: {
                             "phone1": phone1_value
@@ -153,8 +153,12 @@ $(document).ready(function() {
             if (phone1_box.hasClass("has-success")) {
                 var pattern_msg=/\d{6}/;
                 $.ajax({
-                    type: "GET",
-                    url: "../Ajax/smsrandcodetest.ashx?phone=" + phone1.val(),
+                    type: "POST",
+                    url: "/sendMsgCode",
+                    dataType:'json',
+                    data:{
+                        "phone1" : $("#phone1").val()
+                    },
                     success: function (result) {
                         //返回验证码的值（字符串）
                         if (pattern_msg.test(result)) {
@@ -342,7 +346,7 @@ $(document).ready(function() {
                 {
                     $.ajax({
                         type: "POST",
-                        url: "/askimgcode",
+                        url: "/checkPicCode",
                         dataType: 'json',
                         data: {
                             "image_code": value
@@ -389,7 +393,7 @@ $(document).ready(function() {
                     //未找到该用户
                     $.ajax({
                         type: "POST",
-                        url: "/users",
+                        url: "/checkLoginPhone",
                         dataType: 'json',
                         data: {
                             "phone2": $("#account").val()
@@ -434,7 +438,7 @@ $(document).ready(function() {
                     //密码不匹配！
                     $.ajax({
                         type: "POST",
-                        url: "/users",
+                        url: "/checkLoginPassword",
                         dataType: 'json',
                         data: {
                             "password3": $("#password3").val()

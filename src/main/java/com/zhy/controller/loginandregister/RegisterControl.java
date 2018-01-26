@@ -1,40 +1,40 @@
 package com.zhy.controller.loginandregister;
 
-import com.zhy.model.UserRegisterInfo;
-import com.zhy.service.register.SaveRegisterInfo;
+import com.zhy.model.User;
+import com.zhy.service.mybatis.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author: zhangocean
  * @Date: Created in 19:58 2018/1/14
- * Describe:
+ * Describe: 注册视图跳转
  */
 @Controller
 public class RegisterControl {
 
     @Autowired
-    SaveRegisterInfo saveRegisterInfo;
+    UserRegisterService userRegisterService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping("/register")
     public String register(HttpServletRequest request){
-
-        String phone =  request.getParameter("phone");
-        String userName =  request.getParameter("userName");
-        String password =  request.getParameter("password");
-        String gender =  request.getParameter("inlineRadioOptions");
+        String phone = request.getParameter("phone1");
+        String username = request.getParameter("name");
+        String password = request.getParameter("psw1");
+        String gender = request.getParameter("inlineRadioOptions");
         String obey = request.getParameter("obey");
-        String userPicCode = request.getParameter("userPicCode");
-        String userMesCode = request.getParameter("userMesCode");
 
-        UserRegisterInfo userRegisterInfo = new UserRegisterInfo(userName, password, phone, gender, obey);
+        User user = new User(phone, username, password, gender, obey);
 
-        saveRegisterInfo.saveRegister(userRegisterInfo);
+        if(userRegisterService.insert(user)){
 
-        return "project";
+            return "redirect:login_register?success";
+//            return "login_register";
+//            return "redirect:success?success";
+        }
+        return "login_register";
     }
 }

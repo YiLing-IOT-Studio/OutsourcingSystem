@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
  * Describe: 检查图片验证码
  */
 @Component
-public class CheckCode {
+public class CheckPicCode {
 
-    public Boolean checkPicCode(HttpServletRequest request,String userPicCode){
+    public int checkPicCode(HttpServletRequest request,String userPicCode){
 
         String truePicCode = (String) request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 
         if(truePicCode.toUpperCase().equals(userPicCode.toUpperCase())){
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
 
 

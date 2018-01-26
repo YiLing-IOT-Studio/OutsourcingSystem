@@ -1,25 +1,29 @@
 package com.zhy.controller.back;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * @author: zhangocean
  * @Date: Created in 13:03 2018/1/14
- * Describe:
+ * Describe: 视图跳转
  */
 @Controller
 public class BackControl {
 
-    @RequestMapping("/")
-    public String log_in_sign_up(){
+    @GetMapping("/")
+    public String loginAndRegister(){
         return "login_register";
     }
 
-    @RequestMapping("/success")
+    @GetMapping("/login_register")
+    public String redirectLoginAndRegister(){
+        return "login_register";
+    }
+
+    @GetMapping("/success")
     public String success(){
         return "success";
     }
-
 
 }
