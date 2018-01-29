@@ -5,6 +5,7 @@ import com.zhy.component.checkcode.CheckPicCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,15 +21,19 @@ public class CheckPicCodeControl {
     @Autowired
     CheckPicCode checkPicCode;
 
-    @GetMapping("/checkPicCode")
+    @PostMapping("/checkPicCode")
     @ResponseBody
-    public int checkPicCode(HttpServletRequest request){
+    public String checkPicCode(HttpServletRequest request){
 
-        String userPicCode = request.getParameter("image_code");
+        String userPicCode = request.getParameter("img_value");
 
         int checkPicCodeResult = checkPicCode.checkPicCode(request, userPicCode);
 
-        return checkPicCodeResult;
+        if(checkPicCodeResult == 1){
+            return "1";
+        }
+
+        return "0";
     }
 
 

@@ -32,13 +32,13 @@ public class SendMsgCodeControl {
 
         String phone = request.getParameter("phone1");
         System.out.println("申请验证码的手机号码是:" + phone);
-        String msgCode = phoneRandomBuilder.randomBuilder();
+        String trueMsgCode = phoneRandomBuilder.randomBuilder();
 
-        request.getSession().setAttribute("msgCode", msgCode);
+        request.getSession().setAttribute("trueMsgCode", trueMsgCode);
 
         SendSmsResponse sendSmsResponse = null;
         try {
-            sendSmsResponse = sendSmsResponse(phone, msgCode);
+            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
         } catch (ClientException e) {
             e.printStackTrace();
             return 0;

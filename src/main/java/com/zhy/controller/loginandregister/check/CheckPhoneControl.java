@@ -23,7 +23,7 @@ public class CheckPhoneControl {
     @ResponseBody
     public int checkPhoneOnRegister(HttpServletRequest request){
 
-        String registerPhone = request.getParameter("phone1");
+        String registerPhone = request.getParameter("register_phone");
 
         if(userRegisterService.phoneIsExist(registerPhone)){
             return 0;
@@ -35,7 +35,7 @@ public class CheckPhoneControl {
     @ResponseBody
     public int checkPhoneOnLogin(HttpServletRequest request){
 
-        String loginPhone = request.getParameter("phone2");
+        String loginPhone = request.getParameter("login_phone");
 
         if(userRegisterService.phoneIsExist(loginPhone)){
             return 1;

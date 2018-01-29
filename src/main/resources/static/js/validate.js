@@ -55,7 +55,7 @@ $(document).ready(function() {
                     phone1_box.addClass("has-success");
                     $.ajax({
                         type: "POST",
-                        url: "/CheckPhoneControl",
+                        url: "/checkRegisterPhone",
                         dataType: 'json',
                         data: {
                             "register_phone": phone1_value
@@ -116,7 +116,7 @@ $(document).ready(function() {
         if (phone1_box.hasClass("has-success")) {
             $.ajax({
                 type: "POST",
-                url: "/endMsgCodeControl",
+                url: "/sendMsgCode",
                 dataType: 'json',
                 data: {
                     "phone1": $("#phone1").val()
@@ -170,7 +170,7 @@ $(document).ready(function() {
                 //ajax
                 $.ajax({
                     type: "POST",
-                    url: "/endMsgCodeControl",
+                    url: "/checkMsgCode",
                     dataType: 'json',
                     data: {
                         "register_phone": $("#phone1").val(),
@@ -360,7 +360,7 @@ $(document).ready(function() {
             //查找该用户是否存在
             $.ajax({
                 type: "POST",
-                url: "/CheckPhoneControl",
+                url: "/checkLoginPhone",
                 dataType: 'json',
                 data: {
                     "login_phone": phone2.val()
@@ -415,7 +415,7 @@ $(document).ready(function() {
                 //检查密码和手机是否匹配！
                 $.ajax({
                     type: "POST",
-                    url: "/CheckLoginPassword",
+                    url: "/checkLoginPassword",
                     dataType: 'json',
                     data: {
                         "login_phone":$("#phone2").val(),
@@ -488,7 +488,7 @@ $(document).ready(function() {
             {
                 $.ajax({
                     type: "POST",
-                    url: "/CheckPicCode",
+                    url: "/checkPicCode",
                     dataType: 'json',
                     data: {
                         "img_value": img_value

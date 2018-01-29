@@ -35,6 +35,7 @@ public class KaptchaControl{
         response.setContentType("image/jpeg");
 
         String capText = kaptchaProducer.createText();
+
 //        int first = Integer.parseInt(capText.substring(0,1));
 //        int end = Integer.parseInt(capText.substring(1,2));
 //        String pic = first + "+" + end + "=" + "?";

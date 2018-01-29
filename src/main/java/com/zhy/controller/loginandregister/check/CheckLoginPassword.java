@@ -4,6 +4,7 @@ import com.zhy.service.mybatis.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,15 +20,16 @@ public class CheckLoginPassword {
     UserRegisterService userRegisterService;
 
     @PostMapping("/checkLoginPassword")
-    public int checkLoginPassword(HttpServletRequest request){
+    @ResponseBody
+    public String checkLoginPassword(HttpServletRequest request){
 
-        String phone = request.getParameter("");
-        String password = request.getParameter("password3");
+        String phone = request.getParameter("login_phone");
+        String password = request.getParameter("login_password");
 
         if(userRegisterService.passwordIsRight(phone, password)){
-            return 1;
+            return "1";
         }
-        return 0;
+        return "0";
     }
 
 

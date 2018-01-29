@@ -19,9 +19,9 @@ public interface UserRegisterMapper {
     @Insert("insert into user(phone, username, password, gender, obey) values (#{phone}, #{username}, #{password}, #{gender}, #{obey})")
     int insert(User user);
 
-    @Select("select * from User where phone=#{phone}")
+    @Select("select * from user where phone=#{phone}")
     User selectByPhone(@Param("phone") String phone);
 
-    @Select("select * from User where phone=#{phone} and password=#{password}")
+    @Select("select * from user where phone=#{phone} and password=#{password}")
     User selectByPhoneAndPassword(@Param("phone") String phone, @Param("password") String password);
 }

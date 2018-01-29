@@ -25,16 +25,14 @@ public class RegisterControl {
         String username = request.getParameter("name");
         String password = request.getParameter("psw1");
         String gender = request.getParameter("inlineRadioOptions");
-        String obey = request.getParameter("obey");
+        String obey = request.getParameter("checkbox");
 
         User user = new User(phone, username, password, gender, obey);
 
         if(userRegisterService.insert(user)){
 
             return "redirect:login_register?success";
-//            return "login_register";
-//            return "redirect:success?success";
         }
-        return "login_register";
+        return "redirect:login_register?error";
     }
 }
