@@ -2,12 +2,9 @@ body{
     background:url(../img/bg.jpeg);
 }
 .container{
-    margin-top:40px;
+    padding-top:40px;
 }
-.row2{
-    width:65%;
-    margin:0 30%;
-}
+
 input{
     border-radius:10px;
 }

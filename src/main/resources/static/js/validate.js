@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    createImg();
+
 
     //获取输入框内容长度函数
     function getLen($id) {
@@ -450,19 +450,11 @@ $(document).ready(function() {
         }
     });
     //生成图片验证码
-    function createImg(){
-        $.ajax({
-            type:"POST",
-            url:"/getKaptchaImage",
-            dataType:"json",
-            data:{
-                "send_img":"send_imgCode"
-            },
-            error:function() {
-                alert("请求图片验证码失败！");
-            }
-        })
-    }
+ $(".fresh").on('click',function(){
+     var img_src='/getKaptchaImage?t='+Math.random();
+     $("#img").attr('src',img_src);
+
+ });
     //图片验证码验证
     var img_box=$("#img_box");
     var img_code=$("#img_code");

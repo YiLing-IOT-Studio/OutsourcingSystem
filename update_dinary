@@ -23,3 +23,7 @@ update 2018.1.26
 update 2018.1.28
         author:yyq
         修改部分：修改以上问题
+update 2018.1.30
+author:yyq
+处理图片验证码刷新问题
+适应手机端
