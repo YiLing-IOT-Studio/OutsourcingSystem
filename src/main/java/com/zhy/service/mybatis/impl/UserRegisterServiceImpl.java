@@ -1,5 +1,6 @@
 package com.zhy.service.mybatis.impl;
 
+import com.zhy.constant.RoleConstant;
 import com.zhy.mapper.UserRegisterMapper;
 import com.zhy.model.User;
 import com.zhy.service.mybatis.UserRegisterService;
@@ -32,6 +33,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
         if(phoneIsExist(phone)){
             return false;
         }
+        user.setRoles(RoleConstant.ROLE_USER);
         int insertResult = userRegisterMapper.insert(user);
         log.info("注册成功！" + "注册手机号为：" + phone);
         return (insertResult == 1);

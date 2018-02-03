@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface UserRegisterMapper {
 
-    @Insert("insert into user(phone, username, password, gender, obey) values (#{phone}, #{username}, #{password}, #{gender}, #{obey})")
+    @Insert("insert into user(phone, username, password, gender, obey, roles) values (#{phone}, #{username}, #{password}, #{gender}, #{obey}, #{roles})")
     int insert(User user);
 
     @Select("select * from user where phone=#{phone}")

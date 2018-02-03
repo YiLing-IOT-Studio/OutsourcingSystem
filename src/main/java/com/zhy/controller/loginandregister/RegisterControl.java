@@ -31,8 +31,10 @@ public class RegisterControl {
 
         if(userRegisterService.insert(user)){
 
-            return "redirect:login_register?success";
+//            return "redirect:login_register?success";
+            return "login_register";
         }
-        return "redirect:login_register?error";
+//        return "redirect:login_register?error";
+        return "login_register";
     }
 }

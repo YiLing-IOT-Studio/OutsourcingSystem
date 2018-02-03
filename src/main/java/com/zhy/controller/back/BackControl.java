@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BackControl {
 
-    @GetMapping("/")
-    public String loginAndRegister(){
-        return "login_register";
+    @GetMapping({"/","/index"})
+    public String index(){
+        return "project";
     }
 
     @GetMapping("/login_register")
@@ -26,4 +26,8 @@ public class BackControl {
         return "success";
     }
 
+    @GetMapping("/user")
+    public String user(){
+        return "userInfo";
+    }
 }

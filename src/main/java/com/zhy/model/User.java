@@ -35,6 +35,11 @@ public class User {
      */
     private String obey;
 
+    /**
+     * 注册者权限
+     */
+    private String roles;
+
     public User() {
     }
 
