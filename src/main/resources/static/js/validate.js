@@ -25,6 +25,7 @@ $(document).ready(function() {
         if (phone1_len == 0) {
             phone1_error.hide();
             phone1_t.hide();
+            phone1_existed.hide();
             phone1_f.show();
             phone1_null.show();
             phone1_box.remove("has-success");
@@ -81,7 +82,13 @@ $(document).ready(function() {
                             }
                         },
                         error:function(){
-                            alert("请求失败!");
+                            console.log("请求失败!");
+                            phone1_existed.show();
+                            phone1_f.show();
+                            phone1_box.removeClass("has-success");
+                            phone1_box.addClass("has-error");
+                            phone1_error.hide();
+                            phone1_t.hide();
                         }
                     });
                 }
@@ -194,7 +201,7 @@ $(document).ready(function() {
                             msg_t.show();
                         }
                         else{
-                            alert("数据异常！");
+                            console.log("数据异常！");
                             msg_error.hide();
                             msg_f.show();
                             msg_t.hide();
@@ -204,7 +211,7 @@ $(document).ready(function() {
                     },
                     error:function()
                     {
-                        alert("验证请求失败!");
+                        console.log("验证请求失败!");
                         msg_error.hide();
                         msg_f.show();
                         msg_t.hide();
@@ -383,11 +390,21 @@ $(document).ready(function() {
                         phone2_box.addClass("has-success");
                     }
                     else{
-                        alert("数据异常，验证失败！");
+                        console.log("数据异常，验证失败！");
+                        phone2_error.show();
+                        phone2_f.show();
+                        phone2_t.hide();
+                        phone2_box.removeClass("has-success");
+                        phone2_box.addClass("has-error");
                     }
                 },
                 error:function() {
-                    alert("请求失败!");
+                    console.log("请求失败!");
+                    phone2_error.show();
+                    phone2_f.show();
+                    phone2_t.hide();
+                    phone2_box.removeClass("has-success");
+                    phone2_box.addClass("has-error");
                 }
             })
         }
@@ -399,7 +416,7 @@ $(document).ready(function() {
     var psw3_f=$("#psw3_f");
     var psw3_t=$("#psw3_t");
     var psw3=$("#psw3");
-    psw3.keyup(function () {
+    psw3.keyup(function(){
         var len = getLen('psw3');
         if (len == 0) {
             psw3_null.show();
@@ -439,11 +456,21 @@ $(document).ready(function() {
                             psw3_box.addClass("has-success");
                         }
                         else{
-                            alert("数据异常！");
+                            console.log("数据异常！");
+                            psw3_error.show();
+                            psw3_f.show();
+                            psw3_t.hide();
+                            psw3_box.removeClass("has-success");
+                            psw3_box.addClass("has-error");
                         }
                     },
                     error:function() {
-                        alert("请求失败！");
+                        console.log("请求失败！");
+                        psw3_error.show();
+                        psw3_f.show();
+                        psw3_t.hide();
+                        psw3_box.removeClass("has-success");
+                        psw3_box.addClass("has-error");
                     }
                 })
             }
@@ -486,6 +513,7 @@ $(document).ready(function() {
                         "img_value": img_value
                     },
                     success: function (data) {
+                        //验证码错误
                         if (parseInt(data) == 0) {
                             img_t.hide();
                             img_error.show();
@@ -493,6 +521,7 @@ $(document).ready(function() {
                             img_box.removeClass("has-error");
                             img_box.addClass("has-error");
                         }
+                        //验证码正确
                         else if (parseInt(data) == 1) {
                             img_box.removeClass("has-error");
                             img_error.hide();
@@ -501,24 +530,62 @@ $(document).ready(function() {
                             img_box.addClass("has-success");
                         }
                         else{
-                            alert("返回数据错误！");
+                            console.log("返回数据错误！");
+                            img_t.hide();
+                            img_error.show();
+                            img_f.show();
+                            img_box.removeClass("has-error");
+                            img_box.addClass("has-error");
                         }
                     },
                     error:function(){
-                        alert("请求失败！");
+                        console.log("请求失败！");
+                        img_t.hide();
+                        img_error.show();
+                        img_f.show();
+                        img_box.removeClass("has-error");
+                        img_box.addClass("has-error");
                     }
                 })
             }
         }
     });
-    $('.form-group :input').bind('input propertychange', function () {
-        //注册按钮
+    var j;
+    var login_information = new Array(3);
+    for (j = 0; j < 3; j++) {
+        login_information[j] = $("#login_form").find('.form-group').eq(j);
+    }
+    var i;
+    var register_information = new Array(5);
+    for (i = 0; i < 5; i++) {
+        register_information[i] = $("#register_form").find('.form-group').eq(i);
+    }
+
+
+    $('.form-group :input').bind('propertychange', function () {
+
+        //登录按钮
         var register = $("#btn1");
-        var i;
-        var register_information = new Array(5);
-        for (i = 0; i < 5; i++) {
-            register_information[i] = $("#register_form").find('.form-group').eq(i);
+        var login = $("#btn2");
+        // login.attr('disabled',true);
+        var flag2;
+        var j;
+        for (j = 0; j < 3; j++) {
+           flag2 = login_information[j].hasClass('has-error');
+            if (flag2 == true) {
+                break;
+            }
         }
+        if (j == 3) {
+            login .attr('disabled', false);
+        }
+        else {
+            login .attr('disabled', true);
+        }
+
+        //注册按钮
+
+
         for (i = 0; i < 5; i++) {
             var flag = register_information[i].hasClass('has-error');
             if (flag == true) {
@@ -531,25 +598,8 @@ $(document).ready(function() {
         else {
             register.attr('disabled', true);
         }
-        //登录按钮
-        var login = $("#btn2");
-        var j;
-        var login_information = new Array(3);
-        for (j = 0; j < 3; j++) {
-            register_information[i] = $("#register_form").find('.form-group').eq(i);
-        }
-        for (j = 0; j < 3; j++) {
-            var flag2 = login_information[i].hasClass('has-error');
-            if (flag2 == true) {
-                break;
-            }
-        }
-        if (i == 3) {
-            login .attr('disabled', false);
-        }
-        else {
-            login .attr('disabled', true);
-        }
+
+
     });
 
 });
