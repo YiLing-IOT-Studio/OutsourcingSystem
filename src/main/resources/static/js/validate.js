@@ -11,7 +11,7 @@ $(document).ready(function() {
     $('.help-block').hide();
     $(".form-control-feedback").hide();
 
-    //手机号码验证
+    //注册手机号码验证
     var phone1 = $("#phone1");
     var phone1_f = $("#phone1_f");
     var phone1_t = $("#phone1_t");
@@ -43,17 +43,12 @@ $(document).ready(function() {
                     phone1_error.show();
                     phone1_f.show();
                     phone1_t.hide();
+                    phone1_existed.hide();
                     phone1_box.removeClass("has-success");
                     phone1_box.addClass("has-error");
                 }
                 if (pattern.test(phone1_value)) {
                     //获得手机号的值，验证是否已经注册
-                    phone1_f.hide();
-                    phone1_error.hide();
-                    phone1_t.show();
-                    phone1_existed.hide();
-                    phone1_box.removeClass("has-error");
-                    phone1_box.addClass("has-success");
                     $.ajax({
                         type: "POST",
                         url: "/checkRegisterPhone",
@@ -62,7 +57,7 @@ $(document).ready(function() {
                             "register_phone": phone1_value
                         },
                         success: function (data) {
-                            //返回0，没有注册
+                            //返回0，已经注册
                             if (parseInt(data) === 0) {
                                 phone1_existed.show();
                                 phone1_f.show();
@@ -71,8 +66,8 @@ $(document).ready(function() {
                                 phone1_error.hide();
                                 phone1_t.hide();
                             }
-                            //返回1，注册成功
-                            if (parseInt(data) === 1) {
+                            //返回1，没有注册
+                            else if (parseInt(data) === 1) {
                                 phone1_f.hide();
                                 phone1_error.hide();
                                 phone1_t.show();
@@ -80,10 +75,20 @@ $(document).ready(function() {
                                 phone1_box.removeClass("has-error");
                                 phone1_box.addClass("has-success");
                             }
+                            //数据异常
+                            else{
+                                alert("返回数据异常!");
+                                phone1_existed.hide();
+                                phone1_f.show();
+                                phone1_box.removeClass("has-success");
+                                phone1_box.addClass("has-error");
+                                phone1_error.hide();
+                                phone1_t.hide();
+                            }
                         },
                         error:function(){
-                            console.log("请求失败!");
-                            phone1_existed.show();
+                            alert("请求失败!");
+                            phone1_existed.hide();
                             phone1_f.show();
                             phone1_box.removeClass("has-success");
                             phone1_box.addClass("has-error");
@@ -134,7 +139,6 @@ $(document).ready(function() {
                         alert("验证码已发送至您输入的手机号！有效期5分钟");
                         timeLeft = my_interval;
                         timeCount();
-                        //短信验证码验证(+)
                     }
                     else {
                         alert("验证码获取失败！请重新获取");
@@ -201,7 +205,7 @@ $(document).ready(function() {
                             msg_t.show();
                         }
                         else{
-                            console.log("数据异常！");
+                            alert("数据异常！");
                             msg_error.hide();
                             msg_f.show();
                             msg_t.hide();
@@ -211,7 +215,7 @@ $(document).ready(function() {
                     },
                     error:function()
                     {
-                        console.log("验证请求失败!");
+                        alert("验证请求失败!");
                         msg_error.hide();
                         msg_f.show();
                         msg_t.hide();
@@ -345,6 +349,7 @@ $(document).ready(function() {
         }
     });
 
+
     //登录手机号验证(+)
     var phone2_box=$("#phone2_box");
     var phone2=$("#phone2");
@@ -359,12 +364,12 @@ $(document).ready(function() {
             phone2_f.show();
             phone2_t.hide();
             phone2_error.hide();
+            phone2_box.removeClass("has-success");
             phone2_box.addClass("has-error");
 
         }
         else{
             phone2_null.hide();
-            //查找该用户是否存在
             $.ajax({
                 type: "POST",
                 url: "/checkLoginPhone",
@@ -429,7 +434,6 @@ $(document).ready(function() {
         else{
             psw3_null.hide();
             {
-                //检查密码和手机是否匹配！
                 $.ajax({
                     type: "POST",
                     url: "/checkLoginPassword",
@@ -550,49 +554,54 @@ $(document).ready(function() {
             }
         }
     });
-    var j;
+
     var login_information = new Array(3);
-    for (j = 0; j < 3; j++) {
+    for (var j = 0; j < 3; j++) {
         login_information[j] = $("#login_form").find('.form-group').eq(j);
     }
-    var i;
     var register_information = new Array(5);
-    for (i = 0; i < 5; i++) {
+    for (var i = 0; i < 5; i++) {
         register_information[i] = $("#register_form").find('.form-group').eq(i);
     }
 
-
-    $('.form-group :input').bind('propertychange', function () {
+    $('input').keyup(function () {
 
         //登录按钮
-        var register = $("#btn1");
-        var login = $("#btn2");
-        // login.attr('disabled',true);
-        var flag2;
-        var j;
-        for (j = 0; j < 3; j++) {
-           flag2 = login_information[j].hasClass('has-error');
-            if (flag2 == true) {
+        var login= $("#btn2");
+        for (var j = 0; j < 3; j++) {
+
+            if(login_information[j].hasClass('has-error'))
+            {
                 break;
             }
-        }
-        if (j == 3) {
-            login .attr('disabled', false);
-        }
-        else {
-            login .attr('disabled', true);
-        }
+            else if(phone2.val().length<2||psw3.val().length<2||img_code.val().length<2){
+                break;
+            }
 
+        }
+        if(j==3){
+            login.attr("disabled",false);
+        }
+        else{
+            login.attr('disabled',true);
+        }
         //注册按钮
+        var register = $("#btn1");
 
+        for (var i = 0; i < 5; i++) {
+            // console.log(i);
+            // console.log(register_information[i].hasClass('has-success'));
 
-        for (i = 0; i < 5; i++) {
-            var flag = register_information[i].hasClass('has-error');
-            if (flag == true) {
+            if (register_information[i].hasClass('has-error')) {
+                // console.log("error");
+                break;
+            }
+            else if(phone1.val().length<2||msg_code.val().length<2||name.val().length<2||psw1.val().length<2||psw2.val().length<2){
+                // console.log("null");
                 break;
             }
         }
-        if (i == 5) {
+        if (i==5) {
             register.attr('disabled', false);
         }
         else {
