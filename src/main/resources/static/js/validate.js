@@ -563,31 +563,28 @@ $(document).ready(function() {
     for (var i = 0; i < 5; i++) {
         register_information[i] = $("#register_form").find('.form-group').eq(i);
     }
-
-    $('input').keyup(function () {
-
+    var login= $("#btn2");
+    var register = $("#btn1");
+    login.mouseenter(function () {
         //登录按钮
-        var login= $("#btn2");
         for (var j = 0; j < 3; j++) {
-
-            if(login_information[j].hasClass('has-error'))
-            {
+            if (login_information[j].hasClass('has-error')) {
                 break;
             }
-            else if(phone2.val().length<2||psw3.val().length<2||img_code.val().length<2){
+            else if (phone2.val().length < 2 || psw3.val().length < 2 || img_code.val().length < 2) {
                 break;
             }
 
         }
-        if(j==3){
-            login.attr("disabled",false);
+        if (j == 3) {
+            login.attr("disabled", false);
         }
-        else{
-            login.attr('disabled',true);
+        else {
+            login.attr('disabled', true);
         }
         //注册按钮
-        var register = $("#btn1");
-
+    });
+   register.mouseenter(function(){
         for (var i = 0; i < 5; i++) {
             // console.log(i);
             // console.log(register_information[i].hasClass('has-success'));
