@@ -34,7 +34,7 @@ $(document).ready(function() {
         //获得手机号的内容，验证值是否合法
         var phone1_value = phone1.val();
         var pattern;
-        pattern = /^1[34578]\d{9}$/;
+        pattern = /^1[345789]\d{9}$/;
         if (phone1_len !== 0) {
             phone1_null.hide();
 

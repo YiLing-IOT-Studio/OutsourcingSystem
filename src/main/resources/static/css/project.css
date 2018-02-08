@@ -1,3 +1,6 @@
+body{
+    padding-top:50px;
+}
 .content{
     margin-top:100px;
 }
@@ -25,4 +28,42 @@
     width:100%;
     background:#428bca;
     color:white;
+}
+.navbar-brand{
+padding:0;
+}
+/*hero*/
+.hero{
+    background-image:url("../img/hero.jpeg");
+    background-size:cover;
+    background-position:50% 50%;
+    padding:200px 0;
+    text-align:center;
+}
+.hero form{
+    position: relative;
+    width:580px;
+    max-width:100%;
+    margin:0 auto;
+}
+.search_input{
+    padding:16px 18px;
+    width:100%;
+    border-radius:4px;
+    font-size:18px;
+    outline: none;
+}
+.search_icon{
+    position:absolute;
+    top:0;
+    right:0;
+    padding:16px 16px 10px 16px;
+    background:transparent;
+    opacity:0.6;
+    font-size:22px;
+    cursor:pointer;
+    border:0;
+}
+.search_icon :hover{
+    opacity:1;
 }
