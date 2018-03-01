@@ -46,3 +46,7 @@ author:yyq
 update 2018.2.8
 author:yyq
 给主页添加导航栏
+
+update 2018.3.1
+    author:yyq
+    增加部分：增加project.html页需要的ajax请求部分
