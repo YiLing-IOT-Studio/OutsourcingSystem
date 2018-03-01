@@ -32,7 +32,7 @@ body{
 .navbar-brand{
 padding:0;
 }
-#search_submit:hover{
+#search_submit{
     background-color:darkred;
     color:white;
 }

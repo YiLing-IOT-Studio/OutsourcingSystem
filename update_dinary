@@ -49,4 +49,27 @@ author:yyq
 
 update 2018.3.1
     author:yyq
-    增加部分：增加project.html页需要的ajax请求部分
+    增加部分：增加project.html页需要的ajax请求部分：
+    1.页面加载时请求，将内容填充到页面
+    2.在导航栏search后动态刷新
+    3.多选框组点击确定，按选择刷新页面
+    4.选择排序方式动态刷新
+    说明：后端返回数据格式：
+    message[
+    {
+    state（状态）：“new/报名中/实施中/已完成”
+    name（名称）：“项目名称”，
+    type(承包类型)：“整包/悬赏/兼职”，
+    category（项目类型）：“网站开发/移动开发/嵌入式系统等”,
+    content(项目简介)：“项目说明和简介”，
+    number （项目人数）："3人”，
+    publisher（发布者）：“某某某”，
+    time（时间）：“年月日”，
+    requirment（要求）：“...”,
+    progress(进度)：x%
+    },
+    {},
+    {},
+    {},
+    ...
+    ]
