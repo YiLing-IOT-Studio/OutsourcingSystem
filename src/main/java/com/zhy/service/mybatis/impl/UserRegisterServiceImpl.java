@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author: zhangocean
  * @Date: Created in 12:22 2018/1/26
- * Describe:
+ * Describe: 用户登录注册的数据库操作的实现
  */
 @Service
 @Primary

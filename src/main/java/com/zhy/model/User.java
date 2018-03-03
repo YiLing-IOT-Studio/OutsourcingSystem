@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @author: zhangocean
  * @Date: Created in 19:48 2018/1/14
- * Describe:
+ * Describe: 注册用户类
  */
 @Data
 public class User {

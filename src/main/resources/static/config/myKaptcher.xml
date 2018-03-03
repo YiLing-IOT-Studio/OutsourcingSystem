@@ -16,21 +16,21 @@
                         <!--边框厚度，合法值：>0-->
                         <prop key="kaptcha.border.thickness">1</prop>
                         <!--图片宽 200-->
-                        <prop key="kaptcha.image.width">90</prop>
+                        <prop key="kaptcha.image.width">130</prop>
                         <!--图片高 50-->
-                        <prop key="kaptcha.image.height">38</prop>
+                        <prop key="kaptcha.image.height">40</prop>
                         <!--图片实现类-->
                         <prop key="kaptcha.producer.impl">com.google.code.kaptcha.impl.DefaultKaptcha</prop>
                         <!--文本实现类-->
                         <prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.DefaultTextCreator</prop>
                         <!--文本集合，验证码值从此集合中获取-->
-                        <prop key="kaptcha.textproducer.char.string">abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ</prop>
+                        <prop key="kaptcha.textproducer.char.string">abc1234defgh78ijklmnopqrstuvwxyz0ABCD69EFGHIJKLMNOPQ5RSTUVWXYZ</prop>
                         <!--验证码长度 5-->
                         <prop key="kaptcha.textproducer.char.length">5</prop>
                         <!--字体 Arial, Courier-->
-                        <prop key="kaptcha.textproducer.font.names">楷书,Arial, Courier</prop>
+                        <prop key="kaptcha.textproducer.font.names">Arial, Courier</prop>
                         <!--字体大小 40px-->
-                        <prop key="kaptcha.textproducer.font.size">24</prop>
+                        <prop key="kaptcha.textproducer.font.size">33</prop>
                         <!--字体颜色，合法值： r,g,b 或者 white,black,blue.-->
                         <prop key="kaptcha.textproducer.font.color">black</prop>
                         <!--文字间隔 2-->

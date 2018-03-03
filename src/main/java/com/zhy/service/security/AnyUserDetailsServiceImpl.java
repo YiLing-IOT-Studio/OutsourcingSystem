@@ -37,7 +37,7 @@ public class AnyUserDetailsServiceImpl implements UserDetailsService{
             throw new UsernameNotFoundException("用户不存在");
         }
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = createAuthorities(user.getRoles());
-        return new org.springframework.security.core.userdetails.User(user.getPhone(), user.getPassword(), simpleGrantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), simpleGrantedAuthorities);
     }
 
     private List<SimpleGrantedAuthority> createAuthorities(String roleStr){

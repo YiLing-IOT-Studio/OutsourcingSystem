@@ -5,7 +5,7 @@ import com.zhy.model.User;
 /**
  * @author: zhangocean
  * @Date: Created in 12:15 2018/1/26
- * Describe:
+ * Describe: 用户登录注册的数据库操作
  */
 public interface UserRegisterService {
 

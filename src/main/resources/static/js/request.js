@@ -27,8 +27,8 @@ $.ajax({
                     '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + data.message[i].number + '</p>' +
                     '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + data.message[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].requirment + '</p>'
                     + '<div class="progress">' +
-                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + data.message[i].progress + ';">' +
-                    data.message[i].progress +
+                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + data.message[i].progress +'%'+ ';">' +
+                    data.message[i].progress +'%'+
                     '</div>'
                     + '</div>'
                     + '</div>');

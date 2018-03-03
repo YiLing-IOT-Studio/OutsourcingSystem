@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author: zhangocean
  * @Date: Created in 12:26 2018/1/26
- * Describe: mybatis的sql语句
+ * Describe: User 类的sql语句
  */
 @Component
 @Mapper

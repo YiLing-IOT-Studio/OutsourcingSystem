@@ -11,19 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BackControl {
 
-    @GetMapping({"/","/index"})
+    @GetMapping("/index")
     public String index(){
         return "project";
     }
 
-    @GetMapping("/login_register")
+    @GetMapping({"/login_register","/"})
     public String redirectLoginAndRegister(){
         return "login_register";
-    }
-
-    @GetMapping("/success")
-    public String success(){
-        return "success";
     }
 
     @GetMapping("/user")

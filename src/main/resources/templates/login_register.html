@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--<meta name="_csrf" th:content="${_csrf.token}"/>-->
     <!--&lt;!&ndash; default header name is X-CSRF-TOKEN &ndash;&gt;-->
@@ -10,9 +10,9 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>Bootstrap 101 Template</title>
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!--login_register.css-->
-    <link href="../static/css/login_register.css" rel="stylesheet"/>
+    <link href="css/login_register.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -27,7 +27,7 @@
             <!--login-->
             <div role="tabpanel" class="tab-pane fade in active" id="login">
                 <div class="col-md-offset-3 col-md-9 col-xs-12">
-                    <form class="form-horizontal"  method="post" id="login_form" action="/login">
+                    <form class="form-horizontal" id="login_form" th:action="@{/login_register}" method="post">
                         <div class="row">
                     <h2 class="col-sm-offset-2 col-sm-4 text-center">登录</h2>
                     <div class="col-sm-6"></div>
@@ -35,7 +35,7 @@
                         <div class="form-group row" id="phone2_box">
                             <label for="phone2" class="control-label col-sm-2">手机号</label>
                             <div class="col-sm-4">
-                                <input class="form-control" type="text" id="phone2" name="phone2" placeholder="请输入手机号" autocomplete="off"/>
+                                <input class="form-control" type="text" id="phone2" name="username" placeholder="请输入手机号" autocomplete="off"/>
                                 <i class="glyphicon glyphicon-remove form-control-feedback" id="phone2_f"></i>
                                 <i class="glyphicon glyphicon-ok form-control-feedback" id="phone2_t"></i>
                             </div>
@@ -47,7 +47,7 @@
                         <div class="form-group row" id="psw3_box">
                             <label for="psw3" class="control-label col-sm-2">密码</label>
                             <div class="col-sm-4">
-                                <input class="form-control" type="password" id="psw3" name="psw3" placeholder="请输入密码" autocomplete="off"/>
+                                <input class="form-control" type="password" id="psw3" name="password" placeholder="请输入密码" autocomplete="off"/>
                                 <i class="glyphicon glyphicon-remove form-control-feedback" id="psw3_f"></i>
                                 <i class="glyphicon glyphicon-ok form-control-feedback" id="psw3_t"></i>
                             </div>
@@ -78,9 +78,9 @@
                             </div>
                             <div class="col-sm-6"></div>
                         </div>
-                        <!--<div th:if="${param.success}">-->
-                                <!--<p>注册成功，可以登录了</p>-->
-                        <!--</div>-->
+                        <div th:if="${param.error}">
+                                <p>用户名或密码错误</p>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -187,9 +187,9 @@
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/validate.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/validate.js"></script>
 </body>
 </html>
