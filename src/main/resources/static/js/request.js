@@ -89,31 +89,31 @@ search.onkeyup(function(){
 var sure_submit=document.getElementById("sure_submit");
 sure_submit.onclick(function(){
     var category_checkbox=document.getElementsByName("category");
-    var state_checkbox=document.getElementsByName("state");
-    var amount_checkbox=document.getElementsByName("amount");
-    var type_checkbox=document.getElementsByName("type");
+    var state_radio=document.getElementsByName("state");
+    var amount_radio=document.getElementsByName("amount");
+    var type_radio=document.getElementsByName("type");
     var category_array=[];
-    var state_array=[];
-    var amount_array=[];
-    var type_array=[];
+    var state="";
+    var amount="";
+    var type="";
     for(var i=0;i<category_checkbox.length;i++){
         if(category_checkbox[i].checked==true){
             category_array.push(category_checkbox[i].value);
         }
     }
-    for(var j=0;j<state_checkbox.length;j++){
-        if(state_checkbox[i].checked==true){
-            state_array.push(state_checkbox[j].value);
+    for(var j=0;j<state_radio.length;j++){
+        if(state_radio[j].checked==true){
+            state=state_radio[j].value;
         }
     }
-    for(var k=0;k<amount_checkbox.length;k++){
-        if(amount_checkbox[k].checked==true){
-            amount_array.push(amount_checkbox[k].value);
+    for(var k=0;k<amount_radio.length;k++){
+        if(amount_radio[k].checked==true){
+            amount=amount_radio[k].value;
         }
     }
-    for(var m=0;m<type_checkbox.length;m++){
-        if(type_checkbox[m].checked==true){
-            type_array.push(type_checkbox[m].value)
+    for(var m=0;m<type_radio.length;m++){
+        if(type_radio[m].checked==true){
+            type=type_radio[m].value;
         }
     }
     $.ajax({
@@ -122,9 +122,9 @@ sure_submit.onclick(function(){
         dataType: 'json',
         data: {
             category:category_array,
-            state:state_array,
-            amount:amount_array,
-            type:type_array
+            state:state,
+            amount:amount,
+            type:type
         },
         success: function (data) {
             function isEmptyObject(e) {
