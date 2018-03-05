@@ -9,26 +9,21 @@ $.ajax({
         dataType: 'json',
         data: {},
         success: function (data) {
-            function isEmptyObject(e) {
-                var t;
-                for (t in e)
-                    return !1;
-                return !0;
-            }
-
-            for (var i = 0; i < data.message.length; i++) {
+            var json=eval('('+data+')');
+            put_project.innerHTML="";
+            for (var i = 0; i < json[i].length; i++) {
                 var message = $('<div class="row">' +
                     '<h4>' +
-                    '<span class="badge">' + data.message[i].state + '</span>' +
-                    data.message[i].name +
+                    '<span class="badge">' + json[i].state + '</span>' +
+                    json[i].name +
                     '</h4>' +
-                    '<span class="label label-default">' + data.message[i].type + '</span>' + '<span class="label label-default">' + data.message[i].category + '</span>' +
-                    '<p>' + data.message[i].content + '</p>' +
-                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + data.message[i].number + '</p>' +
-                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + data.message[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].requirment + '</p>'
+                    '<span class="label label-default">' + json[i].type + '</span>' + '<span class="label label-default">' + json[i].category + '</span>' +
+                    '<p>' + json[i].content + '</p>' +
+                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + json[i].number + '</p>' +
+                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + json[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].requirment + '</p>'
                     + '<div class="progress">' +
-                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + data.message[i].progress +'%'+ ';">' +
-                    data.message[i].progress +'%'+
+                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + json[i].progress +'%'+ ';">' +
+                    json[i].progress +'%'+
                     '</div>'
                     + '</div>'
                     + '</div>');
@@ -53,32 +48,28 @@ search.onkeyup(function(){
             search_text:search_text
         },
         success: function (data) {
-            function isEmptyObject(e) {
-                var t;
-                for (t in e)
-                    return !1;
-                return !0;
-            }
+            var json=eval('('+data+')');
             put_project.innerHTML="";
-            for (var i = 0; i < data.message.length; i++) {
+            for (var i = 0; i < json[i].length; i++) {
                 var message = $('<div class="row">' +
                     '<h4>' +
-                    '<span class="badge">' + data.message[i].state + '</span>' +
-                    data.message[i].name +
+                    '<span class="badge">' + json[i].state + '</span>' +
+                    json[i].name +
                     '</h4>' +
-                    '<span class="label label-default">' + data.message[i].type + '</span>' + '<span class="label label-default">' + data.message[i].category + '</span>' +
-                    '<p>' + data.message[i].content + '</p>' +
-                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + data.message[i].number + '</p>' +
-                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + data.message[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].requirment + '</p>'
+                    '<span class="label label-default">' + json[i].type + '</span>' + '<span class="label label-default">' + json[i].category + '</span>' +
+                    '<p>' + json[i].content + '</p>' +
+                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + json[i].number + '</p>' +
+                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + json[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].requirment + '</p>'
                     + '<div class="progress">' +
-                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + data.message[i].progress + ';">' +
-                    data.message[i].progress +
+                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + json[i].progress +'%'+ ';">' +
+                    json[i].progress +'%'+
                     '</div>'
                     + '</div>'
                     + '</div>');
                 put_project.append(message);
 
             }
+
         },
         error: function (data) {
 
@@ -127,26 +118,21 @@ sure_submit.onclick(function(){
             type:type
         },
         success: function (data) {
-            function isEmptyObject(e) {
-                var t;
-                for (t in e)
-                    return !1;
-                return !0;
-            }
+            var json=eval('('+data+')');
             put_project.innerHTML="";
-            for (var i = 0; i < data.message.length; i++) {
+            for (var i = 0; i < json[i].length; i++) {
                 var message = $('<div class="row">' +
                     '<h4>' +
-                    '<span class="badge">' + data.message[i].state + '</span>' +
-                    data.message[i].name +
+                    '<span class="badge">' + json[i].state + '</span>' +
+                    json[i].name +
                     '</h4>' +
-                    '<span class="label label-default">' + data.message[i].type + '</span>' + '<span class="label label-default">' + data.message[i].category + '</span>' +
-                    '<p>' + data.message[i].content + '</p>' +
-                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + data.message[i].number + '</p>' +
-                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + data.message[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].requirment + '</p>'
+                    '<span class="label label-default">' + json[i].type + '</span>' + '<span class="label label-default">' + json[i].category + '</span>' +
+                    '<p>' + json[i].content + '</p>' +
+                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + json[i].number + '</p>' +
+                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + json[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].requirment + '</p>'
                     + '<div class="progress">' +
-                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + data.message[i].progress + ';">' +
-                    data.message[i].progress +
+                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + json[i].progress +'%'+ ';">' +
+                    json[i].progress +'%'+
                     '</div>'
                     + '</div>'
                     + '</div>');
@@ -171,26 +157,21 @@ amount_sort.onclick(function(){
             sort_text:'价格排序'
         },
         success: function (data) {
-            function isEmptyObject(e) {
-                var t;
-                for (t in e)
-                    return !1;
-                return !0;
-            }
+            var json=eval('('+data+')');
             put_project.innerHTML="";
-            for (var i = 0; i < data.message.length; i++) {
+            for (var i = 0; i < json[i].length; i++) {
                 var message = $('<div class="row">' +
                     '<h4>' +
-                    '<span class="badge">' + data.message[i].state + '</span>' +
-                    data.message[i].name +
+                    '<span class="badge">' + json[i].state + '</span>' +
+                    json[i].name +
                     '</h4>' +
-                    '<span class="label label-default">' + data.message[i].type + '</span>' + '<span class="label label-default">' + data.message[i].category + '</span>' +
-                    '<p>' + data.message[i].content + '</p>' +
-                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + data.message[i].number + '</p>' +
-                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + data.message[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].requirment + '</p>'
+                    '<span class="label label-default">' + json[i].type + '</span>' + '<span class="label label-default">' + json[i].category + '</span>' +
+                    '<p>' + json[i].content + '</p>' +
+                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + json[i].number + '</p>' +
+                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + json[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].requirment + '</p>'
                     + '<div class="progress">' +
-                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + data.message[i].progress + ';">' +
-                    data.message[i].progress +
+                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + json[i].progress +'%'+ ';">' +
+                    json[i].progress +'%'+
                     '</div>'
                     + '</div>'
                     + '</div>');
@@ -212,26 +193,21 @@ time_sort.onclick(function(){
             search_text:'时间排序'
         },
         success: function (data) {
-            function isEmptyObject(e) {
-                var t;
-                for (t in e)
-                    return !1;
-                return !0;
-            }
+            var json=eval('('+data+')');
             put_project.innerHTML="";
-            for (var i = 0; i < data.message.length; i++) {
+            for (var i = 0; i < json[i].length; i++) {
                 var message = $('<div class="row">' +
                     '<h4>' +
-                    '<span class="badge">' + data.message[i].state + '</span>' +
-                    data.message[i].name +
+                    '<span class="badge">' + json[i].state + '</span>' +
+                    json[i].name +
                     '</h4>' +
-                    '<span class="label label-default">' + data.message[i].type + '</span>' + '<span class="label label-default">' + data.message[i].category + '</span>' +
-                    '<p>' + data.message[i].content + '</p>' +
-                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + data.message[i].number + '</p>' +
-                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + data.message[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + data.message[i].requirment + '</p>'
+                    '<span class="label label-default">' + json[i].type + '</span>' + '<span class="label label-default">' + json[i].category + '</span>' +
+                    '<p>' + json[i].content + '</p>' +
+                    '<p class="text-right">' + '<i class="fa fa-user-o">' + '</i>' + json[i].number + '</p>' +
+                    '<p>' + '<i class="fa fa-user-circle">' + '</i>' + '&nbsp;&nbsp;' + json[i].publisher + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].time + '&nbsp;&nbsp;&nbsp;&nbsp;' + json[i].requirment + '</p>'
                     + '<div class="progress">' +
-                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + data.message[i].progress + ';">' +
-                    data.message[i].progress +
+                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:' + json[i].progress +'%'+ ';">' +
+                    json[i].progress +'%'+
                     '</div>'
                     + '</div>'
                     + '</div>');
