@@ -184,6 +184,7 @@ amount_sort.onclick(function(){
         }
     });
 });
+
 time_sort.onclick(function(){
     $.ajax({
         type: "POST",
