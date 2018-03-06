@@ -1,6 +1,10 @@
-package com.zhy.model;
+package com.zhy.model.outsourcing;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @author: zhangocean
@@ -38,7 +42,7 @@ public class OutsourcingInfo {
     /**
      * 项目人数
      */
-    private String number;
+    private int number;
 
     /**
      * 发包者
@@ -48,7 +52,7 @@ public class OutsourcingInfo {
     /**
      * 发布时间
      */
-    private String time;
+    private Date time;
 
     /**
      * 外包要求
@@ -58,12 +62,12 @@ public class OutsourcingInfo {
     /**
      * 外包进度
      */
-    private String progress;
+    private double progress;
 
     public OutsourcingInfo() {
     }
 
-    public OutsourcingInfo(String state, String name, String type, String category, String content, String number, String publisher, String time, String requirment, String progress) {
+    public OutsourcingInfo(String state, String name, String type, String category, String content, int number, String publisher, Date time, String requirment, double progress) {
         this.state = state;
         this.name = name;
         this.type = type;
@@ -74,5 +78,10 @@ public class OutsourcingInfo {
         this.time = time;
         this.requirment = requirment;
         this.progress = progress;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    public Date getTime() {
+        return time;
     }
 }

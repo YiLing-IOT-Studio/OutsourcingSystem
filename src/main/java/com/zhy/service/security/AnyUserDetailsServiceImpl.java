@@ -1,7 +1,7 @@
 package com.zhy.service.security;
 
 import com.zhy.mapper.UserRegisterMapper;
-import com.zhy.model.User;
+import com.zhy.model.register.User;
 import com.zhy.service.mybatis.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

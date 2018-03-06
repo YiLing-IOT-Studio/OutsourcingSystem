@@ -1,6 +1,6 @@
 package com.zhy.controller.loginandregister;
 
-import com.zhy.model.User;
+import com.zhy.model.register.User;
 import com.zhy.service.mybatis.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

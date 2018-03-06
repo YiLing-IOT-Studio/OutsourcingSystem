@@ -1,6 +1,6 @@
 package com.zhy.mapper;
 
-import com.zhy.model.User;
+import com.zhy.model.register.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author: zhangocean
  * @Date: Created in 12:26 2018/1/26
- * Describe: User 类的sql语句
+ * Describe: 处理用户登录注册的数据库操作信息
  */
 @Component
 @Mapper

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OutsourcingMessage">
+
+  <resultMap type="com.zhy.model.outsourcing.OutsourcingInfo" id="MessageResult">
+    <result column="state" jdbcType="VARCHAR" property="state"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="type" jdbcType="VARCHAR" property="type"/>
+      <result column="category" jdbcType="VARCHAR" property="category"/>
+      <result column="content" jdbcType="VARCHAR" property="content"/>
+      <result column="number" jdbcType="INTEGER" property="number"/>
+      <result column="publisher" jdbcType="VARCHAR" property="publisher"/>
+      <result column="time" jdbcType="DATE" property="time"/>
+      <result column="requirment" jdbcType="VARCHAR" property="requirment"/>
+      <result column="progress" jdbcType="DOUBLE" property="progress"/>
+</resultMap>
+
+  <select id="queryMessageList" parameterType="java.util.HashMap" resultMap="MessageResult">
+    select * from OUTSOURCINGINFO where category IN
+      <foreach collection="rightSqlCategory" index="index" item="item" open="(" separator="," close=")">
+              #{item}
+      </foreach>
+    AND state=#{state} AND type=#{type}
+  </select>
+  
+  <select id="queryPagingMessage" parameterType="java.util.HashMap" resultMap="MessageResult">
+    SELECT * FROM OUTSOURCINGINFO
+    <if test="start!=null and pageSize!=null">
+      limit #{start},#{pageSize}
+    </if>
+  </select>
+
+</mapper>

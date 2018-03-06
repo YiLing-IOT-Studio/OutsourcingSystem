@@ -1,4 +1,4 @@
-package com.zhy.config;
+package com.zhy.config.securityconfig;
 
 import com.zhy.service.security.AnyUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

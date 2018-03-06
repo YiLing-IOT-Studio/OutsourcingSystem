@@ -6,7 +6,7 @@ var put_project=$("#put_project");
 function ajaxTest() {
     $.ajax({
         type: 'POST',
-        url: '/checkproject',
+        url: '/getAllOutsourcingInfo/fillPage',
         dataType: 'json',
         data: {
             message:'填充页面'

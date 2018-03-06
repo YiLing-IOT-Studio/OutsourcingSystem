@@ -1,4 +1,4 @@
-package com.zhy.model;
+package com.zhy.model.register;
 
 import lombok.Data;
 

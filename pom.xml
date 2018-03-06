@@ -84,9 +84,9 @@
 			<version>1.3.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
-			<artifactId>mybatis-enhance-actable</artifactId>
-			<version>1.0.1</version>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.5</version>
 		</dependency>
 
 		<!--kaptcha-->
@@ -103,6 +103,23 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!--json-->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib-ext-spring</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160810</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.41</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -112,6 +129,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 

@@ -1,7 +1,6 @@
 package com.zhy.component.randombuilder;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * @author: zhangocean
