@@ -1,14 +1,19 @@
 body{
     padding-top:50px;
 }
+.my-navbar{
+    background-color: maroon;
+    color:white;
+}
 .content{
     margin-top:50px;
 }
-.row{
-    padding:20px 10px;
-    border:1px solid #eee;
-    margin-bottom:10px;
-}
+
+/*.row{*/
+    /*padding:20px 10px;*/
+    /*border:1px solid silver;*/
+    /*margin-bottom:10px;*/
+/*}*/
 .badge{
     background-color:#ff7864;
 }
@@ -35,4 +40,8 @@ padding:0;
 #search_submit{
     background-color:darkred;
     color:white;
+}
+.money_text{
+    color:red;
+    font-size:50px;
 }

@@ -565,7 +565,7 @@ $(document).ready(function() {
     }
     var login= $("#btn2");
     var register = $("#btn1");
-    login.mouseenter(function () {
+    login.mouseover(function () {
         //登录按钮
         for (var j = 0; j < 3; j++) {
             if (login_information[j].hasClass('has-error')) {
@@ -584,7 +584,7 @@ $(document).ready(function() {
         }
         //注册按钮
     });
-   register.mouseenter(function(){
+   register.mouseover(function(){
         for (var i = 0; i < 5; i++) {
             // console.log(i);
             // console.log(register_information[i].hasClass('has-success'));

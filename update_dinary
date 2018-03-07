@@ -33,10 +33,11 @@ update 2018.3.1
     category（项目类型）：“网站开发/移动开发/嵌入式系统等”,
     content(项目简介)：“项目说明和简介”，
     number （项目人数）："3人”，
+    money(金额)：1000等
     publisher（发布者）：“某某某”，
     time（时间）：“年月日”，
-    requirment（要求）：“...”,
-    progress(进度)：x%
+    requirement（要求）：“...”,
+    progress(进度)：x
     },
     {},
     {},
