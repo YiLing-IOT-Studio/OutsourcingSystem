@@ -1,16 +1,12 @@
-$(document).ready(function() {
-
+//隐藏错误提示和标志符号
+$('.help-block').hide();
+$(".form-control-feedback").hide();
 
     //获取输入框内容长度函数
     function getLen($id) {
-        var myValue = $('#' + $id).val();
-        return len = myValue.length;
+            var myValue = $('#' + $id).val();
+            return len = myValue.length;
     }
-
-    //隐藏错误提示和标志符号
-    $('.help-block').hide();
-    $(".form-control-feedback").hide();
-
     //注册手机号码验证
     var phone1 = $("#phone1");
     var phone1_f = $("#phone1_f");
@@ -100,9 +96,7 @@ $(document).ready(function() {
             }
         }
     });
-    /**
-     * 绑定btn按钮的监听事件
-     */
+    //绑定btn按钮的监听事件
     var msg_btn = $("#msg_btn");
     // 定义发送时间间隔(s)
     var my_interval;
@@ -228,14 +222,14 @@ $(document).ready(function() {
         }
     });
     //昵称验证
-    var name=$("#name");
+    var myName=$("#myName");
     var name_box=$("#name_box");
     var name_f=$("#name_f");
     var name_t=$("#name_t");
     var name_error=$("#name_error");
     var name_null=$("#name_null");
-    name.keyup(function () {
-        var name_len1 = getLen('name');
+myName.keyup(function () {
+        var name_len1 = getLen('myName');
         if (name_len1 == 0) {
             name_error.hide();
             name_t.hide();
@@ -244,8 +238,8 @@ $(document).ready(function() {
             name_box.remove("has-success");
             name_box.addClass("has-error");
         }
-        var name_value = name.val();
-        var name_len2 = getLen('name');
+        var name_value = myName.val();
+        var name_len2 = getLen('myName');
         var pattern = /([A-Za-z0-9]{2,20})|([\u4e00-\u9fa5]{2,10})|([\u4e00-\u9fa5][\w\W]{2})/;
         if (name_len2 !== 0) {
             name_null.hide();
@@ -263,6 +257,7 @@ $(document).ready(function() {
                     name_error.hide();
                     name_f.hide();
                     name_t.show();
+
 
                 }
             }
@@ -349,7 +344,6 @@ $(document).ready(function() {
         }
     });
 
-
     //登录手机号验证(+)
     var phone2_box=$("#phone2_box");
     var phone2=$("#phone2");
@@ -357,7 +351,7 @@ $(document).ready(function() {
     var phone2_error=$("#phone2_error");
     var phone2_f=$("#phone2_f");
     var phone2_t=$("#phone2_t");
-    phone2.keyup(function () {
+    phone2.blur(function () {
         var phone_len1 = getLen('phone2');
         if (phone_len1== 0) {
             phone2_null.show();
@@ -421,7 +415,7 @@ $(document).ready(function() {
     var psw3_f=$("#psw3_f");
     var psw3_t=$("#psw3_t");
     var psw3=$("#psw3");
-    psw3.keyup(function(){
+    psw3.blur(function(){
         var len = getLen('psw3');
         if (len == 0) {
             psw3_null.show();
@@ -481,11 +475,11 @@ $(document).ready(function() {
         }
     });
     //生成图片验证码
- $(".fresh").on('click',function(){
-     var img_src='/getKaptchaImage?t='+Math.random();
-     $("#img").attr('src',img_src);
+    $(".fresh").on('click',function(){
+        var img_src='/getKaptchaImage?t='+Math.random();
+        $("#img").attr('src',img_src);
 
- });
+    });
     //图片验证码验证
     var img_box=$("#img_box");
     var img_code=$("#img_code");
@@ -524,6 +518,7 @@ $(document).ready(function() {
                             img_f.show();
                             img_box.removeClass("has-error");
                             img_box.addClass("has-error");
+
                         }
                         //验证码正确
                         else if (parseInt(data) == 1) {
@@ -540,6 +535,7 @@ $(document).ready(function() {
                             img_f.show();
                             img_box.removeClass("has-error");
                             img_box.addClass("has-error");
+
                         }
                     },
                     error:function(){
@@ -549,65 +545,57 @@ $(document).ready(function() {
                         img_f.show();
                         img_box.removeClass("has-error");
                         img_box.addClass("has-error");
+
                     }
                 })
             }
         }
     });
-
     var login_information = new Array(3);
     for (var j = 0; j < 3; j++) {
-        login_information[j] = $("#login_form").find('.form-group').eq(j);
+    login_information[j] = $("#login_form").find('.form-group').eq(j);
     }
     var register_information = new Array(5);
     for (var i = 0; i < 5; i++) {
-        register_information[i] = $("#register_form").find('.form-group').eq(i);
+    register_information[i] = $("#register_form").find('.form-group').eq(i);
     }
-    var login= $("#btn2");
-    var register = $("#btn1");
-    login.mouseover(function () {
-        //登录按钮
+    var loginBtn=$("#loginBtn");
+    var registerBtn=$("#registerBtn");
+    registerBtn.click(function(){
+        for (var i = 0; i < 5; i++) {
+            if (register_information[i].hasClass('has-error')) {
+                break;
+            }
+            else if(phone1.value.length<2||msg_code.value.length<2||name.value.length<2||psw1.value.length<2||psw2.value.length<2){
+                break;
+            }
+        }
+        if(i==5){
+            $("#register_form").submit();
+        }
+        else{
+            alert("请正确填写信息！");
+        }
+    });
+    loginBtn.click(function(){
         for (var j = 0; j < 3; j++) {
             if (login_information[j].hasClass('has-error')) {
                 break;
             }
-            else if (phone2.val().length < 2 || psw3.val().length < 2 || img_code.val().length < 2) {
+            else if (phone2.value.length < 2 || psw3.value.length < 2 || img_code.value.length < 2) {
                 break;
             }
 
         }
-        if (j == 3) {
-            login.attr("disabled", false);
+        if(j==3){
+            $("#login_form").submit();
         }
-        else {
-            login.attr('disabled', true);
+        else{
+            alert("请正确填写信息");
         }
-        //注册按钮
-    });
-   register.mouseover(function(){
-        for (var i = 0; i < 5; i++) {
-            // console.log(i);
-            // console.log(register_information[i].hasClass('has-success'));
-
-            if (register_information[i].hasClass('has-error')) {
-                // console.log("error");
-                break;
-            }
-            else if(phone1.val().length<2||msg_code.val().length<2||name.val().length<2||psw1.val().length<2||psw2.val().length<2){
-                // console.log("null");
-                break;
-            }
-        }
-        if (i==5) {
-            register.attr('disabled', false);
-        }
-        else {
-            register.attr('disabled', true);
-        }
-
-
     });
 
-});
+
+
 
 
