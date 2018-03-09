@@ -1,10 +1,13 @@
 /**
  * Created by yyq on 2018/3/1.
  */
+//变量声明
 var put_word=$("#put_word");
 var mySearch=$("#search");
-var mySubmit=$("#sure_submit");
-//填充数据
+var amountSort=$("#amount_sort");
+var timeSort=$("#time_sort");
+
+//填充数据类
 function putIn(data){
     put_word.innerHTML = '';
     $.each(data, function (index, obj) {
@@ -26,7 +29,12 @@ function putIn(data){
 
             //金额
             var Umoney = $('<p class="text-right"></p>');
-            Umoney.append('<span class="money_text">'+'¥'+obj['money']+'</span>');
+            if(obj['money']!=-1) {
+                Umoney.append('<span class="money_text">'  + obj['money']+ '元' + '</span>');
+            }
+            else{
+                Umoney.append('<span class="money_text">' +'竞标报价'+ '</span>');
+            }
             sec.append(Umoney);
 
             //其他信息
@@ -48,7 +56,8 @@ function putIn(data){
 
 
 }
-//页面请求
+
+//页面请求类
 function ajaxTest(currentPage) {
     //加载时请求
     $.ajax({
@@ -78,11 +87,14 @@ function ajaxTest(currentPage) {
             alert("获取消息失败");
         }
     });
-    //搜索
-    mySearch.keyup(function(){
-        //获取搜索关键字
-        var keyWord=mySearch.val();
-        $.ajax({
+}
+ajaxTest(1);
+
+//搜索类
+function searchInfo(currentPage){
+    //获取搜索关键字
+    var keyWord=mySearch.val();
+    $.ajax({
             type:'POST',
             url:'/getAllOutsourcingInfo/fillPage',
             dataType:'json',
@@ -102,7 +114,7 @@ function ajaxTest(currentPage) {
                     totalPage:data[data.length-1]['totalPage'],//总页数
                     totalSize:data[data.length-1]['totalSize'],//总记录数
                     callback:function(currentPage){
-                        ajaxTest(currentPage);
+                        searchInfo(currentPage);
                     }
                 })
             },
@@ -111,9 +123,10 @@ function ajaxTest(currentPage) {
             }
 
         })
-    });
-    //提交表单
-    mySubmit.click(function(){
+}
+
+//提交表单类
+function submitInfo(currentPage){
         //项目分类
         var checkboxes=$("input[name='_category']");
         var myCategories='';
@@ -171,7 +184,7 @@ function ajaxTest(currentPage) {
                     totalPage:data[data.length-1]['totalPage'],//总页数
                     totalSize:data[data.length-1]['totalSize'],//总记录数
                     callback:function(currentPage){
-                        ajaxTest(currentPage);
+                        submitInfo(currentPage);
                     }
                 })
             },
@@ -180,12 +193,12 @@ function ajaxTest(currentPage) {
             }
 
         })
-    });
-    //排序
-    var amountSort=$("#amount_sort");
-    var timeSort=$("#time_sort");
-    amountSort.click(function(){
-        $.ajax({
+}
+
+
+//金额排序类
+function sortAmount(currentPage){
+    $.ajax({
             type:'POST',
             url:'/getAllOutsourcingInfo/fillPage',
             dataType:'json',
@@ -206,7 +219,7 @@ function ajaxTest(currentPage) {
                     totalPage:data[data.length-1]['totalPage'],//总页数
                     totalSize:data[data.length-1]['totalSize'],//总记录数
                     callback:function(currentPage){
-                        ajaxTest(currentPage);
+                        sortAmount(currentPage);
                     }
                 })
             },
@@ -215,41 +228,45 @@ function ajaxTest(currentPage) {
             }
 
         })
-    });
-    timeSort.click(function(){
-        $.ajax({
-            type:'POST',
-            url:'/getAllOutsourcingInfo/fillPage',
-            dataType:'json',
-            data:{
-                rows:"10",
-                pageNo:currentPage,
-                mySort:'timeSort'
-
-            },
-            success: function (data) {
-                var rows=10;
-                //放入数据
-                putIn(data);
-                //分页
-                $("#pagination").paging({
-                    rows:rows,//每页显示条数
-                    pageNo:currentPage,//当前所在页码
-                    totalPage:data[data.length-1]['totalPage'],//总页数
-                    totalSize:data[data.length-1]['totalSize'],//总记录数
-                    callback:function(currentPage){
-                        ajaxTest(currentPage);
-                    }
-                })
-            },
-            error: function () {
-                alert("获取消息失败");
-            }
-
-        })
-    });
 }
-ajaxTest(1);
+
+
+//时间排序类
+function sortTime(currentPage) {
+    $.ajax({
+        type: 'POST',
+        url: '/getAllOutsourcingInfo/fillPage',
+        dataType: 'json',
+        data: {
+            rows: "10",
+            pageNo: currentPage,
+            mySort: 'timeSort'
+
+        },
+        success: function (data) {
+            var rows = 10;
+            //放入数据
+            putIn(data);
+            //分页
+            $("#pagination").paging({
+                rows: rows,//每页显示条数
+                pageNo: currentPage,//当前所在页码
+                totalPage: data[data.length - 1]['totalPage'],//总页数
+                totalSize: data[data.length - 1]['totalSize'],//总记录数
+                callback: function (currentPage) {
+                    sortTime(currentPage);
+                }
+            })
+        },
+        error: function () {
+            alert("获取消息失败");
+        }
+
+    })
+}
+
+
+
 
 
 

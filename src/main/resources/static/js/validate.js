@@ -347,6 +347,7 @@ myName.keyup(function () {
     //登录手机号验证(+)
     var phone2_box=$("#phone2_box");
     var phone2=$("#phone2");
+
     var phone2_null=$("#phone2_null");
     var phone2_error=$("#phone2_error");
     var phone2_f=$("#phone2_f");
@@ -364,6 +365,7 @@ myName.keyup(function () {
         }
         else{
             phone2_null.hide();
+
             $.ajax({
                 type: "POST",
                 url: "/checkLoginPhone",

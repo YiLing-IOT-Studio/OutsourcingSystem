@@ -9,13 +9,12 @@
 
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/login_register.css" rel="stylesheet"/>
     <link href="../static/css/project.css" rel="stylesheet">
     <link href="../static/css/info.css" rel="stylesheet"/>
-    <link href="../static/css/tags.css" rel="stylesheet"/>
-    <link href="../static/css/nav.css" rel="stylesheet"/>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top my-navbar">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -50,7 +49,7 @@
                 <div class="form-group">
                     <input id="search" type="text" class="form-control" placeholder="Search">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="button" class="btn btn-default" onclick="searchInfo(1);">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">公告</a></li>
@@ -78,81 +77,81 @@
                             <p class="form-control-static">
                             <label class="checkbox-inline">项目分类:</label>
                             <label class="checkbox-inline">
-                                <input type="checkbox"  value="Web_site_development" name="_category"> 网站开发
+                                <input type="checkbox"  value="网站开发" name="_category"> 网站开发
                             </label>
 
                             <label class="checkbox-inline">
-                                <input type="checkbox" value="Mobile_development" name="_category"> 移动开发
+                                <input type="checkbox" value="移动开发" name="_category"> 移动开发
                             </label>
 
                             <label class="checkbox-inline">
-                                <input type="checkbox" value="WeChat_small_program_development" name="_category"> 微信/小程序开发
+                                <input type="checkbox" value="微信/小程序开发" name="_category"> 微信/小程序开发
                             </label>
 
                             <label class="checkbox-inline">
-                                <input type="checkbox" value="Artificial_intelligence" name="_category"> 人工智能
+                                <input type="checkbox" value="人工智能" name="_category"> 人工智能
                             </label>
 
                             <label class="checkbox-inline">
-                                <input type="checkbox" value="algorithm" name="_category"> 算法
+                                <input type="checkbox" value="算法" name="_category"> 算法
                             </label>
 
                             <label class="checkbox-inline">
-                                <input type="checkbox" value="Embedded_system" name="_category">嵌入式系统
+                                <input type="checkbox" value="嵌入式系统" name="_category">嵌入式系统
                             </label>
                             </p>
                         </div>
                         <div class="form-group">
                             <label class="radio-inline">项目状态:</label>
                             <label class="radio-inline">
-                                <input type="radio" value="Enrolment" name="_state"> 报名中
+                                <input type="radio" value="报名中" name="_state"> 报名中
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="Implementation" name="_state"> 实施中
+                                <input type="radio" value="实施中" name="_state"> 实施中
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="Completed" name="_state"> 已完成
+                                <input type="radio" value="已完成" name="_state"> 已完成
                             </label>
                         </div>
                         <div class="form-group">
                             <label class="radio-inline">项目金额:</label>
                             <label class="radio-inline">
-                                <input type="radio" value="Less_than_1000" name="_amount"> 1k以下
+                                <input type="radio" value="1000-" name="_amount"> 1k以下
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="1000_to_2000" name="_amount"> 1k~2k
+                                <input type="radio" value="1000-2000" name="_amount"> 1k~2k
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="3000_to_4000" name="_amount"> 3k~4k
+                                <input type="radio" value="3000-4000" name="_amount"> 3k~4k
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="more_than_10000" name="_amount"> 10k以上
+                                <input type="radio" value="10000+" name="_amount"> 10k以上
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="Bid_quotation" name="_amount"> 竞标报价
+                                <input type="radio" value="竞标报价" name="_amount"> 竞标报价
                             </label>
                         </div>
                         <div class="form-group">
                             <label class="radio-inline">项目类型:</label>
                             <label class="radio-inline">
-                                <input type="radio" value="whole_package" name="_type"> 整包
+                                <input type="radio" value="整包" name="_type"> 整包
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="offer_a_reward" name="_type"> 悬赏
+                                <input type="radio" value="悬赏" name="_type"> 悬赏
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" value="Part-time_job" name="_type"> 兼职
+                                <input type="radio" value="兼职" name="_type"> 兼职
                             </label>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-1 col-sm-11 text-right">
-                                <button type="submit" name="search_submit" class="btn btn-default" id="sure_submit">确定</button>
+                                <button type="button" name="search_submit" class="btn btn-default" id="sure_submit" onclick="submitInfo(1);">确定</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="my-row" id="sort">
-                    <strong>排序：</strong><label><a href="javascript:void(0)" id="amount_sort">价格排序</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="time_sort">时间排序</a> </label>
+                    <strong>排序：</strong><label><a href="javascript:void(0)" id="amount_sort" onclick="sortAmount(1)">价格排序</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="time_sort" onclick="sortTime(1)">时间排序</a> </label>
                 </div>
                 <div class="my-row" id="put_word">
                     <section>
@@ -201,7 +200,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/request.js"></script>
-    <script src="../static/js/tags.js"></script>
-    <script src="../static/js/mock-test.js"></script>
+    <script src="../static/js/paging.js"></script>
 </body>
 </html>

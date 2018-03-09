@@ -1,19 +1,9 @@
 body{
     padding-top:50px;
 }
-.my-navbar{
-    background-color: maroon;
-    color:white;
-}
 .content{
     margin-top:50px;
 }
-
-/*.row{*/
-    /*padding:20px 10px;*/
-    /*border:1px solid silver;*/
-    /*margin-bottom:10px;*/
-/*}*/
 .badge{
     background-color:#ff7864;
 }
@@ -37,7 +27,7 @@ body{
 .navbar-brand{
 padding:0;
 }
-#search_submit{
+#sure_submit{
     background-color:darkred;
     color:white;
 }
