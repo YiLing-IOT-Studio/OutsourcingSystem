@@ -62,7 +62,7 @@ function ajaxTest(currentPage) {
     //加载时请求
     $.ajax({
         type: 'POST',
-        url: '/getAllOutsourcingInfo/fillPage',
+        url: '/getAllOutsourcingInfo/fillMessage',
         dataType: 'json',
         data: {
             rows:"10",
@@ -96,7 +96,7 @@ function searchInfo(currentPage){
     var keyWord=mySearch.val();
     $.ajax({
             type:'POST',
-            url:'/getAllOutsourcingInfo/fillPage',
+            url:'/getAllOutsourcingInfo/search',
             dataType:'json',
             data:{
                 rows:"10",
@@ -162,7 +162,7 @@ function submitInfo(currentPage){
 
         $.ajax({
             type:'POST',
-            url:'/getAllOutsourcingInfo/fillPage',
+            url:'/getAllOutsourcingInfo/classifySearch',
             dataType:'json',
             data:{
                 rows:"10",

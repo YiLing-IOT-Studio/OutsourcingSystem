@@ -1,28 +1,22 @@
 package com.zhy.service.mybatis;
 
-import com.zhy.model.outsourcing.OutsourcingInfo;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-
 /**
  * @author: zhangocean
- * @Date: Created in 20:39 2018/3/3
- * Describe: 搜索外包信息的数据库操作
+ * @Date: Created in 16:03 2018/3/9
+ * Describe:
  */
 public interface OutsourcingInfoService {
 
     /**
-     * 查询所有外包信息
-     * @return 查询到的所有外包信息
+     *  计算搜索框查询的数据的数量
+     * @param searchText 搜索框输入信息
+     * @return 查询数据库中与输入框输入信息相似的数据的条数
      */
-    List<OutsourcingInfo> findAll();
+    int countSearchText(String searchText);
 
     /**
-     *  search 栏搜索外包信息
-     * @param searchText 搜索栏输入的搜索信息
-     * @return 查询到的所有外包信息
+     * 查找所有外包信息
+     * @return 查找的条数
      */
-    List<OutsourcingInfo> findBySearch(String searchText);
-
+    int findAll();
 }

@@ -7,6 +7,11 @@ $(".form-control-feedback").hide();
             var myValue = $('#' + $id).val();
             return len = myValue.length;
     }
+
+    //隐藏错误提示和标志符号
+    $('.help-block').hide();
+    $(".form-control-feedback").hide();
+
     //注册手机号码验证
     var phone1 = $("#phone1");
     var phone1_f = $("#phone1_f");
@@ -568,7 +573,7 @@ myName.keyup(function () {
             if (register_information[i].hasClass('has-error')) {
                 break;
             }
-            else if(phone1.value.length<2||msg_code.value.length<2||name.value.length<2||psw1.value.length<2||psw2.value.length<2){
+            else if(phone1.val().length<2||msg_code.val().length<2||name.val().length<2||psw1.val().length<2||psw2.val().length<2){
                 break;
             }
         }
@@ -584,7 +589,7 @@ myName.keyup(function () {
             if (login_information[j].hasClass('has-error')) {
                 break;
             }
-            else if (phone2.value.length < 2 || psw3.value.length < 2 || img_code.value.length < 2) {
+            else if (phone2.val().length < 2 || psw3.val().length < 2 || img_code.val().length < 2) {
                 break;
             }
 

@@ -16,11 +16,11 @@ import java.util.Map;
  * Describe: 查询分页信息的业务逻辑
  */
 @Service
-public class QueryPagingMessageService {
+public class FillMessageService {
 
 
 
-    public List<OutsourcingInfo> queryPagingMessage(Map<String, Integer> pageWords){
+    public List<OutsourcingInfo> fillMessage(Map<String, Integer> pageWords){
 
         MybatisAccess mybatisAccess = new MybatisAccess();
 
@@ -29,7 +29,7 @@ public class QueryPagingMessageService {
         try {
             SqlSession sqlSession = mybatisAccess.getSession();
 
-            pageMessage = sqlSession.selectList("queryPagingMessage",pageWords);
+            pageMessage = sqlSession.selectList("OutsourcingMessage.queryPagingMessage",pageWords);
         } catch (IOException e) {
             e.printStackTrace();
         }

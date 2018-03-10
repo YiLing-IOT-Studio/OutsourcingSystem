@@ -17,10 +17,11 @@ import java.util.List;
 @Component
 public interface OutsourcingInfoMapper {
 
-    @Select("select * from outsourcinginfo")
-    List<OutsourcingInfo> findAll();
+    @Select("select count(*) from outsourcinginfo where name like '%' #{searchText} '%'")
+    int countSearchText(@Param("searchText") String searchText);
 
-    @Select("select * from outsourcinginfo where name like '%' #{searchText} '%'")
-    List<OutsourcingInfo> findBySearch(@Param("searchText") String searchText);
+    @Select("select count(*) from outsourcinginfo")
+    int findAll();
+
 
 }

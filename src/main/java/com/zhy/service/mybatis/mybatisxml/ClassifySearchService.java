@@ -17,9 +17,9 @@ import java.util.Map;
  * Describe: 使用 xml 配置 Mybatis 的查询sql语句的业务逻辑
  */
 @Service
-public class FuzzySearchService {
+public class ClassifySearchService {
 
-    public List<OutsourcingInfo> fuzzySearch(Map<String, Object> fuzzySearchMap){
+    public List<OutsourcingInfo> classifySearch(Map<String, Object> classifyMessage){
 
         MybatisAccess mybatisAccess = new MybatisAccess();
 
@@ -29,7 +29,7 @@ public class FuzzySearchService {
         try {
             sqlSession = mybatisAccess.getSession();
 
-            outsourcingInfoList = sqlSession.selectList("OutsourcingMessage.queryMessageList",fuzzySearchMap);
+            outsourcingInfoList = sqlSession.selectList("OutsourcingMessage.queryClassifyMessage",classifyMessage);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

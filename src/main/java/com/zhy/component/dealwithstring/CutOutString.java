@@ -22,6 +22,7 @@ public class CutOutString {
             categoryList.add(categories[i]);
         }
 
+        System.out.println("处理后的项目分类字符串是：" + categoryList.toString());
         return categoryList;
 
     }

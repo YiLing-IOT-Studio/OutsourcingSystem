@@ -22,7 +22,7 @@ public class RegisterControl {
     @PostMapping("/register")
     public String register(HttpServletRequest request){
         String phone = request.getParameter("phone1");
-        String username = request.getParameter("name");
+        String username = request.getParameter("myName");
         String password = request.getParameter("psw1");
         String gender = request.getParameter("inlineRadioOptions");
         String obey = request.getParameter("checkbox");
