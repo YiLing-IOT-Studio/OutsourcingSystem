@@ -58,7 +58,7 @@ public class OutsourcingInfo {
     /**
      * 外包要求
      */
-    private String requirment;
+    private String requirement;
 
     /**
      *  外包金额
@@ -78,7 +78,7 @@ public class OutsourcingInfo {
     public OutsourcingInfo() {
     }
 
-    public OutsourcingInfo(String state, String name, String type, String category, String content, int number, String publisher, Timestamp time, String requirment, int amount, double progress) {
+    public OutsourcingInfo(String state, String name, String type, String category, String content, int number, String publisher, Timestamp time, String requirement, int amount, double progress) {
         this.state = state;
         this.name = name;
         this.type = type;
@@ -87,7 +87,7 @@ public class OutsourcingInfo {
         this.number = number;
         this.publisher = publisher;
         this.time = time;
-        this.requirment = requirment;
+        this.requirement = requirement;
         this.amount = amount;
         this.progress = progress;
     }

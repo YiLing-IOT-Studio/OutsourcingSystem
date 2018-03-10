@@ -29,8 +29,8 @@ function putIn(data){
 
             //金额
             var Umoney = $('<p class="text-right"></p>');
-            if(obj['money']!=-1) {
-                Umoney.append('<span class="money_text">'  + obj['money']+ '元' + '</span>');
+            if(obj['amount']!=-1) {
+                Umoney.append('<span class="money_text">'  + obj['amount']+ '元' + '</span>');
             }
             else{
                 Umoney.append('<span class="money_text">' +'竞标报价'+ '</span>');
@@ -38,7 +38,7 @@ function putIn(data){
             sec.append(Umoney);
 
             //其他信息
-            var unixTimestamp=new Date(obj['time'].time*1000);
+            var unixTimestamp=new Date(obj['time'].time);
             commonTime=unixTimestamp.toLocaleString();
             var Details=$('<p></p>');
             Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+commonTime+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
