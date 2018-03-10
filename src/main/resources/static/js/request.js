@@ -47,7 +47,7 @@ function putIn(data){
             //进度条
             var fix_string=obj['progress']+'%';
             var progress=$('<div class="progress"></div>');
-            progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: '+fix_string+'";>'+fix_string+'</div>');
+            progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="'+fix_string+'" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;">'+fix_string+'</div>');
             sec.append(progress);
 
             put_word.append(sec);
