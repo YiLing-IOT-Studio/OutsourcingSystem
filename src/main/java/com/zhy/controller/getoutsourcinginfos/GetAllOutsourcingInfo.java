@@ -170,11 +170,8 @@ public class GetAllOutsourcingInfo {
             outsourcingName.add(outsourcingInfo.getName());
             i++;
         }
-
         logger.info("查询第 " + startPage + " 页的外包信息，该页需要显示 " + pageSize + " 条外包信息，这" + pageSize + "条外包信息的外包名是：" + outsourcingName.toString());
-        for(OutsourcingInfo outsourcingInfo : queryPagingMessageResult){
-            System.out.println("转换成JsonArray前的时间：" + outsourcingInfo.getTime());
-        }
+
         JSONArray pageMessageForJsonArray = JSONArray.fromObject(queryPagingMessageResult.toArray());
 
         int countList = outsourcingInfoService.findAll();
