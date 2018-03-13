@@ -1,0 +1,73 @@
+*{
+    margin:0;
+    padding:0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.nav{
+    height:44px;
+    background:#03406a;
+
+
+}
+.logo{
+    width:170px;
+    text-align:center;
+}
+.logo a{
+    color:#65a5d1;
+    font-size:18px;
+    line-height:36px;
+}
+.wrap{
+    width:100%;
+    margin:0 auto;
+    background:#03406a;
+}
+.leftSide{
+    width:220px;
+    background:url(../img/pexels-photo-281260.jpeg)  #faf7f5 bottom right;
+    background-size:cover;
+}
+.personalInfo{
+    height:200px;
+    padding-top:15px;
+    text-align:center;
+}
+.headPortrait{
+    display:block;
+    width:128px;
+    height:128px;
+    margin:0 auto;
+}
+#personName{
+    font-size:20px;
+    height:44px;
+    line-height:44px;
+    color:#24577b;
+
+}
+.manageBtn{
+    display: inline-block;
+    width: 74px;
+    height: 26px;
+    border-radius: 20px;
+    background: #faa046;
+    line-height: 26px;
+    color: #fff;
+    font-size: 16px;
+}
+.funcListUl{
+    margin-top:20px;
+    text-align:center;
+
+}
+.funcListUl li{
+    height:45px;
+
+}
+
