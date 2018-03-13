@@ -1,6 +1,6 @@
 package com.zhy.service.mybatis.mybatisxml;
 
-import com.zhy.db.MybatisAccess;
+import com.zhy.repository.mybatis.MybatisRepository;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
@@ -13,19 +13,19 @@ import java.util.Map;
 /**
  * @author: zhangocean
  * @Date: Created in 21:40 2018/3/7
- * Describe:
+ * Describe: 通过搜索框搜索查询
  */
 @Service
 public class SearchTextService {
 
     public List<OutsourcingInfo> searchText(Map<String, Object> map){
 
-        MybatisAccess mybatisAccess = new MybatisAccess();
+        MybatisRepository mybatisRepository= new MybatisRepository();
         SqlSession sqlSession = null;
 
         List<OutsourcingInfo> list = new ArrayList<>();
         try {
-            sqlSession = mybatisAccess.getSession();
+            sqlSession = mybatisRepository.getSession();
 
             list = sqlSession.selectList("OutsourcingMessage.querySearchMessage",map);
         } catch (IOException e) {

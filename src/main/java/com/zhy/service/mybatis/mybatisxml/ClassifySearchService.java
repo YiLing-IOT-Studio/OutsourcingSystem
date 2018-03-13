@@ -1,9 +1,8 @@
 package com.zhy.service.mybatis.mybatisxml;
 
-import com.zhy.db.MybatisAccess;
+import com.zhy.repository.mybatis.MybatisRepository;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,13 +20,13 @@ public class ClassifySearchService {
 
     public List<OutsourcingInfo> classifySearch(Map<String, Object> classifyMessage){
 
-        MybatisAccess mybatisAccess = new MybatisAccess();
+        MybatisRepository mybatisRepository = new MybatisRepository();
 
         SqlSession sqlSession = null;
         List<OutsourcingInfo> outsourcingInfoList = new ArrayList<>();
 
         try {
-            sqlSession = mybatisAccess.getSession();
+            sqlSession = mybatisRepository.getSession();
 
             outsourcingInfoList = sqlSession.selectList("OutsourcingMessage.queryClassifyMessage",classifyMessage);
         } catch (IOException e) {

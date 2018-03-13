@@ -1,4 +1,4 @@
-package com.zhy.component.dealwithstring;
+package com.zhy.component.outsourcing.dealwithstring;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @author: zhangocean
  * @Date: Created in 15:13 2018/3/9
- * Describe:
+ * Describe: 处理分页页码，根据总数据数以及每页数据数计算出共多少页
  */
 @Component
 public class CountPage {

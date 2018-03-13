@@ -1,4 +1,4 @@
-package com.zhy.component.checkcode;
+package com.zhy.component.register.checkcode;
 
 import org.springframework.stereotype.Component;
 

@@ -16,7 +16,8 @@
       </transactionManager>
       <dataSource type="UNPOOLED">
         <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/outsourcingsystem?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/outsourcingsystem?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+        <!--<property name="url" value="jdbc:mysql://119.23.202.55:3306/outsourcingsystem?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>-->
         <property name="username" value="root"/>
         <property name="password" value="zhang1997LOVE"/>
       </dataSource>

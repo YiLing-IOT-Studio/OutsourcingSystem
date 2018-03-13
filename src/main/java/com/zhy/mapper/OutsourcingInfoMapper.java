@@ -21,7 +21,11 @@ public interface OutsourcingInfoMapper {
     int countSearchText(@Param("searchText") String searchText);
 
     @Select("select count(*) from outsourcinginfo")
-    int findAll();
+    int countAll();
 
+    @Select("select * from outsourcinginfo where name like '%' #{searchText} '%'")
+    List<OutsourcingInfo> findBySearch(@Param("searchText") String searchText);
 
+    @Select("select * from outsourcinginfo")
+    List<OutsourcingInfo> findAllOutsourcing();
 }

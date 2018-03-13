@@ -6,10 +6,10 @@ var put_word=$("#put_word");
 var mySearch=$("#search");
 var amountSort=$("#amount_sort");
 var timeSort=$("#time_sort");
-
+var clear='';
 //填充数据类
 function putIn(data){
-    put_word.innerHTML = '';
+    put_word.html(clear);
     $.each(data, function (index, obj) {
         if (index != (data.length - 1)) {
             var sec = $('<section class="row"></section>');
@@ -200,7 +200,7 @@ function submitInfo(currentPage){
 function sortAmount(currentPage){
     $.ajax({
             type:'POST',
-            url:'/getAllOutsourcingInfo/fillPage',
+            url:'/sort/sortByAmount',
             dataType:'json',
             data:{
                 rows:"10",
@@ -235,7 +235,7 @@ function sortAmount(currentPage){
 function sortTime(currentPage) {
     $.ajax({
         type: 'POST',
-        url: '/getAllOutsourcingInfo/fillPage',
+        url: '/sort/sortByTime',
         dataType: 'json',
         data: {
             rows: "10",

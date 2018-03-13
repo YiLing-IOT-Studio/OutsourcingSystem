@@ -1,4 +1,4 @@
-package com.zhy.component.dealwithstring;
+package com.zhy.component.outsourcing.dealwithstring;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * @author: zhangocean
  * @Date: Created in 14:55 2018/3/8
- * Describe:
+ * Describe: 处理前端传来的金额
  */
 @Component
 public class CutOutAmount {
@@ -24,6 +24,12 @@ public class CutOutAmount {
 
         if(Bid_quotation.equals(amount)){
             amountMap.put("other",-1);
+            amountMap.put("low",kong);
+            amountMap.put("high",kong);
+            return amountMap;
+        }
+        else if("".equals(amount) || amount == null){
+            amountMap.put("other",kong);
             amountMap.put("low",kong);
             amountMap.put("high",kong);
             return amountMap;

@@ -1,10 +1,9 @@
 package com.zhy.controller.code;
 
 
-import com.zhy.component.checkcode.CheckPicCode;
+import com.zhy.component.register.checkcode.CheckPicCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author: zhangocean
  * @Date: Created in 14:05 2018/2/3
- * Describe:
+ * Describe: 用户登录信息处理
  */
 @Service
 public class AnyUserDetailsServiceImpl implements UserDetailsService{

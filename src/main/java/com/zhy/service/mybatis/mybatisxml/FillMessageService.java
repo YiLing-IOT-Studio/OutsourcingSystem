@@ -1,6 +1,6 @@
 package com.zhy.service.mybatis.mybatisxml;
 
-import com.zhy.db.MybatisAccess;
+import com.zhy.repository.mybatis.MybatisRepository;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
@@ -22,12 +22,12 @@ public class FillMessageService {
 
     public List<OutsourcingInfo> fillMessage(Map<String, Integer> pageWords){
 
-        MybatisAccess mybatisAccess = new MybatisAccess();
+        MybatisRepository mybatisRepository = new MybatisRepository();
 
         List<OutsourcingInfo> pageMessage = new ArrayList<>();
 
         try {
-            SqlSession sqlSession = mybatisAccess.getSession();
+            SqlSession sqlSession = mybatisRepository.getSession();
 
             pageMessage = sqlSession.selectList("OutsourcingMessage.queryPagingMessage",pageWords);
         } catch (IOException e) {

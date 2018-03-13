@@ -1,4 +1,4 @@
-package com.zhy.component.randombuilder;
+package com.zhy.component.register.randombuilder;
 
 import org.springframework.stereotype.Component;
 

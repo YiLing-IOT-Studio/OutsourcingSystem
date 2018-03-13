@@ -4,6 +4,7 @@ package com.zhy.model.outsourcing;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -13,7 +14,12 @@ import java.util.Date;
  * Describe: 外包信息类
  */
 @Data
-public class OutsourcingInfo {
+public class OutsourcingInfo implements Serializable{
+
+    /**
+     * 使用Jackson序列化需要一个空构造
+     */
+    private static final long serialVersionUID = 1L;
 
     /**
      * 外包状态
@@ -91,4 +97,5 @@ public class OutsourcingInfo {
         this.amount = amount;
         this.progress = progress;
     }
+
 }

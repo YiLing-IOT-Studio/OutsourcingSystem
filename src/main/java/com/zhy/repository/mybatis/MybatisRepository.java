@@ -1,4 +1,4 @@
-package com.zhy.db;
+package com.zhy.repository.mybatis;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +13,7 @@ import java.io.Reader;
  * @Date: Created in 14:44 2018/3/5
  * Describe: 使用 xml 方式配置与数据库的一次会话通信
  */
-public class MybatisAccess {
+public class MybatisRepository {
 
     public SqlSession getSession() throws IOException {
 
