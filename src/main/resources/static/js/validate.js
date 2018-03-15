@@ -573,7 +573,7 @@ myName.keyup(function () {
             if (register_information[i].hasClass('has-error')) {
                 break;
             }
-            else if(phone1.val().length<2||msg_code.val().length<2||name.val().length<2||psw1.val().length<2||psw2.val().length<2){
+            else if(phone1.val().length<2||msg_code.val().length<2||myName.val().length<2||psw1.val().length<2||psw2.val().length<2){
                 break;
             }
         }

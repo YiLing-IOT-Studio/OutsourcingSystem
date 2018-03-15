@@ -72,6 +72,7 @@ function ajaxTest(currentPage) {
             var rows=10;
             //放入数据
             putIn(data);
+            scrollTo(0,0);//回到顶部
             //分页
             $("#pagination").paging({
                 rows:rows,//每页显示条数
@@ -107,6 +108,7 @@ function searchInfo(currentPage){
                 var rows=10;
                 //放入数据
                 putIn(data);
+                scrollTo(0,0);//回到顶部
                 //分页
                 $("#pagination").paging({
                     rows:rows,//每页显示条数
@@ -177,6 +179,7 @@ function submitInfo(currentPage){
                 var rows=10;
                 //放入数据
                 putIn(data);
+                scrollTo(0,0);//回到顶部
                 //分页
                 $("#pagination").paging({
                     rows:rows,//每页显示条数
@@ -212,6 +215,7 @@ function sortAmount(currentPage){
                 var rows=10;
                 //放入数据
                 putIn(data);
+                scrollTo(0,0);//回到顶部
                 //分页
                 $("#pagination").paging({
                     rows:rows,//每页显示条数
@@ -247,6 +251,7 @@ function sortTime(currentPage) {
             var rows = 10;
             //放入数据
             putIn(data);
+            scrollTo(0,0);//回到顶部
             //分页
             $("#pagination").paging({
                 rows: rows,//每页显示条数

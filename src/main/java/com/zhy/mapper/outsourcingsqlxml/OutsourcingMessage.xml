@@ -14,13 +14,13 @@
       <result column="number" jdbcType="INTEGER" property="number"/>
       <result column="publisher" jdbcType="VARCHAR" property="publisher"/>
       <result column="time" jdbcType="DATE" property="time"/>
-      <result column="requirment" jdbcType="VARCHAR" property="requirment"/>
+      <result column="requirement" jdbcType="VARCHAR" property="requirement"/>
       <result column="progress" jdbcType="DOUBLE" property="progress"/>
 </resultMap>
 
   <!--分类查询-->
   <select id="queryClassifyMessage" parameterType="java.util.HashMap" resultMap="MessageResult">
-    select * from OUTSOURCINGINFO
+    select * from outsourcinginfo
     <where>
       <if test="other == -1 and &quot;&quot;.equals(low) and &quot;&quot;.equals(high)">
         AND amount=#{other}
@@ -53,7 +53,7 @@
   </select>
 
   <select id="countClassifyMessage" parameterType="java.util.HashMap" resultMap="MessageResult">
-    select * from OUTSOURCINGINFO
+    select * from outsourcinginfo
       <where>
         <if test="other == -1 and &quot;&quot;.equals(low) and &quot;&quot;.equals(high)">
           AND amount=#{other}
@@ -84,7 +84,7 @@
 
   <!--分页查询-->
   <select id="queryPagingMessage" parameterType="java.util.HashMap" resultMap="MessageResult">
-    SELECT * FROM OUTSOURCINGINFO
+    SELECT * FROM outsourcinginfo
     <if test="start!=null and pageSize!=null">
       limit #{start},#{pageSize}
     </if>
@@ -92,7 +92,7 @@
 
   <!--搜索查询-->
   <select id="querySearchMessage" parameterType="java.util.HashMap" resultMap="MessageResult">
-    SELECT * FROM OUTSOURCINGINFO
+    SELECT * FROM outsourcinginfo
     WHERE NAME LIKE '%' #{searchText} '%'
     <if test="start!=null and pageSize!=null">
       limit #{start},#{pageSize}
