@@ -25,7 +25,16 @@ public class SortUtils {
 
         list.sort((o1, o2) -> {
             if(o1.getAmount() >=0 || o2.getAmount() >= 0){
+                //返回1，将o1拿出来跟后面的比较
+                if(o1.getAmount()<0){
+                    return 1;
+                }
+                //返回1，将o2拿出来跟后面的比较
+                if (o2.getAmount()<0){
+                    return -1;
+                }
                 int i = o1.getAmount() - o2.getAmount();
+                //返回1，将o1拿出来跟后面的比较，返回-1，将o2拿出来跟后面的比较
                 if (i > 0) {
                     return 1;
                 } else if (i < 0) {
@@ -33,7 +42,7 @@ public class SortUtils {
                 }
                 return 0;
             }
-            return 1;
+            return -1;
 
         });
 
