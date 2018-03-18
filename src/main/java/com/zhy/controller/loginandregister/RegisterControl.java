@@ -2,6 +2,7 @@ package com.zhy.controller.loginandregister;
 
 import com.zhy.model.register.User;
 import com.zhy.service.mybatis.UserRegisterService;
+import com.zhy.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +22,10 @@ public class RegisterControl {
 
     @PostMapping("/register")
     public String register(HttpServletRequest request){
+        MD5Util md5Util = new MD5Util();
         String phone = request.getParameter("phone1");
         String username = request.getParameter("myName");
-        String password = request.getParameter("psw1");
+        String password = md5Util.encode(request.getParameter("psw1"));
         String gender = request.getParameter("inlineRadioOptions");
         String obey = request.getParameter("checkbox");
 

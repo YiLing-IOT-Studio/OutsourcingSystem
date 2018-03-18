@@ -36,6 +36,7 @@ public class AnyUserDetailsServiceImpl implements UserDetailsService{
         if(user == null){
             throw new UsernameNotFoundException("用户不存在");
         }
+        //添加用户权限
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = createAuthorities(user.getRoles());
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), simpleGrantedAuthorities);
     }

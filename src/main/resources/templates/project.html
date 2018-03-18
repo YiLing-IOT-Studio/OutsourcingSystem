@@ -63,10 +63,12 @@
                         <li><a href="#">关注</a></li>
                         <li><a href="#">通知</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a th:href="@{/logout}">退出</a></li>
+                        <!--<li><button id="exit">退出</button></li>-->
+                        <li><form th:action="@{/logout}" method="post">
+                            <input type="submit" value="退出登录" id="exit"/>
+                        </form></li>
                     </ul>
-                </li>
-            </ul>
+
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
     </nav>
