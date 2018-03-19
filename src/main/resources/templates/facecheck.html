@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>facecheck</title>
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/facecheck.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>人脸检测</h1>
+        <p>考虑到系统本身的安全因素和方便人员管理，我们需要您在这里拍下您的照片，以便于注册登记您的信息或在登录验证您的身份</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">查看保密协议</a></p>
+        <div class="panel panel-danger">
+            <div class="panel-heading">摄像区<span class="glyphicon glyphicon-camera"></span></div>
+            <div class="panel-body">
+                <p  class="text-center">请尽量将面部全部呈现在相框中</p>
+            </div>
+            <div id="picture">
+            <div class="box6">
+                <video src="" preload="preload" width="400" height="400" id="videoM"></video>
+                <canvas id="canvas" width="300" height="350"></canvas>
+            </div>
+            </div>
+            <div class="box">
+                <button type="button" id="snapScreen" class="btn btn-lg btn-warning">截取</button>
+                <button type="button" id="upload" class="btn btn-lg btn-danger">提交</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var videoM=document.getElementById('videoM');
+    navigator.mediaDevices.getUserMedia({
+        video:true
+    }).then(function(mediaStream){
+        videoM.srcObject=mediaStream;
+        videoM.onloadedmetadata=function(){
+            videoM.play();
+        }
+    });
+    var canvas=document.getElementById('canvas');
+    var context=canvas.getContext('2d');
+    var snapScreen=document.getElementById('snapScreen');
+    snapScreen.onclick=function(){
+        context.drawImage(videoM,0,0,300,300);
+        videoM.style.display="none";
+        canvas.style.display="inline-block";
+    }
+</script>
+
+<script src="../static/js/facecheck.js"></script>
+</body>
+</html>

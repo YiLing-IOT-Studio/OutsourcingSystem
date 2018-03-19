@@ -586,6 +586,7 @@ myName.keyup(function () {
         }
         if(i==5){
             $("#register_form").submit();
+            window.location.href="facecheck.html?username="+phone1.value;
         }
         else{
             alert("请正确填写信息！");
@@ -603,11 +604,13 @@ myName.keyup(function () {
         }
         if(j==3){
             $("#login_form").submit();
+            window.location.href="facecheck.html?username="+phone2.value;
         }
         else{
             alert("请正确填写信息");
         }
     });
+
 
 
 

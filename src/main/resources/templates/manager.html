@@ -2,17 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>管理员</title>
-    <link href="css/manager.css" rel="stylesheet"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>manager</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/manager.css" rel="stylesheet"/>
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="nav">
-    <div class="top">
-        <div class="logo">
-            <a href="project.html">首页</a>
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header logo">
+                <a class="navbar-brand" href="project.html"><h1 class="atitle">智能外包</h1></a>
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="drop-down">
+                        <a id="username" href="#">[[${#httpServletRequest.remoteUser}]]<span class="caret" id="caret"></span></a>
+                        <ul class="drop-down-content">
+                            <li><a href="#" >账号管理</a></li>
+                            <li><a href="#" >消息</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a th:href="@{/logout}">退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.container-fluid -->
+
+    </nav>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Hi, manager!</h1>
+            <p>您可以在这里管理外包人员的资料信息，查看外包项目实时完成情况或发布新项目。</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">发布新外包</a></p>
         </div>
     </div>
-</div>
 <div class="wrap">
     <div class="leftSide">
         <div class="personalInfo">
@@ -25,18 +56,245 @@
             </div>
         </div>
         <div class="funcList">
-            <ul class="funcListUl">
-                <li class="current" id="li_xx_icon"><a>人员信息查询/维护</a></li>
-                <li id="li_kq_icon"><a>人员考勤情况</a></li>
-                <li id="li_gl_icon"><a>任务管理</a></li>
-                <li id="li_gj_icon"><a>任务跟进</a></li>
-                <li id="li_fb_icon"><a>发布新外包</a></li>
+            <ul class="funcListUl ">
+                <li class="active" id="li_xx_item"><a href="#info" id="xx_item" data-toggle="tab">人员信息查询/维护</a></li>
+                <li id="li_kq_item"><a href="#kaoqin" id="kq_item" data-toggle="tab">人员考勤情况</a></li>
+                <li id="li_gl_item"><a href="#distribute" id="gl_item" data-toggle="tab">任务分配</a></li>
+                <li id="li_gj_item"><a href="#task_state" id="gj_item" data-toggle="tab">任务跟进</a></li>
+                <li id="li_fb_item"><a href="#fabu" id="fb_item" data-toggle="tab">发布新外包</a></li>
             </ul>
         </div>
     </div>
-    <div class="mainRight"></div>
+
+    <div class="mainRight tab-content">
+        <div class="tab-pane fade in  active" id="info">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">人员管理</a></li>
+                <li class="active">信息查询</li>
+            </ol>
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">外包人员信息登记表</div>
+
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>电话</th>
+                        <th>负责项目</th>
+                        <th>分工细则</th>
+                        <th>是否签订保密协议</th>
+                        <th>合同签订情况</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>男</td>
+                        <td>18080175037</td>
+                        <td>微信小程序</td>
+                        <td>负责前端页面部分</td>
+                        <td>是</td>
+                        <td>已签订</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="kaoqin">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">人员管理</a></li>
+                <li class="active">考勤情况</li>
+            </ol>
+            <div class="container">
+                <form class="form-inline" role="form">
+                        <span>时间段：</span>
+                        <div class="form-group">
+                            <div class='input-group date'  id='datetimepicker6' >
+                                <input type='text' class="form-control"/>
+                                <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker7' >
+                                <input type='text' class="form-control"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+
+                            </div>
+                        </div>
+                    <button type="button" class="btn btn-primary">查看</button>
+                </form>
+
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>签到时间</th>
+                    <th>签退时间</th>
+                    <th>总时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mike</td>
+                    <td>2018-2-1 12:00:33</td>
+                    <td>2018-2-1 13:00:33</td>
+                    <td>1时0分0秒</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="distribute">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">项目管理</a></li>
+                <li class="active">任务分配</li>
+            </ol>
+            <div class="container alist">
+                <h2>创建任务</h2>
+            </div>
+
+        </div>
+
+
+        </div>
+        <div class="tab-pane fade" id="task_state"></div>
+        <div class="tab-pane fade" id="fabu"></div>
+    </div>
 </div>
 
 <div class="foot"></div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../static/js/kaoqin.js"></script>
+
+
 </body>
 </html>
