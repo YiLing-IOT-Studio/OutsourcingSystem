@@ -7,7 +7,8 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>facecheck</title>
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--css-->
     <link href="../static/css/facecheck.css" rel="stylesheet"/>
 </head>
 <body>
@@ -36,26 +37,12 @@
     </div>
 
 </div>
-<script type="text/javascript">
-    var videoM=document.getElementById('videoM');
-    navigator.mediaDevices.getUserMedia({
-        video:true
-    }).then(function(mediaStream){
-        videoM.srcObject=mediaStream;
-        videoM.onloadedmetadata=function(){
-            videoM.play();
-        }
-    });
-    var canvas=document.getElementById('canvas');
-    var context=canvas.getContext('2d');
-    var snapScreen=document.getElementById('snapScreen');
-    snapScreen.onclick=function(){
-        context.drawImage(videoM,0,0,300,300);
-        videoM.style.display="none";
-        canvas.style.display="inline-block";
-    }
-</script>
+<!--jquery-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!--jquery:cookie-->
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<!--js-->
+<script src="../static/js/faceCheck.js"></script>
 
-<script src="../static/js/facecheck.js"></script>
 </body>
 </html>

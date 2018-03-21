@@ -40,7 +40,7 @@ body{
     right:0;
 }
 .drop-down-content li{
-  padding:5px 20px 5px 15px;
+  padding:5px 20px 5px 20px;
     background-color:#0E1B3F;
 }
 .drop-down-content li:hover{
