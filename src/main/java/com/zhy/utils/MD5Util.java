@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 /**
  * @author: zhangocean
  * @Date: Created in 16:20 2018/3/18
- * Describe:
+ * Describe: MD5算法对字符串进行加密
  */
 public class MD5Util {
 

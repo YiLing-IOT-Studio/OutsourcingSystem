@@ -16,7 +16,7 @@ import java.util.Map;
  * Describe: 对redis数据进行访问
  */
 @Repository
-public class OutsourcingRepository {
+public class OutsourcingRedisRepository {
 
     @Autowired
     RedisTemplate<Object, Object> redisTemplate;

@@ -2,12 +2,16 @@ package com.zhy.service.mybatis.impl;
 
 import com.zhy.constant.RoleConstant;
 import com.zhy.mapper.UserRegisterMapper;
+import com.zhy.model.register.Role;
 import com.zhy.model.register.User;
 import com.zhy.service.mybatis.UserRegisterService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: zhangocean
@@ -25,14 +29,22 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 
     @Override
     public boolean insert(User user) {
+
         String phone = user.getPhone();
         if(phoneIsExist(phone)){
             return false;
         }
-        user.setRoles(RoleConstant.ROLE_USER);
-        int insertResult = userRegisterMapper.insert(user);
-        log.info("注册成功！" + "注册手机号为：" + phone);
-        return (insertResult == 1);
+        try {
+            int insertResult = userRegisterMapper.insert(user);
+            int insertUserId = findUserIdByPhone(phone);
+            System.out.println("注册成功后通过手机号查找到的用户id是：" + insertUserId);
+            userRegisterMapper.insertRoleToUser(insertUserId, RoleConstant.ROLE_USER.getId());
+            log.info("注册成功！" + "注册手机号为：" + phone);
+            return (insertResult == 1);
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -56,5 +68,9 @@ public class UserRegisterServiceImpl implements UserRegisterService {
             return true;
         }
         return false;
+    }
+
+    private int findUserIdByPhone(String phone){
+        return userRegisterMapper.selectUserIdByPhone(phone);
     }
 }

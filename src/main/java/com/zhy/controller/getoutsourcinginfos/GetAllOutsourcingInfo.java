@@ -4,26 +4,23 @@ import com.zhy.component.outsourcing.dealwithstring.CountPage;
 import com.zhy.component.outsourcing.dealwithstring.CutOutAmount;
 import com.zhy.component.outsourcing.dealwithstring.CutOutString;
 import com.zhy.model.outsourcing.OutsourcingInfo;
+import com.zhy.repository.mybatis.OutsourcingRepository;
 import com.zhy.service.mybatis.OutsourcingInfoService;
-import com.zhy.service.mybatis.mybatisxml.ClassifyCountService;
-import com.zhy.service.mybatis.mybatisxml.ClassifySearchService;
-import com.zhy.service.mybatis.mybatisxml.FillMessageService;
-import com.zhy.service.mybatis.mybatisxml.SearchTextService;
 import com.zhy.service.redis.RedisForOutsourcing;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author: zhangocean
@@ -43,17 +40,11 @@ public class GetAllOutsourcingInfo {
     @Autowired
     CountPage countPage;
 
+    @Autowired
+    OutsourcingRepository outsourcingRepository;
 
     @Autowired
-    ClassifySearchService classifySearchService;
-    @Autowired
-    FillMessageService fillMessageService;
-    @Autowired
-    SearchTextService searchTextService;
-    @Autowired
     OutsourcingInfoService outsourcingInfoService;
-    @Autowired
-    ClassifyCountService classifyCountService;
     @Autowired
     RedisForOutsourcing redisForOutsourcing;
 
@@ -90,9 +81,9 @@ public class GetAllOutsourcingInfo {
         fuzzySearchMap.put("start",start);
         fuzzySearchMap.put("pageSize",pageSize);
 
-        List<OutsourcingInfo> classifySearchResult = classifySearchService.classifySearch(fuzzySearchMap);
+        List<OutsourcingInfo> classifySearchResult = outsourcingRepository.queryClassifyMessage(fuzzySearchMap);
 
-        List<OutsourcingInfo> countList = classifyCountService.classifyCount(fuzzySearchMap);
+        List<OutsourcingInfo> countList = outsourcingRepository.countClassifyMessage(fuzzySearchMap);
         System.out.println("分类查询一共查询到 " + countList.size() + " 条记录");
         Map<String, Integer> countPageMap = countPage.countPageList(countList, pageSize);
 
@@ -126,7 +117,7 @@ public class GetAllOutsourcingInfo {
         map.put("pageSize",pageSize);
         map.put("searchText",searchText);
 
-        List<OutsourcingInfo> searchResult = searchTextService.searchText(map);
+        List<OutsourcingInfo> searchResult = outsourcingRepository.querySearchMessage(map);
 
         int countList = outsourcingInfoService.countSearchText(searchText);
         System.out.println("搜索框输入一共查到了 " + countList + " 条数据");
@@ -158,7 +149,7 @@ public class GetAllOutsourcingInfo {
         map.put("start",start);
         map.put("pageSize",pageSize);
 
-        List<OutsourcingInfo> queryPagingMessageResult = fillMessageService.fillMessage(map);
+        List<OutsourcingInfo> queryPagingMessageResult = outsourcingRepository.queryPagingMessage(map);
 
         List<String> outsourcingName = new ArrayList<>();
         int i=0;

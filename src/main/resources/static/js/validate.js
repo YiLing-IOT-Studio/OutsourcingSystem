@@ -587,7 +587,7 @@ myName.keyup(function () {
         if(i==5){
             $("#register_form").submit();
             $.cookie('username',phone1.val());
-            window.location.href="../static/faceCheck.html";
+            // window.location.href="faceCheck.html";
         }
         else{
             alert("请正确填写信息！");
@@ -605,8 +605,8 @@ myName.keyup(function () {
         }
         if(j==3){
             $("#login_form").submit();
-            $.cookie('username',phone2.val());
-            window.location.href="faceCheck.html";
+            // $.cookie('username',phone2.val());
+            // window.location.href="faceCheck.html";
         }
         else{
             alert("请正确填写信息");

@@ -16,12 +16,19 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface UserRegisterMapper {
 
-    @Insert("insert into user(phone, username, password, gender, obey, roles) values (#{phone}, #{username}, #{password}, #{gender}, #{obey}, #{roles})")
+    @Insert("insert into user(phone, username, password, gender, obey) values (#{phone}, #{username}, #{password}, #{gender}, #{obey})")
     int insert(User user);
+
+    @Insert("insert into user_role(User_id, Role_id) values (#{userId}, #{roleId})")
+    void insertRoleToUser(@Param("userId") int userId, @Param("roleId") int roleId);
 
     @Select("select * from user where phone=#{phone}")
     User selectByPhone(@Param("phone") String phone);
 
     @Select("select * from user where phone=#{phone} and password=#{password}")
     User selectByPhoneAndPassword(@Param("phone") String phone, @Param("password") String password);
+
+    @Select("select u.id from user u where phone=#{phone}")
+    int selectUserIdByPhone(@Param("phone") String phone);
+
 }

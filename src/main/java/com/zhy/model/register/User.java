@@ -2,6 +2,8 @@ package com.zhy.model.register;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author: zhangocean
  * @Date: Created in 19:48 2018/1/14
@@ -9,6 +11,8 @@ import lombok.Data;
  */
 @Data
 public class User {
+
+    private long id;
 
     /**
      * 注册者手机号
@@ -35,10 +39,8 @@ public class User {
      */
     private String obey;
 
-    /**
-     * 注册者权限
-     */
-    private String roles;
+    private List<Role> roles;
+
 
     public User() {
     }

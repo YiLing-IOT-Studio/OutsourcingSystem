@@ -27,7 +27,7 @@ upload.click(function(){
 
     $.ajax({
         type:'POST',
-        url:'/getAllOutsourcingInfo/classifySearch',
+        url:'',
         dataType:'json',
         data: {"img":imgData1,"username":username},
         success:function(data){

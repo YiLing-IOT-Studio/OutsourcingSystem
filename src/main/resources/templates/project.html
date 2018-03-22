@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
@@ -12,9 +13,9 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--project.css-->
-    <link href="../static/css/project.css" rel="stylesheet">
+    <link href="css/project.css" rel="stylesheet">
     <!--info.css-->
-    <link href="../static/css/info.css" rel="stylesheet"/>
+    <link href="css/info.css" rel="stylesheet"/>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -27,7 +28,7 @@
                 <span class="icon-bar">挑战</span>
                 <span class="icon-bar">我的</span>
             </button>
-            <a class="navbar-brand" href="#"><img alt="brand" src="../static/img/ArcSoftLogo.png"/></a>
+            <a class="navbar-brand" href="#"><img alt="brand" src="img/ArcSoftLogo.png"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,9 +58,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">公告</a></li>
                 <li class="dropdown">
-                    <a id="username" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">[[${#httpServletRequest.remoteUser}]]<span class="caret"></span></a>
+                    <a id="username" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span sec:authentication="name"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" >个人资料</a></li>
+                        <li><a href="#" sec:authorize="hasRole('ROLE_USER')" >个人资料</a></li>
+                        <li><a href="#" sec:authorize="hasRole('ROLE_ADMIN')" >管理界面</a></li>
                         <li><a href="#">项目</a></li>
                         <li><a href="#">关注</a></li>
                         <li><a href="#">通知</a></li>

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author: zhangocean
@@ -21,7 +24,8 @@ public class RegisterControl {
     UserRegisterService userRegisterService;
 
     @PostMapping("/register")
-    public String register(HttpServletRequest request){
+    public String register(HttpServletRequest request) throws IOException {
+
         MD5Util md5Util = new MD5Util();
         String phone = request.getParameter("phone1");
         String username = request.getParameter("myName");
@@ -32,11 +36,10 @@ public class RegisterControl {
         User user = new User(phone, username, password, gender, obey);
 
         if(userRegisterService.insert(user)){
-
-//            return "redirect:login_register?success";
-            return "login_register";
+            return "redirect:login_register?registerSuccess";
+//            return "login_register";
         }
-//        return "redirect:login_register?error";
-        return "login_register";
+        return "redirect:login_register?registerError";
+//        return "login_register";
     }
 }

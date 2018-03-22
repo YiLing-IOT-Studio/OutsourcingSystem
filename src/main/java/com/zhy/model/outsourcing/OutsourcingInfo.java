@@ -17,9 +17,11 @@ import java.util.Date;
 public class OutsourcingInfo implements Serializable{
 
     /**
-     * 使用Jackson序列化需要一个空构造
+     * Redis使用Jackson序列化需要一个空构造
      */
     private static final long serialVersionUID = 1L;
+
+    private Long id;
 
     /**
      * 外包状态

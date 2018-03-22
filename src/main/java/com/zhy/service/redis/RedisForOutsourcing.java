@@ -1,7 +1,7 @@
 package com.zhy.service.redis;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
-import com.zhy.repository.redis.OutsourcingRepository;
+import com.zhy.repository.redis.OutsourcingRedisRepository;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class RedisForOutsourcing {
 
 
     @Autowired
-    OutsourcingRepository outsourcingRepository;
+    OutsourcingRedisRepository outsourcingRedisRepository;
 
     /**
      * 将每一页查询到的外包信息集合储存到redis中
@@ -39,8 +39,8 @@ public class RedisForOutsourcing {
      */
     public void saveByListAndMap(List<OutsourcingInfo> outsourcingPageList, Map<String, Integer> map){
 
-        outsourcingRepository.saveOutsourcingList(selectPageList, outsourcingPageList);
-        outsourcingRepository.saveOutsourcingPageNumber(pageMap, map);
+        outsourcingRedisRepository.saveOutsourcingList(selectPageList, outsourcingPageList);
+        outsourcingRedisRepository.saveOutsourcingPageNumber(pageMap, map);
 
     }
 
@@ -50,8 +50,8 @@ public class RedisForOutsourcing {
      */
     public JSONArray getPageJsonArray(){
 
-        List<OutsourcingInfo> list = outsourcingRepository.getOutsourcingList(selectPageList);
-        Map<String, Integer> pageMapInfo = outsourcingRepository.getOutsourcingPage(pageMap);
+        List<OutsourcingInfo> list = outsourcingRedisRepository.getOutsourcingList(selectPageList);
+        Map<String, Integer> pageMapInfo = outsourcingRedisRepository.getOutsourcingPage(pageMap);
 
         JSONArray jsonArray = JSONArray.fromObject(list);
         jsonArray.add(pageMapInfo);
@@ -65,7 +65,7 @@ public class RedisForOutsourcing {
      */
     public void saveAllOutsourcingList(List<OutsourcingInfo> outsourcingAllList){
 
-        outsourcingRepository.saveOutsourcingList(selectAllList, outsourcingAllList);
+        outsourcingRedisRepository.saveOutsourcingList(selectAllList, outsourcingAllList);
 
     }
 
@@ -74,7 +74,7 @@ public class RedisForOutsourcing {
      * @return 所有查询条件的List型数据
      */
     public List<OutsourcingInfo> getAllOutsourcingList(){
-        return outsourcingRepository.getOutsourcingList(selectAllList);
+        return outsourcingRedisRepository.getOutsourcingList(selectAllList);
     }
 
     /**
@@ -82,7 +82,7 @@ public class RedisForOutsourcing {
      * @return 页码的map
      */
     public Map<String, Integer> getPageNumber(){
-        return outsourcingRepository.getOutsourcingPage(pageMap);
+        return outsourcingRedisRepository.getOutsourcingPage(pageMap);
     }
 
 }

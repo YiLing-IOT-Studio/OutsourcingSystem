@@ -63,7 +63,7 @@ public class SendMsgCodeControl {
         //此处填写已申请的短信签名
         request.setSignName("张海洋zhyocean");
         //此处填写获得的短信模版CODE
-        request.setTemplateCode("SMS_122281517");
+        request.setTemplateCode("SMS_127159576");
         //笔者的短信模版中有${code}, 因此此处对应填写验证码
         request.setTemplateParam("{\"code\":\"" + code + "\"}");
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);

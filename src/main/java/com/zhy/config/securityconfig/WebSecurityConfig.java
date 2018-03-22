@@ -1,12 +1,13 @@
 package com.zhy.config.securityconfig;
 
-import com.zhy.service.security.AnyUserDetailsServiceImpl;
+import com.zhy.service.security.CustomUserService;
 import com.zhy.utils.MD5Util;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -17,8 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-    @Autowired
-    AnyUserDetailsServiceImpl anyUserDetailsService;
+    @Bean
+    UserDetailsService customUserService(){
+        return new CustomUserService();
+    }
 
     /**
      *  配置认证方式
@@ -27,7 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(anyUserDetailsService).passwordEncoder(new PasswordEncoder() {
+        auth.userDetailsService(customUserService())
+                //启动密码MD5加密
+                .passwordEncoder(new PasswordEncoder() {
             MD5Util md5Util = new MD5Util();
             @Override
             public String encode(CharSequence rawPassword) {
@@ -51,10 +56,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/user/**","/index").hasRole("USER")
+                .antMatchers("/index").hasAnyRole("USER","ADMIN")
                 .and()
                 //loginPage和logoutUrl都是post请求
-                .formLogin().loginPage("/login_register").defaultSuccessUrl("/index")
+                .formLogin().loginPage("/login_register").failureUrl("/login_register?error").defaultSuccessUrl("/index")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login_register");
 

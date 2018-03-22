@@ -37,4 +37,6 @@ public interface UserRegisterService {
      * @return boolean
      */
     boolean passwordIsRight(String phone, String password);
+
+
 }
