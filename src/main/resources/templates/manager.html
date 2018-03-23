@@ -10,9 +10,9 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--bootstrap-datetimepicker-->
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <!--css-->
-    <link href="css/manager.css" rel="stylesheet"/>
+    <link href="../static/css/manager.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -39,7 +39,7 @@
         </div><!-- /.container-fluid -->
 
     </nav>
-    <div class="jumbotron">
+    <div class="jumbotron page">
         <div class="container">
             <h1>Hi, manager!</h1>
             <p>您可以在这里管理外包人员的资料信息，查看外包项目实时完成情况或发布新项目。</p>
@@ -50,7 +50,7 @@
     <div class="leftSide">
         <div class="personalInfo">
             <a href="#info" class="headPortrait">
-                <img src="img/headPortrait.png" id="headPortrait"/>
+                <img src="../static/img/headPortrait.png" id="headPortrait"/>
             </a>
             <div id="nickname">
                 <p id="personName">yyq</p>
@@ -213,10 +213,32 @@
                 <li class="active">任务分配</li>
             </ol>
             <div class="container alist">
-                <h2>创建任务</h2>
-                <form class="form-horizontal">
+                <button type="button" class="btn btn-lg btn-success" id="add">新建任务层</button>
+                <div class="oneTask page2">
+                        <p class="text-center taskTitle">
+                            <label for="taskName">项目名</label><br/>
+                            <input type="text" id="taskName"/><br/>
+                        </p>
+                        <p class="text-center">
 
-                </form>
+                            <button type="button" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-th-list"></span> 添加子任务
+                            </button>
+
+                        </p>
+                        <p class="task">
+                            <label>子任务</label><span id="number">1 </span></br>
+
+                            <textarea cols="38" rows="5" placeholder="任务描述"></textarea><br/>
+                            <button tyep="button" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus-sign"></span> 负责人
+                            </button>
+
+                        </p>
+
+                    </form>
+                </div>
+
             </div>
 
 
@@ -232,10 +254,10 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <!--plugs:bootstrap-datetimepicker-->
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
  <!--js-->
-    <script src="js/kaoqin.js"></script>
+    <script src="../static/js/kaoqin.js"></script>
 
 
 </body>

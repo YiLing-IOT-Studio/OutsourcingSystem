@@ -23,20 +23,36 @@ var imgData = canvans.toDataURL();
 var imgData1 = imgData.substring(22);
 var upload=$("#upload");
 var username=$.cookie('username');
+var flag=$.cookie('flag');
 upload.click(function(){
-
-    $.ajax({
-        type:'POST',
-        url:'',
-        dataType:'json',
-        data: {"img":imgData1,"username":username},
-        success:function(data){
-            alert("请求成功");
-        },
-        error:function(){
-            alert("请求失败");
-        }
-    })
+    if(flag==0) {
+        $.ajax({
+            type: 'POST',
+            url: '/register',
+            dataType: 'json',
+            data: {"img": imgData1, "username": username},
+            success: function (data) {
+                alert("请求成功");
+            },
+            error: function () {
+                alert("请求失败");
+            }
+        })
+    }
+    else{
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            dataType: 'json',
+            data: {"img": imgData1, "username": username},
+            success: function (data) {
+                alert("请求成功");
+            },
+            error: function () {
+                alert("请求失败");
+            }
+        })
+    }
 })
 
 
