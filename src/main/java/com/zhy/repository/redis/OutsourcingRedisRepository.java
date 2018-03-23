@@ -1,6 +1,7 @@
 package com.zhy.repository.redis;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
+import com.zhy.model.sign.SignRecords;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -59,5 +60,6 @@ public class OutsourcingRedisRepository {
     public Map<String, Integer> getOutsourcingPage(String outsourcingPage){
         return (Map<String, Integer>) valueOps.get(outsourcingPage);
     }
+
 
 }

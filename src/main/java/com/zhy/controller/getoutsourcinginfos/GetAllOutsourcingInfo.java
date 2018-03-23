@@ -6,7 +6,7 @@ import com.zhy.component.outsourcing.dealwithstring.CutOutString;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.repository.mybatis.OutsourcingRepository;
 import com.zhy.service.mybatis.OutsourcingInfoService;
-import com.zhy.service.redis.RedisForOutsourcing;
+import com.zhy.service.redis.OutsourcingRedisService;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +46,7 @@ public class GetAllOutsourcingInfo {
     @Autowired
     OutsourcingInfoService outsourcingInfoService;
     @Autowired
-    RedisForOutsourcing redisForOutsourcing;
+    OutsourcingRedisService outsourcingRedisService;
 
     /**
      * 通过项目分类、项目状态、项目金额、项目类型查询相关外包信息
@@ -88,10 +88,10 @@ public class GetAllOutsourcingInfo {
         Map<String, Integer> countPageMap = countPage.countPageList(countList, pageSize);
 
         //向redis中储存通过分类查询到的当前页的所有外包信息
-        redisForOutsourcing.saveByListAndMap(classifySearchResult, countPageMap);
+        outsourcingRedisService.saveByListAndMap(classifySearchResult, countPageMap);
         //向redis中储存通过分类查询到的所有页的外包信息
-        redisForOutsourcing.saveAllOutsourcingList(countList);
-        JSONArray classifySearchResultForJsonArray = JSONArray.fromObject(redisForOutsourcing.getPageJsonArray());
+        outsourcingRedisService.saveAllOutsourcingList(countList);
+        JSONArray classifySearchResultForJsonArray = JSONArray.fromObject(outsourcingRedisService.getPageJsonArray());
         logger.info("分类查询到的结果是：" + classifySearchResultForJsonArray);
 
         return classifySearchResultForJsonArray;
@@ -124,10 +124,10 @@ public class GetAllOutsourcingInfo {
         Map<String, Integer> countPageMap = countPage.countPageInt(countList, pageSize);
 
         //向redis中储存通过搜索框搜索到的当前页的所有外包信息
-        redisForOutsourcing.saveByListAndMap(searchResult, countPageMap);
+        outsourcingRedisService.saveByListAndMap(searchResult, countPageMap);
         //向redis中储存通过搜索框搜索到的所有的所有外包信息
-        redisForOutsourcing.saveAllOutsourcingList(outsourcingInfoService.findBySearch(searchText));
-        JSONArray searchResultForJsonArray = redisForOutsourcing.getPageJsonArray();
+        outsourcingRedisService.saveAllOutsourcingList(outsourcingInfoService.findBySearch(searchText));
+        JSONArray searchResultForJsonArray = outsourcingRedisService.getPageJsonArray();
 
         logger.info("使用search查询到的结果：" + searchResultForJsonArray);
 
@@ -163,11 +163,11 @@ public class GetAllOutsourcingInfo {
         Map<String, Integer> countPageMap = countPage.countPageInt(countList, pageSize);
 
         //向redis中储存当前页的所有外包信息
-        redisForOutsourcing.saveByListAndMap(queryPagingMessageResult, countPageMap);
+        outsourcingRedisService.saveByListAndMap(queryPagingMessageResult, countPageMap);
         //向redis中储存所有外包信息
-        redisForOutsourcing.saveAllOutsourcingList(outsourcingInfoService.findAllOutsourcing());
+        outsourcingRedisService.saveAllOutsourcingList(outsourcingInfoService.findAllOutsourcing());
 
-        JSONArray jsonArray = JSONArray.fromObject(redisForOutsourcing.getPageJsonArray());
+        JSONArray jsonArray = JSONArray.fromObject(outsourcingRedisService.getPageJsonArray());
 
         return jsonArray;
     }

@@ -61,7 +61,7 @@
                     <a id="username" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span sec:authentication="name"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#" sec:authorize="hasRole('ROLE_USER')" >个人资料</a></li>
-                        <li><a href="#" sec:authorize="hasRole('ROLE_ADMIN')" >管理界面</a></li>
+                        <li><a href="/manager" sec:authorize="hasRole('ROLE_ADMIN')" >管理界面</a></li>
                         <li><a href="#">项目</a></li>
                         <li><a href="#">关注</a></li>
                         <li><a href="#">通知</a></li>

@@ -15,7 +15,7 @@ import java.util.Map;
  * Describe: redis访问操作
  */
 @Service
-public class RedisForOutsourcing {
+public class OutsourcingRedisService {
 
     /**
      * redis中每一页外包信息集合和页码的key

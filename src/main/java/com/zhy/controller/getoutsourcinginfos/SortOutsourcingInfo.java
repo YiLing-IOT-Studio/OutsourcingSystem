@@ -1,7 +1,7 @@
 package com.zhy.controller.getoutsourcinginfos;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
-import com.zhy.service.redis.RedisForOutsourcing;
+import com.zhy.service.redis.OutsourcingRedisService;
 import com.zhy.utils.SortUtils;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ public class SortOutsourcingInfo {
     private Logger logger = LoggerFactory.getLogger(SortOutsourcingInfo.class);
 
     @Autowired
-    RedisForOutsourcing redisForOutsourcing;
+    OutsourcingRedisService outsourcingRedisService;
 
     @PostMapping("/sortByAmount")
     @ResponseBody
@@ -38,14 +38,14 @@ public class SortOutsourcingInfo {
         int pageSize = Integer.parseInt(request.getParameter("rows"));
         int start = (startPage-1)*pageSize;
 
-        List<OutsourcingInfo> list = redisForOutsourcing.getAllOutsourcingList();
-        Map<String, Integer> map = redisForOutsourcing.getPageNumber();
+        List<OutsourcingInfo> list = outsourcingRedisService.getAllOutsourcingList();
+        Map<String, Integer> map = outsourcingRedisService.getPageNumber();
 
         SortUtils sortUtils = new SortUtils();
         List<OutsourcingInfo> amountSortResult = sortUtils.sortByAmount(list, start, pageSize, startPage);
-        redisForOutsourcing.saveByListAndMap(amountSortResult, map);
+        outsourcingRedisService.saveByListAndMap(amountSortResult, map);
 
-        JSONArray sortByAmountForJsonArray = redisForOutsourcing.getPageJsonArray();
+        JSONArray sortByAmountForJsonArray = outsourcingRedisService.getPageJsonArray();
 
         logger.info("金钱排序的外包信息：" + sortByAmountForJsonArray.toString());
         return sortByAmountForJsonArray;
@@ -59,14 +59,14 @@ public class SortOutsourcingInfo {
         int pageSize = Integer.parseInt(request.getParameter("rows"));
         int start = (startPage-1)*pageSize;
 
-        List<OutsourcingInfo> list = redisForOutsourcing.getAllOutsourcingList();
-        Map<String, Integer> map = redisForOutsourcing.getPageNumber();
+        List<OutsourcingInfo> list = outsourcingRedisService.getAllOutsourcingList();
+        Map<String, Integer> map = outsourcingRedisService.getPageNumber();
 
         SortUtils sortUtils = new SortUtils();
         List<OutsourcingInfo> amountSortResult = sortUtils.sortByTime(list, start, pageSize);
-        redisForOutsourcing.saveByListAndMap(amountSortResult, map);
+        outsourcingRedisService.saveByListAndMap(amountSortResult, map);
 
-        JSONArray sortByAmountForJsonArray = redisForOutsourcing.getPageJsonArray();
+        JSONArray sortByAmountForJsonArray = outsourcingRedisService.getPageJsonArray();
 
         logger.info("时间排序的外包信息：" + sortByAmountForJsonArray.toString());
         return sortByAmountForJsonArray;

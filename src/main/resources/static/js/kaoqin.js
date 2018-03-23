@@ -2,6 +2,13 @@
  * Created by 杨玉卿 on 2018/3/17.
  */
 //选择时间
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
 $("#datetimepicker6").datetimepicker({
     minView:2,
     maxView:3,
@@ -47,22 +54,22 @@ function fillData(data){
 
             //姓名
             var kName= $('<td></td>');
-            kName.append(obj['name']);
+            kName.append(obj['username']);
             tr.append(kName);
 
             //签到时间
             var kSignIn= $('<td></td>');
-            kSignIn.append(obj['signIn']);
+            kSignIn.append(obj['come_time']);
             tr.append(kSignIn);
 
             //签退时间
             var kSignOut= $('<td></td>');
-            kSignOut.append(obj['signOut']);
+            kSignOut.append(obj['leave_time']);
             tr.append(kSignOut);
 
             //总时间
             var kTotal= $('<td></td>');
-            kTotal.append(obj['total']);
+            kTotal.append(obj['str_time']);
             tr.append(kTotal);
 
             kBody.append(tr);
@@ -75,7 +82,7 @@ $("#checkTime").click(function(){
     var eTime=$("#end").val();
     $.ajax({
         type:"POST",
-        url:"/",
+        url:"/getSignRecords",
         dataType:"json",
         data:{
             sTime:sTime,

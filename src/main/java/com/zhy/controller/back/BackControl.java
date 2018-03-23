@@ -35,4 +35,9 @@ public class BackControl {
         return "facecheck";
     }
 
+    @GetMapping("/manager")
+    public String manager(){
+        return "manager";
+    }
+
 }
