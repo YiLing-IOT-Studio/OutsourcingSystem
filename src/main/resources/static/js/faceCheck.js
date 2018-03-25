@@ -19,11 +19,13 @@ snapScreen.onclick=function(){
     canvas.style.display="inline-block";
 }
 
-var imgData = canvans.toDataURL();
+var imgData = canvas.toDataURL();
 var imgData1 = imgData.substring(22);
 var upload=$("#upload");
 var username=$.cookie('username');
 var flag=$.cookie('flag');
+// alert('username='+username);
+// alert('flag='+flag);
 upload.click(function(){
     if(flag==0) {
         $.ajax({
