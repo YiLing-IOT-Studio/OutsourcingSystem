@@ -2,17 +2,24 @@
  * Created by 杨玉卿 on 2018/3/21.
  */
 //请求人员信息
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
 var tBody=$("#tBody");
     $.ajax({
         type:"POST",
-        url:"/",
+        url:"/getOutsourcingUserInfo",
         dataType:"json",
         data:{
             "staff_information":"staff_information"
         },
         success:function(data){
             $.each(data, function (index, obj) {
-                if (index != (data.length - 1)) {
+                if (index != (data.length)) {
                     var tr= $('<tr></tr>');
                     //姓名
                     var tName= $('<td></td>');
@@ -41,7 +48,7 @@ var tBody=$("#tBody");
 
                     //是否签订保密协议
                     var tPromiss= $('<td></td>');
-                    tPromiss.append(obj['promiss']);
+                    tPromiss.append(obj['promise']);
                     tr.append(tPromiss);
 
                     //合同签订情况

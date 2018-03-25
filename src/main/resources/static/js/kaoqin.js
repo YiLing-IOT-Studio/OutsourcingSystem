@@ -45,7 +45,7 @@ function fillData(data){
     var kBody=$("#kBody");
     kBody.html('');
     $.each(data,function(index,obj){
-        if (index != (data.length - 1)) {
+        if (index != (data.length)) {
             var tr= $('<tr></tr>');
             //序号
             var kId= $('<td></td>');

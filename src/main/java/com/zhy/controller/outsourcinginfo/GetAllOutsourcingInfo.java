@@ -1,4 +1,4 @@
-package com.zhy.controller.getoutsourcinginfos;
+package com.zhy.controller.outsourcinginfo;
 
 import com.zhy.component.outsourcing.dealwithstring.CountPage;
 import com.zhy.component.outsourcing.dealwithstring.CutOutAmount;

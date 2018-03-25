@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +11,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--css-->
-    <link href="../static/css/facecheck.css" rel="stylesheet"/>
+    <link href="css/facecheck.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
@@ -42,7 +44,7 @@
 <!--jquery:cookie-->
 <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <!--js-->
-<script src="../static/js/faceCheck.js"></script>
+<script src="js/faceCheck.js"></script>
 
 </body>
 </html>

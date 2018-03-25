@@ -4,7 +4,7 @@ import com.zhy.model.outsourcing.OutsourcingInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * Describe: 处理外包信息的数据库操作的sql语句
  */
 @Mapper
-@Component
+@Repository
 public interface OutsourcingInfoMapper {
 
     @Select("select count(*) from outsourcinginfo where name like '%' #{searchText} '%'")

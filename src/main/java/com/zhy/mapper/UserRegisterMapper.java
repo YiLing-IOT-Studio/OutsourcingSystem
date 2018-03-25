@@ -5,14 +5,14 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author: zhangocean
  * @Date: Created in 12:26 2018/1/26
  * Describe: 处理用户登录注册的数据库操作信息
  */
-@Component
+@Repository
 @Mapper
 public interface UserRegisterMapper {
 

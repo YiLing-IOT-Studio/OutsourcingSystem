@@ -1,6 +1,13 @@
 /**
  * Created by 杨玉卿 on 2018/3/18.
  */
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
 var videoM=document.getElementById('videoM');
 navigator.mediaDevices.getUserMedia({
     video:true
@@ -24,13 +31,13 @@ var imgData1 = imgData.substring(22);
 var upload=$("#upload");
 var username=$.cookie('username');
 var flag=$.cookie('flag');
-// alert('username='+username);
-// alert('flag='+flag);
+alert('username='+username);
+alert('flag='+flag);
 upload.click(function(){
     if(flag==0) {
         $.ajax({
             type: 'POST',
-            url: '/register',
+            url: '/faceCheck?tag=register',
             dataType: 'json',
             data: {"img": imgData1, "username": username},
             success: function (data) {
@@ -44,7 +51,7 @@ upload.click(function(){
     else{
         $.ajax({
             type: 'POST',
-            url: '/login',
+            url: '/faceCheck?tag=login',
             dataType: 'json',
             data: {"img": imgData1, "username": username},
             success: function (data) {

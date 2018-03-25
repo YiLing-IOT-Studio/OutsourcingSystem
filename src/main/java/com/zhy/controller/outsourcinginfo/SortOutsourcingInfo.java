@@ -1,4 +1,4 @@
-package com.zhy.controller.getoutsourcinginfos;
+package com.zhy.controller.outsourcinginfo;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.service.redis.OutsourcingRedisService;

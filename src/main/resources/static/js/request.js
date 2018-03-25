@@ -11,7 +11,7 @@ var clear='';
 function putIn(data){
     put_word.html(clear);
     $.each(data, function (index, obj) {
-        if (index != (data.length - 1)) {
+        if (index != (data.length)) {
             var sec = $('<section class="row"></section>');
             // 添加标题
             var title = $('<p class="h4"></p>');

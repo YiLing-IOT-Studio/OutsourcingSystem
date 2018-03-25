@@ -29,10 +29,8 @@ public class BackControl {
     }
 
     @GetMapping("/faceCheck")
-    public String faceCheck(@RequestParam("username") String phone, Model model){
-        System.out.println("人脸识别获得的手机号：" + phone);
-        model.addAttribute("phone", phone);
-        return "facecheck";
+    public String faceCheck(){
+        return "faceCheck";
     }
 
     @GetMapping("/manager")
