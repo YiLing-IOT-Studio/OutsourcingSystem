@@ -26,8 +26,9 @@ snapScreen.onclick=function(){
     canvas.style.display="inline-block";
 }
 
-var imgData = canvas.toDataURL();
-var imgData1 = imgData.substring(22);
+var imgData = canvas.toDataURL("image/jpeg",1.0);
+var imgData1 = imgData.substring(0,22);
+(imgData);
 var upload=$("#upload");
 var username=$.cookie('username');
 var flag=$.cookie('flag');

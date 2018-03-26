@@ -67,6 +67,7 @@ $(".form-control-feedback").hide();
                         success: function (data) {
                             //返回0，已经注册
                             if (parseInt(data) === 0) {
+                                alert("已经注册");
                                 phone1_existed.show();
                                 phone1_f.show();
                                 phone1_box.removeClass("has-success");
@@ -76,6 +77,7 @@ $(".form-control-feedback").hide();
                             }
                             //返回1，没有注册
                             else if (parseInt(data) === 1) {
+                                alert("还没注册");
                                 phone1_f.hide();
                                 phone1_error.hide();
                                 phone1_t.show();

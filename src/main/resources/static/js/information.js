@@ -1,11 +1,12 @@
 /**
  * Created by 杨玉卿 on 2018/3/21.
  */
-//请求人员信息
+//取出cookie，设置请求头
 $(function () {
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
     $(document).ajaxSend(function(e, xhr, options) {
+        //从cookie里取出token值
+        var token = $.cookie('token');
+        var header = 'X-CSRF-TOKEN';
         xhr.setRequestHeader(header, token);
     });
 });

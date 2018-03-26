@@ -7,6 +7,27 @@ var mySearch=$("#search");
 var amountSort=$("#amount_sort");
 var timeSort=$("#time_sort");
 var clear='';
+//通过响应头设置cookie的值
+// $.ajax({
+//     success : function (data, status, xhr) {
+//         //获取指定响应头参数信息
+//         var token;
+//         token=xhr.getResponseHeader( "X-CSRF-TOKEN" );
+//         $.cookie('token',token);
+//     }
+// });
+//把值先直接保存在cookie里
+$.cookie('token',$("meta[name='_csrf']").attr("content"));
+//设置请求头
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
+
+
 //填充数据类
 function putIn(data){
     put_word.html(clear);
