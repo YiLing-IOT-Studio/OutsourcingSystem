@@ -8,33 +8,31 @@ $(function () {
         xhr.setRequestHeader(header, token);
     });
 });
-var videoM=document.getElementById('videoM');
+var video=document.getElementById('video');
 navigator.mediaDevices.getUserMedia({
     video:true
 }).then(function(mediaStream){
-    videoM.srcObject=mediaStream;
-    videoM.onloadedmetadata=function(){
-        videoM.play();
+    video.srcObject=mediaStream;
+    video.onloadedmetadata=function(){
+        video.play();
     }
 });
 var canvas=document.getElementById('canvas');
-var context=canvas.getContext('2d');
-var snapScreen=document.getElementById('snapScreen');
-snapScreen.onclick=function(){
-    context.drawImage(videoM,0,0,300,300);
-    videoM.style.display="none";
+var context=canvas.getContext("2d");
+var snap=document.getElementById('snap');
+snap.onclick=function(){
+    context.drawImage(video,0,0,300,300);
+    video.style.display="none";
     canvas.style.display="inline-block";
 }
 
 var imgData = canvas.toDataURL("image/jpeg",1.0);
-var imgData1 = imgData.substring(0,22);
-(imgData);
+var imgData1 = imgData.substring(22);
 var upload=$("#upload");
 var username=$.cookie('username');
 var flag=$.cookie('flag');
-alert('username='+username);
-alert('flag='+flag);
 upload.click(function(){
+    console.log(imgData1);
     if(flag==0) {
         $.ajax({
             type: 'POST',
@@ -42,7 +40,7 @@ upload.click(function(){
             dataType: 'json',
             data: {"img": imgData1, "username": username},
             success: function (data) {
-                alert("请求成功");
+                alert(data);
             },
             error: function () {
                 alert("请求失败");
@@ -56,7 +54,7 @@ upload.click(function(){
             dataType: 'json',
             data: {"img": imgData1, "username": username},
             success: function (data) {
-                alert("请求成功");
+                alert(data);
             },
             error: function () {
                 alert("请求失败");

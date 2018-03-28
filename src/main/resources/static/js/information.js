@@ -2,15 +2,14 @@
  * Created by 杨玉卿 on 2018/3/21.
  */
 //取出cookie，设置请求头
-$(function () {
-    $(document).ajaxSend(function(e, xhr, options) {
-        //从cookie里取出token值
-        var token = $.cookie('token');
-        var header = 'X-CSRF-TOKEN';
-        xhr.setRequestHeader(header, token);
-    });
-});
+
 var tBody=$("#tBody");
+$(document).ajaxSend(function(e, xhr, options) {
+    //从cookie里取出token值
+    var token = $.cookie('token');
+    var header = 'X-CSRF-TOKEN';
+    xhr.setRequestHeader(header, token);
+});
     $.ajax({
         type:"POST",
         url:"/getOutsourcingUserInfo",
