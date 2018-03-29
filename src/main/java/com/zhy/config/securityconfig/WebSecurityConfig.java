@@ -60,9 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/manager").hasRole("ADMIN")
                 .and()
                 //loginPage和logoutUrl都是post请求
-                .formLogin().loginPage("/login_register").failureUrl("/login_register?error").defaultSuccessUrl("/faceCheck")
+                .formLogin().loginPage("/login_register").failureUrl("/login_register?error").defaultSuccessUrl("/index")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login_register");
 
     }
+    
 }

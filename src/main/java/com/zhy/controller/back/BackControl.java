@@ -3,7 +3,11 @@ package com.zhy.controller.back;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author: zhangocean
@@ -34,7 +38,12 @@ public class BackControl {
     }
 
     @GetMapping("/manager")
-    public String manager(){
+    public String manager(HttpServletRequest request, HttpServletResponse response){
+        String token = (String) request.getSession().getAttribute("X-CSRF-TOKEN");
+        System.out.println("跳到管理界面的X-CSRF-TOKEN：" + token);
+
+        response.setHeader("X-CSRF-TOKEN",token);
+
         return "manager";
     }
 

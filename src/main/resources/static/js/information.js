@@ -28,7 +28,7 @@ $(document).ajaxSend(function(e, xhr, options) {
 
                     //性别
                     var tGender= $('<td></td>');
-                    tGender.append(obj['Gender']);
+                    tGender.append(obj['gender']);
                     tr.append(tGender);
 
                     //电话

@@ -2,11 +2,12 @@
  * Created by 杨玉卿 on 2018/3/17.
  */
 //选择时间
-$(document).ajaxSend(function(e, xhr, options) {
-    //从cookie里取出token值
-    var token = $.cookie('token');
-    var header = 'X-CSRF-TOKEN';
-    xhr.setRequestHeader(header, token);
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
 });
 $("#datetimepicker6").datetimepicker({
     minView:2,

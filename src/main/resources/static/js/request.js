@@ -17,7 +17,10 @@ var clear='';
 //     }
 // });
 //把值先直接保存在cookie里
-$.cookie('token',$("meta[name='_csrf']").attr("content"));
+var token=$("meta[name='_csrf']").attr("content");
+$.cookie('token',token);
+var token=$.cookie('token');
+alert(token);
 //设置请求头
 $(function () {
     var token = $("meta[name='_csrf']").attr("content");

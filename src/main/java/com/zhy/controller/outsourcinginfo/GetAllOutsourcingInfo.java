@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -139,7 +140,11 @@ public class GetAllOutsourcingInfo {
      */
     @PostMapping("/fillMessage")
     @ResponseBody
-    public JSONArray getPageMessage(HttpServletRequest request){
+    public JSONArray getPageMessage(HttpServletRequest request, HttpServletResponse response){
+
+
+        String token = request.getHeader("X-CSRF-TOKEN");
+        System.out.println("X-CSRF-TOKEN：" + token);
 
         int startPage = Integer.parseInt(request.getParameter("pageNo"));
         int pageSize = Integer.parseInt(request.getParameter("rows"));

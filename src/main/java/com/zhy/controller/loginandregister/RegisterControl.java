@@ -26,6 +26,9 @@ public class RegisterControl {
     @PostMapping("/register")
     public String register(HttpServletRequest request) throws IOException {
 
+        String token = request.getHeader("X-CSRF-TOKEN");
+        System.out.println("X-CSRF-TOKEN：" + token);
+
         MD5Util md5Util = new MD5Util();
         String phone = request.getParameter("phone1");
         String username = request.getParameter("myName");

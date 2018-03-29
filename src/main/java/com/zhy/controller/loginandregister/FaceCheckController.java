@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +31,7 @@ public class FaceCheckController {
     LoginService loginService;
 
 
-    @RequestMapping("/faceCheck")
+    @PostMapping("/faceCheck")
     public String faceCheck(@Param("tag") String tag, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -39,7 +39,12 @@ public class FaceCheckController {
         response.setContentType("text/html;charset=utf-8");
 
         String img = request.getParameter("img");
-        String phone = request.getParameter("username");
+//        String phone = request.getParameter("username");
+        String phone = "19940790216";
+
+        System.out.println("tag：" + tag);
+        System.out.println("img：" + img);
+        System.out.println("phone：" + phone);
 
         AipFace client = new AipFace(FaceParam.APP_ID, FaceParam.API_KEY, FaceParam.SECRET_KEY);
 

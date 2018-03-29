@@ -1,13 +1,21 @@
 /**
  * Created by 杨玉卿 on 2018/3/23.
  */
-$(document).ready(function(){
+// $(document).ready(function(){
+//     $(document).ajaxSend(function(e, xhr, options) {
+//         //从cookie里取出token值
+//         var token = $.cookie('token');
+//         var header = 'X-CSRF-TOKEN';
+//         xhr.setRequestHeader(header, token);
+//     });
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
     $(document).ajaxSend(function(e, xhr, options) {
-        //从cookie里取出token值
-        var token = $.cookie('token');
-        var header = 'X-CSRF-TOKEN';
         xhr.setRequestHeader(header, token);
     });
+});
+
 var oBtn1=$(".addAll");
 var oTask=$("#task");
 oBtn1.click(function(){
@@ -75,7 +83,7 @@ oBtn1.click(function(){
             console.log(array2);
             $.ajax({
                 type: 'POST',
-                url: '/project',
+                url: '/addNode',
                 dataType: 'json',
                 data: {
                     'taskName': taskName.val(),
@@ -89,7 +97,7 @@ oBtn1.click(function(){
                         var oDiv=$(this).parent().parent();
                         oDiv.hide();
                     }
-                    else {
+                    else if((parseInt(data) == 0) ) {
                         alert("上传无效！");
                     }
                 },
@@ -102,5 +110,4 @@ oBtn1.click(function(){
     });
 
 
-});
 });

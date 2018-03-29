@@ -31,18 +31,18 @@ public class SendMsgCodeControl {
     public int sendMsgCodeControl(HttpServletRequest request){
 
         String phone = request.getParameter("phone1");
-        System.out.println("申请验证码的手机号码是:" + phone);
-        String trueMsgCode = phoneRandomBuilder.randomBuilder();
 
+        String trueMsgCode = phoneRandomBuilder.randomBuilder();
+        System.out.println("申请的手机验证码是:" + trueMsgCode);
         request.getSession().setAttribute("trueMsgCode", trueMsgCode);
 
         SendSmsResponse sendSmsResponse = null;
-        try {
-            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
-        } catch (ClientException e) {
-            e.printStackTrace();
-            return 0;
-        }
+//        try {
+//            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
+//        } catch (ClientException e) {
+//            e.printStackTrace();
+//            return 0;
+//        }
 
         return 1;
 
