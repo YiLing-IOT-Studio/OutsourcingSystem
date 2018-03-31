@@ -13,9 +13,19 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--bootstrap-datetimepicker-->
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <!--css-->
-    <link href="css/manager.css" rel="stylesheet"/>
+    <link href="../static/css/manager.css" rel="stylesheet"/>
+    <link href="../static/css/directory.css" rel="stylesheet"/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--plugs:bootstrap-datetimepicker-->
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!--jquery:cookie-->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
 </head>
 <body>
@@ -45,15 +55,15 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Hi, manager!</h1>
-            <p>您可以在这里管理外包人员的资料信息，查看外包项目实时完成情况或发布新项目。</p>
+            <p class="jumbotron-text">您可以在这里管理外包人员的资料信息，查看外包项目实时完成情况或发布新项目。</p>
             <p><a class="btn btn-primary btn-lg" href="#" role="button">发布新外包</a></p>
         </div>
     </div>
-<div class="row">
-    <div class="leftSide col-md-2">
+    <div class="row">
+        <div class="leftSide col-md-2">
         <div class="personalInfo">
             <a href="#info" class="headPortrait">
-                <img src="img/headPortrait.png" id="headPortrait"/>
+                <img src="../static/img/headPortrait.png" id="headPortrait"/>
             </a>
             <div id="nickname">
                 <p id="personName">yyq</p>
@@ -70,17 +80,16 @@
             </ul>
         </div>
     </div>
-
-    <div class="mainRight tab-content col-md-10">
-        <div class="tab-pane fade in  active" id="info">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">人员管理</a></li>
-                <li class="active">信息查询</li>
-            </ol>
-            <div class="panel panel-primary">
-                <!-- Default panel contents -->
-                <div class="panel-heading">外包人员信息登记表</div>
+        <div class="mainRight tab-content col-md-10">
+            <div class="tab-pane fade in  active" id="info">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">人员管理</a></li>
+                    <li class="active">信息查询</li>
+                </ol>
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">外包人员信息登记表</div>
 
                 <!-- Table -->
                 <table class="table">
@@ -138,109 +147,94 @@
                     <button type="button" class="btn btn-primary" id="checkTime">查看</button>
                 </form>
 
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>签到时间</th>
+                        <th>签退时间</th>
+                        <th>总时间</th>
+                    </tr>
+                    </thead>
+                    <tbody id="kBody">
+
+                    </tbody>
+                </table>
             </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>序号</th>
-                    <th>姓名</th>
-                    <th>签到时间</th>
-                    <th>签退时间</th>
-                    <th>总时间</th>
-                </tr>
-                </thead>
-                <tbody id="kBody">
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>mike</td>-->
-                    <!--<td>2018-2-1 12:00:33</td>-->
-                    <!--<td>2018-2-1 13:00:33</td>-->
-                    <!--<td>1时0分0秒</td>-->
-                <!--</tr>-->
-                </tbody>
-            </table>
-        </div>
-        <div class="tab-pane fade" id="distribute">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">项目管理</a></li>
-                <li class="active">任务分配</li>
-            </ol>
-            <div class="container alist">
-                <button type="button" class="btn btn-lg btn-info addAll">新建任务</button>
-                <div id="task">
+            <div class="tab-pane fade" id="distribute">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">项目管理</a></li>
+                    <li class="active">任务分配</li>
+                </ol>
+                <div class="container alist">
+                    <button type="button" class="btn btn-lg btn-info addAll">新建任务</button>
+                    <div id="task">
+                    </div>
                 </div>
             </div>
+            <div class="tab-pane fade" id="task_state">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#directory" data-toggle="tab">项目文件夹</a></li>
+                    <li><a href="#follow" data-toggle="tab">动态</a></li>
+                    <li><a href="#chart" data-toggle="tab">统计</a></li>
+                </ul>
+                <div class="tab-content">
+                    <ul id="ul">
+                        <!--<li class="xiangmuming">-->
+                            <!--<div class="my_div">-->
+                            <!--<span class="glyphicon glyphicon-folder-close"></span>-->
+                            <!--<span class="name">项目1</span>-->
+                            <!--</div>-->
+                            <!--<ul class="fuzeren">-->
+                                <!--<span class="glyphicon glyphicon-user"></span>-->
+                                <!--<span class="person">负责人1</span>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件1</li>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件2</li>-->
+                            <!--</ul>-->
+                            <!--<ul class="fuzeren">-->
+                                <!--<span class="glyphicon glyphicon-user"></span>-->
+                                <!--<span class="person">负责人2</span>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件1</li>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件2</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li class="xiangmuming">-->
+                            <!--<div class="my_div">-->
+                            <!--<span class="glyphicon glyphicon-folder-close"></span>-->
+                            <!--<span class="name">项目二</span>-->
+                            <!--</div>-->
+                            <!--<ul class="fuzeren">-->
+                                <!--<span class="glyphicon glyphicon-user"></span>-->
+                                <!--<span class="person">负责人1</span>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件1</li>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件2</li>-->
+                            <!--</ul>-->
+                            <!--<ul class="fuzeren">-->
+                                <!--<span class="glyphicon glyphicon-user"></span>-->
+                                <!--<span class="person">负责人2</span>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件1</li>-->
+                                <!--<li class="wenjian"><span class="glyphicon glyphicon-pushpin"></span> 文件2</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+
+                <div id="discuss"></div>
+                <div id="chart"></div>
+            </div>
+            <div class="tab-pane fade" id="fabu"></div>
         </div>
-        <div class="tab-pane fade" id="task_state"></div>
-        <div class="tab-pane fade" id="fabu"></div>
     </div>
-</div>
+    <div class="foot"></div>
 
-<div class="foot"></div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <!--plugs:bootstrap-datetimepicker-->
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
-    <!--jquery:cookie-->
-    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
- <!--js-->
-    <script src="js/information.js"></script>
-    <script src="js/kaoqin.js"></script>
-    <script src="js/addNode.js"></script>
-
+    <!--js-->
+    <script src="../static/js/information.js"></script>
+    <script src="../static/js/kaoqin.js"></script>
+    <script src="../static/js/addNode.js"></script>
+    <script src="../static/js/directory.js"></script>
 
 </body>
 </html>

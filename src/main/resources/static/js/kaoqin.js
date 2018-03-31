@@ -2,13 +2,6 @@
  * Created by 杨玉卿 on 2018/3/17.
  */
 //选择时间
-$(function () {
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
-        xhr.setRequestHeader(header, token);
-    });
-});
 $("#datetimepicker6").datetimepicker({
     minView:2,
     maxView:3,
@@ -17,7 +10,7 @@ $("#datetimepicker6").datetimepicker({
     pickerPosition:'bottom-left',
     format:'yyyy/mm/dd',
     autoclose:true,
-    showMeridian:true
+    showMeridian:true,
 });
 $("#datetimepicker7").datetimepicker({
     minView:2,
@@ -26,7 +19,7 @@ $("#datetimepicker7").datetimepicker({
     todayHighlight:true,
     pickerPosition:'bottom-left',
     format:'yyyy/mm/dd',
-    autoclose:true
+    autoclose:true,
 });
 $(function () {
     $('#datetimepicker6').datetimepicker();
@@ -39,6 +32,10 @@ $(function () {
     $("#datetimepicker7").on("dp.change", function (e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
+    var time=new Date();
+    var myStr=time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate();
+    $("#start").attr('placeholder',myStr);
+    $("#end").attr('placeholder',myStr);
 });
 //填充数据类
 function fillData(data){

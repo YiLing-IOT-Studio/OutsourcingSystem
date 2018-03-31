@@ -1,20 +1,6 @@
 /**
  * Created by 杨玉卿 on 2018/3/23.
  */
-// $(document).ready(function(){
-//     $(document).ajaxSend(function(e, xhr, options) {
-//         //从cookie里取出token值
-//         var token = $.cookie('token');
-//         var header = 'X-CSRF-TOKEN';
-//         xhr.setRequestHeader(header, token);
-//     });
-$(function () {
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
-        xhr.setRequestHeader(header, token);
-    });
-});
 
 var oBtn1=$(".addAll");
 var oTask=$("#task");
@@ -38,12 +24,18 @@ oBtn1.click(function(){
         "<span class='glyphicon glyphicon-th-list'></span> 添加子任务</button>"+"<br/>"
     );
     oDiv.append(oP3);
-    //uploadBtn
+
+    //deleteBtn
     var oP4=$("<p class='text-right'></p>");
-    oP4.append("<button type='button' class='btn btn-default btn-sm upload'>"+
+    oP4.append("<button type='button' class='btn btn-default btn-sm deleteTask'>" +
+        "<span class='glyphicon glyphicon-th-list'></span> 删除子任务</button>"+"<br/>");
+    oDiv.append(oP4);
+    //uploadBtn
+    var oP5=$("<p class='text-right'></p>");
+    oP5.append("<button type='button' class='btn btn-default btn-sm upload'>"+
         "<span class='glyphicon glyphicon-upload'></span> 保存并上传</button>"+"<br/>"
     );
-    oDiv.append(oP4);
+    oDiv.append(oP5);
     oTask.append(oDiv);
     var cnt=0;
     //taskBtn-event
@@ -55,6 +47,9 @@ oBtn1.click(function(){
         preTask.append("<label>子任务</label>"+"<span>"+cnt+"</span>"+"</br>"+
             "<textarea placeholder='任务描述' class='taskDev'></textarea>"+"<br/>"+"<div class='text-right'>"+
             "<label>任务负责人</label>"+"<input type='text' class='staffName'/>"+"</div>");
+
+    });
+    $(".deleteTask").click(function(){
 
     });
     $(".upload").click(function(){
