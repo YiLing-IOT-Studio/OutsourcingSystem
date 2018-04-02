@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author: zhangocean
  * @Date: Created in 15:52 2018/3/29
- * Describe:
+ * Describe: 处理任务分配的负责人
  */
 @Component
 public class CutOutStaffName {
@@ -21,7 +21,6 @@ public class CutOutStaffName {
             list.add(string);
         }
 
-        System.out.println("负责人分别是：" + list.toString());
         return list;
     }
 

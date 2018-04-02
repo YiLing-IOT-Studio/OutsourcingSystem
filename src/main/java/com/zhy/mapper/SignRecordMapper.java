@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author: zhangocean
  * @Date: Created in 20:03 2018/3/23
- * Describe:
+ * Describe: 签到记录的sql语句
  */
 @Mapper
 @Repository

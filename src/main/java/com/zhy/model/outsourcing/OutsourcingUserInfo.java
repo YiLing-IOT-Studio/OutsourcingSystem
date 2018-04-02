@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @author: zhangocean
  * @Date: Created in 18:38 2018/3/24
- * Describe:
+ * Describe: 接报人员信息类
  */
 @Data
 public class OutsourcingUserInfo {

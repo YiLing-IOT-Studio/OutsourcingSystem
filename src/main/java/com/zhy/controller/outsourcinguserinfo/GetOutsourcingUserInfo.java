@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author: zhangocean
  * @Date: Created in 19:04 2018/3/24
- * Describe:
+ * Describe: 人员信息查询与维护
  */
 @Controller
 public class GetOutsourcingUserInfo {

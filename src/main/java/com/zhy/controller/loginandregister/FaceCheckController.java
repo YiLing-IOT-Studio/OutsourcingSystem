@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * @author: zhangocean
  * @Date: Created in 19:40 2018/3/24
- * Describe:
+ * Describe: 人脸登录注册跳转
  */
 @Controller
 public class FaceCheckController {

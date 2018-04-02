@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @author: zhangocean
  * @Date: Created in 14:00 2018/3/23
- * Describe:
+ * Describe: 签到记录
  */
 @Data
 @SuppressWarnings("all")

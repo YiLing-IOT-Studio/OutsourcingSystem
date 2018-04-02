@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @author: zhangocean
  * @Date: Created in 18:34 2018/3/21
- * Describe:
+ * Describe: 权限
  */
 @Data
 public class Role {

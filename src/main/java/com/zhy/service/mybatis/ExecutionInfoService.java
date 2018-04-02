@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author: zhangocean
  * @Date: Created in 21:10 2018/3/29
- * Describe:
+ * Describe: 任务分配的数据库操作
  */
 @Service
 public interface ExecutionInfoService {

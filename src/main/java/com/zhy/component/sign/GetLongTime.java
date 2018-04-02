@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @author: zhangocean
  * @Date: Created in 16:45 2018/3/23
- * Describe:
+ * Describe: 处理查询签到时间
  */
 @Component
 public class GetLongTime {

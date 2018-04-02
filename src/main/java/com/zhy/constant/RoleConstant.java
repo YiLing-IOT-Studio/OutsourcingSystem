@@ -5,7 +5,7 @@ import com.zhy.model.register.Role;
 /**
  * @author: zhangocean
  * @Date: Created in 14:18 2018/2/3
- * Describe:
+ * Describe: 权限
  */
 public interface RoleConstant {
 

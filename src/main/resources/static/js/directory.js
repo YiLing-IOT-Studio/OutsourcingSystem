@@ -29,7 +29,7 @@ $("#li_gj_item").click(function(){
 function initTree(){
     $.ajax({
         type:'POST',
-        url : "/demo/initTree",
+        url : "/getOrgZTree",
         dataType:'json',
         data : {
         },

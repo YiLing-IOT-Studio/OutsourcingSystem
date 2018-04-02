@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author: zhangocean
  * @Date: Created in 15:44 2018/3/29
- * Describe:
+ * Describe: 处理任务分配的子任务
  */
 @Component
 public class CutOutTaskDev {

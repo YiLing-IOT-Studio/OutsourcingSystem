@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @author: zhangocean
  * @Date: Created in 15:27 2018/3/29
- * Describe:
+ * Describe: ZTree 树
  */
 @Data
 public class ExecutionInfo {

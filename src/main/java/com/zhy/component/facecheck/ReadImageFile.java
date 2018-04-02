@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * @author: zhangocean
  * @Date: Created in 20:04 2018/3/24
- * Describe:
+ * Describe: 将图片转换成 BASE64 编码
  */
 @Component
 public class ReadImageFile {

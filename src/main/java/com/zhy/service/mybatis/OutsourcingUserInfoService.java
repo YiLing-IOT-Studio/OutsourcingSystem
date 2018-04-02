@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author: zhangocean
  * @Date: Created in 18:57 2018/3/24
- * Describe:
+ * Describe: 外包人员信息
  */
 @Service
 public interface OutsourcingUserInfoService {

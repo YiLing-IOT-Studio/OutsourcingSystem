@@ -54,7 +54,7 @@ $(document).ajaxSend(function(e, xhr, options) {
 
                     //是否签订保密协议
                     var tPromiss= $('<td></td>');
-                    if(obj['promise']==true)
+                    if(obj['promise']=="true")
                     {
                         obj['promise']="✔";
                     }
@@ -66,7 +66,7 @@ $(document).ajaxSend(function(e, xhr, options) {
 
                     //合同签订情况
                     var tContract= $('<td></td>');
-                    if(obj['contract']==true)
+                    if(obj['contract']=="true")
                     {
                         obj['contract']="✔";
                     }

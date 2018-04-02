@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author: zhangocean
  * @Date: Created in 18:48 2018/3/24
- * Describe:
+ * Describe: 外包人员信息的sql语句
  */
 @Mapper
 @Repository

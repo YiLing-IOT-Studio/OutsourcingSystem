@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * @author: zhangocean
  * @Date: Created in 21:14 2018/3/29
- * Describe:
+ * Describe: 添加任务分配信息
  */
 @Repository
 @Mapper
