@@ -33,9 +33,18 @@ $(function () {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
     var time=new Date();
-    var myStr=time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate();
-    $("#start").attr('placeholder',myStr);
-    $("#end").attr('placeholder',myStr);
+    var myStr;
+    var myMonth=time.getMonth()+1;
+    if(myMonth<10){
+        myMonth="0"+myMonth;
+    }
+    var myDate=time.getDate();
+    if(myDate<10){
+        myDate="0"+myDate;
+    }
+    myStr=time.getFullYear()+"/"+myMonth+"/"+myDate;
+    $("#start").attr('value',myStr);
+    $("#end").attr('value',myStr);
 });
 //填充数据类
 function fillData(data){

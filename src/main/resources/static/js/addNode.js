@@ -15,7 +15,12 @@ oBtn1.click(function(){
     //taskContent
     var oP2=$("<p class='task'></p>");
     oP2.append("<label>任务总述</label>"+"</br>"+
-        "<textarea placeholder='任务总述' class='taskContent'></textarea>"+"<br/>");
+                 "<textarea placeholder='任务总述' class='taskContent'></textarea>"+"<br/>"
+              +"<div>"+"<label>子任务</label>"+"<br/>"+
+               "<textarea placeholder='任务描述' class='taskDev'></textarea>"+"<br/>"
+              + "<div class='text-right'>"+ "<label>任务负责人</label>"+"<input type='text' class='staffName'/>"+"</div>"
+              +"</div>"
+    );
     oDiv.append(oP2);
 
     //taskBtn
@@ -37,20 +42,19 @@ oBtn1.click(function(){
     );
     oDiv.append(oP5);
     oTask.append(oDiv);
-    var cnt=0;
     //taskBtn-event
     $(".addTask").click(function(){
         //findTaskContent-putin
         var preTask=$(this).parent().siblings(".task");
-        cnt=cnt+1;
+
         //taskDev&&taskStaff
-        preTask.append("<label>子任务</label>"+"<span>"+cnt+"</span>"+"</br>"+
+        preTask.append("<div class='addSon'>"+"<label>子任务</label>"+"<span>"+"</span>"+"</br>"+
             "<textarea placeholder='任务描述' class='taskDev'></textarea>"+"<br/>"+"<div class='text-right'>"+
-            "<label>任务负责人</label>"+"<input type='text' class='staffName'/>"+"</div>");
+            "<label>任务负责人</label>"+"<input type='text' class='staffName'/>"+"</div>"+"</div>");
 
     });
     $(".deleteTask").click(function(){
-
+        $(".task .addSon:last-child").remove();
     });
     $(".upload").click(function(){
         //获取当前的任务名、任务内容、分任务、分任务负责人都是什么
@@ -58,20 +62,41 @@ oBtn1.click(function(){
         console.log(taskName.val());
         var taskContent=$(this).parent().siblings(".task").find(".taskContent");
         console.log(taskContent.val());
+        var x,y,i,j,flag=true;
+        var taskDev = $(this).parent().siblings(".task").find(".taskDev");
+        var staffName = $(this).parent().siblings(".task").find(".staffName");
         if(taskName.val()==""||taskContent.val()==""){
             alert("请填写项目名和任务总述~");
+            flag=false;
+            console.log(flag);
         }
-        else {
-            var taskDev = $(this).parent().siblings(".task").find(".taskDev");
+        for(x in taskDev){
+            if(taskDev[x].value==""){
+                alert("请填写任务描述~");
+                flag=false;
+                console.log(flag);
+            }
+        }
+        for(y in staffName ){
+            if(staffName[y].value==""){
+                alert("请确定任务负责人~");
+                flag=false;
+                console.log(flag);
+            }
+        }
+
+
+        if(flag==true){
+            // var taskDev = $(this).parent().siblings(".task").find(".taskDev");
             var array1 = '';
-            for (var i = 0; i < taskDev.length; i++) {
+            for (i = 0; i < taskDev.length; i++) {
                 array1 += $(taskDev[i]).val() + ",";
 
             }
             console.log(array1);
-            var staffName = $(this).parent().siblings(".task").find(".staffName");
+            // var staffName = $(this).parent().siblings(".task").find(".staffName");
             var array2 = '';
-            for (var j = 0; j < staffName.length; j++) {
+            for (j = 0; j < staffName.length; j++) {
                 array2 += $(staffName[j]).val() + ",";
 
             }

@@ -28,6 +28,12 @@ $(document).ajaxSend(function(e, xhr, options) {
 
                     //性别
                     var tGender= $('<td></td>');
+                    if(obj['gender']=="gentleman") {
+                        obj['gender']="男";
+                    }
+                    else{
+                        obj['gender']="女";
+                    }
                     tGender.append(obj['gender']);
                     tr.append(tGender);
 
@@ -48,11 +54,25 @@ $(document).ajaxSend(function(e, xhr, options) {
 
                     //是否签订保密协议
                     var tPromiss= $('<td></td>');
+                    if(obj['promise']==true)
+                    {
+                        obj['promise']="✔";
+                    }
+                    else{
+                        obj['promise']="✘";
+                    }
                     tPromiss.append(obj['promise']);
                     tr.append(tPromiss);
 
                     //合同签订情况
                     var tContract= $('<td></td>');
+                    if(obj['contract']==true)
+                    {
+                        obj['contract']="✔";
+                    }
+                    else{
+                        obj['contract']="✘";
+                    }
                     tContract.append(obj['contract']);
                     tr.append(tContract);
 
