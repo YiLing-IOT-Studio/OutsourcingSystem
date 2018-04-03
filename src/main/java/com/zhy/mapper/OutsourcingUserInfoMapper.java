@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public interface OutsourcingUserInfoMapper {
 
-    @Select("select * from OutsourcingUserInfo where state in (\"报名中\",\"进行中\")")
+    @Select("select * from outsourcinguserinfo where state in (\"报名中\",\"进行中\")")
     List<OutsourcingUserInfo> selectAllOutsourcingUserInfo();
 
 }
