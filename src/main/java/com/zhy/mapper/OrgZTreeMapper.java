@@ -23,4 +23,7 @@ public interface OrgZTreeMapper {
     @Select("select * from orgztree where pid=#{pid}")
     List<OrgZTree> getChildNode(@Param("pid") int pid);
 
+    @Select("select o.name from orgztree o where pid=0")
+    List<String> getAllOutsourcingName();
+
 }

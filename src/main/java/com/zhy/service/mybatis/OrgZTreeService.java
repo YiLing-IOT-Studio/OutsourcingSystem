@@ -26,4 +26,10 @@ public interface OrgZTreeService {
      */
     List<OrgZTree> getChildNode(int pid);
 
+    /**
+     * 查询所有的外包名
+     * @return 所有的外包名
+     */
+    List<String> getAllOutsourcingName();
+
 }

@@ -2,7 +2,7 @@ package com.zhy.controller.outsourcinginfo;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.service.redis.OutsourcingRedisService;
-import com.zhy.utils.SortUtils;
+import com.zhy.utils.SortUtil;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,8 +41,8 @@ public class SortOutsourcingInfo {
         List<OutsourcingInfo> list = outsourcingRedisService.getAllOutsourcingList();
         Map<String, Integer> map = outsourcingRedisService.getPageNumber();
 
-        SortUtils sortUtils = new SortUtils();
-        List<OutsourcingInfo> amountSortResult = sortUtils.sortByAmount(list, start, pageSize, startPage);
+        SortUtil sortUtil = new SortUtil();
+        List<OutsourcingInfo> amountSortResult = sortUtil.sortByAmount(list, start, pageSize, startPage);
         outsourcingRedisService.saveByListAndMap(amountSortResult, map);
 
         JSONArray sortByAmountForJsonArray = outsourcingRedisService.getPageJsonArray();
@@ -62,8 +62,8 @@ public class SortOutsourcingInfo {
         List<OutsourcingInfo> list = outsourcingRedisService.getAllOutsourcingList();
         Map<String, Integer> map = outsourcingRedisService.getPageNumber();
 
-        SortUtils sortUtils = new SortUtils();
-        List<OutsourcingInfo> amountSortResult = sortUtils.sortByTime(list, start, pageSize);
+        SortUtil sortUtil = new SortUtil();
+        List<OutsourcingInfo> amountSortResult = sortUtil.sortByTime(list, start, pageSize);
         outsourcingRedisService.saveByListAndMap(amountSortResult, map);
 
         JSONArray sortByAmountForJsonArray = outsourcingRedisService.getPageJsonArray();

@@ -10,7 +10,7 @@ import java.util.List;
  * @Date: Created in 20:49 2018/3/12
  * Describe: 排序工具
  */
-public class SortUtils {
+public class SortUtil {
 
     /**
      * 对外包信息的金额进行升序

@@ -28,4 +28,9 @@ public class OrgZTreeServiceImpl implements OrgZTreeService {
     public List<OrgZTree> getChildNode(int pid) {
         return orgZTreeMapper.getChildNode(pid);
     }
+
+    @Override
+    public List<String> getAllOutsourcingName() {
+        return orgZTreeMapper.getAllOutsourcingName();
+    }
 }

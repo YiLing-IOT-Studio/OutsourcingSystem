@@ -6,13 +6,13 @@
     font-size:20px;
     display:block;
 }
-.inline-block{
+.my-inline-block{
     display:inline-block;
     border:1px solid #fff;
     padding:25px;
     cursor:pointer;
 }
-.inline-block:hover{
+.my-inline-block:hover{
     background-color:rgba(253,245,154,0.4);
     border:1px solid #fdd49a;
 }
