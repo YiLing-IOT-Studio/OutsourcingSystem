@@ -5,7 +5,7 @@
 var oBtn1=$(".addAll");
 var oTask=$("#task");
 oBtn1.click(function(){
-    var oDiv=$("<div class='oneTask page2 col-md-offset-2 col-md-8'></div>");
+    var oDiv=$('<div class="oneTask page2 col-md-offset-2 col-md-8"></div>');
     //taskTitle
     var oP1=$("<p class='text-center taskTitle'></p>");
     oP1.append("<label>项目名</label>"+"<br/>"+
