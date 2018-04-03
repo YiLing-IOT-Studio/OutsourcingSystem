@@ -31,8 +31,6 @@ $("#follow-tab").click(function(){
 });
 //点击文件夹，进入每个负责人的上传信息
 $(".my-inline-block").click(function(){
-
-
     var name=$(this).find(".folder-name").text();
     console.log(name);
     $.ajax({
