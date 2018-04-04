@@ -13,24 +13,25 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--bootstrap-datetimepicker-->
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <!--zTree-->
-    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
+    <link href="../static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
     <!--css-->
-    <link href="css/manager.css" rel="stylesheet"/>
-    <link href="css/directory.css" rel="stylesheet"/>
-    <link href="css/folder.css" rel="stylesheet"/>
+    <link href="../static/css/manager.css" rel="stylesheet"/>
+    <link href="../static/css/directory.css" rel="stylesheet"/>
+    <link href="../static/css/folder.css" rel="stylesheet"/>
+    <link href="../static/css/info.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--plugs:bootstrap-datetimepicker-->
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <!--jquery:cookie-->
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!--zTree-->
-    <script src="js/jquery.ztree.core.min.js"></script>
+    <script src="../static/js/jquery.ztree.core.min.js"></script>
 
 </head>
 <body>
@@ -61,18 +62,18 @@
         <div class="container">
             <h1>Hi, manager!</h1>
             <p class="jumbotron-text">您可以在这里管理外包人员的资料信息，查看外包项目实时完成情况或发布新项目。</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">发布新外包</a></p>
+            <!--<p><a class="btn btn-primary btn-lg" href="#fabu" role="button">发布新外包</a></p>-->
         </div>
     </div>
     <div class="row">
         <div class="leftSide col-md-2">
         <div class="personalInfo">
             <a href="#info" class="headPortrait">
-                <img src="img/headPortrait.png" id="headPortrait"/>
+                <img src="../static/img/headPortrait.png" id="headPortrait"/>
             </a>
             <div id="nickname">
                 <p id="personName">yyq</p>
-                <a href="#info" class="manageBtn">账号管理</a>
+                <!--<a href="#info" class="manageBtn">账号管理</a>-->
             </div>
         </div>
         <div class="funcList">
@@ -185,7 +186,27 @@
                         </ul>
                     </div>
                     <div id="follow" class="tab-pane fade">
-
+                        <div id="pagi-father">
+                            <div id="pagination">
+                                <a id="firstPage">首页</a>
+                                <a id="prePage">上一页</a>
+                                <a class="current">1</a>
+                                ...
+                                <a>5</a>
+                                <a>6</a>
+                                <a>7</a>
+                                <a>8</a>
+                                <a>9</a>
+                                <a id="nextPage">下一页</a>
+                                <a id="lastPage">尾页</a>
+                                <span class="totalPages">
+            共<span>5</span>页
+        </span>
+                                <span class="totalSize">
+            共<span>90</span>条记录
+        </span>
+                            </div>
+                        </div>
                     </div>
                     <div id="chart" class="tab-pane fade">
 
@@ -193,17 +214,121 @@
                 </div>
 
             </div>
-            <div class="tab-pane fade" id="fabu"></div>
+            <div class="tab-pane fade" id="fabu">
+
+                <form class="form-horizontal" id="new-project">
+                    <fieldset>
+                        <div id="legend" class="">
+                            <legend class="">新外包信息</legend>
+                        </div>
+                        <div class="control-group">
+
+                            <!-- Text input-->
+                            <label class="control-label" for="myName">项目名</label>
+                            <div class="controls">
+                                <input type="text"  id="myName" name="myName" placeholder="请输入项目名称" class="input-xlarge">
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+
+                            <!-- Text input-->
+                            <label class="control-label" for="category">类别</label>
+                            <div class="controls">
+                                <input type="text" id="category" name="category" placeholder="请输入项目类别" class="input-xlarge">
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+
+                            <!-- Textarea -->
+                            <label class="control-label">项目要求及描述</label>
+                            <div class="controls">
+                                <div class="textarea">
+                                    <textarea id="content" name="content" class="content-area"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+
+                            <!-- Text input-->
+                            <label class="control-label" for="time">项目截止日期</label>
+                            <div class="controls">
+                                <input type="text" id="time" name="time" placeholder="请填写项目截止日期" class="input-xlarge">
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+
+                        <!-- Appended checkbox -->
+                        <label class="control-label">金额</label>
+                        <div class="controls">
+                            <div class="input-append">
+                                <input class="span2" placeholder="请输入外包金额" type="text" id="money" name="money">
+                            </div>
+                            <p class="help-block">可选择竞标报价</p>
+                        </div>
+                    </div>
+
+                        <div class="control-group">
+
+                            <!-- Text input-->
+                            <label class="control-label" for="publisher">发布者</label>
+                            <div class="controls">
+                                <input type="text" id="publisher" name="publisher" placeholder="请填写发布者姓名" class="input-xlarge">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+
+                            <!-- Search input-->
+                            <label class="control-label">发布时间</label>
+                            <div class="controls">
+                                <input type="text" placeholder="请填写发布时间" id="publish-time" name="publish-time" class="input-xlarge search-query">
+                                <p class="help-block"></p>
+                            </div>
+
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">提交</label>
+
+                            <!-- Button -->
+                            <div class="controls">
+                                <button class="btn btn-success" id="mySubmit">submit</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
         </div>
     </div>
     <div class="foot"></div>
 
     <!--js-->
-    <script src="js/information.js"></script>
-    <script src="js/kaoqin.js"></script>
-    <script src="js/addNode.js"></script>
-    <script src="js/directory.js"></script>
-    <script src="js/folder.js"></script>
+    <script src="../static/js/information.js"></script>
+    <script src="../static/js/kaoqin.js"></script>
+    <script src="../static/js/addNode.js"></script>
+    <script src="../static/js/directory.js"></script>
+    <script src="../static/js/paging.js"></script>
+    <script src="../static/js/folder.js"></script>
+    <script src="../static/js/chart.js"></script>
+    <script>
+        $("#mySubmit").click(function(){
+            event.preventDefault();
+            if($("#myName").val()==""||$("#category").val()==""||$("#content").val()==""||$("#time").val()==""
+            ||$("#money").val()==""||$("#publisher").val()==""||$("#publish-time").val()==""){
+                alert("请填写完整新外包信息~");
+            }
+            else{
+                $("#new-project").submit();
+            }
+        })
+    </script>
 
 </body>
 </html>

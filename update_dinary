@@ -1,9 +1,13 @@
 /*
-update:2018.4.3
-  author:yyq
-  修改人脸部分：获取canvas截图后的字符串
+update:2018.4.4
+author:yyq
+1.解决ajax异步执行顺序问题
+2.对上传信息分页
+3.补充统计的页面
+4.补充发布新外包的页面
 
 */
+
 /*
 update:2018.4.3
   author:yyq

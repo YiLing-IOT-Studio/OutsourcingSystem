@@ -2,11 +2,15 @@
  * Created by 杨玉卿 on 2018/4/3.
  */
 var oDiv=$("#follow");
+var pageNav=$("#pagi-father");
+
 //点击动态，显示所有文件夹
 $("#follow-tab").click(function(){
+    pageNav.hide();
     $.ajax({
         type:"POST",
         url:"/dynamicState/getAllOutsourcingName",
+        async:false,
         dataType:"json",
         data:{
 
@@ -21,6 +25,7 @@ $("#follow-tab").click(function(){
                     '<span class="folder-name">'+data[i]+'</span>');
                 oDiv.append(oFolder);
             }
+
         },
         error:function(){
             alert("请求失败！");
@@ -29,18 +34,29 @@ $("#follow-tab").click(function(){
 
 
 });
-//点击文件夹，进入每个负责人的上传信息
-$(".my-inline-block").click(function(){
+
+$(".inline-block").click(function(){
+    pageNav.show();
     var name=$(this).find(".folder-name").text();
     console.log(name);
+
+    ajaxTest(1,name);
+
+});
+//上传的信息、分页类
+function ajaxTest(num,name){
     $.ajax({
         type:"POST",
         url:"/dynamicState/gerDynamicInformation",
+        async:false,
         dataType:"json",
         data:{
+            "rows":"10",
+            "pageNo":num,
             "name":name
         },
         success:function(data){
+            //输出data
             var i;
             for(i in data){
                 var oDiv=$("#follow");
@@ -62,10 +78,22 @@ $(".my-inline-block").click(function(){
                 oInfo.append(oMsg);
                 oDiv.append(oInfo);
             }
+            scrollTo(0,0);//回到顶部
 
+            //分页
+            $("#page").paging({
+                pageNo: num,
+                totalPage:data[data.length - 1]['totalPage'],//总页数
+                totalSize:data[data.length - 1]['totalSize'],//总记录数
+                callback: function(num) {
+                    ajaxTest(num);
+                }
+            })
+        },
+        error:function(){
+            alert("请求失败！");
         }
     })
-});
-
+};
 
 

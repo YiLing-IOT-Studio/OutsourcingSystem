@@ -19,8 +19,6 @@ var clear='';
 //把值先直接保存在cookie里
 var token=$("meta[name='_csrf']").attr("content");
 $.cookie('token',token);
-var token=$.cookie('token');
-alert(token);
 //设置请求头
 $(function () {
     var token = $("meta[name='_csrf']").attr("content");
@@ -94,8 +92,8 @@ function ajaxTest(currentPage) {
         url: '/getAllOutsourcingInfo/fillMessage',
         dataType: 'json',
         data: {
-            rows:"10",
-            pageNo:currentPage
+            "rows":"10",
+            "pageNo":currentPage
         },
         success: function (data) {
             var rows=10;
@@ -129,9 +127,9 @@ function searchInfo(currentPage){
             url:'/getAllOutsourcingInfo/search',
             dataType:'json',
             data:{
-                rows:"10",
-                pageNo:currentPage,
-                searchWord:keyWord
+                "rows":"10",
+                "pageNo":currentPage,
+                "searchWord":keyWord
             },
             success: function (data) {
                 var rows=10;
@@ -196,12 +194,12 @@ function submitInfo(currentPage){
             url:'/getAllOutsourcingInfo/classifySearch',
             dataType:'json',
             data:{
-                rows:"10",
-                pageNo:currentPage,
-                myCategories:myCategories,
-                myState:myState,
-                myAmount:myAmount,
-                myType:myType
+                "rows":"10",
+                "pageNo":currentPage,
+                "myCategories":myCategories,
+                "myState":myState,
+                "myAmount":myAmount,
+                "myType":myType
 
             },
             success: function (data) {
@@ -235,9 +233,9 @@ function sortAmount(currentPage){
             url:'/sort/sortByAmount',
             dataType:'json',
             data:{
-                rows:"10",
-                pageNo:currentPage,
-                mySort:'amountSort'
+                "rows":"10",
+                "pageNo":currentPage,
+                "mySort":'amountSort'
 
             },
             success: function (data) {
@@ -271,9 +269,9 @@ function sortTime(currentPage) {
         url: '/sort/sortByTime',
         dataType: 'json',
         data: {
-            rows: "10",
-            pageNo: currentPage,
-            mySort: 'timeSort'
+            "rows": "10",
+            "pageNo": currentPage,
+            "mySort": 'timeSort'
 
         },
         success: function (data) {

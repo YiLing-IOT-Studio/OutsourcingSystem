@@ -106,6 +106,12 @@ body{
     outline:none;
     border:2px solid black;
 }
+input{
+    border-radius:8px;
+    padding:5px;
+    outline:none;
+    border:2px solid black;
+}
 
 textarea{
     width:100%;
@@ -158,5 +164,11 @@ textarea{
 .addDirectory{
     text-align:center;
 }
-
+#new-project{
+    width:80%;
+    margin:0 auto;
+}
+.content-area{
+    width:40%;
+}
 
