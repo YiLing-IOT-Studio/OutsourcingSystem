@@ -106,14 +106,8 @@ body{
     outline:none;
     border:2px solid black;
 }
-input{
-    border-radius:8px;
-    padding:5px;
-    outline:none;
-    border:2px solid black;
-}
 
-textarea{
+.taskContent,.taskDev{
     width:100%;
     height:200px;
     padding:20px;

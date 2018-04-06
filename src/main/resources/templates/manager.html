@@ -32,7 +32,38 @@
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!--zTree-->
     <script src="../static/js/jquery.ztree.core.min.js"></script>
+    <script src="../static/js/star.js"></script>
+    <style>
+        .rating{
+            position:relative;
+            width:240px;
+            height: 45px;
+            background:url('../static/img/icon.png') repeat-x;
+            /*margin:20px;*/
+        }
 
+        .rating-disply{
+            width:48px;
+            height:45px;
+            /*background-position:0 -45px;*/
+            background:url('../static/img/icon.png') repeat-x 0 -44px;
+
+        }
+        .rating-mask{
+            position:absolute;
+            left:0;
+            top:0;
+            width:100%;
+        }
+        .rating-item{
+            list-style: none;
+            float: left;
+            width:48px;
+            height:45px;
+            cursor:pointer;
+        }
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top ">
@@ -72,7 +103,7 @@
                 <img src="../static/img/headPortrait.png" id="headPortrait"/>
             </a>
             <div id="nickname">
-                <p id="personName">yyq</p>
+                <p id="personName" sec:authentication="name"></p>
                 <!--<a href="#info" class="manageBtn">账号管理</a>-->
             </div>
         </div>
@@ -215,94 +246,129 @@
 
             </div>
             <div class="tab-pane fade" id="fabu">
-
-                <form class="form-horizontal" id="new-project">
+                <form id="publishForm">
                     <fieldset>
-                        <div id="legend" class="">
-                            <legend class="">新外包信息</legend>
-                        </div>
-                        <div class="control-group">
-
-                            <!-- Text input-->
-                            <label class="control-label" for="myName">项目名</label>
-                            <div class="controls">
-                                <input type="text"  id="myName" name="myName" placeholder="请输入项目名称" class="input-xlarge">
-
+                        <legend>发布新外包</legend>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                <label for="myName">项目名称</label>
+                                <input class="form-control input-lg" id="myName" name="myName"/>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="control-group">
-
-                            <!-- Text input-->
-                            <label class="control-label" for="category">类别</label>
-                            <div class="controls">
-                                <input type="text" id="category" name="category" placeholder="请输入项目类别" class="input-xlarge">
-
-                            </div>
-                        </div>
-                        <div class="control-group">
-
-                            <!-- Textarea -->
-                            <label class="control-label">项目要求及描述</label>
-                            <div class="controls">
-                                <div class="textarea">
-                                    <textarea id="content" name="content" class="content-area"> </textarea>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                <label for="security">项目安全等级</label>
+                                <div id="security">
+                                    <div class="rating" id = "rating"></div>
+                                </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="control-group">
 
-                            <!-- Text input-->
-                            <label class="control-label" for="time">项目截止日期</label>
-                            <div class="controls">
-                                <input type="text" id="time" name="time" placeholder="请填写项目截止日期" class="input-xlarge">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                <label for="content">项目简述</label>
+                                <textarea class="form-control" id="content" name="content"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="inputFile">项目计划实施书</label>
+                                    <input type="file" id="inputFile" name="inputFile">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                    <label for="enterTime">报名截止时间</label>
+                                    <div class="input-group date" id="datetimepicker8">
+
+                                        <input type="text" id="enterTime" name="enterTime" value="" class="form-control" />
+                                        <span class="input-group-addon">
+                                             <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                    <label for="finishedTime">项目截止时间</label>
+                                    <div class="input-group date" id="datetimepicker9">
+
+                                        <input type="text" id="finishedTime" name="finishedTime" value="" class="form-control"/>
+                                        <span class="input-group-addon">
+                                             <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    </div>
+
+
+                                </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="category">技术类别</label>
+                                    <div id="category">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="网站开发" name="category"/>网站开发
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="移动开发" name="category"/>移动开发
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="微信/小程序开发" name="category"/>微信/小程序开发
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="人工智能" name="category"/>人工智能
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="算法" name="category"/>算法
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="嵌入式系统" name="category"/>嵌入式系统
+                                        </label>
+                                    </div>
+                                    <label for="otherCategory">其他类别</label>
+                                    <input type="text" class="form-control" name="otherCategory" id="otherCategory"/>
+
+
+                                </div>
 
                             </div>
                         </div>
-                        <div class="control-group">
-
-                        <!-- Appended checkbox -->
-                        <label class="control-label">金额</label>
-                        <div class="controls">
-                            <div class="input-append">
-                                <input class="span2" placeholder="请输入外包金额" type="text" id="money" name="money">
-                            </div>
-                            <p class="help-block">可选择竞标报价</p>
+                        <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                    <label for="money">总计项目投资</label>
+                                    <input type="text" class="form-control" id="money" name="money"/>
+                                    </div>
+                                </div>
                         </div>
-                    </div>
-
-                        <div class="control-group">
-
-                            <!-- Text input-->
-                            <label class="control-label" for="publisher">发布者</label>
-                            <div class="controls">
-                                <input type="text" id="publisher" name="publisher" placeholder="请填写发布者姓名" class="input-xlarge">
-                                <p class="help-block"></p>
-                            </div>
+                        <div class="row">
+                            <input type="hidden" name="publishTime" id="publishTime" value=""/>
+                            <input type="hidden" name="publisher" id="publisher" value=""/>
+                            <input type="hidden" name="rank" id="rank" value=""/>
                         </div>
+                        <button type="submit" value="发布外包" class="btn btn-success" id="mySubmit">
+                                    立即发布
+                        </button>
 
-                        <div class="control-group">
-
-                            <!-- Search input-->
-                            <label class="control-label">发布时间</label>
-                            <div class="controls">
-                                <input type="text" placeholder="请填写发布时间" id="publish-time" name="publish-time" class="input-xlarge search-query">
-                                <p class="help-block"></p>
-                            </div>
-
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label">提交</label>
-
-                            <!-- Button -->
-                            <div class="controls">
-                                <button class="btn btn-success" id="mySubmit">submit</button>
-                            </div>
-                        </div>
 
                     </fieldset>
+
                 </form>
+
 
             </div>
         </div>
@@ -317,18 +383,94 @@
     <script src="../static/js/paging.js"></script>
     <script src="../static/js/folder.js"></script>
     <script src="../static/js/chart.js"></script>
+
     <script>
+        var myCount=0;
+        $('#rating').star({
+            modus:'entire', //点亮模式
+            total:5, //几颗星
+            num:0, //默认点亮个数
+            readOnly:false,//是否只读
+            chosen:function(count,total){
+                myCount=count;
+//                alert("您的评分是"+myCount);
+            }
+        });
+        //选择时间
+        $("#datetimepicker8").datetimepicker({
+            minView:2,
+            maxView:3,
+            todayBtn:true,
+            todayHighlight:true,
+            pickerPosition:'bottom-left',
+            format:'yyyy/mm/dd',
+            autoclose:true,
+            showMeridian:true,
+        });
+        $("#datetimepicker9").datetimepicker({
+            minView:2,
+            maxView:3,
+            todayBtn:true,
+            todayHighlight:true,
+            pickerPosition:'bottom-left',
+            format:'yyyy/mm/dd',
+            autoclose:true,
+        });
+        $(function () {
+            $('#datetimepicker8').datetimepicker();
+            $('#datetimepicker9').datetimepicker({
+                useCurrent: false //Important! See issue #1075
+            });
+            $("#datetimepicker8").on("dp.change", function (e) {
+                $('#datetimepicker9').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker9").on("dp.change", function (e) {
+                $('#datetimepicker8').data("DateTimePicker").maxDate(e.date);
+            });
+        });
         $("#mySubmit").click(function(){
             event.preventDefault();
-            if($("#myName").val()==""||$("#category").val()==""||$("#content").val()==""||$("#time").val()==""
-            ||$("#money").val()==""||$("#publisher").val()==""||$("#publish-time").val()==""){
-                alert("请填写完整新外包信息~");
+            //提交上交时间，时间戳格式
+            var date=new Date();
+            var stampTime=date.getTime();
+            var publishTime=document.getElementById("publishTime");
+            publishTime.value=stampTime;
+            //提交发布者
+            var publisherValue=$("#personName").text();
+            var publisher=document.getElementById("publisher");
+            publisher.value=publisherValue;
+            //提交安全等级
+            var rank=document.getElementById("rank");
+            rank.value=myCount;
+
+            if($("#myName").val()==""){
+                alert("请填写项目名称~");
+            }
+            else if($("#rank").val()==0){
+                alert("请确定项目安全等级~");
+            }
+            else if($("#content").val()==""){
+                alert("请简述项目内容~");
+            }
+            else if($("#inputFile").val()==""){
+                alert("请上传项目实施计划书~");
+            }
+            else if($("#enterTime").val()==""){
+                alert("请确定报名截止时间~");
+            }
+            else if($("#finishedTime").val()==""){
+                alert("请确定项目截止时间~");
+            }
+            else if($(":checkbox[name='category']").is(":checked")==false){
+                alert("请至少选择一个技术类别~");
+            }
+            else if($("#money").val()==""){
+                alert("请填写项目金额~");
             }
             else{
-                $("#new-project").submit();
+                $("#publishForm").submit();
             }
         })
     </script>
-
 </body>
 </html>
