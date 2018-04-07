@@ -7,28 +7,17 @@ var mySearch=$("#search");
 var amountSort=$("#amount_sort");
 var timeSort=$("#time_sort");
 var clear='';
-//通过响应头设置cookie的值
-// $.ajax({
-//     success : function (data, status, xhr) {
-//         //获取指定响应头参数信息
-//         var token;
-//         token=xhr.getResponseHeader( "X-CSRF-TOKEN" );
-//         $.cookie('token',token);
-//     }
-// });
-//把值先直接保存在cookie里
+//把令牌值先直接保存在cookie里,以待传给manager页面
 var token=$("meta[name='_csrf']").attr("content");
 $.cookie('token',token);
-//设置请求头
-$(function () {
+$(function(){
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
+    $(document).ajaxSend(function(xhr) {
         xhr.setRequestHeader(header, token);
     });
-});
-
-
+    ajaxTest(1);
+})
 //填充数据类
 function putIn(data){
     put_word.html(clear);
@@ -41,7 +30,7 @@ function putIn(data){
             sec.append(title);
 
             //标签
-            var tags=$('<span class="label label-default">'+obj['type']+'</span>'+'<span class="label label-default">'+obj['category']+'</span>');
+            var tags=$('<span class="label label-default">'+obj['category']+'</span>');
             sec.append(tags);
 
             // 主体
@@ -51,19 +40,14 @@ function putIn(data){
 
             //金额
             var Umoney = $('<p class="text-right"></p>');
-            if(obj['amount']!=-1) {
-                Umoney.append('<span class="money_text">'  + obj['amount']+ '元' + '</span>');
-            }
-            else{
-                Umoney.append('<span class="money_text">' +'竞标报价'+ '</span>');
-            }
+            Umoney.append('<span class="money_text">'  + obj['amount']+ '元' + '</span>');
             sec.append(Umoney);
 
             //其他信息
             var unixTimestamp=new Date(obj['time'].time);
-            commonTime=unixTimestamp.toLocaleString();
+            var commonTime=unixTimestamp.toLocaleString();
             var Details=$('<p></p>');
-            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+commonTime+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
+            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+commonTime);
             sec.append(Details);
 
             //进度条
@@ -109,14 +93,15 @@ function ajaxTest(currentPage) {
                 callback:function(currentPage){
                     ajaxTest(currentPage);
                 }
-            })
+            });
+
         },
         error: function () {
             alert("获取消息失败");
         }
     });
 }
-ajaxTest(1);
+// ajaxTest(1);
 
 //搜索类
 function searchInfo(currentPage){
@@ -180,14 +165,7 @@ function submitInfo(currentPage){
                 myAmount=amountRadios[k].value;
             }
         }
-        //项目类型
-        var typeRadios=$("input[name='_type']");
-        var myType='';
-        for(var g=0;g<typeRadios.length;g++){
-            if(typeRadios[g].checked==true){
-                myType=typeRadios[g].value;
-            }
-        }
+
 
         $.ajax({
             type:'POST',
@@ -199,7 +177,6 @@ function submitInfo(currentPage){
                 "myCategories":myCategories,
                 "myState":myState,
                 "myAmount":myAmount,
-                "myType":myType
 
             },
             success: function (data) {
@@ -296,7 +273,34 @@ function sortTime(currentPage) {
 
     })
 }
-
+//测试
+// var data=[{"name":"yyq","state":"报名中"},{"name":"zhy","state":"进行中"},{"name":"www","state":"已完成"}];
+// myPutIn(data);
+//
+// checkOut();
+// function checkOut(){
+//     var sec=$("section");
+//     sec.click(function(){
+//         var oSec=$(this);
+//         var oName=oSec.find("strong").text();
+//         alert(oName);
+//     })
+// }
+// function myPutIn(data){
+//     put_word.html(clear);
+//     $.each(data, function (index, obj) {
+//         if (index != (data.length)) {
+//             var sec = $('<section class="row"></section>');
+//             // 添加标题
+//             var title = $('<p class="h4"></p>');
+//             title.append('<span class="badge">'+obj['state']+'</span>'+'<strong>' + obj['name'] + '</strong>');
+//             sec.append(title);
+//             put_word.append(sec);
+//         }
+//     });
+//
+//
+// }
 
 
 

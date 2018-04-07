@@ -1,0 +1,28 @@
+.rating{
+    position:relative;
+    width:240px;
+    height: 45px;
+    background:url('../img/icon.png') repeat-x;
+    /*margin:20px;*/
+}
+
+.rating-disply{
+    width:48px;
+    height:45px;
+    /*background-position:0 -45px;*/
+    background:url('../img/icon.png') repeat-x 0 -44px;
+
+}
+.rating-mask{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+}
+.rating-item{
+    list-style: none;
+    float: left;
+    width:48px;
+    height:45px;
+    cursor:pointer;
+}

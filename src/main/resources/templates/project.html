@@ -16,6 +16,12 @@
     <link href="../static/css/project.css" rel="stylesheet">
     <!--info.css-->
     <link href="../static/css/info.css" rel="stylesheet"/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--jquery:cookie-->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -28,7 +34,7 @@
                 <span class="icon-bar">挑战</span>
                 <span class="icon-bar">我的</span>
             </button>
-            <a class="navbar-brand" href="#"><img alt="brand" src="img/ArcSoftLogo.png"/></a>
+            <a class="navbar-brand" href="#"><img alt="brand" src="../static/img/ArcSoftLogo.png"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -106,6 +112,9 @@
                             <label class="checkbox-inline">
                                 <input type="checkbox" value="嵌入式系统" name="_category">嵌入式系统
                             </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="其他" name="_category">其他
+                                </label>
                             </p>
                         </div>
                         <div class="form-group">
@@ -137,22 +146,8 @@
                             <label class="radio-inline">
                                 <input type="radio" value="10000+" name="_amount"> 10k以上
                             </label>
-                            <label class="radio-inline">
-                                <input type="radio" value="竞标报价" name="_amount"> 竞标报价
-                            </label>
                         </div>
-                        <div class="form-group">
-                            <label class="radio-inline">项目类型:</label>
-                            <label class="radio-inline">
-                                <input type="radio" value="整包" name="_type"> 整包
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" value="悬赏" name="_type"> 悬赏
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" value="兼职" name="_type"> 兼职
-                            </label>
-                        </div>
+
                         <div class="form-group">
                             <div class="col-sm-offset-1 col-sm-11 text-right">
                                 <button type="button" name="search_submit" class="btn btn-default" id="sure_submit" onclick="submitInfo(1);">确定</button>
@@ -192,12 +187,7 @@
             </div>
         </div>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--jquery:cookie-->
-    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
     <!--js-->
     <script src="../static/js/request.js"></script>
     <script src="../static/js/paging.js"></script>
