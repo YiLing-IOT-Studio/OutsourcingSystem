@@ -28,7 +28,7 @@ $("#follow-tab").click(function(){
 
         },
         error:function(){
-            alert("请求失败！");
+            alert("请求1失败！");
         }
     })
 
@@ -39,7 +39,6 @@ $(".inline-block").click(function(){
     pageNav.show();
     var name=$(this).find(".folder-name").text();
     console.log(name);
-
     ajaxTest(1,name);
 
 });
@@ -57,11 +56,12 @@ function ajaxTest(num,name){
         },
         success:function(data){
             //输出data
+            var oDiv=$("#follow");
+            var clear='';
+            oDiv.html(clear);
             var i;
             for(i in data){
-                var oDiv=$("#follow");
-                var clear='';
-                oDiv.html(clear);
+
                 //name
                 var oH2=$("<h2 class='leader my-h2'></h2>");
                 oH2.append(data[i].name);
@@ -91,7 +91,7 @@ function ajaxTest(num,name){
             })
         },
         error:function(){
-            alert("请求失败！");
+            alert("请求2失败！");
         }
     })
 };
