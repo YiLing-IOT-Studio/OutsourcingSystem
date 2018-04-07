@@ -51,8 +51,8 @@ function ajaxTest(num,name){
         async:false,
         dataType:"json",
         data:{
-            "rows":"10",
-            "pageNo":num,
+            rows:"10",
+            pageNo:num,
             "name":name
         },
         success:function(data){
