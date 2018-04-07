@@ -51,13 +51,14 @@ function putIn(data){
             sec.append(Details);
 
             //进度条
-            // var fix_string=obj['progress']+'%';
-            // var progress=$('<div class="progress"></div>');
-            // progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;width:'+fix_string+';">'+fix_string+'</div>');
-            // sec.append(progress);
+            var fix_string=obj['progress']+'%';
+            var progress=$('<div class="progress"></div>');
+            progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;width:'+fix_string+';">'+fix_string+'</div>');
+            sec.append(progress);
             //报名申请
             var oBtn=$("<div class='text-right'></div>");
             oBtn.append("<button class='btn btn-primary apply' value='申请加入'>申请加入</button>");
+            sec.append(oBtn);
 
             put_word.append(sec);
         }
@@ -79,8 +80,8 @@ function ajaxTest(currentPage) {
         url: '/getAllOutsourcingInfo/fillMessage',
         dataType: 'json',
         data: {
-            "rows":"10",
-            "pageNo":currentPage
+            rows:"10",
+            pageNo:currentPage
         },
         success: function (data) {
             var rows=10;
@@ -134,9 +135,9 @@ function searchInfo(currentPage){
             url:'/getAllOutsourcingInfo/search',
             dataType:'json',
             data:{
-                "rows":"10",
-                "pageNo":currentPage,
-                "searchWord":keyWord
+                rows:"10",
+                pageNo:currentPage,
+                'searchWord':keyWord
             },
             success: function (data) {
                 var rows=10;
@@ -213,8 +214,8 @@ function submitInfo(currentPage){
             url:'/getAllOutsourcingInfo/classifySearch',
             dataType:'json',
             data:{
-                "rows":"10",
-                "pageNo":currentPage,
+                rows:"10",
+                pageNo:currentPage,
                 "myCategories":myCategories,
                 "myState":myState,
                 "myAmount":myAmount,
@@ -270,8 +271,8 @@ function sortAmount(currentPage){
             url:'/sort/sortByAmount',
             dataType:'json',
             data:{
-                "rows":"10",
-                "pageNo":currentPage,
+                rows:"10",
+                pageNo:currentPage,
                 "mySort":'amountSort'
 
             },
@@ -325,8 +326,8 @@ function sortTime(currentPage) {
         url: '/sort/sortByTime',
         dataType: 'json',
         data: {
-            "rows": "10",
-            "pageNo": currentPage,
+            rows: "10",
+            pageNo: currentPage,
             "mySort": 'timeSort'
 
         },
