@@ -13,10 +13,10 @@ $.cookie('token',token);
 $(function(){
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(xhr) {
+    $(document).ajaxSend(function(event,xhr,options) {
         xhr.setRequestHeader(header, token);
     });
-    ajaxTest(1);
+    // ajaxTest(1);
 })
 //填充数据类
 function putIn(data){
@@ -67,7 +67,7 @@ function putIn(data){
 function ajaxTest(currentPage) {
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
+    $(document).ajaxSend(function(event, xhr, options) {
         xhr.setRequestHeader(header, token);
     });
     //加载时请求
@@ -101,7 +101,7 @@ function ajaxTest(currentPage) {
         }
     });
 }
-// ajaxTest(1);
+ajaxTest(1);
 
 //搜索类
 function searchInfo(currentPage){
