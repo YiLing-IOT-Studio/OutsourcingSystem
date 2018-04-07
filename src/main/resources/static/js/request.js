@@ -47,14 +47,17 @@ function putIn(data){
             var unixTimestamp=new Date(obj['time'].time);
             var commonTime=unixTimestamp.toLocaleString();
             var Details=$('<p></p>');
-            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+commonTime);
+            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+commonTime+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
             sec.append(Details);
 
             //进度条
-            var fix_string=obj['progress']+'%';
-            var progress=$('<div class="progress"></div>');
-            progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;width:'+fix_string+';">'+fix_string+'</div>');
-            sec.append(progress);
+            // var fix_string=obj['progress']+'%';
+            // var progress=$('<div class="progress"></div>');
+            // progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;width:'+fix_string+';">'+fix_string+'</div>');
+            // sec.append(progress);
+            //报名申请
+            var oBtn=$("<div class='text-right'></div>");
+            oBtn.append("<button class='btn btn-primary apply' value='申请加入'>申请加入</button>");
 
             put_word.append(sec);
         }
@@ -94,6 +97,25 @@ function ajaxTest(currentPage) {
                     ajaxTest(currentPage);
                 }
             });
+            $(".apply").click(function(){
+                var oName=$(this).parent().parent().find('strong').text();
+                var uName=$("#username").text();
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    dataType: 'json',
+                    data: {
+                        "oName":oName,
+                        "uName":uName
+                    },
+                    success:function(data){
+                        alert(data);
+                    },
+                    error:function(){
+                        alert("请求失败");
+                    }
+                });
+            })
 
         },
         error: function () {
@@ -130,6 +152,25 @@ function searchInfo(currentPage){
                     callback:function(currentPage){
                         searchInfo(currentPage);
                     }
+                })
+                $(".apply").click(function(){
+                    var oName=$(this).parent().parent().find('strong').text();
+                    var uName=$("#username").text();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/',
+                        dataType: 'json',
+                        data: {
+                            "oName":oName,
+                            "uName":uName
+                        },
+                        success:function(data){
+                            alert(data);
+                        },
+                        error:function(){
+                            alert("请求失败");
+                        }
+                    });
                 })
             },
             error: function () {
@@ -194,6 +235,25 @@ function submitInfo(currentPage){
                         submitInfo(currentPage);
                     }
                 })
+                $(".apply").click(function(){
+                    var oName=$(this).parent().parent().find('strong').text();
+                    var uName=$("#username").text();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/',
+                        dataType: 'json',
+                        data: {
+                            "oName":oName,
+                            "uName":uName
+                        },
+                        success:function(data){
+                            alert(data);
+                        },
+                        error:function(){
+                            alert("请求失败");
+                        }
+                    });
+                })
             },
             error: function () {
                 alert("获取消息失败");
@@ -229,6 +289,25 @@ function sortAmount(currentPage){
                     callback:function(currentPage){
                         sortAmount(currentPage);
                     }
+                })
+                $(".apply").click(function(){
+                    var oName=$(this).parent().parent().find('strong').text();
+                    var uName=$("#username").text();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/',
+                        dataType: 'json',
+                        data: {
+                            "oName":oName,
+                            "uName":uName
+                        },
+                        success:function(data){
+                            alert(data);
+                        },
+                        error:function(){
+                            alert("请求失败");
+                        }
+                    });
                 })
             },
             error: function () {
@@ -266,10 +345,30 @@ function sortTime(currentPage) {
                     sortTime(currentPage);
                 }
             })
+            $(".apply").click(function(){
+                var oName=$(this).parent().parent().find('strong').text();
+                var uName=$("#username").text();
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    dataType: 'json',
+                    data: {
+                        "oName":oName,
+                        "uName":uName
+                    },
+                    success:function(data){
+                        alert(data);
+                    },
+                    error:function(){
+                        alert("请求失败");
+                    }
+                });
+            })
         },
         error: function () {
             alert("获取消息失败");
         }
+
 
     })
 }

@@ -82,6 +82,9 @@ $("#mySubmit").click(function(event){
     else if($(":checkbox[name='category']").is(":checked")==false){
         alert("请至少选择一个技术类别~");
     }
+    else if($("#requirement").val()==""){
+        alert("请填写技术要求~");
+    }
     else if($("#money").val()==""){
         alert("请填写项目金额~");
     }
