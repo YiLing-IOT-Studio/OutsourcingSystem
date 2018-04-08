@@ -13,27 +13,27 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--bootstrap-datetimepicker-->
-    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <!--zTree-->
-    <link href="../static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../static/css/manager.css" rel="stylesheet"/>
-    <link href="../static/css/directory.css" rel="stylesheet"/>
-    <link href="../static/css/folder.css" rel="stylesheet"/>
-    <link href="../static/css/info.css" rel="stylesheet"/>
-    <link href="../static/css/star.css" rel="stylesheet"/>
+    <link href="css/manager.css" rel="stylesheet"/>
+    <link href="css/directory.css" rel="stylesheet"/>
+    <link href="css/folder.css" rel="stylesheet"/>
+    <link href="css/info.css" rel="stylesheet"/>
+    <link href="css/star.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--plugs:bootstrap-datetimepicker-->
-    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
     <!--jquery:cookie-->
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!--zTree-->
-    <script src="../static/js/jquery.ztree.core.min.js"></script>
-    <script src="../static/js/star.js"></script>
+    <script src="js/jquery.ztree.core.min.js"></script>
+    <script src="js/star.js"></script>
 
 </head>
 <body>
@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header logo">
-                <a class="navbar-brand" href="project.html"><h1 class="atitle">智能外包</h1></a>
+                <a class="navbar-brand" href="/index"><h1 class="atitle">智能外包</h1></a>
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,7 +71,7 @@
         <div class="leftSide col-md-2">
         <div class="personalInfo">
             <a href="#info" class="headPortrait">
-                <img src="../static/img/headPortrait.png" id="headPortrait"/>
+                <img src="img/headPortrait.png" id="headPortrait"/>
             </a>
             <div id="nickname">
                 <p id="personName" sec:authentication="name"></p>
@@ -217,7 +217,7 @@
 
             </div>
             <div class="tab-pane fade" id="fabu">
-                <form id="publishForm" method="POST"  enctype="multipart/form-data">
+                <form id="publishForm" method="POST"  enctype="multipart/form-data" action="/releaseOutsourcing">
                     <fieldset>
                         <legend>发布新外包</legend>
                         <div class="row">
@@ -342,6 +342,7 @@
                             <input type="hidden" name="publisher" id="publisher" value=""/>
                             <input type="hidden" name="rank" id="rank" value=""/>
                         </div>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <button type="submit" value="发布外包" class="btn btn-success" id="mySubmit">
                                     立即发布
                         </button>
@@ -360,13 +361,13 @@
     </div>
 
     <!--js-->
-    <script src="../static/js/information.js"></script>
-    <script src="../static/js/kaoqin.js"></script>
-    <script src="../static/js/addNode.js"></script>
-    <script src="../static/js/directory.js"></script>
-    <script src="../static/js/paging.js"></script>
-    <script src="../static/js/folder.js"></script>
-    <script src="../static/js/chart.js"></script>
-    <script src="../static/js/publishForm.js"></script>
+    <script src="js/information.js"></script>
+    <script src="js/kaoqin.js"></script>
+    <script src="js/addNode.js"></script>
+    <script src="js/directory.js"></script>
+    <script src="js/paging.js"></script>
+    <script src="js/folder.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/publishForm.js"></script>
 </body>
 </html>

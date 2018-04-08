@@ -44,7 +44,7 @@ function putIn(data){
             sec.append(Umoney);
 
             //其他信息
-            var unixTimestamp=new Date(obj['time'].time);
+            var unixTimestamp=new Date(obj['publishTime']['time']);
             var commonTime=unixTimestamp.toLocaleString();
             var Details=$('<p></p>');
             Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+commonTime+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
@@ -98,25 +98,25 @@ function ajaxTest(currentPage) {
                     ajaxTest(currentPage);
                 }
             });
-            $(".apply").click(function(){
-                var oName=$(this).parent().parent().find('strong').text();
-                var uName=$("#username").text();
-                $.ajax({
-                    type: 'POST',
-                    url: '/',
-                    dataType: 'json',
-                    data: {
-                        "oName":oName,
-                        "uName":uName
-                    },
-                    success:function(data){
-                        alert(data);
-                    },
-                    error:function(){
-                        alert("请求失败");
-                    }
-                });
-            })
+            // $(".apply").click(function(){
+            //     var oName=$(this).parent().parent().find('strong').text();
+            //     var uName=$("#username").text();
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: '/',
+            //         dataType: 'json',
+            //         data: {
+            //             "oName":oName,
+            //             "uName":uName
+            //         },
+            //         success:function(data){
+            //             alert(data);
+            //         },
+            //         error:function(){
+            //             alert("请求失败");
+            //         }
+            //     });
+            // })
 
         },
         error: function () {
@@ -154,25 +154,25 @@ function searchInfo(currentPage){
                         searchInfo(currentPage);
                     }
                 })
-                $(".apply").click(function(){
-                    var oName=$(this).parent().parent().find('strong').text();
-                    var uName=$("#username").text();
-                    $.ajax({
-                        type: 'POST',
-                        url: '/',
-                        dataType: 'json',
-                        data: {
-                            "oName":oName,
-                            "uName":uName
-                        },
-                        success:function(data){
-                            alert(data);
-                        },
-                        error:function(){
-                            alert("请求失败");
-                        }
-                    });
-                })
+                // $(".apply").click(function(){
+                //     var oName=$(this).parent().parent().find('strong').text();
+                //     var uName=$("#username").text();
+                //     $.ajax({
+                //         type: 'POST',
+                //         url: '/',
+                //         dataType: 'json',
+                //         data: {
+                //             "oName":oName,
+                //             "uName":uName
+                //         },
+                //         success:function(data){
+                //             alert(data);
+                //         },
+                //         error:function(){
+                //             alert("请求失败");
+                //         }
+                //     });
+                // })
             },
             error: function () {
                 alert("获取消息失败");
@@ -236,25 +236,25 @@ function submitInfo(currentPage){
                         submitInfo(currentPage);
                     }
                 })
-                $(".apply").click(function(){
-                    var oName=$(this).parent().parent().find('strong').text();
-                    var uName=$("#username").text();
-                    $.ajax({
-                        type: 'POST',
-                        url: '/',
-                        dataType: 'json',
-                        data: {
-                            "oName":oName,
-                            "uName":uName
-                        },
-                        success:function(data){
-                            alert(data);
-                        },
-                        error:function(){
-                            alert("请求失败");
-                        }
-                    });
-                })
+                // $(".apply").click(function(){
+                //     var oName=$(this).parent().parent().find('strong').text();
+                //     var uName=$("#username").text();
+                //     $.ajax({
+                //         type: 'POST',
+                //         url: '/',
+                //         dataType: 'json',
+                //         data: {
+                //             "oName":oName,
+                //             "uName":uName
+                //         },
+                //         success:function(data){
+                //             alert(data);
+                //         },
+                //         error:function(){
+                //             alert("请求失败");
+                //         }
+                //     });
+                // })
             },
             error: function () {
                 alert("获取消息失败");
@@ -291,25 +291,25 @@ function sortAmount(currentPage){
                         sortAmount(currentPage);
                     }
                 })
-                $(".apply").click(function(){
-                    var oName=$(this).parent().parent().find('strong').text();
-                    var uName=$("#username").text();
-                    $.ajax({
-                        type: 'POST',
-                        url: '/',
-                        dataType: 'json',
-                        data: {
-                            "oName":oName,
-                            "uName":uName
-                        },
-                        success:function(data){
-                            alert(data);
-                        },
-                        error:function(){
-                            alert("请求失败");
-                        }
-                    });
-                })
+                // $(".apply").click(function(){
+                //     var oName=$(this).parent().parent().find('strong').text();
+                //     var uName=$("#username").text();
+                //     $.ajax({
+                //         type: 'POST',
+                //         url: '/',
+                //         dataType: 'json',
+                //         data: {
+                //             "oName":oName,
+                //             "uName":uName
+                //         },
+                //         success:function(data){
+                //             alert(data);
+                //         },
+                //         error:function(){
+                //             alert("请求失败");
+                //         }
+                //     });
+                // })
             },
             error: function () {
                 alert("获取消息失败");
@@ -346,25 +346,25 @@ function sortTime(currentPage) {
                     sortTime(currentPage);
                 }
             })
-            $(".apply").click(function(){
-                var oName=$(this).parent().parent().find('strong').text();
-                var uName=$("#username").text();
-                $.ajax({
-                    type: 'POST',
-                    url: '/',
-                    dataType: 'json',
-                    data: {
-                        "oName":oName,
-                        "uName":uName
-                    },
-                    success:function(data){
-                        alert(data);
-                    },
-                    error:function(){
-                        alert("请求失败");
-                    }
-                });
-            })
+            // $(".apply").click(function(){
+            //     var oName=$(this).parent().parent().find('strong').text();
+            //     var uName=$("#username").text();
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: '/',
+            //         dataType: 'json',
+            //         data: {
+            //             "oName":oName,
+            //             "uName":uName
+            //         },
+            //         success:function(data){
+            //             alert(data);
+            //         },
+            //         error:function(){
+            //             alert("请求失败");
+            //         }
+            //     });
+            // })
         },
         error: function () {
             alert("获取消息失败");

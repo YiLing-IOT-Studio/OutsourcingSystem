@@ -47,4 +47,9 @@ public class BackControl {
         return "manager";
     }
 
+    @GetMapping("/release")
+    public String release(){
+        return "release";
+    }
+
 }

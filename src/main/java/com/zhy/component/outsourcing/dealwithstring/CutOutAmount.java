@@ -13,7 +13,6 @@ import java.util.Map;
 @Component
 public class CutOutAmount {
 
-    private final String Bid_quotation = "竞标报价";
     private final String lowAmount = "1000-";
     private final String highAmount = "10000+";
     private String kong = "";
@@ -22,13 +21,7 @@ public class CutOutAmount {
 
         Map<String, Object> amountMap = new HashMap<>();
 
-        if(Bid_quotation.equals(amount)){
-            amountMap.put("other",-1);
-            amountMap.put("low",kong);
-            amountMap.put("high",kong);
-            return amountMap;
-        }
-        else if("".equals(amount) || amount == null){
+        if("".equals(amount) || amount == null){
             amountMap.put("other",kong);
             amountMap.put("low",kong);
             amountMap.put("high",kong);
@@ -50,8 +43,8 @@ public class CutOutAmount {
             String[] amountArray = amount.split("-");
 
             amountMap.put("other",kong);
-            amountMap.put("low",Integer.parseInt(amountArray[0].substring(1)));
-            amountMap.put("high",Integer.parseInt(amountArray[1].substring(0, 4)));
+            amountMap.put("low",Integer.parseInt(amountArray[0]));
+            amountMap.put("high",Integer.parseInt(amountArray[1]));
             System.out.println("low:" + amountMap.get("low") + " high:" + amountMap.get("high"));
         }
         return amountMap;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhy.repository.mybatis.DynamicStateRepository">
+    <resultMap id="dynamicStateMap" type="com.zhy.model.workachievement.DynamicInformation">
+        <id property="id" column="ID"/>
+        <result property="name" column="name"/>
+        <result property="principal" column="principal"/>
+        <result property="uploadTime" column="uploadTime"/>
+        <result property="uploadInstructions" column="uploadInstructions"/>
+    </resultMap>
+
+    <select id="getAllDynamicByOutsourcingName" parameterType="java.util.HashMap" resultMap="dynamicStateMap">
+        SELECT * FROM dynamicinformation
+        WHERE name=#{outsourcingName}
+        <if test="start!=null and pageSize!=null">
+            limit #{start},#{pageSize}
+        </if>
+    </select>
+
+    <select id="countDynamicInfo" parameterType="java.util.HashMap" resultMap="dynamicStateMap">
+        SELECT count(*) FROM dynamicinformation
+        WHERE name=#{outsourcingName}
+    </select>
+</mapper>

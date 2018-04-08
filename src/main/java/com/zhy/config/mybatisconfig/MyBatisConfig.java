@@ -29,6 +29,7 @@ public class MyBatisConfig {
         sqlSessionFactory.setDataSource(dataSource);
         sqlSessionFactory.setMapperLocations(applicationContext.getResources("classpath*:mapper/*.xml"));
 
+//        别名注册器
         TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
         typeAliasRegistry.registerAlias("STDOUT_LOGGING", MyBatisConfig.class);
 

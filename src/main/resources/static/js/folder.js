@@ -10,7 +10,7 @@ $("#follow-tab").click(function(){
     $.ajax({
         type:"POST",
         url:"/dynamicState/getAllOutsourcingName",
-        async:false,
+        async:true,
         dataType:"json",
         data:{
 
@@ -25,6 +25,13 @@ $("#follow-tab").click(function(){
                     '<span class="folder-name">'+data[i]+'</span>');
                 oDiv.append(oFolder);
             }
+            // $(".inline-block").click(function(){
+            //     pageNav.show();
+            //     var name=$(this).find(".folder-name").text();
+            //     console.log(name);
+            //     ajaxTest(1,name);
+            //
+            // });
 
         },
         error:function(){
@@ -35,13 +42,7 @@ $("#follow-tab").click(function(){
 
 });
 
-$(".inline-block").click(function(){
-    pageNav.show();
-    var name=$(this).find(".folder-name").text();
-    console.log(name);
-    ajaxTest(1,name);
 
-});
 //上传的信息、分页类
 function ajaxTest(num,name){
     $.ajax({

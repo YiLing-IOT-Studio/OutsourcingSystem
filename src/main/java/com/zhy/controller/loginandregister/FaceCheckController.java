@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +33,7 @@ public class FaceCheckController {
 
 
     @PostMapping("/faceCheck")
+    @ResponseBody
     public String faceCheck(@Param("tag") String tag, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -51,21 +53,21 @@ public class FaceCheckController {
         if (register.equals(tag)){
             boolean registerResult = registerService.registerService(client, img, phone, response);
             if(registerResult){
-                return "redirect:login_register.html?registerSuccess";
+                return "1";
             } else {
-                return "redirect:login_register.html?registerError";
+                return "0";
             }
         }
         else if(login.equals(tag)){
             boolean loginResult = loginService.loginService(client, img, phone, response);
             if(loginResult){
-                return "project";
+                return "1";
             }else {
-                return "faceCheck";
+                return "0";
             }
 
         }
-        return "login_register";
+        return "0";
     }
 
 }

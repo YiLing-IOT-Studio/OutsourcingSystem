@@ -6,7 +6,7 @@ var i;
 $("#chart-tab").click(function(){
     $.ajax({
         type:"POST",
-        url:"/",
+        url:"/statistice",
         dataType:"json",
         data:{},
         success:function(data){

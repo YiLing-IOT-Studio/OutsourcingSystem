@@ -1,12 +1,11 @@
 package com.zhy.model.outsourcing;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author: zhangocean
@@ -34,9 +33,9 @@ public class OutsourcingInfo implements Serializable{
     private String name;
 
     /**
-     * 承包类型
+     * 项目安全等级
      */
-    private String type;
+    private int rank;
 
     /**
      * 项目类型
@@ -49,11 +48,6 @@ public class OutsourcingInfo implements Serializable{
     private String content;
 
     /**
-     * 项目人数
-     */
-    private int number;
-
-    /**
      * 发包者
      */
     private String publisher;
@@ -61,12 +55,22 @@ public class OutsourcingInfo implements Serializable{
     /**
      * 发布时间
      */
-    private Timestamp time;
+    private long publishTime;
 
     /**
-     * 外包要求
+     * 项目要求
      */
     private String requirement;
+
+    /**
+     * 报名截止时间
+     */
+    private long registrationDeadline;
+
+    /**
+     * 项目截止时间
+     */
+    private long projectDeadline;
 
     /**
      *  外包金额
@@ -74,30 +78,32 @@ public class OutsourcingInfo implements Serializable{
     private int amount;
 
     /**
+     * 项目计划实施书保存路径
+     */
+    private String prospectus;
+
+    /**
      * 外包进度
      */
-    private double progress;
+    private int progress;
 
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    public Date getTime() {
-        return time;
-    }
 
     public OutsourcingInfo() {
     }
 
-    public OutsourcingInfo(String state, String name, String type, String category, String content, int number, String publisher, Timestamp time, String requirement, int amount, double progress) {
+    public OutsourcingInfo(String state, String name, int rank, String category, String content, String publisher, long publishTime, String requirement, long registrationDeadline, long projectDeadline, int amount, String prospectus, int progress) {
         this.state = state;
         this.name = name;
-        this.type = type;
+        this.rank = rank;
         this.category = category;
         this.content = content;
-        this.number = number;
         this.publisher = publisher;
-        this.time = time;
+        this.publishTime = publishTime;
         this.requirement = requirement;
+        this.registrationDeadline = registrationDeadline;
+        this.projectDeadline = projectDeadline;
         this.amount = amount;
+        this.prospectus = prospectus;
         this.progress = progress;
     }
-
 }

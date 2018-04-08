@@ -2,6 +2,7 @@ package com.zhy.service.facecheck;
 
 import com.baidu.aip.face.AipFace;
 import com.zhy.component.facecheck.ReadImageFile;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +27,9 @@ public class LoginService {
 
         Double result = verifyUserByByte(client, img, phone);
         System.out.println("人脸认证相似度：" + result);
-        PrintWriter pw = response.getWriter();
         if(result > 90){
-            pw.write("脸型匹配成功");
             return true;
         } else {
-            pw.write("脸型匹配失败");
             return false;
         }
     }
@@ -44,8 +42,14 @@ public class LoginService {
         byte[] imgByte = readImageFile.readImageFile(img);
         JSONObject res = client.verifyUser(phone, groupId, imgByte, options);
         System.out.println("人脸认证结果：" + res.toString());
-        Double result = (Double) res.getJSONArray("result").get(0);
-        return result;
+        try {
+            Double result = (Double) res.getJSONArray("result").get(0);
+            return result;
+        } catch (JSONException e){
+            e.printStackTrace();
+            return -1.0;
+        }
+
     }
 
 }

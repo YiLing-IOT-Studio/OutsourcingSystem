@@ -29,22 +29,22 @@ public class RegisterService {
     public boolean registerService(AipFace client, String img, String phone, HttpServletResponse response){
 
         boolean addResult = faceAddUserByByte(client, img, phone);
-        PrintWriter pw = null;
-        try {
-            pw = response.getWriter();
-            if(addResult){
-                pw.write("注册成功！");
-                return true;
-            } else {
-                pw.write("注册失败，请放好您的脸！");
-                return false;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            pw.write("上传人脸至人脸库失败。。。。");
-            logger.info("上传人脸至人脸库失败。。。。");
-        }
-        return false;
+//        PrintWriter pw = null;
+//        try {
+//            pw = response.getWriter();
+//            if(addResult){
+//                pw.write("注册成功！");
+//                return true;
+//            } else {
+//                pw.write("注册失败，请放好您的脸！");
+//                return false;
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            pw.write("上传人脸至人脸库失败。。。。");
+//            logger.info("上传人脸至人脸库失败。。。。");
+//        }
+        return addResult;
     }
 
     private boolean faceAddUserByByte(AipFace client, String img, String phone){

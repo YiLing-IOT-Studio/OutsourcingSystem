@@ -1,6 +1,7 @@
 package com.zhy.mapper;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -17,6 +18,11 @@ import java.util.List;
 @Repository
 public interface OutsourcingInfoMapper {
 
+    @Insert("insert into " +
+            "outsourcinginfo(state,name,rank,category,content,publisher,publishTime,requirement,registrationDeadline,projectDeadline,amount,prospectus,progress) " +
+            "value(#{state},#{name},#{rank},#{category},#{content},#{publisher},#{publishTime},#{requirement},#{registrationDeadline},#{projectDeadline},#{amount},#{prospectus},#{progress})")
+    int saveOutsourcingInfo(OutsourcingInfo outsourcingInfo);
+
     @Select("select count(*) from outsourcinginfo where name like '%' #{searchText} '%'")
     int countSearchText(@Param("searchText") String searchText);
 
@@ -28,4 +34,5 @@ public interface OutsourcingInfoMapper {
 
     @Select("select * from outsourcinginfo")
     List<OutsourcingInfo> findAllOutsourcing();
+
 }
