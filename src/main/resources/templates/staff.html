@@ -1,22 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>个人空间</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="leftSide">
-    <div class="personalInfo"></div>
-    <div class="funcList">
-        <ul class="funcListUl">
-            <li>个人资料/信息完善</li>
-            <li>考勤/签到</li>
-            <li>查看我的任务</li>
-            <li>提交工作成果</li>
-        </ul>
+
+    <div>
+        <ol class="breadcrumb text-center" style="font-size:20px;background:#fff;">
+            <li class="active"><a href="#material">个人资料</a></li>
+            <li><a href="#">查看任务</a></li>
+            <li><a href="#upload">提交成果</a></li>
+        </ol>
     </div>
+    <div id="material" style="width:65%;margin:0 auto;">
+        <form id="materialForm" name="materialForm" action="/" method="post">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="oName">姓名</label>
+                        <input class="form-control" id="oName" name="oName" type="text" value=""/>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="oGender">性别</label>
+                        <input class="form-control" id="oGender" name="oGender" type="text" value=""/>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for=""></label>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+                <div class="col-lg-6"></div>
+            </div>
+
+        </form>
+    </div>
+    <div id="upload" style="width:65%; margin:0 auto;">
+        <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="fileName">Title</label>
+                <input class="form-control input-lg" name="fileName" id="fileName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件名';}" />
+            </div>
+            <div class="form-group">
+                <label for="fileDescription">Description</label>
+                <input type="text" class="form-control input-lg"  name="fileDescription"  id="fileDescription" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件描述';}" />
+            </div>
+            <div class="form-group">
+                <label>上传文件</label>
+                <input type="file" name="upl" id="upl"/>
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-success bnt-lg" id="uplBtn">Upload</button>
+            </div>
+        </form>
+        <script type="text/javascript">
+            $("#uplBtn").click(function(event){
+                event.preventDefault();
+                if($("#fileName").val()=="文件名"){
+                    alert("请填写上传文件的名字！");
+                }
+                else if($("#fileDescription").val()=="文件描述"){
+                    alert("请填写关于该文件的描述！");
+                }
+                else if($("#upl").val()==""){
+                    alert("请选择上传文件");
+                }
+                else{
+                    alert("上传成功！");
+                    $("#uploadForm").submit();
+                }
+            })
+        </script>
+    </div>
+
+
+<div class="foot">
+    <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋&田宇</span></p>
 </div>
-<div class="mainRight"></div>
-<div class="foot"></div>
 </body>
 </html>

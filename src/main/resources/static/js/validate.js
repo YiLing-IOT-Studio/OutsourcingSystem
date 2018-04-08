@@ -588,9 +588,8 @@ myName.keyup(function () {
         }
         if(i==5){
             $("#register_form").submit();
-            $.cookie('username',null);
+
             $.cookie('username',phone1.val());
-            $.cookie('flag',null);
             $.cookie('flag',0);
         }
         else{
@@ -609,9 +608,8 @@ myName.keyup(function () {
         }
         if(j==3){
             $("#login_form").submit();
-            $.cookie('username',null);
+
             $.cookie('username',phone2.val());
-            $.cookie('flag',null);
             $.cookie('flag',1);
         }
         else{
