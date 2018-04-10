@@ -39,8 +39,8 @@ public class RegisterControl {
         User user = new User(phone, username, password, gender, obey);
 
         if(userRegisterService.insert(user)){
-            return "redirect:login_register?registerSuccess";
-//            return "faceCheck";
+//            return "redirect:login_register?registerSuccess";
+            return "faceCheck";
         }
         return "redirect:login_register?registerError";
 //        return "faceCheck";

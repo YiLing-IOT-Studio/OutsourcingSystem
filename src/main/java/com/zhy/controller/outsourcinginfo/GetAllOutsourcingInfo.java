@@ -59,13 +59,12 @@ public class GetAllOutsourcingInfo {
         String category = request.getParameter("myCategories");
         String state = request.getParameter("myState");
         String amount = request.getParameter("myAmount");
-        String type = request.getParameter("myType");
 
         int startPage = Integer.parseInt(request.getParameter("pageNo"));
         int pageSize = Integer.parseInt(request.getParameter("rows"));
         int start = (startPage-1)*pageSize;
 
-        logger.info("前台传过来的项目分类为：" + category + "，项目状态为：" + state + "，项目金额为：" + amount + "，项目类型为：" + type);
+        logger.info("前台传过来的项目分类为：" + category + "，项目状态为：" + state + "，项目金额为：" + amount);
 
         List<String> rightSqlCategory = cutOutString.cutOutString(category);
         Map<String, Object> amountMap = cutOutAmount.cutOutAmount(amount);
@@ -78,7 +77,6 @@ public class GetAllOutsourcingInfo {
         fuzzySearchMap.put("other", amountMap.get("other"));
         fuzzySearchMap.put("low", amountMap.get("low"));
         fuzzySearchMap.put("high", amountMap.get("high"));
-        fuzzySearchMap.put("type",type);
         fuzzySearchMap.put("start",start);
         fuzzySearchMap.put("pageSize",pageSize);
 

@@ -72,7 +72,7 @@ public class SortUtil {
     public List<OutsourcingInfo> sortByTime(List<OutsourcingInfo> list, int startCountNumber, int pageSize){
 
         list.sort((o1, o2) -> {
-            long i = o1.getTime().getTime() - o2.getTime().getTime();
+            long i = o1.getPublishTime() - o2.getPublishTime();
             if(i == 0){
                 return 0;
             } else if (i > 0){

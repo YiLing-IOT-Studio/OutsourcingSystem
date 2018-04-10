@@ -1,15 +1,12 @@
 package com.zhy.controller.sign;
 
-import com.zhy.component.sign.GetLongTime;
 import com.zhy.model.sign.SignRecords;
 import com.zhy.service.mybatis.SignRecordsService;
+import com.zhy.utils.TimeUtil;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,20 +23,19 @@ import java.util.Map;
 public class GetSignRecords {
 
     @Autowired
-    GetLongTime getLongTime;
-
-    @Autowired
     SignRecordsService signRecordsService;
 
     @PostMapping("/getSignRecords")
     @ResponseBody
     public JSONArray getSignRecords(HttpServletRequest request) throws ParseException {
 
+        TimeUtil timeUtil = new TimeUtil();
+
         String comeTime = request.getParameter("sTime");
         String leaveTime = request.getParameter("eTime");
         System.out.println("时间段：" + comeTime  + " 到 " + leaveTime);
 
-        Map<String, Long> map = getLongTime.getLongTime(comeTime, leaveTime);
+        Map<String, Long> map = timeUtil.stringToLongTimeMap(comeTime, leaveTime);
 
         List<SignRecords> allSignRecords = signRecordsService.findByStartAndEndTime(map);
 

@@ -2,6 +2,7 @@ package com.zhy.controller.workachievement;
 
 import com.zhy.component.outsourcing.dealwithdynamic.DealWithDynamic;
 import com.zhy.model.workachievement.DynamicInformation;
+import com.zhy.repository.mybatis.DynamicStateRepository;
 import com.zhy.service.mybatis.OrgZTreeService;
 import com.zhy.service.mybatis.DynamicInformationService;
 import net.sf.json.JSONArray;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +34,8 @@ public class DynamicStateController {
 
     @Autowired
     DealWithDynamic dealWithDynamic;
+    @Autowired
+    DynamicStateRepository dynamicStateRepository;
 
     @PostMapping("/getAllOutsourcingName")
     @ResponseBody
@@ -50,7 +54,16 @@ public class DynamicStateController {
     public JSONArray gerDynamicInformation(HttpServletRequest request){
 
         String outsourcingName = request.getParameter("name");
-        List<DynamicInformation> dynamicInformationList = dynamicInformationService.getAllDynamicByOutsourcingName(outsourcingName);
+        int startPage = Integer.parseInt(request.getParameter("pageNo"));
+        int pageSize = Integer.parseInt(request.getParameter("rows"));
+        int start = (startPage-1)*pageSize;
+        Map<String, Object> map = new HashMap<>();
+        map.put("outsourcingName", outsourcingName);
+        map.put("start", start);
+        map.put("pageSize", pageSize);
+
+        List<DynamicInformation> dynamicInformationList = dynamicStateRepository.getAllDynamicByOutsourcingName(map);
+
         List<Map<String, Object>> result = dealWithDynamic.outsoiurcingDynamic(dynamicInformationList);
         JSONArray jsonArray = JSONArray.fromObject(result);
         System.out.println("所有的外包动态：" + jsonArray.toString());

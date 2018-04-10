@@ -4,6 +4,7 @@ import com.zhy.model.outsourcing.OutsourcingInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: zhangocean
@@ -37,4 +38,17 @@ public interface OutsourcingInfoService {
      * @return 所有的外包信息
      */
     List<OutsourcingInfo> findAllOutsourcing();
+
+    /**
+     * 进度统计
+     * @return 项目名和进度
+     */
+    List<Map<String, Object>> findOutsourcingAndProgress();
+
+    /**
+     * 发布外包
+     * @param outsourcingInfo 外包信息
+     * @return 保存是否成功
+     */
+    int saveOutsourcingInfo(OutsourcingInfo outsourcingInfo);
 }

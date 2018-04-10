@@ -67,7 +67,6 @@ $(".form-control-feedback").hide();
                         success: function (data) {
                             //返回0，已经注册
                             if (parseInt(data) === 0) {
-                                alert("已经注册");
                                 phone1_existed.show();
                                 phone1_f.show();
                                 phone1_box.removeClass("has-success");
@@ -77,7 +76,6 @@ $(".form-control-feedback").hide();
                             }
                             //返回1，没有注册
                             else if (parseInt(data) === 1) {
-                                alert("还没注册");
                                 phone1_f.hide();
                                 phone1_error.hide();
                                 phone1_t.show();
@@ -144,7 +142,6 @@ $(".form-control-feedback").hide();
                 success: function (data) {
                     //返回1，成功发送验证码
                     if (parseInt(data) == 1) {
-                        alert("验证码已发送至您输入的手机号！有效期5分钟");
                         timeLeft = my_interval;
                         timeCount();
                     }

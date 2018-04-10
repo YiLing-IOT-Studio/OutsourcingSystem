@@ -37,7 +37,7 @@ function initTree(){
             var i;
             for(i in data){
                 if(data[i].parent=true){
-                    data[i].isParent=true;
+                    data[i].isParent==true;
                 }
             }
             zTreeInit(data);

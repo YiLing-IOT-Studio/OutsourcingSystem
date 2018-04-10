@@ -45,9 +45,11 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("注册成功！");
+                    window.location.replace("http://localhost:80/login_register")
                 }
                 else {
                     alert("注册失败，请重试~");
+                    window.location.replace("http://localhost:80/faceCheck")
                 }
             },
             error: function () {
@@ -65,10 +67,12 @@ snap.onclick=function(){
             },
             success: function (data) {
                 if (data == 1) {
-                    alert("识别成功！");
+                    alert("登录成功！");
+                    window.location.replace("http://localhost:80/index")
                 }
                 else {
-                    alert("没有这张脸~");
+                    alert("没有这张脸，请重试！");
+                    window.location.replace("http://localhost:80/faceCheck")
                 }
             },
             error: function () {
