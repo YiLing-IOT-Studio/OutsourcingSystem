@@ -56,11 +56,105 @@ function putIn(data){
             progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;width:'+fix_string+';">'+fix_string+'</div>');
             sec.append(progress);
             //报名申请
-            var oBtn=$("<div class='text-right'></div>");
-            oBtn.append("<button class='btn btn-primary apply' value='申请加入'>申请加入</button>");
+            var oBtn = $("<div class='text-right'></div>");
+            var oBtnHtml = $('<button type="button" class="btn btn-primary more" data-index="' + obj['id'] + '" data-toggle="modal" data-target="#myModal">查看详细信息</button>')
+            // oBtn.append("<button class='btn btn-primary apply' value='申请加入'>申请加入</button>");
+            oBtn.append(oBtnHtml);
             sec.append(oBtn);
 
             put_word.append(sec);
+
+            //点击申请加入
+            $('.more').click(function() {
+                var _this = $(this);
+                var index = _this.attr("data-index");
+                $.post('', {
+                    id: index
+                }, function(data) {
+                    var obj = JSON.parse(data);
+                    var modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                        '<div class="modal-dialog" role="document">' +
+                        '<div class="modal-content">' +
+                        '<div class="modal-header bg-primary">' +
+                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                        '<div>' +
+                        '<h4 class="modal-title" id="myModalLabel">' + obj['name'] + '</h4>' +
+                        '<span class="publisher">发包者：' + obj['publisher'] + '</span>' +
+                        '<span>发布时间：' + obj['publishTime'] + '</span>' +
+                        '</div>' +
+                        '<span>安全等级：</span><span class="tank"></span>' +
+                        '</div>' +
+                        '<div class="modal-body">' +
+                        '<div>' +
+                        '<i class="fa fa-tag"></i>' +
+                        '<span>项目分类：</span>' +
+                        '<span>' + obj['category'] + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<i class="fa fa-spinner"></i>' +
+                        '<span>项目状态：</span>' +
+                        '<span>' + obj['state'] + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<i class="fa fa-rmb"></i>' +
+                        '<span>项目金额：</span>' +
+                        '<span>' + obj['amount'] + '</span>' +
+                        '</div>' +
+                        '<div class="content">' +
+                        '<span>' +
+                        '<i class="fa fa-question-circle"></i>' +
+                        '<span>项目说明：</span>' +
+                        '</span>' +
+                        '<span>' + obj['content'] + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<i class="fa fa-pencil-square"></i>' +
+                        '<span>项目要求：</span>' +
+                        '<span>' + obj['requirement'] + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<i class="fa fa-history"></i>' +
+                        '<span>项目进度：</span>' +
+                        '<div class="progress">' +
+                        '<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="' + obj['progress'] + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + obj['progress'] + '%">' +
+                        '<span class="sr-only">' + obj['progress'] + '% Complete (success)</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '<span>' + obj['amount'] + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<i class="fa fa-hourglass-start"></i>' +
+                        '<span>报名截止时间：</span>' +
+                        '<span>' + obj['registrationDeadline'] + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<i class="fa fa-hourglass-end"></i>' +
+                        '<span>项目截止时间：</span>' +
+                        '<span>' + obj['projectDeadline'] + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="modal-footer">' +
+                        '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' +
+                        '<button type="button" class="btn btn-primary apply">申请加入</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+                    _this.after(modal);
+                    var tank = _this.find('.tank');
+                    for (var i = 0; i < obj['tank']; i++) {
+                        tank.append('<i class="fa fa-star"></i>');
+                    }
+                    $('.apply').click(function() {
+                        $.post('', {
+                            id: index
+                        }, function() {
+                            $('.modal-body').html('<div class="wait"><i class="fa fa-spinner fa-pulse"></i><span>已提交申请，请等候通知...</span></div>');
+                            $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
+                        })
+                    });
+                });
+            });
         }
     });
 

@@ -50,3 +50,58 @@ section{
     color: #0073A9;
     margin: 0 5px;
 }
+/* 模态框 */
+.modal-header {
+    padding-bottom: 5px;
+}
+
+.modal-header i {
+    color: gold;
+}
+
+.modal-header div {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+#myModalLabel {
+    margin-right: 20px;
+}
+
+.publisher {
+    margin-right: 10px;
+}
+
+.modal-body {
+    font-size: 16px;
+}
+
+.modal-body>div {
+    margin: 5px 0;
+}
+
+.content {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.modal-body .fa-rmb {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.modal-body i {
+    color: rgb(243, 60, 14);
+}
+
+.modal-body .fa-pulse {
+    color: rgb(125, 160, 125);
+    margin-right: 10px;
+}
+
+.modal-body .wait {
+    font-size: 20px;
+}
