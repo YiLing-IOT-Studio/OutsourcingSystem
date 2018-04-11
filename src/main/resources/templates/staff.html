@@ -13,81 +13,166 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header logo">
+                <a class="navbar-brand" href="project.html"><h1 class="atitle">智能外包</h1></a>
 
-    <div>
-        <ol class="breadcrumb text-center" style="font-size:20px;background:#fff;">
-            <li class="active"><a href="#material">个人资料</a></li>
-            <li><a href="#">查看任务</a></li>
-            <li><a href="#upload">提交成果</a></li>
-        </ol>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="drop-down">
+                        <a id="username" href="#"><span sec:authentication="name"></span><span class="caret" id="caret"></span></a>
+                        <ul class="drop-down-content">
+                            <li><a href="#" >账号管理</a></li>
+                            <li><a href="#" >消息</a></li>
+                            <li><a th:href="@{/logout}">退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.container-fluid -->
+
+    </nav>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Hi, colleague!</h1>
+            <p class="jumbotron-text">您可以在这里查看你的项目，得到自己的任务，并上传你的工作成果。</p>
+            <!--<p><a class="btn btn-primary btn-lg" href="#fabu" role="button">发布新外包</a></p>-->
+        </div>
     </div>
-    <div id="material" style="width:65%;margin:0 auto;">
-        <form id="materialForm" name="materialForm" action="/" method="post">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="oName">姓名</label>
-                        <input class="form-control" id="oName" name="oName" type="text" value=""/>
+    <div class="row">
+        <div class="leftSide col-md-2">
+            <div class="personalInfo">
+                <a href="#info" class="headPortrait">
+                    <img src="../static/img/headPortrait.png" id="headPortrait"/>
+                </a>
+                <div id="nickname">
+                    <p id="personName" sec:authentication="name"></p>
+                    <!--<a href="#info" class="manageBtn">账号管理</a>-->
+                </div>
+            </div>
+            <div class="funcList">
+                <ul class="funcListUl ">
+                    <li class="active" id="li_info_item"><a href="#info" id="info_item" data-toggle="tab">个人档</a></li>
+                    <li id="li_xm_item"><a href="#project" id="xm_item" data-toggle="tab">项目看板</a></li>
+                    <li id="li_cg_item"><a href="#achievement" id="cg_item" data-toggle="tab">工作成果</a></li>
+                    <li id="li_zl_item"><a href="#resources" id="zl_item" data-toggle="tab">资料库</a></li>
+                    <li id="li_tz_item"><a href="#inform" id="tz_item" data-toggle="tab">任务通知</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mainRight tab-content col-md-10">
+            <div class="tab-pane fade in  active" id="info">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">个人档</a></li>
+                    <li class="active">个人资料</li>
+                </ol>
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">个人档案</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>电话</th>
+                            <th>是否签订保密协议</th>
+                            <th>合同签订情况</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="project">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">项目</a></li>
+                    <li class="active">项目看板</li>
+                </ol>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>项目名称</th>
+                        <th>报名截止时间</th>
+                        <th>项目截止时间</th>
+                        <th>项目类别</th>
+                    </tr>
+                    </thead>
+                    <tbody id="kBody">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="achievement">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">项目</a></li>
+                    <li class="active">成果上传</li>
+                </ol>
+                <div class="container alist">
+                    <div id="upload" style="width:65%; margin:0 auto;" class="tab-pane fade">
+                        <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="fileName">Title</label>
+                                <input class="form-control input-lg" name="fileName" id="fileName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件名';}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="fileDescription">Description</label>
+                                <input type="text" class="form-control input-lg"  name="fileDescription"  id="fileDescription" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件描述';}" />
+                            </div>
+                            <div class="form-group">
+                                <label>Rate of progress</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-lg" name="progress" id="progress" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目进度';}" />
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>上传文件</label>
+                                <input type="file" name="upl" id="upl" multiple="multiple"/>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success bnt-lg" id="uplBtn">Upload</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="oGender">性别</label>
-                        <input class="form-control" id="oGender" name="oGender" type="text" value=""/>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for=""></label>
-                    </div>
-                    <div class="form-group"></div>
-                </div>
-                <div class="col-lg-6"></div>
             </div>
+            <div class="tab-pane fade" id="resources">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">项目</a></li>
+                    <li class="active">资源访问</li>
+                </ol>
 
-        </form>
-    </div>
-    <div id="upload" style="width:65%; margin:0 auto;">
-        <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="fileName">Title</label>
-                <input class="form-control input-lg" name="fileName" id="fileName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件名';}" />
             </div>
-            <div class="form-group">
-                <label for="fileDescription">Description</label>
-                <input type="text" class="form-control input-lg"  name="fileDescription"  id="fileDescription" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件描述';}" />
+            <div class="tab-pane fade" id="inform">
+
+
             </div>
-            <div class="form-group">
-                <label>上传文件</label>
-                <input type="file" name="upl" id="upl"/>
-            </div>
-            <div class="text-right">
-                <button type="submit" class="btn btn-success bnt-lg" id="uplBtn">Upload</button>
-            </div>
-        </form>
-        <script type="text/javascript">
-            $("#uplBtn").click(function(event){
-                event.preventDefault();
-                if($("#fileName").val()=="文件名"){
-                    alert("请填写上传文件的名字！");
-                }
-                else if($("#fileDescription").val()=="文件描述"){
-                    alert("请填写关于该文件的描述！");
-                }
-                else if($("#upl").val()==""){
-                    alert("请选择上传文件");
-                }
-                else{
-                    alert("上传成功！");
-                    $("#uploadForm").submit();
-                }
-            })
-        </script>
+        </div>
     </div>
 
 
-<div class="foot">
-    <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋&田宇</span></p>
-</div>
+
+
+
+
+
+    <div class="foot">
+        <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋</span></p>
+    </div>
+    <script src="../static/js/staff_info.js"></script>
+    <script src="../static/js/project_view.js"></script>
+
 </body>
 </html>
