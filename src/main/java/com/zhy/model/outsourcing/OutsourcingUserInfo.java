@@ -9,8 +9,8 @@ import lombok.Data;
  */
 @Data
 public class OutsourcingUserInfo {
-
     private int id;
+
 
     /**
      * 姓名
