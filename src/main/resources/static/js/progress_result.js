@@ -23,6 +23,9 @@ $("#chart-tab").click(function(){
                 oDiv.append(progress);
             }
 
+        },
+        error:function(){
+            alert("项目进度情况请求失败！");
         }
     });
 

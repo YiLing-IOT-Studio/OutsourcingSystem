@@ -118,37 +118,39 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+            </div>
+            <script src="../static/js/information.js"></script>
+
             <div class="tab-pane fade" id="kaoqin">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">人员管理</a></li>
-                <li class="active">考勤情况</li>
-            </ol>
-            <div class="container">
-                <form class="form-inline" role="form">
-                        <span>时间段：</span>
-                        <div class="form-group">
-                            <div class='input-group date'  id='datetimepicker6' >
-                                <input type='text' class="form-control" id="start"/>
-                                <span class="input-group-addon">
-                                     <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">人员管理</a></li>
+                    <li class="active">考勤情况</li>
+                </ol>
+                <div class="container">
+                    <form class="form-inline" role="form">
+                            <span>时间段：</span>
+                            <div class="form-group">
+                                <div class='input-group date'  id='datetimepicker6' >
+                                    <input type='text' class="form-control" id="start"/>
+                                    <span class="input-group-addon">
+                                         <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker7' >
-                                <input type='text' class="form-control" id="end"/>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker7' >
+                                    <input type='text' class="form-control" id="end"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
 
+                                </div>
                             </div>
-                        </div>
-                    <button type="button" class="btn btn-primary" id="checkTime">查看</button>
-                </form>
+                        <button type="button" class="btn btn-primary" id="checkTime">查看</button>
+                    </form>
 
-                </div>
+                    </div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -164,6 +166,8 @@
                     </tbody>
                 </table>
             </div>
+            <script src="../static/js/attendance.js"></script>
+
             <div class="tab-pane fade" id="distribute">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
@@ -172,11 +176,12 @@
                 </ol>
                 <div class="container alist">
                     <button type="button" class="btn btn-lg btn-info addAll">新建任务</button>
-                    <div id="task">
+                    <div id="task"></div>
 
-                    </div>
                 </div>
             </div>
+            <script src="../static/js/addNode.js"></script>
+
             <div class="tab-pane fade" id="task_state">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#directory" data-toggle="tab">项目文件夹</a></li>
@@ -190,41 +195,42 @@
                         </ul>
                     </div>
                     <div id="follow" class="tab-pane fade">
-                        <div class="my-inline-block text-center">
-                            <span class="glyphicon glyphicon-folder-close my-folder"></span>
-                            <span class="folder-name">folder-name1</span>
-                        </div>
-                        <div class="my-inline-block text-center">
-                            <span class="glyphicon glyphicon-folder-close my-folder"></span>
-                            <span class="folder-name">folder-name2</span>
-                        </div>
-                        <div class="my-inline-block text-center">
-                            <span class="glyphicon glyphicon-folder-close my-folder"></span>
-                            <span class="folder-name">folder-name3</span>
-                        </div>
-                        <script type="text/javascript">
-                            $(".my-inline-block").click(function() {
-                                var oDiv=$("#follow");
-                                var clear = "";
-                                oDiv.html(clear);
-                                var project_name = $(this).find(".folder-name").text();
-                                console.log(project_name);
-                                var oP=$("<p></p>");
-                                //name
-                                var oH2=$("<span></span>");
-                                oH2.append('杨玉卿'+'&nbsp;&nbsp;&nbsp;&nbsp;');
-                                oP.append(oH2);
-                                //日期
-                                var oDate=$("<span></span>");
-                                oDate.append('2018/2/2'+'&nbsp;&nbsp;&nbsp;&nbsp;');
-                                oP.append(oDate);
-                                //info_上传说明
-                                var oMsg=$("<span></span>");
-                                oMsg.append("我传了一个文件"+'&nbsp;&nbsp;&nbsp;&nbsp;');
-                                oP.append(oMsg);
-                                oDiv.append(oP);
-                            });
-                        </script>
+
+                        <!--<div class="my-inline-block text-center">-->
+                            <!--<span class="glyphicon glyphicon-folder-close my-folder"></span>-->
+                            <!--<span class="folder-name">folder-name1</span>-->
+                        <!--</div>-->
+                        <!--<div class="my-inline-block text-center">-->
+                            <!--<span class="glyphicon glyphicon-folder-close my-folder"></span>-->
+                            <!--<span class="folder-name">folder-name2</span>-->
+                        <!--</div>-->
+                        <!--<div class="my-inline-block text-center">-->
+                            <!--<span class="glyphicon glyphicon-folder-close my-folder"></span>-->
+                            <!--<span class="folder-name">folder-name3</span>-->
+                        <!--</div>-->
+                        <!--<script type="text/javascript">-->
+                            <!--$(".my-inline-block").click(function() {-->
+                                <!--var oDiv=$("#follow");-->
+                                <!--var clear = "";-->
+                                <!--oDiv.html(clear);-->
+                                <!--var project_name = $(this).find(".folder-name").text();-->
+                                <!--console.log(project_name);-->
+                                <!--var oP=$("<p></p>");-->
+                                <!--//name-->
+                                <!--var oH2=$("<span></span>");-->
+                                <!--oH2.append('杨玉卿'+'&nbsp;&nbsp;&nbsp;&nbsp;');-->
+                                <!--oP.append(oH2);-->
+                                <!--//日期-->
+                                <!--var oDate=$("<span></span>");-->
+                                <!--oDate.append('2018/2/2'+'&nbsp;&nbsp;&nbsp;&nbsp;');-->
+                                <!--oP.append(oDate);-->
+                                <!--//info_上传说明-->
+                                <!--var oMsg=$("<span></span>");-->
+                                <!--oMsg.append("我传了一个文件"+'&nbsp;&nbsp;&nbsp;&nbsp;');-->
+                                <!--oP.append(oMsg);-->
+                                <!--oDiv.append(oP);-->
+                            <!--});-->
+                        <!--</script>-->
                         <!--<div id="pagi-father">-->
                             <!--<div id="pagination">-->
                                 <!--<a id="firstPage">首页</a>-->
@@ -253,6 +259,7 @@
                 </div>
 
             </div>
+
             <div class="tab-pane fade" id="fabu">
                 <form id="publishForm" method="POST"  enctype="multipart/form-data" action="/releaseOutsourcing">
                     <fieldset>
@@ -395,6 +402,8 @@
 
 
             </div>
+            <script src="../static/js/publishForm.js"></script>
+
             <div class="tab-pane fade" id="resources">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
@@ -422,6 +431,7 @@
                 </div>
 
             </div>
+            <script src="../static/js/uploadSource.js"></script>
         </div>
     </div>
     <div class="foot">
@@ -429,14 +439,9 @@
     </div>
 
     <!--js-->
-    <script src="../static/js/information.js"></script>
-    <script src="../static/js/kaoqin.js"></script>
-    <script src="../static/js/addNode.js"></script>
-    <script src="../static/js/directory.js"></script>
-    <script src="../static/js/paging.js"></script>
-    <!--<script src="../static/js/folder.js"></script>-->
-    <script src="../static/js/chart.js"></script>
+    <script src="../static/js/tree_floder.js"></script>
+    <script src="../static/js/dynamic_state.js"></script>
+    <script src="../static/js/progress_result.js"></script>
 
-    <script src="../static/js/uploadSource.js"></script>
 </body>
 </html>

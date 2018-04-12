@@ -43,7 +43,7 @@ function initTree(){
             zTreeInit(data);
         },
         error:function(){
-            alert("请求失败！");
+            alert("文件树请求失败！");
         }
     });
 

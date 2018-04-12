@@ -98,7 +98,7 @@ $("#checkTime").click(function(){
             fillData(data);
         },
         error:function(){
-            alert("请求失败！");
+            alert("考勤情况查询请求失败！");
         }
     })
 

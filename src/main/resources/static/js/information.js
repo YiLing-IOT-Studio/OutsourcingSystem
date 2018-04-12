@@ -81,7 +81,7 @@ $(document).ajaxSend(function(e, xhr, options) {
             });
         },
         error:function(){
-           alert("请求失败!");
+           alert("人员信息查询请求失败!");
         }
 
     })
