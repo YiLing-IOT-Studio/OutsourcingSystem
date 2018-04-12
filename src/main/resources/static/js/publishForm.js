@@ -60,7 +60,9 @@ $("#mySubmit").click(function(event){
     //提交安全等级
     var rank=document.getElementById("rank");
     rank.value=myCount;
-
+    //数字的正则表达式
+    var pattern=/\d+/;
+    var money_value=$("#money").val();
     if($("#myName").val()==""){
         alert("请填写项目名称~");
     }
@@ -79,7 +81,7 @@ $("#mySubmit").click(function(event){
     else if($("#finishedTime").val()==""){
         alert("请确定项目截止时间~");
     }
-    else if($(":checkbox[name='category']").is(":checked")==false){
+    else if($(":radio[name='category']").is(":checked")==false){
         alert("请至少选择一个技术类别~");
     }
     else if($("#requirement").val()==""){
@@ -87,6 +89,9 @@ $("#mySubmit").click(function(event){
     }
     else if($("#money").val()==""){
         alert("请填写项目金额~");
+    }
+    else if(!pattern.test(money_value)){
+        alert("项目金额请用阿拉伯数字填写~");
     }
     else{
         $("#publishForm").submit();

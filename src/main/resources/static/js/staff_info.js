@@ -2,7 +2,6 @@
  * Created by 杨玉卿 on 2018/4/10.
  */
 var tBody=$("#tBody");
-$(function(){
     $.ajax({
         type:"get",
         url:'/staff_info',
@@ -68,4 +67,3 @@ $(function(){
         }
 
     })
-});

@@ -7,6 +7,9 @@
     <title>个人空间</title>
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--css-->
+    <link href="../static/css/staff.css" rel="stylesheet"/>
+    <link href="../static/css/folder.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -18,7 +21,6 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header logo">
                 <a class="navbar-brand" href="project.html"><h1 class="atitle">智能外包</h1></a>
-
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
@@ -118,19 +120,18 @@
                     <li><a href="#">项目</a></li>
                     <li class="active">成果上传</li>
                 </ol>
-                <div class="container alist">
-                    <div id="upload" style="width:65%; margin:0 auto;" class="tab-pane fade">
+                <div id="upload" style="width:65%; margin:0 auto;">
                         <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="fileName">Title</label>
-                                <input class="form-control input-lg" name="fileName" id="fileName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件名';}" />
+                                <label for="fileName">项目名</label>
+                                <input class="form-control input-lg" name="fileName" id="fileName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
                             </div>
                             <div class="form-group">
-                                <label for="fileDescription">Description</label>
+                                <label for="fileDescription">文件描述</label>
                                 <input type="text" class="form-control input-lg"  name="fileDescription"  id="fileDescription" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件描述';}" />
                             </div>
                             <div class="form-group">
-                                <label>Rate of progress</label>
+                                <label>预计项目进度</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control input-lg" name="progress" id="progress" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目进度';}" />
                                     <span class="input-group-addon">%</span>
@@ -145,7 +146,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+
             </div>
             <div class="tab-pane fade" id="resources">
                 <ol class="breadcrumb">
@@ -153,26 +154,32 @@
                     <li><a href="#">项目</a></li>
                     <li class="active">资源访问</li>
                 </ol>
+                <div id="picture">
+                    <div>
+                        <video src="" preload="preload" width="200" height="200" id="video"></video>
+                        <canvas id="canvas" width="100" height="150"></canvas>
+                    </div>
+                </div>
+                <div id="data">
+                    <div class="my-inline-block text-center">
+                        <span class="glyphicon glyphicon-folder-close my-folder"></span>
+                        <span class="folder-name">外包1</span>
+                    </div>
+                        <P class='lead hide file'>文件1</P>
 
+                </div>
             </div>
             <div class="tab-pane fade" id="inform">
-
 
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
     <div class="foot">
         <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋</span></p>
     </div>
     <script src="../static/js/staff_info.js"></script>
     <script src="../static/js/project_view.js"></script>
-
+    <script src="../static/js/resources.js"></script>
+    <script src="../static/js/uploadAchievement.js"></script>
 </body>
 </html>

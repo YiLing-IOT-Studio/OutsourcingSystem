@@ -44,10 +44,8 @@ function putIn(data){
             sec.append(Umoney);
 
             //其他信息
-            var unixTimestamp=new Date(obj['publishTime']['time']);
-            var commonTime=unixTimestamp.toLocaleString();
             var Details=$('<p></p>');
-            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+commonTime+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
+            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['publishTime']+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
             sec.append(Details);
 
             //进度条
