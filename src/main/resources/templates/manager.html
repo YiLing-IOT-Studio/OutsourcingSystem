@@ -204,10 +204,25 @@
                         </div>
                         <script type="text/javascript">
                             $(".my-inline-block").click(function() {
+                                var oDiv=$("#follow");
                                 var clear = "";
                                 oDiv.html(clear);
                                 var project_name = $(this).find(".folder-name").text();
                                 console.log(project_name);
+                                var oP=$("<p></p>");
+                                //name
+                                var oH2=$("<span></span>");
+                                oH2.append('杨玉卿'+'&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oP.append(oH2);
+                                //日期
+                                var oDate=$("<span></span>");
+                                oDate.append('2018/2/2'+'&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oP.append(oDate);
+                                //info_上传说明
+                                var oMsg=$("<span></span>");
+                                oMsg.append("我传了一个文件"+'&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oP.append(oMsg);
+                                oDiv.append(oP);
                             });
                         </script>
                         <!--<div id="pagi-father">-->

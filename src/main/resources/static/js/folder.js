@@ -8,12 +8,13 @@ $("#follow-tab").click(function(){
     $.ajax({
         type:"POST",
         url:"/dynamicState/getAllOutsourcingName",
+        async:false,
         dataType:"json",
         data:{
 
         },
-        success:function(data){
-            var clear="";
+        success:function(data) {
+            var clear = "";
             oDiv.html(clear);
             $.each(data, function (index, obj) {
                 if (index != (data.length)) {
@@ -23,31 +24,48 @@ $("#follow-tab").click(function(){
                     oDiv.append(oFolder);
                 }
             });
-            $(".my-inline-block").click(function(){
-                var clear="";
-                oDiv.html(clear);
-                var project_name=$(this).find(".folder-name").text();
-                console.log(project_name);
-                //name
-                var oH2=$("<h2 class='leader my-h2'></h2>");
-                oH2.append(data[my_index]['staff_name']);
-                oDiv.append(oH2);
-                //info
-                var oInfo=$("<div class='info'></div>");
-                //日期
-                var oDate=$("<h3 class='h3 my-h3'></h3>");
-                oDate.append(data[my_index]['info'].day);
-                oInfo.append(oDate);
-                //上传说明
-                var oMsg=$("<P class='lead my-lead'></P>");
-                oMsg.append(data[my_index]['info'].msg);
-                oInfo.append(oMsg);
-                oDiv.append(oInfo);
-            });
 
+            $(".my-inline-block").click(function () {
+                var clear = "";
+                oDiv.html(clear);
+                var project_name = $(this).find(".folder-name").text();
+                console.log(project_name);
+                $.ajax({
+                    type: "POST",
+                    url: "/",
+                    async: false,
+                    dataType: "json",
+                    data: {
+                        'project_name': project_name
+                    },
+                    success: function (data) {
+                        $.each(data, function (index, obj) {
+                            if (index != (data.length)) {
+                                var oP = $("<p></p>");
+                                //name
+                                var oH2 = $("<span></span>");
+                                oH2.append(obj['name'] + '&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oP.append(oH2);
+                                //日期
+                                var oDate = $("<span></span>");
+                                oDate.append(obj['info'].day + '&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oP.append(oDate);
+                                //info_上传说明
+                                var oMsg = $("<span></span>");
+                                oMsg.append(obj['info'].msg + '&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oP.append(oMsg);
+                                oDiv.append(oP);
+                            }
+                        });
+                    },
+                    error: function () {
+                        alert("文件上传信息请求失败!");
+                    }
+                });
+            });
         },
         error:function(){
-            alert("请求失败！");
+            alert("文件夹信息请求失败！");
         }
     })
 });
