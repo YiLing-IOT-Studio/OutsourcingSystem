@@ -1,13 +1,18 @@
 package com.zhy.controller.back;
 
+import com.zhy.service.outsourcinginfo.GetUserName;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 /**
  * @author: zhangocean
@@ -17,8 +22,15 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class BackControl {
 
+    @Autowired
+    GetUserName getUserName;
+
     @GetMapping("/index")
-    public String index(){
+    public String index(Model model, @AuthenticationPrincipal Principal principal){
+
+        String userName = getUserName.getUsername(principal.getName());
+        model.addAttribute("userName", userName);
+
         return "project";
     }
 
@@ -38,11 +50,13 @@ public class BackControl {
     }
 
     @GetMapping("/manager")
-    public String manager(HttpServletRequest request, HttpServletResponse response){
+    public String manager(Model model, @AuthenticationPrincipal Principal principal, HttpServletRequest request, HttpServletResponse response){
         String token = (String) request.getSession().getAttribute("X-CSRF-TOKEN");
         System.out.println("跳到管理界面的X-CSRF-TOKEN：" + token);
-
         response.setHeader("X-CSRF-TOKEN",token);
+
+        String userName = getUserName.getUsername(principal.getName());
+        model.addAttribute("userName", userName);
 
         return "manager";
     }
@@ -52,4 +66,18 @@ public class BackControl {
         return "release";
     }
 
+    @GetMapping("/staff")
+    public String staff(Model model, @AuthenticationPrincipal Principal principal){
+        String userName = getUserName.getUsername(principal.getName());
+        model.addAttribute("userName", userName);
+        return "staff";
+    }
+
+    @PostMapping("/get")
+    @ResponseBody
+    public int get(HttpServletRequest request){
+        String id = request.getParameter("id");
+        System.out.println(id);
+        return 1;
+    }
 }

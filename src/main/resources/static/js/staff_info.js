@@ -4,7 +4,7 @@
 var tBody=$("#tBody");
     $.ajax({
         type:"get",
-        url:'/staff_info',
+        url:'/staff/getUserInfo',
         dataType:"json",
         data:{
 

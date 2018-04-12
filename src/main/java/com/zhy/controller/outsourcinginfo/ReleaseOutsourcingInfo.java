@@ -41,15 +41,18 @@ public class ReleaseOutsourcingInfo {
 
         long registrationDeadline = timeUtil.stringToLongTime(request.getParameter("enterTime"));
         long projectDeadline = timeUtil.stringToLongTime(request.getParameter("finishedTime"));
-        long publishTime = Long.parseLong(request.getParameter("publishTime"))/1000;
+        long publishTimeForLong = Long.parseLong(request.getParameter("publishTime"))/1000;
+        String publishTimeForString = timeUtil.longToStringTime(publishTimeForLong);
+        System.out.println("项目发布时间：" + publishTimeForString);
+
         //上传文件的保存路径
         String fileName = file.getOriginalFilename();
         String filePath = this.getClass().getResource("/").getPath().substring(1) + "项目计划实施书" + name + "/";
         System.out.println("上传文件保存路径：" + filePath + fileName);
 
-        OutsourcingInfo outsourcingInfo = new OutsourcingInfo(state, name, rank, category, content, publisher, publishTime, requirement, registrationDeadline, projectDeadline, amount, filePath+fileName, progress);
+        OutsourcingInfo outsourcingInfo = new OutsourcingInfo(state, name, rank, category, content, publisher, publishTimeForString, requirement, registrationDeadline, projectDeadline, amount, filePath+fileName, progress);
 
-        System.out.println("name is " + name+ " rank is " + rank+ " content is " + content+ " registrationTime is " + registrationDeadline+ " projectDeadline is " + projectDeadline+ " category is " + category+ " amount is " + amount+ " requirement is " + requirement + " publishTime is " + publishTime + " publisher is " + publisher);
+        System.out.println("name is " + name+ " rank is " + rank+ " content is " + content+ " registrationTime is " + registrationDeadline+ " projectDeadline is " + projectDeadline+ " category is " + category+ " amount is " + amount+ " requirement is " + requirement + " publishTime is " + publishTimeForString + " publisher is " + publisher);
 
         int releaseResult = releaseOutsourcingService.releaseOutsourcing(outsourcingInfo, file, filePath, fileName);
 

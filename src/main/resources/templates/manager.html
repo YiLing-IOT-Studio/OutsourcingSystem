@@ -13,28 +13,28 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--bootstrap-datetimepicker-->
-    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <!--zTree-->
-    <link href="../static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../static/css/manager.css" rel="stylesheet"/>
-    <link href="../static/css/directory.css" rel="stylesheet"/>
-    <link href="../static/css/folder.css" rel="stylesheet"/>
-    <link href="../static/css/info.css" rel="stylesheet"/>
-    <link href="../static/css/star.css" rel="stylesheet"/>
-    <link href="../static/css/task.css" rel="stylesheet"/>
+    <link href="css/manager.css" rel="stylesheet"/>
+    <link href="css/directory.css" rel="stylesheet"/>
+    <link href="css/folder.css" rel="stylesheet"/>
+    <link href="css/info.css" rel="stylesheet"/>
+    <link href="css/star.css" rel="stylesheet"/>
+    <link href="css/task.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--plugs:bootstrap-datetimepicker-->
-    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
     <!--jquery:cookie-->
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!--zTree-->
-    <script src="../static/js/jquery.ztree.core.min.js"></script>
-    <script src="../static/js/star.js"></script>
+    <script src="js/jquery.ztree.core.min.js"></script>
+    <script src="js/star.js"></script>
 
 </head>
 <body>
@@ -49,7 +49,7 @@
             <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="drop-down">
-                        <a id="username" href="#"><span sec:authentication="name"></span><span class="caret" id="caret"></span></a>
+                        <a id="username" href="#"><span th:text="${userName}"></span><span class="caret" id="caret"></span></a>
                         <ul class="drop-down-content">
                             <li><a href="#" >账号管理</a></li>
                             <li><a href="#" >消息</a></li>
@@ -72,10 +72,10 @@
         <div class="leftSide col-md-2">
         <div class="personalInfo">
             <a href="#info" class="headPortrait">
-                <img src="../static/img/headPortrait.png" id="headPortrait"/>
+                <img src="img/headPortrait.png" id="headPortrait"/>
             </a>
             <div id="nickname">
-                <p id="personName" sec:authentication="name"></p>
+                <p id="personName" th:text="${userName}"></p>
                 <!--<a href="#info" class="manageBtn">账号管理</a>-->
             </div>
         </div>
@@ -119,7 +119,7 @@
                 </table>
             </div>
             </div>
-            <script src="../static/js/information.js"></script>
+            <script src="js/information.js"></script>
 
             <div class="tab-pane fade" id="kaoqin">
                 <ol class="breadcrumb">
@@ -166,7 +166,7 @@
                     </tbody>
                 </table>
             </div>
-            <script src="../static/js/attendance.js"></script>
+            <script src="js/attendance.js"></script>
 
             <div class="tab-pane fade" id="distribute">
                 <ol class="breadcrumb">
@@ -180,7 +180,7 @@
 
                 </div>
             </div>
-            <script src="../static/js/addNode.js"></script>
+            <script src="js/addNode.js"></script>
 
             <div class="tab-pane fade" id="task_state">
                 <ul class="nav nav-tabs">
@@ -393,7 +393,7 @@
                         <button type="submit" value="发布外包" class="btn btn-success" id="mySubmit">
                                     立即发布
                         </button>
-                        <script src="../static/js/publishForm.js"></script>
+                        <script src="js/publishForm.js"></script>
 
 
                     </fieldset>
@@ -402,7 +402,7 @@
 
 
             </div>
-            <script src="../static/js/publishForm.js"></script>
+            <script src="js/publishForm.js"></script>
 
             <div class="tab-pane fade" id="resources">
                 <ol class="breadcrumb">
@@ -431,7 +431,7 @@
                 </div>
 
             </div>
-            <script src="../static/js/uploadSource.js"></script>
+            <script src="js/uploadSource.js"></script>
         </div>
     </div>
     <div class="foot">
@@ -439,9 +439,9 @@
     </div>
 
     <!--js-->
-    <script src="../static/js/tree_floder.js"></script>
-    <script src="../static/js/dynamic_state.js"></script>
-    <script src="../static/js/progress_result.js"></script>
+    <script src="js/tree_floder.js"></script>
+    <script src="js/dynamic_state.js"></script>
+    <script src="js/progress_result.js"></script>
 
 </body>
 </html>

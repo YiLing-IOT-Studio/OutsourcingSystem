@@ -19,4 +19,10 @@ public interface OutsourcingUserInfoService {
      */
     List<OutsourcingUserInfo> selectAllOutsourcingUserInfo();
 
+    /**
+     * 通过手机号后的接包用户者信息
+     * @param phone 手机号
+     * @return 接包用户者信息
+     */
+    OutsourcingUserInfo getUserInfoByPhone(String phone);
 }

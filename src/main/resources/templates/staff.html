@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +8,8 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--css-->
-    <link href="../static/css/staff.css" rel="stylesheet"/>
-    <link href="../static/css/folder.css" rel="stylesheet"/>
+    <link href="css/staff.css" rel="stylesheet"/>
+    <link href="css/folder.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="drop-down">
-                        <a id="username" href="#"><span sec:authentication="name"></span><span class="caret" id="caret"></span></a>
+                        <a id="username" href="#"><span th:text="${userName}"></span><span class="caret" id="caret"></span></a>
                         <ul class="drop-down-content">
                             <li><a href="#" >账号管理</a></li>
                             <li><a href="#" >消息</a></li>
@@ -49,10 +49,10 @@
         <div class="leftSide col-md-2">
             <div class="personalInfo">
                 <a href="#info" class="headPortrait">
-                    <img src="../static/img/headPortrait.png" id="headPortrait"/>
+                    <img src="img/headPortrait.png" id="headPortrait"/>
                 </a>
                 <div id="nickname">
-                    <p id="personName" sec:authentication="name"></p>
+                    <p id="personName" th:text="${userName}"></p>
                     <!--<a href="#info" class="manageBtn">账号管理</a>-->
                 </div>
             </div>
@@ -177,9 +177,9 @@
     <div class="foot">
         <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋</span></p>
     </div>
-    <script src="../static/js/staff_info.js"></script>
-    <script src="../static/js/project_view.js"></script>
-    <script src="../static/js/resources.js"></script>
-    <script src="../static/js/uploadAchievement.js"></script>
+    <script src="js/staff_info.js"></script>
+    <script src="js/project_view.js"></script>
+    <script src="js/resources.js"></script>
+    <script src="js/uploadAchievement.js"></script>
 </body>
 </html>

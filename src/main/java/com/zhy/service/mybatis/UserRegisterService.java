@@ -38,5 +38,11 @@ public interface UserRegisterService {
      */
     boolean passwordIsRight(String phone, String password);
 
+    /**
+     * 通过手机号获得用户名
+     * @param phone 手机号
+     * @return 用户名
+     */
+    String getUserNameByPhone(String phone);
 
 }

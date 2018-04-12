@@ -53,9 +53,11 @@ public class DynamicStateController {
     @ResponseBody
     public JSONArray gerDynamicInformation(HttpServletRequest request){
 
-        String outsourcingName = request.getParameter("name");
-        int startPage = Integer.parseInt(request.getParameter("pageNo"));
-        int pageSize = Integer.parseInt(request.getParameter("rows"));
+        String outsourcingName = request.getParameter("project_name");
+//        int startPage = Integer.parseInt(request.getParameter("rows"));
+//        int pageSize = Integer.parseInt(request.getParameter("pageNo"));
+        int startPage = 1;
+        int pageSize = 3;
         int start = (startPage-1)*pageSize;
         Map<String, Object> map = new HashMap<>();
         map.put("outsourcingName", outsourcingName);

@@ -23,4 +23,9 @@ public class OutsourcingUserInfoServiceImpl implements OutsourcingUserInfoServic
     public List<OutsourcingUserInfo> selectAllOutsourcingUserInfo() {
         return outsourcingUserInfoMapper.selectAllOutsourcingUserInfo();
     }
+
+    @Override
+    public OutsourcingUserInfo getUserInfoByPhone(String phone) {
+        return outsourcingUserInfoMapper.getUserInfoByPhone(phone);
+    }
 }

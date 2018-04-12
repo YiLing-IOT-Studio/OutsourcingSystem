@@ -70,6 +70,11 @@ public class UserRegisterServiceImpl implements UserRegisterService {
         return false;
     }
 
+    @Override
+    public String getUserNameByPhone(String phone) {
+        return userRegisterMapper.getUserNameByPhone(phone);
+    }
+
     private int findUserIdByPhone(String phone){
         return userRegisterMapper.selectUserIdByPhone(phone);
     }

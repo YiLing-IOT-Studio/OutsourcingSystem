@@ -47,10 +47,4 @@ public class OutsourcingUserInfo {
      */
     private String contract;
 
-    /**
-     * 外包当前进行状态
-     */
-    private String state;
-
-
 }

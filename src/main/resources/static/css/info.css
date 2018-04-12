@@ -52,6 +52,7 @@ section{
 }
 /* 模态框 */
 .modal-header {
+    text-align: left;
     padding-bottom: 5px;
 }
 
@@ -74,6 +75,7 @@ section{
 }
 
 .modal-body {
+    text-align: left;
     font-size: 16px;
 }
 

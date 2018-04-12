@@ -2,6 +2,7 @@ package com.zhy.mapper;
 
 import com.zhy.model.outsourcing.OutsourcingUserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,9 @@ import java.util.List;
 @Repository
 public interface OutsourcingUserInfoMapper {
 
-    @Select("select * from outsourcinguserinfo where state in (\"报名中\",\"进行中\")")
+    @Select("select * from outsourcinguserinfo")
     List<OutsourcingUserInfo> selectAllOutsourcingUserInfo();
 
+    @Select("select * from outsourcinguserinfo where phone=#{phone}")
+    OutsourcingUserInfo getUserInfoByPhone(@Param("phone") String phone);
 }

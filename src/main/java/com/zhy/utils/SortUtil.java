@@ -2,6 +2,8 @@ package com.zhy.utils;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
 
+import java.sql.Time;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +73,18 @@ public class SortUtil {
      */
     public List<OutsourcingInfo> sortByTime(List<OutsourcingInfo> list, int startCountNumber, int pageSize){
 
+        TimeUtil timeUtil = new TimeUtil();
         list.sort((o1, o2) -> {
-            long i = o1.getPublishTime() - o2.getPublishTime();
+
+            long o1Time = 0;
+            long o2Time = 0;
+            try {
+                o1Time = timeUtil.stringToLongTime(o1.getPublishTime());
+                o2Time = timeUtil.stringToLongTime(o2.getPublishTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long i = o1Time - o2Time;
             if(i == 0){
                 return 0;
             } else if (i > 0){

@@ -31,4 +31,6 @@ public interface UserRegisterMapper {
     @Select("select u.id from user u where phone=#{phone}")
     int selectUserIdByPhone(@Param("phone") String phone);
 
+    @Select("select username from user where phone=#{phone}")
+    String getUserNameByPhone(@Param("phone") String phone);
 }

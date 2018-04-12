@@ -15,7 +15,7 @@ public class TimeUtil {
 
     public String longToStringTime(long time){
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd号 HH时mm分ss秒");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
 
         Date date = new Date(time);
         System.out.println("long型时间转换成date型：" + date);

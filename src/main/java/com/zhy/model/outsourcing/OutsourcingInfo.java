@@ -1,11 +1,9 @@
 package com.zhy.model.outsourcing;
 
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
  * @author: zhangocean
@@ -55,7 +53,7 @@ public class OutsourcingInfo implements Serializable{
     /**
      * 发布时间
      */
-    private long publishTime;
+    private String publishTime;
 
     /**
      * 项目要求
@@ -91,7 +89,7 @@ public class OutsourcingInfo implements Serializable{
     public OutsourcingInfo() {
     }
 
-    public OutsourcingInfo(String state, String name, int rank, String category, String content, String publisher, long publishTime, String requirement, long registrationDeadline, long projectDeadline, int amount, String prospectus, int progress) {
+    public OutsourcingInfo(String state, String name, int rank, String category, String content, String publisher, String publishTime, String requirement, long registrationDeadline, long projectDeadline, int amount, String prospectus, int progress) {
         this.state = state;
         this.name = name;
         this.rank = rank;
