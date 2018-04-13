@@ -406,7 +406,7 @@
 
 
             </div>
-            <script src="../static/js/publishForm.js"></script>
+
 
             <div class="tab-pane fade" id="resources">
                 <ol class="breadcrumb">
@@ -417,12 +417,16 @@
                 <div id="upload" style="width:65%; margin:0 auto;">
                     <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="fileName">项目名</label>
-                                <input class="form-control input-lg" name="fileName" id="fileName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
+                                <label for="projectName">项目名</label>
+                                <input class="form-control input-lg" name="projectName" id="projectName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
                             </div>
-                            <div class="form-group">
-                                <label></label>
-                                <input type="text" class="form-control input-lg" name="fileDescription" id="fileDescription" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件描述';}" />
+                            <div class="form-group" >
+                                <label>任务名</label>
+                                <select class="form-control" id="myTaskName">
+                                    <!--<option>0</option>-->
+                                    <!--<option>0</option>-->
+                                    <!--<option>0</option>-->
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>上传文件</label>
@@ -446,6 +450,8 @@
     <script src="../static/js/tree_floder.js"></script>
     <script src="../static/js/dynamic_state.js"></script>
     <script src="../static/js/progress_result.js"></script>
+
+    <script src="../static/js/publishForm.js"></script>
 
 </body>
 </html>
