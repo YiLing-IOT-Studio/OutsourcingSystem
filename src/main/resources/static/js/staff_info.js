@@ -63,7 +63,7 @@ var tBody=$("#tBody");
             });
         },
         error:function(){
-            alert("请求失败!");
+            alert("个人资料查询请求失败!");
         }
 
     })

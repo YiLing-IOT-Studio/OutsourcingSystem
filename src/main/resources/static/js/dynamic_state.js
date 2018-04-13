@@ -45,19 +45,23 @@ $("#follow-tab").click(function(){
                     success: function (data) {
                         $.each(data, function (index, obj) {
                             if (index != (data.length)) {
-                                var oP = $("<div></div>");
+                                var oDiv=$("#follow");
+                                var clear = "";
+                                oDiv.html(clear);
+                                var oP = $("<div class='op'></div>");
                                 //name
-                                var oH2 = $("<p></p>");
-                                oH2.append(obj['name'] + '&nbsp;&nbsp;&nbsp;&nbsp;');
+                                var oH2 = $("<p class='user'><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></p>");
+                                oH2.append(''+obj['name'] + '&nbsp;&nbsp;&nbsp;&nbsp;');
                                 oP.append(oH2);
-                                //日期
-                                var oDate = $("<p></p>");
-                                oDate.append(obj['info'].day + '&nbsp;&nbsp;&nbsp;&nbsp;');
-                                oP.append(oDate);
                                 //info_上传说明
                                 var oMsg = $("<p class='description'></p>");
-                                oMsg.append(obj['info'].msg + '&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oMsg.append(obj['info'].day);
                                 oP.append(oMsg);
+
+                                //日期
+                                var oDate = $("<p class='day'></p>");
+                                oDate.append("时间:"+obj['info'].msg);
+                                oP.append(oDate);
                                 oDiv.append(oP);
                             }
                         });
