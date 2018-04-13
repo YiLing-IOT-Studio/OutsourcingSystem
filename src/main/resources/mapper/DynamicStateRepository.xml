@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zhy.repository.mybatis.DynamicStateRepository">
-    <resultMap id="dynamicStateMap" type="com.zhy.model.workachievement.DynamicInformation">
+    <resultMap id="dynamicStateMap" type="com.zhy.model.taskfollow.DynamicInformation">
         <id property="id" column="ID"/>
         <result property="name" column="name"/>
         <result property="principal" column="principal"/>

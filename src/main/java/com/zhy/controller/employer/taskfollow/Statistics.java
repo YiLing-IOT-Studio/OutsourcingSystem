@@ -1,6 +1,5 @@
-package com.zhy.controller.workachievement;
+package com.zhy.controller.employer.taskfollow;
 
-import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.service.mybatis.OutsourcingInfoService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;

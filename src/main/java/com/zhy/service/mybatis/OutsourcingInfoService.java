@@ -51,4 +51,25 @@ public interface OutsourcingInfoService {
      * @return 保存是否成功
      */
     int saveOutsourcingInfo(OutsourcingInfo outsourcingInfo);
+
+    /**
+     * 通过外包名查询外包状态
+     * @param name 外包名
+     * @return 外包状态
+     */
+    String selectStateByName(String name);
+
+    /**
+     * 通过外包id查找外包名
+     * @param id 外包id
+     * @return 外包名
+     */
+    String selectNameById(int id);
+
+    /**
+     * 通过外包名查找对应外包的详细信息
+     * @param name 外包名
+     * @return 外包信息
+     */
+    OutsourcingInfo selectByName(String name);
 }

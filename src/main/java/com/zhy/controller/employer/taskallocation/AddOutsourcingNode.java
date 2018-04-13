@@ -1,4 +1,4 @@
-package com.zhy.controller.outsourcinguserinfo;
+package com.zhy.controller.employer.taskallocation;
 
 import com.zhy.component.outsourcing.dealwithtask.AssigningTask;
 import com.zhy.model.outsourcing.ExecutionInfo;

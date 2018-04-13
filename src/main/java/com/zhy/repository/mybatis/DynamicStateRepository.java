@@ -1,6 +1,6 @@
 package com.zhy.repository.mybatis;
 
-import com.zhy.model.workachievement.DynamicInformation;
+import com.zhy.model.taskfollow.DynamicInformation;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

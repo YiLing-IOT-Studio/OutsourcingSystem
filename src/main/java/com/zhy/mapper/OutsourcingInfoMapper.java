@@ -35,4 +35,12 @@ public interface OutsourcingInfoMapper {
     @Select("select * from outsourcinginfo")
     List<OutsourcingInfo> findAllOutsourcing();
 
+    @Select("select state from outsourcinginfo where name=#{name}")
+    String selectStateByName(@Param("name") String name);
+
+    @Select("select name from outsourcinginfo where id=#{id}")
+    String selectNameById(@Param("id") int id);
+
+    @Select("select * from outsourcinginfo where name=#{name}")
+    OutsourcingInfo selectByName(String name);
 }

@@ -1,4 +1,4 @@
-package com.zhy.controller.outsourcinginfo;
+package com.zhy.controller.employer.releaseoutsourcing;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.service.outsourcinginfo.ReleaseOutsourcingService;

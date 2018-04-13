@@ -73,11 +73,8 @@ public class BackControl {
         return "staff";
     }
 
-    @PostMapping("/get")
-    @ResponseBody
-    public int get(HttpServletRequest request){
-        String id = request.getParameter("id");
-        System.out.println(id);
-        return 1;
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
     }
 }

@@ -1,4 +1,4 @@
-package com.zhy.model.workachievement;
+package com.zhy.model.taskfollow;
 
 import lombok.Data;
 
@@ -21,6 +21,11 @@ public class OrgZTree {
      * 该节点的name
      */
     private String name;
+
+    /**
+     * 发布者的手机号
+     */
+    private String phone;
 
     /**
      * 是否有父节点

@@ -63,4 +63,19 @@ public class OutsourcingInfoServiceImpl implements OutsourcingInfoService{
     public int saveOutsourcingInfo(OutsourcingInfo outsourcingInfo) {
         return outsourcingInfoMapper.saveOutsourcingInfo(outsourcingInfo);
     }
+
+    @Override
+    public String selectStateByName(String name) {
+        return outsourcingInfoMapper.selectStateByName(name);
+    }
+
+    @Override
+    public String selectNameById(int id) {
+        return outsourcingInfoMapper.selectNameById(id);
+    }
+
+    @Override
+    public OutsourcingInfo selectByName(String name) {
+        return outsourcingInfoMapper.selectByName(name);
+    }
 }

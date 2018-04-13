@@ -119,7 +119,7 @@ function putIn(data){
                 '</div>' +
                 '<div class="modal-footer">' +
                 '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' +
-                '<button type="button" class="btn btn-primary apply1">申请加入</button>' +
+                '<button type="button" data-index="'+ obj['id'] +'" class="btn btn-primary apply1">申请加入</button>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -132,25 +132,6 @@ function putIn(data){
             for (var i = 0; i < obj['rank']; i++) {
                 $('.rank' + obj["id"]).append('<i class="fa fa-star"></i>');
             }
-            $('.apply1').on('click',function(e) {
-                console.log(e.target);
-                $.post('/get', {
-                    id: index
-                }, function(data) {
-                    if(data == 2){
-                        $('.myModal'+ obj['id']+' .modal-body').html('<div class="wait"><i class="fa fa-spinner fa-pulse"></i><span>已提交申请，请等候通知...</span></div>');
-                        $('.myModal'+ obj['id']+' .modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
-                    }
-                    if(data == 3){
-                        $('.myModal'+ obj['id']+' .modal-body').html('<span>申请成功，请注意项目结束时间。</span>');
-                        $('.myModal'+ obj['id']+' .modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
-                    }
-                    if(data == 1){
-                        $('.myModal'+ obj['id']+' .modal-body').html('<div class="wait"><i class="fa fa-spinner fa-pulse"></i><span>已提交申请，请等候通知...</span></div>');
-                        $('.myModal'+ obj['id']+' .modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
-                    }
-                })
-            });
 
         }
     });
@@ -179,6 +160,31 @@ function ajaxTest(currentPage) {
             //放入数据
             putIn(data);
             scrollTo(0,0);//回到顶部
+            $('.apply1').on('click',function(e) {
+                var _index = $(this).attr('data-index');
+                $.post('/apply/applyForOutsourcing', {
+                    id: _index
+                }, function(data) {
+                    var body = $('#myModal'+ _index+' .modal-body');
+                    var footer = $('#myModal'+_index+' .modal-footer');
+                    if(data == 0){
+                        body.html('<span>申请失败，该外包报名时间已结束</span>');
+                        footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
+                    }
+                    if(data == 1){
+                        body.html('<span>申请成功，请等待审核...</span>');
+                        footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
+                    }
+                    if(data == 2){
+                        body.html('<div class="wait"><i class="fa fa-spinner fa-pulse"></i><span>该外包正在申请中，不可重复申请</span></div>');
+                        footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
+                    }
+                    if(data == 3){
+                        body.html('<div class="wait"><i class="fa fa-spinner fa-pulse"></i><span>您已成功接取该外包</span></div>');
+                        footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
+                    }
+                })
+            });
             //分页
             $("#pagination").paging({
                 rows:rows,//每页显示条数

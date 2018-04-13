@@ -1,6 +1,6 @@
 package com.zhy.service.mybatis;
 
-import com.zhy.model.workachievement.OrgZTree;
+import com.zhy.model.taskfollow.OrgZTree;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +14,10 @@ import java.util.List;
 public interface OrgZTreeService {
 
     /**
-     * 查询树的所有子节点
-     * @return 所有的子节点
+     * 查询树的所有根节点
+     * @return 所有的根节点
      */
-    List<OrgZTree> getRootNode();
+    List<OrgZTree> getRootNode(String phone);
 
     /**
      * 查询父节点下的所有子节点
@@ -31,5 +31,11 @@ public interface OrgZTreeService {
      * @return 所有的外包名
      */
     List<String> getAllOutsourcingName();
+
+    /**
+     * 保存节点信息
+     * @param orgZTree
+     */
+    void saveOrgTree(OrgZTree orgZTree);
 
 }

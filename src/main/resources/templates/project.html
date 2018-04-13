@@ -69,6 +69,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/staff" sec:authorize="hasRole('ROLE_USER')" >个人资料</a></li>
                         <li><a href="/manager" sec:authorize="hasRole('ROLE_ADMIN')" >管理界面</a></li>
+                        <li><a href="/admin" sec:authorize="hasRole('ROLE_SUPERADMIN')" >超级管理界面</a></li>
                         <li><a href="#">项目</a></li>
                         <li><a href="#">关注</a></li>
                         <li><a href="#">通知</a></li>
@@ -189,7 +190,7 @@
         </div>
     </div>
     <div class="foot">
-        <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋</span></p>
+        <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋&田宇</span></p>
     </div>
     <!--js-->
     <script src="js/request.js"></script>

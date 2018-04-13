@@ -31,6 +31,7 @@ public class FileUtil {
         }
         try {
             out.write(file);
+            out.flush();
         } catch (IOException e) {
             e.printStackTrace();
             return 0;

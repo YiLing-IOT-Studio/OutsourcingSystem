@@ -1,7 +1,7 @@
-package com.zhy.controller.workachievement;
+package com.zhy.controller.employer.taskfollow;
 
 import com.zhy.component.outsourcing.dealwithdynamic.DealWithDynamic;
-import com.zhy.model.workachievement.DynamicInformation;
+import com.zhy.model.taskfollow.DynamicInformation;
 import com.zhy.repository.mybatis.DynamicStateRepository;
 import com.zhy.service.mybatis.OrgZTreeService;
 import com.zhy.service.mybatis.DynamicInformationService;

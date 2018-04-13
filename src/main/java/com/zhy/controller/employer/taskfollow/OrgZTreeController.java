@@ -1,13 +1,15 @@
-package com.zhy.controller.workachievement;
+package com.zhy.controller.employer.taskfollow;
 
-import com.zhy.model.workachievement.OrgZTree;
+import com.zhy.model.taskfollow.OrgZTree;
 import com.zhy.service.mybatis.OrgZTreeService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,10 +28,10 @@ public class OrgZTreeController {
 
     @PostMapping("/getOrgZTree")
     @ResponseBody
-    public JSONArray getOrgZTree(){
+    public JSONArray getOrgZTree(@AuthenticationPrincipal Principal principal){
         List<Map<String, Object>> resultList = new ArrayList<>();
 
-        List<OrgZTree> rootNodeList = orgZTreeService.getRootNode();
+        List<OrgZTree> rootNodeList = orgZTreeService.getRootNode(principal.getName());
         List<OrgZTree> childNodeList;
 
         Map<String, Object> orgZTreeMap;

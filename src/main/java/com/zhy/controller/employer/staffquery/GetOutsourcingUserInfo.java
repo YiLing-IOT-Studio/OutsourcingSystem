@@ -1,4 +1,4 @@
-package com.zhy.controller.outsourcinguserinfo;
+package com.zhy.controller.employer.staffquery;
 
 import com.zhy.model.outsourcing.OutsourcingUserInfo;
 import com.zhy.service.mybatis.OutsourcingUserInfoService;

@@ -40,7 +40,7 @@ function fillData(data){
 $("#li_cg_item").click(function(){
     $.ajax({
         type:"get",
-        url:'/staff_info',
+        url:'/getOutsourcing',
         dataType:"json",
         data:{
 

@@ -13,14 +13,29 @@ public class SignRecords {
 
     private int id;
 
+    /**
+     * 接包人名
+     */
     private String username;
 
+    /**
+     * 接包人签到时间
+     */
     private long come_time;
 
+    /**
+     * 接包人签退时间
+     */
     private long leave_time;
 
+    /**
+     * 接包人签到总时间
+     */
     private long total_time;
 
+    /**
+     * 接包人签到时间字符串
+     */
     private String str_time;
 
 }
