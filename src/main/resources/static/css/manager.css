@@ -96,20 +96,7 @@ body{
 
     box-shadow: -1px 2px 1px rgba(0,0,0,0.5);
 }
-.page2::before{
-    position:absolute;
-    left:0;
-    top:0;
-    width:0;
 
-    content:"";
-    display:block;
-    border:20px solid #999999;
-    border-color:transparent  #fbf069 #fbf069 transparent;
-    background-color: #fff;
-
-    box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-}
 .directory{
     width:20%;
     height:200px;

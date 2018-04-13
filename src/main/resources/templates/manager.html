@@ -83,7 +83,7 @@
             <ul class="funcListUl ">
                 <li class="active" id="li_xx_item"><a href="#info" id="xx_item" data-toggle="tab">人员信息查询/维护</a></li>
                 <li id="li_kq_item"><a href="#kaoqin" id="kq_item" data-toggle="tab">人员考勤情况</a></li>
-                <li id="li_gl_item"><a href="#distribute" id="gl_item" data-toggle="tab">任务分配</a></li>
+                <li id="li_gl_item"><a href="#distribute" id="gl_item" data-toggle="tab">任务发布</a></li>
                 <li id="li_gj_item"><a href="#task_state" id="gj_item" data-toggle="tab">任务跟进</a></li>
                 <li id="li_fb_item"><a href="#fabu" id="fb_item" data-toggle="tab">发布新外包</a></li>
                 <li id="li_zy_item"><a href="#resources" id="zy_item" data-toggle="tab">项目资源</a></li>
@@ -172,11 +172,12 @@
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">项目管理</a></li>
-                    <li class="active">任务分配</li>
+                    <li class="active">任务发布</li>
                 </ol>
                 <div class="container alist">
                     <button type="button" class="btn btn-lg btn-info addAll">新建任务</button>
-                    <div id="task"></div>
+                    <form id="task"></form>
+
 
                 </div>
             </div>
@@ -270,8 +271,8 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                <label for="myName">项目名称</label>
-                                <input class="form-control input-lg" id="myName" name="myName"/>
+                                    <label for="myName">项目名称</label>
+                                    <input class="form-control input-lg" id="myName" name="myName"/>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -420,7 +421,7 @@
                                 <input class="form-control input-lg" name="fileName" id="fileName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
                             </div>
                             <div class="form-group">
-                                <label>文件描述</label>
+                                <label></label>
                                 <input type="text" class="form-control input-lg" name="fileDescription" id="fileDescription" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件描述';}" />
                             </div>
                             <div class="form-group">
