@@ -1,0 +1,19 @@
+.op{
+    border-top:1px solid #D0D6D9;
+    border-bottom:1px solid #D0D6D9;
+    margin-top:15px;
+}
+.day{
+    font-size:14px;
+    font-weight:lighter;
+    color:gray;
+    text-indent: 2rem;
+}
+.user{
+    font-size:16px;
+    font-weight:700;
+}
+.description{
+    font-size:16px;
+    text-indent: 2rem;
+}

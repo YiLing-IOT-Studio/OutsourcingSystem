@@ -8,10 +8,6 @@ function fillData(data){
     $.each(data,function(index,obj){
         if (index != (data.length)) {
             var tr= $('<tr></tr>');
-            //序号
-            var kId= $('<td></td>');
-            kId.append(obj['id']);
-            tr.append(kId);
 
             //项目名称
             var kName= $('<td></td>');
@@ -32,6 +28,11 @@ function fillData(data){
             var kTotal= $('<td></td>');
             kTotal.append(obj['category']);
             tr.append(kTotal);
+
+            //状态
+            var kState=$('<td></td>');
+            kState.append(obj['state']);
+            tr.append(kState);
 
             kBody.append(tr);
         }
