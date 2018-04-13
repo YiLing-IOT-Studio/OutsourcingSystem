@@ -195,45 +195,45 @@
                         </ul>
                     </div>
                     <div id="follow" class="tab-pane fade">
-                        <div class="my-inline-block text-center">
-                            <span class="glyphicon glyphicon-folder-close my-folder"></span>
-                            <span class="folder-name">folder-name1</span>
-                        </div>
-                        <div class="my-inline-block text-center">
-                            <span class="glyphicon glyphicon-folder-close my-folder"></span>
-                            <span class="folder-name">folder-name2</span>
-                        </div>
-                        <div class="my-inline-block text-center">
-                            <span class="glyphicon glyphicon-folder-close my-folder"></span>
-                            <span class="folder-name">folder-name3</span>
-                        </div>
-                        <script type="text/javascript">
-                            $(".my-inline-block").click(function() {
-                                var oDiv=$("#follow");
-                                var clear = "";
-                                oDiv.html(clear);
-                                var project_name = $(this).find(".folder-name").text();
-                                console.log(project_name);
-                                var oP = $("<div class='op'></div>");
-                                //name
-                                var oH2 = $("<p class='user'><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></p>");
-                                oH2.append(''+obj['name'] + '&nbsp;&nbsp;&nbsp;&nbsp;');
-                                oP.append(oH2);
+                        <!--<div class="my-inline-block text-center">-->
+                            <!--<span class="glyphicon glyphicon-folder-close my-folder"></span>-->
+                            <!--<span class="folder-name">folder-name1</span>-->
+                        <!--</div>-->
+                        <!--<div class="my-inline-block text-center">-->
+                            <!--<span class="glyphicon glyphicon-folder-close my-folder"></span>-->
+                            <!--<span class="folder-name">folder-name2</span>-->
+                        <!--</div>-->
+                        <!--<div class="my-inline-block text-center">-->
+                            <!--<span class="glyphicon glyphicon-folder-close my-folder"></span>-->
+                            <!--<span class="folder-name">folder-name3</span>-->
+                        <!--</div>-->
+                        <!--<script type="text/javascript">-->
+                            <!--$(".my-inline-block").click(function() {-->
+                                <!--var oDiv=$("#follow");-->
+                                <!--var clear = "";-->
+                                <!--oDiv.html(clear);-->
+                                <!--var project_name = $(this).find(".folder-name").text();-->
+                                <!--console.log(project_name);-->
+                                <!--var oP = $("<div class='op'></div>");-->
+                                <!--//name-->
+                                <!--var oH2 = $("<p class='user'><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></p>");-->
+                                <!--oH2.append(''+obj['name'] + '&nbsp;&nbsp;&nbsp;&nbsp;');-->
+                                <!--oP.append(oH2);-->
 
 
 
-                                //info_上传说明
-                                var oMsg = $("<p class='description'></p>");
-                                oMsg.append(obj['info'].day);
-                                oP.append(oMsg);
+                                <!--//info_上传说明-->
+                                <!--var oMsg = $("<p class='description'></p>");-->
+                                <!--oMsg.append(obj['info'].day);-->
+                                <!--oP.append(oMsg);-->
 
-                                //日期
-                                var oDate = $("<p class='day'></p>");
-                                oDate.append("时间:"+obj['info'].msg);
-                                oP.append(oDate);
-                                oDiv.append(oP);
-                            });
-                        </script>
+                                <!--//日期-->
+                                <!--var oDate = $("<p class='day'></p>");-->
+                                <!--oDate.append("时间:"+obj['info'].msg);-->
+                                <!--oP.append(oDate);-->
+                                <!--oDiv.append(oP);-->
+                            <!--});-->
+                        <!--</script>-->
                         <!--<div id="pagi-father">-->
                             <!--<div id="pagination">-->
                                 <!--<a id="firstPage">首页</a>-->
