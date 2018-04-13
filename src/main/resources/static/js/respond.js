@@ -1,5 +1,7 @@
 (function() {
     //查看外包信息
+    allMsg();
+
     function allMsg() {
         $.get('', function(data) {
             $('#tBody').empty();
@@ -12,10 +14,16 @@
                     '<td>' + data[i].publishTime + '</td>' +
                     '<td>' + data[i].registrationDeadline + '</td>' +
                     '<td>' + data[i].projectDeadline + '</td>' +
+                    '<td><a class="contractor" data-index="' + data[i].id + '" href="#">查看所有接包人/编辑</a></td>' +
                     '<td><a class="more" data-index="' + data[i].id + '" href="#">查看更多信息/编辑</a></td>' +
                     '</tr>');
                 $('#tBody').append(row);
             }
+            $('.contractor').click(function() {
+
+            });
+            //查看接包人/编辑
+            //查看更多信息/编辑
             $('.more').click(function() {
                 var _this = $(this);
                 $.post('', {
