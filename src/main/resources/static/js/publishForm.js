@@ -94,6 +94,23 @@ $("#mySubmit").click(function(event){
         alert("项目金额请用阿拉伯数字填写~");
     }
     else{
-        $("#publishForm").submit();
+        var form = new FormData(document.getElementById("publishForm"));
+        $.ajax({
+            type:"post",
+            url:"/",
+            dataType:"json",
+            data:form,
+            success:function(data){
+                if(data==1){
+                    alert("发布成功");
+                }
+                else{
+                    alert("发布失败");
+                }
+            },
+            error:function(){
+                alert("请求发布失败");
+            }
+        })
     }
 })

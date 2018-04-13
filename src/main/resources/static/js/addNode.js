@@ -44,6 +44,8 @@ oBtn1.click(function(){
         var taskDev = $(".taskDev");
         console.log(taskDev.val());
         var taskGrade = $(":radio[name='authority']");
+        var val=$('input:radio[name="authority"]:checked').val();
+        console.log(val);
         if (projectName.val() == "") {
             alert("请填写项目名~");
 
@@ -65,7 +67,26 @@ oBtn1.click(function(){
             alert("请选择任务等级");
         }
         else {
-            $("#task").submit();
+           var form = new FormData(document.getElementById("task"));
+            $.ajax({
+                type:"post",
+                url:"/",
+                dataType:"json",
+                data:form,
+                processData: false,
+                contentType: false,
+                success:function(data){
+                    if(data==1){
+                        alert("发布成功");
+                    }
+                    else{
+                        alert("发布失败");
+                    }
+                },
+                error:function(){
+                    alert("请求发布失败");
+                }
+            });
         }
     });
 

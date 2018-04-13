@@ -3,40 +3,40 @@
  */
 
 for(var i=0;i<10;i++){
-    var oDiv=$("#myTaskName");
+    var oDiv=$("select");
     var my_option=$("<option></option>");
     my_option.append(i);
     // my_option.attr('value',i);
     // console.log(my_option.value);
     oDiv.append(my_option);
 }
-$("#myTaskName").focus(function(){
-    var oDiv=$("#myTaskName");
-    oDiv.html("");
-    var projectName=$("#projectName").val();
-    console.log(projectName);
-    $.ajax({
-        type:"get",
-        url:"/",
-        dataType:"json",
-        data:{
-            'projectName':projectName
-        },
-        success:function(data){
-            var oDiv=$("#myTaskName");
-            oDiv.html("");
-            for(var i in data){
-                var my_option=$("<option></option>");
-                my_option.append(data[i]);
-                oDiv.append(my_option);
-            }
-        },
-        error:function(){
-            alert("上传资源失败！");
-        }
-
-    });
-});
+// $("#myTaskName").focus(function(){
+//     var oDiv=$("#myTaskName");
+//     oDiv.html("");
+//     var projectName=$("#projectName").val();
+//     console.log(projectName);
+//     $.ajax({
+//         type:"get",
+//         url:"/",
+//         dataType:"json",
+//         data:{
+//             'projectName':projectName
+//         },
+//         success:function(data){
+//             var oDiv=$("#myTaskName");
+//             oDiv.html("");
+//             for(var i in data){
+//                 var my_option=$("<option></option>");
+//                 my_option.append(data[i]);
+//                 oDiv.append(my_option);
+//             }
+//         },
+//         error:function(){
+//             alert("上传资源失败！");
+//         }
+//
+//     });
+// });
 $("#uplBtn").click(function(event){
     event.preventDefault();
     if($("#projectName").val()=="项目名"){
@@ -49,7 +49,25 @@ $("#uplBtn").click(function(event){
         alert("请选择上传文件");
     }
     else{
-        alert("上传成功！");
-        $("#uploadForm").submit();
+        var form = new FormData(document.getElementById("uploadForm"));
+        $.ajax({
+            type:"post",
+            url:"/",
+            dataType:"json",
+            data:form,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if(data==1){
+                    alert("上传成功");
+                }
+                else{
+                    alert("上传失败");
+                }
+            },
+            error:function(){
+                alert("请求上传资料失败");
+            }
+        })
     }
 });

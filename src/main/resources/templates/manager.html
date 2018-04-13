@@ -176,12 +176,12 @@
                 </ol>
                 <div class="container alist">
                     <button type="button" class="btn btn-lg btn-info addAll">新建任务</button>
-                    <form id="task"></form>
+                    <form id="task"  enctype="multipart/form-data"></form>
 
 
                 </div>
             </div>
-            <script src="js/addNode.js"></script>
+            <script src="../static/js/addNode.js"></script>
 
             <div class="tab-pane fade" id="task_state">
                 <ul class="nav nav-tabs">
@@ -415,7 +415,7 @@
                     <li class="active">项目资料</li>
                 </ol>
                 <div id="upload" style="width:65%; margin:0 auto;">
-                    <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data">
+                    <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data" target="rfFrame">
                             <div class="form-group">
                                 <label for="projectName">项目名</label>
                                 <input class="form-control input-lg" name="projectName" id="projectName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
@@ -436,6 +436,7 @@
                                 <button type="submit" class="btn btn-success bnt-lg" id="uplBtn">Upload</button>
                             </div>
                     </form>
+                    <iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
                 </div>
 
             </div>

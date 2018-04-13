@@ -6,7 +6,7 @@ $("#uplBtn").click(function(event){
     event.preventDefault();
     var progress_value=$("#progress").val();
     alert(progress_value);
-    if($("#fileName").val()=="项目名"){
+    if($("#projectName").val()=="项目名"){
         alert("请填写项目的名字！");
     }
     else if($("#fileDescription").val()=="文件描述"){
@@ -23,7 +23,25 @@ $("#uplBtn").click(function(event){
         alert("请选择上传文件");
     }
     else{
-        alert("上传成功！");
-        $("#uploadForm").submit();
+        var form = new FormData(document.getElementById("uploadForm"));
+        $.ajax({
+            type:"post",
+            url:"/",
+            dataType:"json",
+            data:form,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                if(data==1){
+                    alert("上传成功");
+                }
+                else{
+                    alert("上传失败");
+                }
+            },
+            error:function(){
+                alert("请求上传资料失败");
+            }
+        })
     }
 });
