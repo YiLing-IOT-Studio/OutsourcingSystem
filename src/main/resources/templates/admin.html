@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>manager</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--bootstrap-datetimepicker-->
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <!--zTree-->
+    <!-- <link href="../static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" /> -->
+    <!--css-->
+    <link href="../static/css/admin.css" rel="stylesheet" />
+    <!-- <link href="../static/css/directory.css" rel="stylesheet" />
+    <link href="../static/css/folder.css" rel="stylesheet" />
+    <link href="../static/css/info.css" rel="stylesheet" /> -->
+    <!-- <link href="../static/css/star.css" rel="stylesheet" /> -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--plugs:bootstrap-datetimepicker-->
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!--jquery:cookie-->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!--zTree-->
+    <script src="../static/js/jquery.ztree.core.min.js"></script>
+    <!-- <script src="../static/js/star.js"></script> -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="wrap container-fuild">
+        <nav class="navbar navbar-default navbar-fixed-top ">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header logo">
+                    <a class="navbar-brand" href="project.html">
+                        <h1 class="atitle">智能外包</h1>
+                    </a>
+
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="drop-down">
+                            <a id="username" href="#"><span sec:authentication="name"></span><span class="caret" id="caret"></span></a>
+                            <ul class="drop-down-content">
+                                <li><a href="#">账号管理</a></li>
+                                <li><a href="#">消息</a></li>
+                                <li><a th:href="@{/logout}">退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </nav>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Hi, manager!</h1>
+                <p class="jumbotron-text">您可以在这里管理外包人员的资料信息，查看外包项目实时完成情况或发布新项目。</p>
+                <!--<p><a class="btn btn-primary btn-lg" href="#fabu" role="button">发布新外包</a></p>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="leftSide col-md-2">
+                <div class="personalInfo">
+                    <a href="#info" class="headPortrait">
+                        <img src="../static/img/headPortrait.png" id="headPortrait" />
+                    </a>
+                    <div id="nickname">
+                        <p id="personName" sec:authentication="name"></p>
+                        <!--<a href="#info" class="manageBtn">账号管理</a>-->
+                    </div>
+                </div>
+                <div class="funcList">
+                    <ul class="funcListUl ">
+                        <li class="active" id="li_xx_item"><a href="#info" id="xx_item" data-toggle="tab">查看外包信息</a></li>
+                        <li id="li_kq_item"><a href="#message" id="kq_item" data-toggle="tab">申请发包人消息</a></li>
+                        <!-- <li id="li_gl_item"><a href="#distribute" id="gl_item" data-toggle="tab">任务分配</a></li>
+                                <li id="li_gj_item"><a href="#task_state" id="gj_item" data-toggle="tab">任务跟进</a></li>
+                                <li id="li_fb_item"><a href="#fabu" id="fb_item" data-toggle="tab">发布新外包</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="mainRight tab-content col-md-10">
+                <div class="tab-pane fade in  active" id="info">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">外包管理</a></li>
+                        <li class="active">信息查询</li>
+                    </ol>
+                    <div class="panel panel-primary">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading" id="title">外包信息登记表</div>
+
+                        <!-- Table -->
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>外包名</th>
+                                    <th>发包者</th>
+                                    <th>项目状态</th>
+                                    <th>项目进度</th>
+                                    <th>项目发布时间</th>
+                                    <th>报名截止时间</th>
+                                    <th>项目截止时间</th>
+                                    <th>查看更多信息/编辑</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tBody">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#">查看更多信息/编辑</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="moreMsg clearfix">
+                            <form class="col-sm-8 form col-center-block" action="">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-telegram"></i>
+                                        <label for="name">外包名：</label>
+                                        <input type="email" class="form-control" id="name" name="name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-user-o publisher"></i>
+                                        <label for="publisher">发包者：</label>
+                                        <input type="email" class="form-control" id="publisher" name="publisher">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-lightbulb-o"></i>
+                                        <label for="publishTime">项目发布时间：</label>
+                                        <input type="email" class="form-control" id="publishTime" name="publishTime">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-shield"></i>
+                                        <label for="rank">项目安全等级：</label>
+                                        <input type="email" class="form-control" id="rank" name="rank">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-tag"></i>
+                                        <label for="category">项目分类：</label>
+                                        <input type="email" class="form-control" id="category" name="category">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-spinner"></i>
+                                        <label for="state">项目状态：</label>
+                                        <input type="email" class="form-control" id="state" name="state">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-rmb"></i>
+                                        <label for="amount">项目金额：</label>
+                                        <input type="email" class="form-control" id="amount" name="amount">
+                                    </div>
+                                </div>
+                                <div class="content col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-question-circle"></i>
+                                        <label for="content">项目说明：</label>
+                                        <input type="email" class="form-control" id="content" name="content">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-pencil-square"></i>
+                                        <label for="requirement">项目要求：</label>
+                                        <input type="email" class="form-control" id="requirement" name="requirement">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-history"></i>
+                                        <label for="progress">项目进度：</label>
+                                        <input type="email" class="form-control" id="progress" name="progress">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-hourglass-start"></i>
+                                        <label for="registrationDeadline">报名截止时间：</label>
+                                        <input type="email" class="form-control" id="registrationDeadline" name="registrationDeadline">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-hourglass-end"></i>
+                                        <label for="projectDeadline">项目截止时间：</label>
+                                        <input type="email" class="form-control" id="projectDeadline" name="projectDeadline">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary btn-block">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="moreMsg clearfix hidden">
+                            <form class="col-sm-8 form col-center-block" action="">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-telegram"></i>
+                                        <label>外包名：</label>
+                                        <span>name</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-user-o publisher"></i>
+                                        <label>发包者：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-lightbulb-o"></i>
+                                        <label>项目发布时间：</label>
+                                        <span>name</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-shield"></i>
+                                        <label>项目安全等级：</label>
+                                        <span class="rank">name</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-tag"></i>
+                                        <label>项目分类：</label>
+                                        <span>name</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-spinner"></i>
+                                        <label>项目状态：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-rmb"></i>
+                                        <label>项目金额：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="content col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-question-circle"></i>
+                                        <label>项目说明：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-pencil-square"></i>
+                                        <label>项目要求：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-history"></i>
+                                        <label>项目进度：</label>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span class="sr-only">50% Complete (success)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-hourglass-start"></i>
+                                        <label>报名截止时间：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-hourglass-end"></i>
+                                        <label>项目截止时间：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="btnBox col-sm-3 pull-right">
+                                    <button class="btn btn-primary return">返回</button>
+                                    <button class="btn btn-danger edit">编辑</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade in" id="message">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">申请审核</a></li>
+                        <li class="active">消息列表</li>
+                    </ol>
+                    <div class="panel panel-primary">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">申请消息列表</div>
+                        <div class="allMsg">
+                            <div class="one">
+                                <div class="alert alert-danger clearfix" role="alert">
+                                    <span><button type="button" class="btn btn-default applicant" data-toggle="tooltip" data-placement="bottom" title="点击可查看该人信息">田宇</button>申请成为发包人</span>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary">同意</button>
+                                        <button class="btn btn-danger">拒绝</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="one">
+                                <div class="alert alert-danger clearfix" role="alert">
+                                    <span><button type="button" class="btn btn-default applicant" data-toggle="tooltip" data-placement="bottom" title="点击可查看该人信息">田宇</button>申请成为发包人</span>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary">同意</button>
+                                        <button class="btn btn-danger">拒绝</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--js-->
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</body>
+
+</html>
