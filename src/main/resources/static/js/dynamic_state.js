@@ -51,7 +51,7 @@ $("#follow-tab").click(function(){
                                 var oP = $("<div class='op'></div>");
                                 //name
                                 var oH2 = $("<p class='user'><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></p>");
-                                oH2.append(''+obj['name'] + '&nbsp;&nbsp;&nbsp;&nbsp;');
+                                oH2.append('<span class="author">'+''+obj['name']+'</span>');
                                 oP.append(oH2);
                                 //info_上传说明
                                 var oMsg = $("<p class='description'></p>");
