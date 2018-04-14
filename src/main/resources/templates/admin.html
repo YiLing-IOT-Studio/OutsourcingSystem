@@ -62,7 +62,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Hi, manager!</h1>
-                <p class="jumbotron-text">您可以在这里管理外包人员的资料信息，查看外包信息和审批申请发包人信息。</p>
+                <p class="jumbotron-text">您可以在这里管理外包人员的资料信息，查看外包项目实时完成情况或发布新项目。</p>
                 <!--<p><a class="btn btn-primary btn-lg" href="#fabu" role="button">发布新外包</a></p>-->
             </div>
         </div>
@@ -70,7 +70,7 @@
             <div class="leftSide col-md-2">
                 <div class="personalInfo">
                     <a href="#info" class="headPortrait">
-                        <img src="img/headPortrait.png" id="headPortrait" />
+                        <img src="../static/img/headPortrait.png" id="headPortrait" />
                     </a>
                     <div id="nickname">
                         <p id="personName" sec:authentication="name"></p>
@@ -109,11 +109,13 @@
                                     <th>项目发布时间</th>
                                     <th>报名截止时间</th>
                                     <th>项目截止时间</th>
+                                    <th>接包人</th>
                                     <th>查看更多信息/编辑</th>
                                 </tr>
                             </thead>
                             <tbody id="tBody">
-                                <tr>
+                                <!-- <tr>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -122,10 +124,77 @@
                                     <td></td>
                                     <td></td>
                                     <td><a href="#">查看更多信息/编辑</a></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
-                        <div class="moreMsg clearfix">
+                        <div class="moreMsg clearfix hidden">
+                            <form class="col-sm-8 form col-center-block" action="">
+                                <!-- <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-telegram"></i>
+                                        <label>外包名：</label>
+                                        <span>name</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-user-o publisher"></i>
+                                        <label>发包者：</label>
+                                        <span>name</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-user-o publisher"></i>
+                                        <label>接包者：</label>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-sm-12">
+                                    <div class="alert alert-warning col-sm-12" role="alert">
+                                        <form class="col-sm-12" action="">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6 form-group">
+                                                    <label for="name">姓名：</label>
+                                                    <input type="text" class="form-control" id="name" name="name">
+                                                </div>
+                                                <div class="col-sm-6 form-group">
+                                                    <label for="gender">性别：</label>
+                                                    <input type="text" class="form-control" id="gender" name="gender">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 form-group">
+                                                    <label for="phone">电话：</label>
+                                                    <input type="text" class="form-control" id="phone" name="phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 form-group">
+                                                    <label for="project">负责项目：</label>
+                                                    <input type="text" class="form-control" id="project" name="project">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 form-group">
+                                                    <label for="task">分工细则：</label>
+                                                    <input type="text" class="form-control" id="task" name="task">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <label>是否签订保密协议：</label>
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>合同签订情况：</label>
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-danger pull-right">编辑</button>
+                                        </form>
+                                    </div>
+                                </div> -->
+                            </form>
+                        </div>
+                        <!-- <div class="moreMsg clearfix hidden">
                             <form class="col-sm-8 form col-center-block" action="">
                                 <div class="col-sm-12">
                                     <div class="col-sm-6">
@@ -301,7 +370,7 @@
                                     <button class="btn btn-danger edit">编辑</button>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="tab-pane fade in" id="message">
@@ -314,9 +383,9 @@
                         <!-- Default panel contents -->
                         <div class="panel-heading">申请消息列表</div>
                         <div class="allMsg">
-                            <div class="one">
+                            <!-- <div class="one">
                                 <div class="alert alert-danger clearfix" role="alert">
-                                    <span><button type="button" class="btn btn-default applicant" data-toggle="tooltip" data-placement="bottom" title="点击可查看该人信息">田宇</button>申请成为发包人</span>
+                                    <span><button type="button" class="btn btn-default applicant">田宇</button>申请成为发包人</span>
                                     <div class="pull-right">
                                         <button class="btn btn-primary">同意</button>
                                         <button class="btn btn-danger">拒绝</button>
@@ -325,13 +394,13 @@
                             </div>
                             <div class="one">
                                 <div class="alert alert-danger clearfix" role="alert">
-                                    <span><button type="button" class="btn btn-default applicant" data-toggle="tooltip" data-placement="bottom" title="点击可查看该人信息">田宇</button>申请成为发包人</span>
+                                    <span><button type="button" class="btn btn-default applicant">田宇</button>申请成为发包人</span>
                                     <div class="pull-right">
                                         <button class="btn btn-primary">同意</button>
                                         <button class="btn btn-danger">拒绝</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -340,7 +409,7 @@
         </div>
     </div>
     <div class="foot">
-        <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋&田宇</span></p>
+        <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋</span></p>
     </div>
     <!--js-->
     <script>
@@ -348,6 +417,7 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    <script src="../static/js/manager_respond.js"></script>
 </body>
 
 </html>

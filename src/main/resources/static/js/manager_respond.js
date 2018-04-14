@@ -3,7 +3,7 @@
     allMsg();
 
     function allMsg() {
-        $.get('', function(data) {
+        $.get('http://localhost:7070/get', function(data) {
             $('#tBody').empty();
             for (i in data) {
                 var row = $('<tr>' +
@@ -19,209 +19,384 @@
                     '</tr>');
                 $('#tBody').append(row);
             }
-            $('.contractor').click(function() {
-
-            });
             //查看接包人/编辑
-            //查看更多信息/编辑
-            $('.more').click(function() {
-                var _this = $(this);
-                $.post('', {
-                    data: _this.attr('data-index')
-                }, function(data) {
-                    var moreMsg = $('.moreMsg');
-                    moreMsg.empty();
-                    $('.table').addClass('hidden');
-                    moreMsg.removeClass('hidden');
-                    $('.title').html('更多信息/编辑');
-                    var msg = $('<form class="col-sm-8 form col-center-block" action="">' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-6">' +
-                        '<i class="fa fa-telegram"></i>' +
-                        '<label>外包名：</label>' +
-                        '<span>' + data[0].name + '</span>' +
-                        '</div>' +
-                        '<div class="col-sm-6">' +
-                        '<i class="fa fa-user-o publisher"></i>' +
-                        '<label>发包者：</label>' +
-                        '<span>' + data[0].publisher + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-6">' +
-                        '<i class="fa fa-lightbulb-o"></i>' +
-                        '<label>项目发布时间：</label>' +
-                        '<span>' + data[0].publishTime + '</span>' +
-                        '</div>' +
-                        '<div class="col-sm-6">' +
-                        '<i class="fa fa-shield"></i>' +
-                        '<label>项目安全等级：</label>' +
-                        '<span class="rank"></span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-6">' +
-                        '<i class="fa fa-tag"></i>' +
-                        '<label>项目分类：</label>' +
-                        '<span>' + data[0].category + '</span>' +
-                        '</div>' +
-                        '<div class="col-sm-6">' +
-                        '<i class="fa fa-spinner"></i>' +
-                        '<label>项目状态：</label>' +
-                        '<span>' + data[0].state + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-12">' +
-                        '<i class="fa fa-rmb"></i>' +
-                        '<label>项目金额：</label>' +
-                        '<span>' + data[0].amount + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="content col-sm-12">' +
-                        '<div class="col-sm-12">' +
-                        '<i class="fa fa-question-circle"></i>' +
-                        '<label>项目说明：</label>' +
-                        '<span>' + data[0].content + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-12">' +
-                        '<i class="fa fa-pencil-square"></i>' +
-                        '<label>项目要求：</label>' +
-                        '<span>' + data[0].requirement + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-12">' +
-                        '<i class="fa fa-history"></i>' +
-                        '<label>项目进度：</label>' +
-                        '<div class="progress">' +
-                        '<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="' + data[0].progress + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + data[0].progress + '%">' +
-                        '<span class="sr-only">' + data[0].progress + '% Complete (success)</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-12">' +
-                        '<i class="fa fa-hourglass-start"></i>' +
-                        '<label>报名截止时间：</label>' +
-                        '<span>' + data[0].registrationDeadline + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="col-sm-12">' +
-                        '<div class="col-sm-12">' +
-                        '<i class="fa fa-hourglass-end"></i>' +
-                        '<label>项目截止时间：</label>' +
-                        '<span>' + data[0].projectDeadline + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="btnBox col-sm-3 pull-right">' +
-                        '<button class="btn btn-primary return">返回</button>' +
-                        '<button class="btn btn-danger edit">编辑</button>' +
-                        '</div>' +
-                        '</form>');
-                    moreMsg.append(msg);
-                    var rank = $('.rank');
-                    for (var i = 0; i < data[0].rank; i++) {
-                        rank.append('<i class="fa fa-star"></i>');
-                    }
-                    //返回键
-                    $('.return').click(function() {
-                            $('.table').removeClass('hidden');
-                            moreMsg.addClass('hidden');
-                        })
-                        //编辑键
-                    $('.edit').click(function() {
+            $('.contractor').click(function() {
+                var thisHead = $(this).parent().siblings().eq(0).html();
+                conPost(thisHead);
+
+                function conPost(con) {
+                    $.post('http://localhost:7070/post', {
+                        name: con
+                    }, function(data) {
+                        var moreMsg = $('.moreMsg');
                         moreMsg.empty();
-                        var msg = $('<form class="col-sm-8 form col-center-block" action="" method="post">' +
+                        $('.table').addClass('hidden');
+                        moreMsg.removeClass('hidden');
+                        $('.title').html('接包人信息/编辑');
+                        var conHead = $('<form id="form" class="col-sm-8 form col-center-block" action="">' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-telegram"></i>' +
-                            '<label for="name">外包名：</label>' +
-                            '<input type="email" class="form-control" id="name" name="name" value="' + data[0].name + '">' +
+                            '<label>外包名：</label>' +
+                            '<span>' + data.name + '</span>' +
                             '</div>' +
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-user-o publisher"></i>' +
-                            '<label for="publisher">发包者：</label>' +
-                            '<input type="email" class="form-control" id="publisher" name="publisher" value="' + data[0].publisher + '">' +
+                            '<label>发包者：</label>' +
+                            '<span>' + data.publisher + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-sm-12">' +
+                            '<div class="col-sm-12">' +
+                            '<i class="fa fa-user-o publisher"></i>' +
+                            '<label>接包者：</label>' +
+                            '</div>' +
+                            '</div>' +
+                            '</form>');
+                        moreMsg.append(conHead);
+                        for (i in data.contractor) {
+                            var sex, promise, contact;
+                            if (data.contractor[i].gender == 'lady') {
+                                sex = '女';
+                            } else {
+                                sex = '男';
+                            }
+                            if (data.contractor[i].promise == 'true') {
+                                promise = 'ok';
+                            } else {
+                                promise = 'remove';
+                            }
+                            if (data.contractor[i].contact == 'true') {
+                                contact = 'ok';
+                            } else {
+                                contact = 'remove';
+                            }
+                            var oneCon = $('<div class="col-sm-12">' +
+                                '<div class="alert alert-warning col-sm-12" role="alert">' +
+                                '<div class="col-sm-12">' +
+                                '<label>姓名：</label>' +
+                                '<span>' + data.contractor[i].name + '</span>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<label>性别：</label>' +
+                                '<span>' + sex + '</span>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<label>电话：</label>' +
+                                '<span>' + data.contractor[i].phone + '</span>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<label>负责项目：</label>' +
+                                '<span>' + data.contractor[i].project + '</span>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<label>分工细则：</label>' +
+                                '<span>' + data.contractor[i].task + '</span>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<label>是否签订保密协议：</label>' +
+                                '<span class="glyphicon glyphicon-' + promise + '"></span>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<label>合同签订情况：</label>' +
+                                '<span class="glyphicon glyphicon-' + contact + '"></span>' +
+                                '</div>' +
+                                '<button type="button" class="btn btn-danger pull-right conBtn" data-id="' + data.contractor[i].id + '">编辑</button>' +
+                                '</div>');
+                            $('.form').append(oneCon);
+                        }
+                        alert('df');
+                        $('.conBtn').click(function() {
+                            var id = $(this).attr('data-id');
+                            $('.form').empty();
+                            var sex, promise, contact;
+                            if (data.contractor[id].gender == 'lady') {
+                                sex = '女';
+                            } else {
+                                sex = '男';
+                            }
+                            if (data.contractor[id].promise == 'true') {
+                                promise = 'ok';
+                            } else {
+                                promise = 'remove';
+                            }
+                            if (data.contractor[id].contact == 'true') {
+                                contact = 'ok';
+                            } else {
+                                contact = 'remove';
+                            }
+                            var editMsg = $('<div class="col-sm-12">' +
+                                '<div class="alert alert-warning col-sm-12" role="alert">' +
+                                '<form class="col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-6 form-group">' +
+                                '<label for="name">姓名：</label>' +
+                                '<input type="text" class="form-control" id="name" name="name" value="' + data.contractor[id].name + '">' +
+                                '</div>' +
+                                '<div class="col-sm-6 form-group">' +
+                                '<label for="gender">性别：</label>' +
+                                '<input type="text" class="form-control" id="gender" name="gender" value="' + sex + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12 form-group">' +
+                                '<label for="phone">电话：</label>' +
+                                '<input type="text" class="form-control" id="phone" name="phone" value="' + data.contractor[id].phone + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12 form-group">' +
+                                '<label for="project">负责项目：</label>' +
+                                '<input type="text" class="form-control" id="project" name="project" value="' + data.contractor[id].project + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12 form-group">' +
+                                '<label for="task">分工细则：</label>' +
+                                '<input type="text" class="form-control" id="task" name="task" value="' + data.contractor[id].task + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-6">' +
+                                '<label>是否签订保密协议：</label>' +
+                                '<span class="glyphicon glyphicon-' + promise + '"></span>' +
+                                '</div>' +
+                                '<div class="col-sm-6">' +
+                                '<label>合同签订情况：</label>' +
+                                '<span class="glyphicon glyphicon-' + contact + '"></span>' +
+                                '</div>' +
+                                '</div>' +
+                                '<button type="button" class="btn btn-danger pull-right sub" data-name="' + data.name + '" data-id="' + data.contractor[id].id + '">提交</button>' +
+                                '</form>' +
+                                '</div>' +
+                                '</div>');
+                            $('.form').append(editMsg);
+                            $('.sub').click(function() {
+                                var _this = $(this);
+                                // conPost(thisHead);
+                                $.post('http://localhost:7070/post', {
+                                    data: $('#form').serialize(),
+                                    name: _this.attr('data-name')
+                                }, function(data) {
+                                    conPost(thisHead);
+                                })
+                            })
+                        });
+                    })
+                }
+            });
+            //查看更多信息/编辑
+            $('.more').click(function() {
+                var th = $(this).attr('data-index');
+                morePost(th);
+
+                function morePost(th) {
+                    $.post('http://localhost:6060/post', {
+                        data: th
+                    }, function(data) {
+                        var moreMsg = $('.moreMsg');
+                        moreMsg.empty();
+                        $('.table').addClass('hidden');
+                        moreMsg.removeClass('hidden');
+                        $('.title').html('更多信息/编辑');
+                        var msg = $('<form class="col-sm-8 form col-center-block" action="">' +
+                            '<div class="col-sm-12">' +
+                            '<div class="col-sm-6">' +
+                            '<i class="fa fa-telegram"></i>' +
+                            '<label>外包名：</label>' +
+                            '<span>' + data[0].name + '</span>' +
+                            '</div>' +
+                            '<div class="col-sm-6">' +
+                            '<i class="fa fa-user-o publisher"></i>' +
+                            '<label>发包者：</label>' +
+                            '<span>' + data[0].publisher + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-lightbulb-o"></i>' +
-                            '<label for="publishTime">项目发布时间：</label>' +
-                            '<input type="email" class="form-control" id="publishTime" name="publishTime" value="' + data[0].publishTime + '">' +
+                            '<label>项目发布时间：</label>' +
+                            '<span>' + data[0].publishTime + '</span>' +
                             '</div>' +
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-shield"></i>' +
-                            '<label for="rank">项目安全等级：</label>' +
-                            '<input type="email" class="form-control" id="rank" name="rank" value="' + data[0].rank + '">' +
+                            '<label>项目安全等级：</label>' +
+                            '<span class="rank"></span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-tag"></i>' +
-                            '<label for="category">项目分类：</label>' +
-                            '<input type="email" class="form-control" id="category" name="category" value="' + data[0].category + '">' +
+                            '<label>项目分类：</label>' +
+                            '<span>' + data[0].category + '</span>' +
                             '</div>' +
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-spinner"></i>' +
-                            '<label for="state">项目状态：</label>' +
-                            '<input type="email" class="form-control" id="state" name="state" value="' + data[0].state + '">' +
+                            '<label>项目状态：</label>' +
+                            '<span>' + data[0].state + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-rmb"></i>' +
-                            '<label for="amount">项目金额：</label>' +
-                            '<input type="email" class="form-control" id="amount" name="amount" value="' + data[0].amount + '">' +
+                            '<label>项目金额：</label>' +
+                            '<span>' + data[0].amount + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="content col-sm-12">' +
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-question-circle"></i>' +
-                            '<label for="content">项目说明：</label>' +
-                            '<input type="email" class="form-control" id="content" name="content" value="' + data[0].content + '">' +
+                            '<label>项目说明：</label>' +
+                            '<span>' + data[0].content + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-pencil-square"></i>' +
-                            '<label for="requirement">项目要求：</label>' +
-                            '<input type="email" class="form-control" id="requirement" name="requirement" value="' + data[0].requirement + '">' +
+                            '<label>项目要求：</label>' +
+                            '<span>' + data[0].requirement + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-history"></i>' +
-                            '<label for="progress">项目进度：</label>' +
-                            '<input type="email" class="form-control" id="progress" name="progress" value="' + data[0].progress + '">' +
+                            '<label>项目进度：</label>' +
+                            '<div class="progress">' +
+                            '<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="' + data[0].progress + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + data[0].progress + '%">' +
+                            '<span class="sr-only">' + data[0].progress + '% Complete (success)</span>' +
+                            '</div>' +
+                            '</div>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-hourglass-start"></i>' +
-                            '<label for="registrationDeadline">报名截止时间：</label>' +
-                            '<input type="email" class="form-control" id="registrationDeadline" name="registrationDeadline" value="' + data[0].registrationDeadline + '">' +
+                            '<label>报名截止时间：</label>' +
+                            '<span>' + data[0].registrationDeadline + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-hourglass-end"></i>' +
-                            '<label for="projectDeadline">项目截止时间：</label>' +
-                            '<input type="email" class="form-control" id="projectDeadline" name="projectDeadline"> value="' + data[0].projectDeadline + '"' +
+                            '<label>项目截止时间：</label>' +
+                            '<span>' + data[0].projectDeadline + '</span>' +
                             '</div>' +
-                            '<div class="col-sm-12">' +
-                            '<div class="col-sm-12">' +
-                            '<button type="submit" class="btn btn-primary btn-block">提交</button>' +
                             '</div>' +
+                            '<div class="btnBox col-sm-3 pull-right">' +
+                            '<button type="button" class="btn btn-primary return">返回</button>' +
+                            '<button type="button" class="btn btn-danger edit">编辑</button>' +
                             '</div>' +
                             '</form>');
                         moreMsg.append(msg);
-                    })
-                });
+                        var rank = $('.rank');
+                        for (var i = 0; i < data[0].rank; i++) {
+                            rank.append('<i class="fa fa-star"></i>');
+                        }
+                        //返回键
+                        $('.return').click(function() {
+                                $('.table').removeClass('hidden');
+                                moreMsg.addClass('hidden');
+                            })
+                            //编辑键
+                        $('.edit').click(function() {
+                            moreMsg.empty();
+                            var msg = $('<form id="form" class="col-sm-8 form col-center-block" action="" method="post">' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-6">' +
+                                '<i class="fa fa-telegram"></i>' +
+                                '<label for="name">外包名：</label>' +
+                                '<input class="form-control" id="name" name="name" value="' + data[0].name + '">' +
+                                '</div>' +
+                                '<div class="col-sm-6">' +
+                                '<i class="fa fa-user-o publisher"></i>' +
+                                '<label for="publisher">发包者：</label>' +
+                                '<input class="form-control" id="publisher" name="publisher" value="' + data[0].publisher + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-6">' +
+                                '<i class="fa fa-lightbulb-o"></i>' +
+                                '<label for="publishTime">项目发布时间：</label>' +
+                                '<input class="form-control" id="publishTime" name="publishTime" value="' + data[0].publishTime + '">' +
+                                '</div>' +
+                                '<div class="col-sm-6">' +
+                                '<i class="fa fa-shield"></i>' +
+                                '<label for="rank">项目安全等级：</label>' +
+                                '<input class="form-control" id="rank" name="rank" value="' + data[0].rank + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-6">' +
+                                '<i class="fa fa-tag"></i>' +
+                                '<label for="category">项目分类：</label>' +
+                                '<input class="form-control" id="category" name="category" value="' + data[0].category + '">' +
+                                '</div>' +
+                                '<div class="col-sm-6">' +
+                                '<i class="fa fa-spinner"></i>' +
+                                '<label for="state">项目状态：</label>' +
+                                '<input class="form-control" id="state" name="state" value="' + data[0].state + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<i class="fa fa-rmb"></i>' +
+                                '<label for="amount">项目金额：</label>' +
+                                '<input class="form-control" id="amount" name="amount" value="' + data[0].amount + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="content col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<i class="fa fa-question-circle"></i>' +
+                                '<label for="content">项目说明：</label>' +
+                                '<input class="form-control" id="content" name="content" value="' + data[0].content + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<i class="fa fa-pencil-square"></i>' +
+                                '<label for="requirement">项目要求：</label>' +
+                                '<input class="form-control" id="requirement" name="requirement" value="' + data[0].requirement + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<i class="fa fa-history"></i>' +
+                                '<label for="progress">项目进度：</label>' +
+                                '<input class="form-control" id="progress" name="progress" value="' + data[0].progress + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<i class="fa fa-hourglass-start"></i>' +
+                                '<label for="registrationDeadline">报名截止时间：</label>' +
+                                '<input class="form-control" id="registrationDeadline" name="registrationDeadline" value="' + data[0].registrationDeadline + '">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<i class="fa fa-hourglass-end"></i>' +
+                                '<label for="projectDeadline">项目截止时间：</label>' +
+                                '<input class="form-control" id="projectDeadline" name="projectDeadline"  value="' + data[0].projectDeadline + '">' +
+                                '</div>' +
+                                '<div class="col-sm-12">' +
+                                '<div class="col-sm-12">' +
+                                '<button type="button" class="btn btn-primary btn-block" data-id="' + data[0].id + '">提交</button>' +
+                                '</div>' +
+                                '</div>' +
+                                '</form>');
+                            moreMsg.append(msg);
+                            $('.btn-block').click(function() {
+                                var _this = $(this);
+                                $.post('http://localhost:7070/post', {
+                                    data: $('#form').serialize(),
+                                    name: _this.attr('data-id')
+                                }, function() {
+                                    morePost(th);
+                                })
+                            })
+                        })
+                    });
+                }
             })
 
         })
@@ -237,7 +412,7 @@
                 var respondEmail = $('<div class="one">' +
                     '<div class="alert alert-danger clearfix" role="alert">' +
                     '<span>' +
-                    '<button type="button" class="btn btn-default applicant" data-toggle="tooltip" data-placement="bottom" title="点击可查看该人信息">' + data[i].applicant + '</button>' +
+                    '<button type="button" class="btn btn-default applicant" data-name="' + data[i].applicant + '">' + data[i].applicant + '</button>' +
                     '申请成为发包人</span>' +
                     '<div class="pull-right checkBox" data-index="' + data[i].id + '">' +
                     '</div>' +
@@ -251,6 +426,14 @@
                         '<button class="btn btn-danger disagree">拒绝</button>');
                 }
             }
+            $('.applicant').click(function() {
+                var _this = $(this);
+                $.post('', {
+                    name: _this.attr('data-name')
+                }, function(data) {
+
+                })
+            })
 
             function check($name, url, result) {
                 $("." + $name).click(function() {
