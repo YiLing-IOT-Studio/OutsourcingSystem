@@ -10,9 +10,9 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--css-->
-    <link href="../static/css/staff.css" rel="stylesheet"/>
-    <link href="../static/css/folder.css" rel="stylesheet"/>
-    <link href="../static/css/msg.css" rel="stylesheet"/>
+    <link href="css/staff.css" rel="stylesheet"/>
+    <link href="css/folder.css" rel="stylesheet"/>
+    <link href="css/msg.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -52,7 +52,7 @@
         <div class="leftSide col-md-2">
             <div class="personalInfo">
                 <a href="#info" class="headPortrait">
-                    <img src="../static/img/headPortrait.png" id="headPortrait"/>
+                    <img src="img/headPortrait.png" id="headPortrait"/>
                 </a>
                 <div id="nickname">
                     <p id="personName" th:text="${userName}"></p>
@@ -98,7 +98,7 @@
                     </table>
                 </div>
             </div>
-            <script src="../static/js/staff_info.js"></script>
+            <script src="js/staff_info.js"></script>
 
             <div class="tab-pane fade" id="project">
                 <ol class="breadcrumb">
@@ -121,7 +121,7 @@
                     </tbody>
                 </table>
             </div>
-            <script src="../static/js/staff_project.js"></script>
+            <script src="js/staff_project.js"></script>
 
             <div class="tab-pane fade" id="achievement">
                 <ol class="breadcrumb">
@@ -130,8 +130,7 @@
                     <li class="active">成果上传</li>
                 </ol>
                 <div id="upload" style="width:65%; margin:0 auto;">
-                        <form id="uploadForm" name="uploadForm" action="/submissionWork" method="post" enctype="multipart/form-data">
-                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <form id="uploadAchievement" name="uploadAchievement" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="projectName">项目名</label>
                                 <input class="form-control input-lg" name="outsourcingName" id="projectName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
@@ -192,8 +191,8 @@
     </div>
 
 
-    <script src="../static/js/staff_resources.js"></script>
-    <script src="../static/js/staff_uploadAchievement.js"></script>
-    <script src="../static/js/staff_inform.js"></script>
+    <script src="js/staff_resources.js"></script>
+    <script src="js/staff_uploadAchievement.js"></script>
+    <script src="js/staff_inform.js"></script>
 </body>
 </html>

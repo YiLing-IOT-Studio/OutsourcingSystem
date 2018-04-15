@@ -170,16 +170,13 @@ function ajaxTest(currentPage) {
                     if(data == 0){
                         body.html('<span>申请失败，该外包报名时间已结束</span>');
                         footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
-                    }
-                    if(data == 1){
+                    }else if(data == 1){
                         body.html('<span>申请成功，请等待审核...</span>');
                         footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
-                    }
-                    if(data == 2){
+                    }else if(data == 2){
                         body.html('<div class="wait"><i class="fa fa-spinner fa-pulse"></i><span>该外包正在申请中，不可重复申请</span></div>');
                         footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
-                    }
-                    if(data == 3){
+                    }else if(data == 3){
                         body.html('<div class="wait"><i class="fa fa-spinner fa-pulse"></i><span>您已成功接取该外包</span></div>');
                         footer.html('<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>');
                     }

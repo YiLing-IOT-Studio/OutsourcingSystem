@@ -20,8 +20,8 @@ public class OutsourcingUserInfoServiceImpl implements OutsourcingUserInfoServic
     OutsourcingUserInfoMapper outsourcingUserInfoMapper;
 
     @Override
-    public List<OutsourcingUserInfo> selectAllOutsourcingUserInfo() {
-        return outsourcingUserInfoMapper.selectAllOutsourcingUserInfo();
+    public List<OutsourcingUserInfo> selectAllOutsourcingUserInfoByMangerPhone(String mangerPhone) {
+        return outsourcingUserInfoMapper.selectAllOutsourcingUserInfoByMangerPhone(mangerPhone);
     }
 
     @Override

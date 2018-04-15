@@ -11,17 +11,33 @@ function fillData(data){
 
             //项目名称
             var kName= $('<td></td>');
-            kName.append(obj['username']);
+            kName.append(obj['name']);
             tr.append(kName);
 
             //报名截止时间
             var kSignIn= $('<td></td>');
-            kSignIn.append(obj['come_time']);
+            var date=new Date(obj['registrationDeadline']);
+            var Y= date.getFullYear() + '/';
+            var M= (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '/';
+            var D = date.getDate() + ' ';
+            var h = date.getHours() + ':';
+            var m = date.getMinutes() + ':';
+            var s = date.getSeconds();
+            var registrationDeadline=Y+M+D+h+m+s;
+            kSignIn.append(registrationDeadline);
             tr.append(kSignIn);
 
             //项目截止时间
             var kSignOut= $('<td></td>');
-            kSignOut.append(obj['leave_time']);
+            var date=new Date(obj['projectDeadline']);
+            var Y= date.getFullYear() + '/';
+            var M= (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '/';
+            var D = date.getDate() + ' ';
+            var h = date.getHours() + ':';
+            var m = date.getMinutes() + ':';
+            var s = date.getSeconds();
+            var projectDeadline=Y+M+D+h+m+s;
+            kSignOut.append(projectDeadline);
             tr.append(kSignOut);
 
             //项目分类
@@ -38,7 +54,7 @@ function fillData(data){
         }
     })
 }
-$("#li_cg_item").click(function(){
+$("#li_xm_item").click(function(){
     $.ajax({
         type:"get",
         url:'/getOutsourcing',

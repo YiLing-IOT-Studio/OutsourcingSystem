@@ -1,6 +1,8 @@
 package com.zhy.service.outsourcinginfo;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
+import com.zhy.model.taskfollow.OrgZTree;
+import com.zhy.service.mybatis.OrgZTreeService;
 import com.zhy.service.mybatis.OutsourcingInfoService;
 import com.zhy.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,10 @@ public class ReleaseOutsourcingService {
 
     @Autowired
     OutsourcingInfoService outsourcingInfoService;
+    @Autowired
+    OrgZTreeService orgZTreeService;
 
-    public int releaseOutsourcing(OutsourcingInfo outsourcingInfo, MultipartFile file, String filePath, String fileName) throws IOException {
+    public int releaseOutsourcing(OutsourcingInfo outsourcingInfo,String publisherPhone, MultipartFile file, String filePath, String fileName) throws IOException {
 
         FileUtil fileUtil = new FileUtil();
         int uploadResult = fileUtil.uploadFile(file.getBytes(), filePath, fileName);
@@ -32,6 +36,11 @@ public class ReleaseOutsourcingService {
         }
 
         int releaseOutsourcingResult = outsourcingInfoService.saveOutsourcingInfo(outsourcingInfo);
+
+        if(releaseOutsourcingResult == 1){
+            OrgZTree orgZTree = new OrgZTree(0, outsourcingInfo.getName(), publisherPhone, true);
+            orgZTreeService.saveOrgTree(orgZTree);
+        }
 
         return releaseOutsourcingResult;
     }

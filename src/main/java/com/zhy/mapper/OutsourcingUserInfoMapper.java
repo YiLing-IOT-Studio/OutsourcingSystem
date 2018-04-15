@@ -17,8 +17,8 @@ import java.util.List;
 @Repository
 public interface OutsourcingUserInfoMapper {
 
-    @Select("select * from outsourcinguserinfo")
-    List<OutsourcingUserInfo> selectAllOutsourcingUserInfo();
+    @Select("select * from outsourcinguserinfo where mangerphone=#{mangerPhone}")
+    List<OutsourcingUserInfo> selectAllOutsourcingUserInfoByMangerPhone(@Param("mangerPhone") String mangerPhone);
 
     @Select("select * from outsourcinguserinfo where phone=#{phone}")
     OutsourcingUserInfo getUserInfoByPhone(@Param("phone") String phone);

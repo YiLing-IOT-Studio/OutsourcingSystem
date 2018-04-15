@@ -45,6 +45,14 @@ public class DynamicInformation {
     public DynamicInformation() {
     }
 
+    public DynamicInformation(String name, String uploader, String uploadTime, int progress, String uploadInstructions) {
+        this.name = name;
+        this.uploader = uploader;
+        this.uploadTime = uploadTime;
+        this.progress = progress;
+        this.uploadInstructions = uploadInstructions;
+    }
+
     public DynamicInformation(String name, String uploader, String uploadTime, int progress, String uploadInstructions, String filePath) {
         this.name = name;
         this.uploader = uploader;

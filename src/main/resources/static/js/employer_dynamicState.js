@@ -43,24 +43,25 @@ $("#follow-tab").click(function(){
                         'project_name': project_name
                     },
                     success: function (data) {
+                        var oDiv=$("#follow");
+                        var clear = "";
+                        oDiv.html(clear);
                         $.each(data, function (index, obj) {
                             if (index != (data.length)) {
-                                var oDiv=$("#follow");
-                                var clear = "";
-                                oDiv.html(clear);
+
                                 var oP = $("<div class='op'></div>");
                                 //name
-                                var oH2 = $("<p class='user'><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></p>");
+                                var oH2 = $("<p class='user'><img src='img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></p>");
                                 oH2.append('<span class="author">'+''+obj['name']+'</span>');
                                 oP.append(oH2);
                                 //info_上传说明
                                 var oMsg = $("<p class='description'></p>");
-                                oMsg.append(obj['info'].day);
+                                oMsg.append(obj['info'].msg);
                                 oP.append(oMsg);
 
                                 //日期
                                 var oDate = $("<p class='day'></p>");
-                                oDate.append("时间:"+obj['info'].msg);
+                                oDate.append("时间:"+obj['info'].day);
                                 oP.append(oDate);
                                 oDiv.append(oP);
                             }

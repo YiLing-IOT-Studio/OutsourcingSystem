@@ -38,4 +38,14 @@ public class OrgZTreeServiceImpl implements OrgZTreeService {
     public void saveOrgTree(OrgZTree orgZTree) {
         orgZTreeMapper.saveOrgTree(orgZTree);
     }
+
+    @Override
+    public int selectIdByOutsourcingName(String name) {
+        return orgZTreeMapper.selectIdByOutsourcingName(name);
+    }
+
+    @Override
+    public int selectIdByPidAndPhone(int pid, String phone) {
+        return orgZTreeMapper.selectIdByPid(pid, phone);
+    }
 }

@@ -1,6 +1,7 @@
 package com.zhy.service.mybatis;
 
 import com.zhy.model.taskfollow.OrgZTree;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +38,19 @@ public interface OrgZTreeService {
      * @param orgZTree
      */
     void saveOrgTree(OrgZTree orgZTree);
+
+    /**
+     * 通过外包名查找外包id
+     * @param name 外包名
+     * @return 外包id
+     */
+    int selectIdByOutsourcingName(String name);
+
+    /**
+     * 通过pid和手机号查找id
+     * @param pid
+     * @return id
+     */
+    int selectIdByPidAndPhone(int pid, String phone);
 
 }

@@ -17,7 +17,7 @@ $("#myTaskName").focus(function(){
     console.log(projectName);
     $.ajax({
         type:"get",
-        url:"/",
+        url:"/resource/getTaskNameByProjectName",
         dataType:"json",
         async:false,
         data:{
@@ -33,7 +33,7 @@ $("#myTaskName").focus(function(){
             }
         },
         error:function(){
-            alert("上传资源失败！");
+            alert("获取任务失败！");
         }
 
     });
@@ -50,10 +50,10 @@ $("#uplBtn").click(function(event){
         alert("请选择上传文件");
     }
     else{
-        var form = new FormData(document.getElementById("uploadForm"));
+        var form = new FormData(uploadForm);
         $.ajax({
             type:"post",
-            url:"/",
+            url:"/resource/releaseResource",
             dataType:"json",
             data:form,
             async:false,

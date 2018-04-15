@@ -22,6 +22,11 @@ public class OutsourcingUserInfo {
     private String gender;
 
     /**
+     * 所接外包的发包人手机号
+     */
+    private String managerPhone;
+
+    /**
      * 电话
      */
     private String phone;

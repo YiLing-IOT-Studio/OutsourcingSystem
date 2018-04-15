@@ -48,21 +48,23 @@ $("#mySubmit").click(function(event){
 
     event.preventDefault(); // 标准浏览器
 
-    //提交上交时间，时间戳格式
+    // 提交上交时间，时间戳格式
     var date=new Date();
     var stampTime=date.getTime();
     var publishTime=document.getElementById("publishTime");
     publishTime.value=stampTime;
-    //提交发布者
+    // 提交发布者
     var publisherValue=$("#personName").text();
     var publisher=document.getElementById("publisher");
     publisher.value=publisherValue;
-    //提交安全等级
+    // 提交安全等级
     var rank=document.getElementById("rank");
     rank.value=myCount;
-    //数字的正则表达式
+    // 数字的正则表达式
     var pattern=/\d+/;
     var money_value=$("#money").val();
+    var my_form = new FormData(publishForm);
+    alert("!");
     if($("#myName").val()==""){
         alert("请填写项目名称~");
     }
@@ -84,22 +86,26 @@ $("#mySubmit").click(function(event){
     else if($(":radio[name='category']").is(":checked")==false){
         alert("请至少选择一个技术类别~");
     }
-    else if($("#requirement").val()==""){
-        alert("请填写技术要求~");
-    }
     else if($("#money").val()==""){
         alert("请填写项目金额~");
     }
     else if(!pattern.test(money_value)){
         alert("项目金额请用阿拉伯数字填写~");
     }
+    else if($("#requirement").val()==""){
+        alert("请填写技术要求~");
+    }
+
     else{
-        var form = new FormData(document.getElementById("publishForm"));
+        alert("!");
         $.ajax({
             type:"post",
-            url:"/",
+            url:"/releaseOutsourcing",
             dataType:"json",
-            data:form,
+            data: my_form ,
+            async:false,
+            processData: false,
+            contentType: false,
             success:function(data){
                 if(data==1){
                     alert("发布成功");

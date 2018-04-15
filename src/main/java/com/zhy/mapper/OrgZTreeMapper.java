@@ -30,4 +30,9 @@ public interface OrgZTreeMapper {
     @Insert("insert into orgztree(pid, name, parent, phone) values(#{pId}, #{name}, #{parent}, #{phone})")
     void saveOrgTree(OrgZTree orgZTree);
 
+    @Select("select o.id from orgztree o where name=#{name}")
+    int selectIdByOutsourcingName(@Param("name") String name);
+
+    @Select("select o.id from orgztree o where pid=#{pid} and phone=#{phone}")
+    int selectIdByPid(@Param("pid") int pid, @Param("phone") String phone);
 }

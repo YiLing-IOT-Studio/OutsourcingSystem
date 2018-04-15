@@ -10,16 +10,16 @@ oBtn1.click(function(){
     //taskTitle
     var oP1=$("<p class=' taskTitle'></p>");
     oP1.append("<label>项目名</label>"+"<br/>"+
-        "<input type='text' class='projectName'/>"+"<br/>");
+        "<input type='text' class='projectName' name='projectName'/>"+"<br/>");
     oDiv.append(oP1);
     //taskName
     var oP=$("<p class='text-left'></p>");
-    oP.append('<label>任务名</label>'+'<br/>'+ "<input type='text' class='taskName'/>"+"<br/>");
+    oP.append('<label>任务名</label>'+'<br/>'+ "<input type='text' class='taskName' name='taskName'/>"+"<br/>");
     oDiv.append(oP);
     //task
     var oP2=$("<p class='task'></p>");
     oP2.append("<div class='taskSon'>"+"<label>任务</label>"+"<br/>"+
-               "<textarea placeholder='任务描述' class='taskDev'></textarea>"+"<br/>"
+               "<textarea placeholder='任务描述' class='taskDev' name='taskContent'></textarea>"+"<br/>"
               + "<div class='text-right task-grade'>"+ "<span class='grade'>任务等级&nbsp;&nbsp;</span>"+"<label class='radio-inline'>"+
                 "<input type='radio' value='低' name='authority'/>"+"低</label>"+"<label class='radio-inline'>"+
                 "<input type='radio' value='中' name='authority'/>"+"中</label>"+"<label class='radio-inline'>"+
@@ -67,10 +67,10 @@ oBtn1.click(function(){
             alert("请选择任务等级");
         }
         else {
-           var form = new FormData(document.getElementById("task"));
+           var form = new FormData(task);
             $.ajax({
                 type:"post",
-                url:"/",
+                url:"/releaseTask",
                 dataType:"json",
                 data:form,
                 processData: false,

@@ -13,29 +13,29 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--bootstrap-datetimepicker-->
-    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <!--zTree-->
-    <link href="../static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
     <!--css-->
-    <link href="../static/css/manager.css" rel="stylesheet"/>
-    <link href="../static/css/directory.css" rel="stylesheet"/>
-    <link href="../static/css/folder.css" rel="stylesheet"/>
-    <link href="../static/css/info.css" rel="stylesheet"/>
-    <link href="../static/css/star.css" rel="stylesheet"/>
-    <link href="../static/css/task.css" rel="stylesheet"/>
-    <link href="../static/css/msg.css" rel="stylesheet"/>
+    <link href="css/manager.css" rel="stylesheet"/>
+    <link href="css/directory.css" rel="stylesheet"/>
+    <link href="css/folder.css" rel="stylesheet"/>
+    <link href="css/info.css" rel="stylesheet"/>
+    <link href="css/star.css" rel="stylesheet"/>
+    <link href="css/task.css" rel="stylesheet"/>
+    <link href="css/msg.css" rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--plugs:bootstrap-datetimepicker-->
-    <script src="../static/js/plugs_bootstrap-datetimepicker.min.js"></script>
-    <script src="../static/js/plugs_bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/plugs_bootstrap-datetimepicker.min.js"></script>
+    <script src="js/plugs_bootstrap-datetimepicker.zh-CN.js"></script>
     <!--jquery:cookie-->
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!--zTree-->
-    <script src="../static/js/plugs_jquery.ztree.core.min.js"></script>
-    <script src="../static/js/plugs_star.js"></script>
+    <script src="js/plugs_jquery.ztree.core.min.js"></script>
+    <script src="js/plugs_star.js"></script>
 
 </head>
 <body>
@@ -73,7 +73,7 @@
         <div class="leftSide col-md-2">
         <div class="personalInfo">
             <a href="#info" class="headPortrait">
-                <img src="../static/img/headPortrait.png" id="headPortrait"/>
+                <img src="img/headPortrait.png" id="headPortrait"/>
             </a>
             <div id="nickname">
                 <p id="personName" th:text="${userName}"></p>
@@ -177,7 +177,7 @@
                 </ol>
                 <div class="container alist">
                     <button type="button" class="btn btn-lg btn-info addAll">新建任务</button>
-                    <form id="task"  enctype="multipart/form-data"></form>
+                    <form id="task" name="task"></form>
 
 
                 </div>
@@ -266,7 +266,7 @@
             </div>
 
             <div class="tab-pane fade" id="fabu">
-                <form id="publishForm" method="POST"  enctype="multipart/form-data" action="/releaseOutsourcing">
+                <form id="publishForm" enctype="multipart/form-data" name="publishForm">
                     <fieldset>
                         <legend>发布新外包</legend>
                         <div class="row">
@@ -394,7 +394,6 @@
                             <input type="hidden" name="publisher" id="publisher" value=""/>
                             <input type="hidden" name="rank" id="rank" value=""/>
                         </div>
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <button type="submit" value="发布外包" class="btn btn-success" id="mySubmit">
                                     立即发布
                         </button>
@@ -416,14 +415,14 @@
                     <li class="active">项目资料</li>
                 </ol>
                 <div id="upload" style="width:65%; margin:0 auto;">
-                    <form id="uploadForm" name="uploadForm" action="/" method="post" enctype="multipart/form-data" target="rfFrame">
+                    <form id="uploadForm" name="uploadForm" method="post" enctype="multipart/form-data" target="rfFrame">
                             <div class="form-group">
                                 <label for="projectName">项目名</label>
                                 <input class="form-control input-lg" name="projectName" id="projectName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
                             </div>
                             <div class="form-group" >
                                 <label>任务名</label>
-                                <select class="form-control" id="myTaskName">
+                                <select class="form-control" id="myTaskName" name="myTaskName">
                                     <!--<option>0</option>-->
                                     <!--<option>0</option>-->
                                     <!--<option>0</option>-->
@@ -449,19 +448,19 @@
     </div>
 
     <!--js-->
-    <script src="../static/js/employer_information.js"></script>
+    <script src="js/employer_information.js"></script>
 
-    <script src="../static/js/employer_attendance.js"></script>
+    <script src="js/employer_attendance.js"></script>
 
-    <script src="../static/js/employer_sendTask.js"></script>
+    <script src="js/employer_sendTask.js"></script>
 
-    <script src="../static/js/employer_floderTree.js"></script>
-    <script src="../static/js/employer_dynamicState.js"></script>
-    <script src="../static/js/employer_progressResult.js"></script>
+    <script src="js/employer_floderTree.js"></script>
+    <script src="js/employer_dynamicState.js"></script>
+    <script src="js/employer_progressResult.js"></script>
 
-    <script src="../static/js/employer_publishForm.js"></script>
+    <script src="js/employer_publishForm.js"></script>
 
-    <script src="../static/js/employer_uploadSource.js"></script>
+    <script src="js/employer_uploadSource.js"></script>
 
 
 </body>

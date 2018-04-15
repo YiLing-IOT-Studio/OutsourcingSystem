@@ -32,4 +32,13 @@ public class OrgZTree {
      */
     private boolean parent;
 
+    public OrgZTree() {
+    }
+
+    public OrgZTree(int pId, String name, String phone, boolean parent) {
+        this.pId = pId;
+        this.name = name;
+        this.phone = phone;
+        this.parent = parent;
+    }
 }

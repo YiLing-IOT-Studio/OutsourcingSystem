@@ -17,7 +17,7 @@ public interface OutsourcingUserInfoService {
      * 外包人员信息登记表
      * @return 所有正在进行中或报名中的外包人员登记信息
      */
-    List<OutsourcingUserInfo> selectAllOutsourcingUserInfo();
+    List<OutsourcingUserInfo> selectAllOutsourcingUserInfoByMangerPhone(String mangerPhone);
 
     /**
      * 通过手机号后的接包用户者信息

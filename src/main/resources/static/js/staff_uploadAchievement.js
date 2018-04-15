@@ -1,6 +1,11 @@
 /**
  * Created by 杨玉卿 on 2018/4/10.
  */
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+    xhr.setRequestHeader(header, token);
+});
 $("#uplBtn").click(function(event){
     var pattern=/^\d{1,3}$/;
     event.preventDefault();
@@ -23,10 +28,10 @@ $("#uplBtn").click(function(event){
         alert("请选择上传文件");
     }
     else{
-        var form = new FormData(document.getElementById("uploadForm"));
+        var form = new FormData(uploadAchievement);
         $.ajax({
             type:"post",
-            url:"/",
+            url:"/submissionWork",
             dataType:"json",
             data:form,
             processData: false,

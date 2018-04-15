@@ -1,0 +1,28 @@
+package com.zhy.mapper;
+
+import com.zhy.model.task.TaskInfo;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * @author: zhangocean
+ * @Date: 2018/4/14 19:31
+ * Describe:
+ */
+@Repository
+@Mapper
+public interface TaskInfoMapper {
+
+    @Insert("insert into taskinfo(projectName, promulgator, taskName, taskContent, authority, releaseTime) " +
+                                                    "values(#{projectName}, #{promulgator}, #{taskName}, #{taskContent}, #{authority}, #{releaseTime})")
+    int saveTaskInfo(TaskInfo taskInfo);
+
+    @Select("select t.taskName from taskinfo t where projectName=#{projectName}")
+    List<String> getTaskNameByProjectName(@Param("projectName") String projectName);
+
+}

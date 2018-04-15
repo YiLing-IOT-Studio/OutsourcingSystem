@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class FileUtil {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public int uploadFile(byte[] file, String filePath, String fileName){
         File targetFile = new File(filePath);
