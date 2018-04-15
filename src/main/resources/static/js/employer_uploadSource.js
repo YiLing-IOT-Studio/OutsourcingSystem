@@ -77,6 +77,7 @@ $("#uplBtn").click(function(event){
 function fileChange(target) {
     var len=target.files.length;
 //                alert(len);
+
     var i;
     for(i=0;i<len;i++){
         var name=target.files[i].name;
