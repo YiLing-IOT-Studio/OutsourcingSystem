@@ -2,11 +2,11 @@
     color:#fbed50;
     font-size:60px;
 }
-.folder-name{
+.folder-name,.folder-name2{
     font-size:20px;
     display:block;
 }
-.my-inline-block{
+.my-inline-block,.my-inline-block2{
     display:inline-block;
     border:1px solid #fff;
     padding:25px;

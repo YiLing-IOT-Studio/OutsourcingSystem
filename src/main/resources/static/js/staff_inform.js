@@ -14,7 +14,7 @@ $("#li_tz_item").click(function(){
 //
 // //title
 //     var oTitle=$('<p class="oTitle"></p>');
-//     oTitle.append("任务名称："+"前端编写网站");
+//     oTitle.append(" 任务名称："+"前端编写网站"+'');
 //     oP.append(oTitle);
 // //description
 //     var oMsg = $("<p class='description'></p>");
@@ -86,7 +86,7 @@ $("#li_tz_item").click(function(){
 
                                 //title
                                 var oTitle=$('<p class="oTitle"></p>');
-                                oTitle.append("任务名称："+obj['projectName']);
+                                oTitle.append(" 任务名称："+obj['taskName']);
                                 oP.append(oTitle);
                                 //description
                                 var oMsg = $("<p class='description'></p>");

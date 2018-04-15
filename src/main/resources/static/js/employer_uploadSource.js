@@ -73,3 +73,23 @@ $("#uplBtn").click(function(event){
         })
     }
 });
+//判断文件格式
+function fileChange(target) {
+    var len=target.files.length;
+//                alert(len);
+    var i;
+    for(i=0;i<len;i++){
+        var name=target.files[i].name;
+//                    alert(name);
+        var fileName = name.substring(name.lastIndexOf(".")+1).toLowerCase();
+        if(fileName !="jpg" && fileName !="bmp" && fileName !="jpg" && fileName !="png" && fileName !="gif" && fileName !="tif"&&fileName !="psd"&&fileName !="raw"
+            &&fileName !="avi"&&fileName !="mov"&&fileName !="asf"&&fileName !="wmv"&&fileName !="navi"&&fileName !="3gp"&&fileName !="mkv"&&fileName !="flv"
+            &&fileName !="doc"&&fileName !="wps"&&fileName !="xls"&&fileName !="txt"&&fileName !="ppt"&&fileName !="rar"&&fileName !="htm"&&fileName !="pdf"&&fileName !="dwg"){
+            alert("请选择图片格式文件上传(jpg,png,gif,dwg,pdf,gif)！\n"+
+                "视频格式文件上传(avi，mov，asf，wmv，navi，3gp，mkv，flv)！\n"+
+                "文档格式文件上传(doc,wps,xls,ppt,txt,rar,htm,pdf,dwg)\n");
+            target.value="";
+        }
+    }
+
+}
