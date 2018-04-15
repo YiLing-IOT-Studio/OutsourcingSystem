@@ -42,15 +42,21 @@ public class TaskInfo {
      */
     private String releaseTime;
 
+    /**
+     * 任务状态
+     */
+    private String taskState;
+
     public TaskInfo() {
     }
 
-    public TaskInfo(String projectName, String promulgator, String taskName, String taskContent, String authority, String releaseTime) {
+    public TaskInfo(String projectName, String promulgator, String taskName, String taskContent, String authority, String releaseTime, String taskState) {
         this.projectName = projectName;
         this.promulgator = promulgator;
         this.taskName = taskName;
         this.taskContent = taskContent;
         this.authority = authority;
         this.releaseTime = releaseTime;
+        this.taskState = taskState;
     }
 }

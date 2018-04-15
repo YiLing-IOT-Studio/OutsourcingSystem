@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface ResourceInfoMapper {
 
-    @Insert("insert into resourceinfo(projectName, promulgator, taskName, resourcePath)" +
-                                "values(#{projectName}, #{promulgator}, #{taskName}, #{resourcePath})")
+    @Insert("insert into resourceinfo(projectName, promulgator, taskName, resourcePath, releaseTime)" +
+                                "values(#{projectName}, #{promulgator}, #{taskName}, #{resourcePath}, #{releaseTime})")
     int releaseResourceInfo(ResourceInfo resourceInfo);
 
 }

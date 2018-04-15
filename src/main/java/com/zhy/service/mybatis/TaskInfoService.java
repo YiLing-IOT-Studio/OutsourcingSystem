@@ -27,4 +27,17 @@ public interface TaskInfoService {
      */
     List<String> getTaskNameByProjectName(String projectName);
 
+    /**
+     * 通过项目名和任务状态获得该项目的所有任务信息
+     * @param projectName
+     * @return
+     */
+    List<TaskInfo> getTaskInfoByProjectNameAndTaskState(String projectName, String[] taskState);
+
+    /**
+     *  通过任务名修改任务状态
+     * @param taskName 任务名
+     * @param taskState 任务状态
+     */
+    int updateTaskState(String taskName, String taskState);
 }

@@ -98,7 +98,7 @@
                     </table>
                 </div>
             </div>
-            <script src="js/staff_info.js"></script>
+
 
             <div class="tab-pane fade" id="project">
                 <ol class="breadcrumb">
@@ -121,8 +121,15 @@
                     </tbody>
                 </table>
             </div>
-            <script src="js/staff_project.js"></script>
 
+
+
+            <div class="tab-pane fade" id="inform">
+
+            </div>
+            <div class="tab-pane fade" id="task">
+
+            </div>
             <div class="tab-pane fade" id="achievement">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
@@ -130,31 +137,31 @@
                     <li class="active">成果上传</li>
                 </ol>
                 <div id="upload" style="width:65%; margin:0 auto;">
-                        <form id="uploadAchievement" name="uploadAchievement" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="projectName">项目名</label>
-                                <input class="form-control input-lg" name="outsourcingName" id="projectName" type="text"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目名';}" />
+                    <form id="uploadAchievement" name="uploadAchievement" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="projectName">项目名</label>
+                            <input class="form-control input-lg" name="outsourcingName" id="projectName" type="text"  value="" placeholder="请输入项目名" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fileDescription">文件描述</label>
+                            <input type="text" class="form-control input-lg"  name="fileDescription"  id="fileDescription" value=""  placeholder="请输入文件描述" />
+                        </div>
+                        <div class="form-group">
+                            <label>预计项目进度</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" name="progress" id="progress" value="" placeholder="请输入项目进度" />
+                                <span class="input-group-addon">%</span>
                             </div>
-                            <div class="form-group">
-                                <label for="fileDescription">文件描述</label>
-                                <input type="text" class="form-control input-lg"  name="fileDescription"  id="fileDescription" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '文件描述';}" />
-                            </div>
-                            <div class="form-group">
-                                <label>预计项目进度</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control input-lg" name="progress" id="progress" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '项目进度';}" />
-                                    <span class="input-group-addon">%</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>上传文件</label>
-                                <input type="file" name="upl" id="upl" multiple="multiple"/>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-success bnt-lg" id="uplBtn">Upload</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <label>上传文件</label>
+                            <input type="file" name="upl" id="upl" multiple="multiple"/>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-success bnt-lg" id="uplBtn">Upload</button>
+                        </div>
+                    </form>
+                </div>
 
             </div>
             <div class="tab-pane fade" id="resources">
@@ -170,27 +177,19 @@
                     </div>
                 </div>
                 <div id="data">
-                    <div class="my-inline-block text-center">
-                        <span class="glyphicon glyphicon-folder-close my-folder"></span>
-                        <span class="folder-name">外包1</span>
-                    </div>
-                        <P class='lead hide file'>文件1</P>
+
+
 
                 </div>
-            </div>
-            <div class="tab-pane fade" id="inform">
-
-            </div>
-            <div class="tab-pane fade" id="task">
-
             </div>
         </div>
     </div>
     <div class="foot">
         <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋&田宇</span></p>
     </div>
-
-
+    <script src="js/staff_info.js"></script>
+    <script src="js/staff_project.js"></script>
+    <script src="js/staff_receiveTask.js"></script>
     <script src="js/staff_resources.js"></script>
     <script src="js/staff_uploadAchievement.js"></script>
     <script src="js/staff_inform.js"></script>

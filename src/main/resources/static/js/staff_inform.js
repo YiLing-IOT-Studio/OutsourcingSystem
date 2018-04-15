@@ -45,7 +45,7 @@ $("#li_tz_item").click(function(){
 //     });
     $.ajax({
         type:"POST",
-        url:"/inform",
+        url:"/receiveTask/showOutsourcingInfo",
         dataType:"json",
         async: false,
         data:{
@@ -70,7 +70,7 @@ $("#li_tz_item").click(function(){
                 console.log(project_name);
                 $.ajax({
                     type: "POST",
-                    url: "/",
+                    url: "/receiveTask/showTaskInfo",
                     async: false,
                     dataType: "json",
                     data: {
@@ -95,13 +95,13 @@ $("#li_tz_item").click(function(){
                                 var oUl=$('<ul class="list-inline"></ul>');
 
                                 //author
-                                var oH2 = $("<li><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></li>");
-                                oH2.append('<span class="author">'+''+obj['name']+'</span>');
+                                var oH2 = $("<li><img src='img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></li>");
+                                oH2.append('<span class="author">'+''+obj['promulgator']+'</span>');
                                 oUl.append(oH2);
 
 
                                 var oDate = $("<li class='day'></li>");
-                                oDate.append(obj['date']+"发布");
+                                oDate.append(obj['releaseTime']+"发布");
                                 oUl.append(oDate);
 
                                 oP.append(oUl);
@@ -119,7 +119,7 @@ $("#li_tz_item").click(function(){
                             var taskName=$(this).parent().parent().find('.oTitle').text();
                             $.ajax({
                                 type: "POST",
-                                url: "/",
+                                url: "/receiveTask/getTask",
                                 async: false,
                                 dataType: "json",
                                 data: {

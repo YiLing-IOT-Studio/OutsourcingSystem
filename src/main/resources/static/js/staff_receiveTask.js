@@ -1,12 +1,12 @@
 /**
  * Created by 杨玉卿 on 2018/4/14.
  */
-$("#li_rw_item").click(function(){
+
 //我的任务
     $("#li_rw_item").click(function(){
         $.ajax({
             type:"POST",
-            url:"/",
+            url:"/receiveTask/getTask",
             dataType:"json",
             async: false,
             data:{
@@ -72,4 +72,3 @@ $("#li_rw_item").click(function(){
             }
         })
     });
-});

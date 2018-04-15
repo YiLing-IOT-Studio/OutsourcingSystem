@@ -41,11 +41,10 @@ public class ReleaseResourceService {
 
         ResourceInfo resourceInfo = new ResourceInfo(projectName, promulgator, taskName, nowTimeForString);
 
-        for (MultipartFile file1 : files) {
-            file = file1;
+        for (int i=0;i<files.size();i++) {
+            file = files.get(i);
             if (!file.isEmpty()) {
                 String suffx = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-                System.out.println("后缀名为：" + suffx);
                 for (String s : FileSuffx.PICTURE_SUFFX) {
                     if (suffx.toUpperCase().equals(s)) {
                         fileType = "图片";

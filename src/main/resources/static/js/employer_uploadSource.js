@@ -40,7 +40,7 @@ $("#myTaskName").focus(function(){
 });
 $("#uplBtn").click(function(event){
     event.preventDefault();
-    if($("#projectName").val()=="项目名"){
+    if($("#projectName").val()==""){
         alert("请填写项目名！");
     }
     else if($("#myTaskName").val()==null){

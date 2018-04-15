@@ -35,7 +35,7 @@ public class ReleaseResource {
                                 @AuthenticationPrincipal Principal principal,
                                 HttpServletRequest request){
 
-        List<MultipartFile> files = ((MultipartHttpServletRequest)request).getFiles("up1");
+        List<MultipartFile> files = ((MultipartHttpServletRequest)request).getFiles("upl");
 
         return releaseResourceService.releaseResource(projectName, taskName, files, principal.getName());
     }

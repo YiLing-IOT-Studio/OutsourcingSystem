@@ -10,14 +10,13 @@ $("#uplBtn").click(function(event){
     var pattern=/^\d{1,3}$/;
     event.preventDefault();
     var progress_value=$("#progress").val();
-    alert(progress_value);
-    if($("#projectName").val()=="项目名"){
+    if($("#projectName").val()==""){
         alert("请填写项目的名字！");
     }
-    else if($("#fileDescription").val()=="文件描述"){
+    else if($("#fileDescription").val()==""){
         alert("请填写关于该文件的描述！");
     }
-    else if($("#progress").val()=="项目进度"){
+    else if($("#progress").val()==""){
         alert("请填写目前项目总进度");
     }
     else if(!pattern.test(progress_value)||progress_value>100){

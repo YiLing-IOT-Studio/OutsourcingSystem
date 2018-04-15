@@ -1,5 +1,6 @@
 package com.zhy.controller.employer.taskdistribution;
 
+import com.zhy.constant.TaskState;
 import com.zhy.model.task.TaskInfo;
 import com.zhy.service.mybatis.TaskInfoService;
 import com.zhy.utils.TimeUtil;
@@ -37,7 +38,7 @@ public class ReleaseTaskController {
         Date now = new Date();
         TimeUtil timeUtil = new TimeUtil();
 
-        TaskInfo taskInfo = new TaskInfo(projectName, principal.getName(), taskName, taskContent, authority, timeUtil.longToStringTime(now.getTime()));
+        TaskInfo taskInfo = new TaskInfo(projectName, principal.getName(), taskName, taskContent, authority, timeUtil.longToStringTime(now.getTime()), TaskState.TASK_AWAIT);
 
         //保存任务
         int releaseResult = taskInfoService.saveTaskInfo(taskInfo);

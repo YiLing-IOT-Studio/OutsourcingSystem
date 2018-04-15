@@ -1,10 +1,7 @@
 package com.zhy.mapper;
 
 import com.zhy.model.task.TaskInfo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,11 +15,16 @@ import java.util.List;
 @Mapper
 public interface TaskInfoMapper {
 
-    @Insert("insert into taskinfo(projectName, promulgator, taskName, taskContent, authority, releaseTime) " +
-                                                    "values(#{projectName}, #{promulgator}, #{taskName}, #{taskContent}, #{authority}, #{releaseTime})")
+    @Insert("insert into taskinfo(projectName, promulgator, taskName, taskContent, authority, releaseTime, taskState) " +
+                                                    "values(#{projectName}, #{promulgator}, #{taskName}, #{taskContent}, #{authority}, #{releaseTime}, #{taskState})")
     int saveTaskInfo(TaskInfo taskInfo);
 
     @Select("select t.taskName from taskinfo t where projectName=#{projectName}")
     List<String> getTaskNameByProjectName(@Param("projectName") String projectName);
 
+    @Select("select * from taskinfo where projectName=#{projectName} and taskState in (#{taskState})")
+    List<TaskInfo> getTaskInfoByProjectNameAndTaskState(@Param("projectName") String projectName, @Param("taskState") String[] taskState);
+
+    @Update("update taskinfo set taskState=#{taskState} where taskName=#{taskName}")
+    int updateTaskState(@Param("taskName") String taskName, @Param("taskState") String taskState);
 }
