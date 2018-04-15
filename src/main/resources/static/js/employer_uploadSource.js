@@ -23,7 +23,11 @@ $("#myTaskName").focus(function(){
         data:{
             'projectName':projectName
         },
+        beforeSend:function(){
+            showFun();
+        },
         success:function(data){
+            hideFun();
             var oDiv=$("#myTaskName");
             oDiv.html("");
             for(var i in data){
@@ -59,7 +63,11 @@ $("#uplBtn").click(function(event){
             async:false,
             processData: false,
             contentType: false,
+            beforeSend:function(){
+                showFun();
+            },
             success:function(data){
+                hideFun();
                 if(data==1){
                     alert("上传成功");
                 }
@@ -86,11 +94,24 @@ function fileChange(target) {
         if(fileName !="jpg" && fileName !="bmp" && fileName !="jpg" && fileName !="png" && fileName !="gif" && fileName !="tif"&&fileName !="psd"&&fileName !="raw"
             &&fileName !="avi"&&fileName !="mov"&&fileName !="asf"&&fileName !="wmv"&&fileName !="navi"&&fileName !="3gp"&&fileName !="mkv"&&fileName !="flv"
             &&fileName !="doc"&&fileName !="wps"&&fileName !="xls"&&fileName !="txt"&&fileName !="ppt"&&fileName !="rar"&&fileName !="htm"&&fileName !="pdf"&&fileName !="dwg"){
-            alert("请选择图片格式文件上传(jpg,png,gif,dwg,pdf,gif)！\n"+
-                "视频格式文件上传(avi，mov，asf，wmv，navi，3gp，mkv，flv)！\n"+
-                "文档格式文件上传(doc,wps,xls,ppt,txt,rar,htm,pdf,dwg)\n");
+            alert("文件格式不支持："+fileName+"\n请选择以下格式上传文件:\n图片文件格式(jpg,png,gif,dwg,pdf,gif)！\n"+
+                "视频文件格式(avi，mov，asf，wmv，navi，3gp，mkv，flv)！\n"+
+                "文档文件格式(doc,wps,xls,ppt,txt,rar,htm,pdf,dwg)\n");
             target.value="";
         }
     }
+}
+//loading...
+function showFun() {
+    var info = document.getElementById("loading");
+    var bg = document.getElementById("bg");
+    info.style.display = "block";
+    bg.style.display = "block";
 
+}
+function hideFun(){
+    var info = document.getElementById("loading");
+    var bg = document.getElementById("bg");
+    info.style.display = "none";
+    bg.style.display = "none";
 }
