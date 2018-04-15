@@ -32,12 +32,13 @@ public interface TaskInfoService {
      * @param projectName
      * @return
      */
-    List<TaskInfo> getTaskInfoByProjectNameAndTaskState(String projectName, String[] taskState);
+    List<TaskInfo> getTaskInfoByProjectNameAndTaskState(String projectName);
 
     /**
      *  通过任务名修改任务状态
      * @param taskName 任务名
+     * @param projectName 项目名
      * @param taskState 任务状态
      */
-    int updateTaskState(String taskName, String taskState);
+    int updateTaskState(String taskName, String projectName, String taskState);
 }

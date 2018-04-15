@@ -62,6 +62,7 @@ $("#li_tz_item").click(function(){
                         '<span class="folder-name">' + data[i] + '</span>');
                          oDiv.append(oFolder);
             }
+
             $(".my-inline-block").click(function () {
                 var oDiv=$("#inform");
                 var clear = "";
@@ -85,9 +86,10 @@ $("#li_tz_item").click(function(){
                                 var oP = $("<div class='op'></div>");
 
                                 //title
-                                var oTitle=$('<p class="oTitle"></p>');
-                                oTitle.append(" 任务名称："+obj['taskName']);
+                                var oTitle=$('<p></p>');
+                                oTitle.append(" 任务名称："+"<span class='oTitle'>"+obj['taskName']+"</span>");
                                 oP.append(oTitle);
+
                                 //description
                                 var oMsg = $("<p class='description'></p>");
                                 oMsg.append("任务描述："+obj['taskContent']);
@@ -110,6 +112,11 @@ $("#li_tz_item").click(function(){
                                 oBtn.append('<button class="btn btn-get">领取任务</button>');
                                 oP.append(oBtn);
 
+                                //项目
+                                var oInfo=$('<div class="hide"></div>');
+                                oInfo.append(obj['projectName']);
+                                oP.append(oInfo);
+
                                 oDiv.append(oP);
 
 
@@ -117,13 +124,16 @@ $("#li_tz_item").click(function(){
                         });
                         $(".btn-get").click(function(){
                             var taskName=$(this).parent().parent().find('.oTitle').text();
+                            var projectName2=$(this).parent().parent().find('.hide').text();
+                            console.log(projectName2);
                             $.ajax({
                                 type: "POST",
                                 url: "/receiveTask/getTask",
                                 async: false,
                                 dataType: "json",
                                 data: {
-                                    'taskName': taskName
+                                    'taskName': taskName,
+                                    'projectName2':projectName2
                                 },
                                 success:function(data){
                                     if(data==1){
