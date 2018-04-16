@@ -22,9 +22,9 @@ public interface TaskInfoMapper {
     @Select("select t.taskName from taskinfo t where projectName=#{projectName}")
     List<String> getTaskNameByProjectName(@Param("projectName") String projectName);
 
-    @Select("select * from taskinfo where projectName=#{projectName} and taskState in (#{taskState})")
-    List<TaskInfo> getTaskInfoByProjectNameAndTaskState(@Param("projectName") String projectName, @Param("taskState") String[] taskState);
+    @Select("select * from taskinfo where projectName=#{projectName} and taskState in (\"待领取\",\"申请中\")")
+    List<TaskInfo> getTaskInfoByProjectNameAndTaskState(@Param("projectName") String projectName);
 
-    @Update("update taskinfo set taskState=#{taskState} where taskName=#{taskName}")
-    int updateTaskState(@Param("taskName") String taskName, @Param("taskState") String taskState);
+    @Update("update taskinfo set taskState=#{taskState} where taskName=#{taskName} and projectName=#{projectName}")
+    int updateTaskState(@Param("taskName") String taskName, @Param("projectName") String projectName, @Param("taskState") String taskState);
 }

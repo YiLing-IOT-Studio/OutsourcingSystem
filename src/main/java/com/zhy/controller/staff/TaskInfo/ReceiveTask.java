@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,8 +49,7 @@ public class ReceiveTask {
     @ResponseBody
     public JSONArray showTaskInfo(@RequestParam("project_name") String projectName, @AuthenticationPrincipal Principal principal){
 
-        String[] taskState = {TaskState.TASK_AWAIT, TaskState.TASK__APPLY};
-        List<TaskInfo> taskInfoList = taskInfoService.getTaskInfoByProjectNameAndTaskState(projectName, taskState);
+        List<TaskInfo> taskInfoList = taskInfoService.getTaskInfoByProjectNameAndTaskState(projectName);
 
         JSONArray jsonArray = JSONArray.fromObject(taskInfoList);
         System.out.println("用户" + principal.getName() + "可领取的任务有：" + jsonArray.toString());
@@ -59,10 +59,12 @@ public class ReceiveTask {
     @PostMapping("/getTask")
     @ResponseBody
     public int getTask(@RequestParam("taskName") String taskName,
+                       @RequestParam("projectName") String projectName,
                             @AuthenticationPrincipal Principal principal){
 
-        int updateResult = taskInfoService.updateTaskState(taskName, TaskState.TASK__APPLY);
-        System.out.println("updateResult is " + updateResult);
+        int updateResult = taskInfoService.updateTaskState(taskName, projectName, TaskState.TASK_APPLY);
+        System.out.println(updateResult);
+        System.out.println(principal.getName() + "申请领取任务成功");
         return updateResult;
 
     }

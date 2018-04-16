@@ -34,9 +34,9 @@ public class TaskInfoServiceImpl implements TaskInfoService {
     }
 
     @Override
-    public List<TaskInfo> getTaskInfoByProjectNameAndTaskState(String projectName, String[] taskState) {
+    public List<TaskInfo> getTaskInfoByProjectNameAndTaskState(String projectName) {
 
-        List<TaskInfo> taskInfoList = taskInfoMapper.getTaskInfoByProjectNameAndTaskState(projectName, taskState);
+        List<TaskInfo> taskInfoList = taskInfoMapper.getTaskInfoByProjectNameAndTaskState(projectName);
 
         for(TaskInfo taskInfo : taskInfoList){
             taskInfo.setPromulgator(userRegisterService.getUserNameByPhone(taskInfo.getPromulgator()));
@@ -46,7 +46,7 @@ public class TaskInfoServiceImpl implements TaskInfoService {
     }
 
     @Override
-    public int updateTaskState(String taskName, String taskState) {
-        return taskInfoMapper.updateTaskState(taskName, taskState);
+    public int updateTaskState(String taskName, String projectName, String taskState) {
+        return taskInfoMapper.updateTaskState(taskName, projectName, taskState);
     }
 }

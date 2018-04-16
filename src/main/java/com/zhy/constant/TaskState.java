@@ -15,7 +15,7 @@ public interface TaskState {
     /**
      * 任务申请中
      */
-    String TASK__APPLY = "申请中";
+    String TASK_APPLY = "申请中";
 
     /**
      * 任务进行中
