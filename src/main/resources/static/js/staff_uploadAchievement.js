@@ -35,7 +35,12 @@ $("#uplBtn").click(function(event){
             data:form,
             processData: false,
             contentType: false,
+            beforeSend:function(){
+                showFun();
+            },
+
             success:function(data){
+                hideFun();
                 if(data==1){
                     alert("上传成功");
                 }
@@ -44,8 +49,23 @@ $("#uplBtn").click(function(event){
                 }
             },
             error:function(){
+                hideFun();
                 alert("请求上传资料失败");
             }
         })
     }
 });
+//loading...
+function showFun() {
+    var info = document.getElementById("loading");
+    var bg = document.getElementById("bg");
+    info.style.display = "block";
+    bg.style.display = "block";
+
+}
+function hideFun(){
+    var info = document.getElementById("loading");
+    var bg = document.getElementById("bg");
+    info.style.display = "none";
+    bg.style.display = "none";
+}

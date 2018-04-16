@@ -23,11 +23,8 @@ $("#myTaskName").focus(function(){
         data:{
             'projectName':projectName
         },
-        beforeSend:function(){
-            showFun();
-        },
+        beforeSend:function(){},
         success:function(data){
-            hideFun();
             var oDiv=$("#myTaskName");
             oDiv.html("");
             for(var i in data){
@@ -76,6 +73,7 @@ $("#uplBtn").click(function(event){
                 }
             },
             error:function(){
+                hideFun();
                 alert("请求上传资料失败");
             }
         })

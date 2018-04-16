@@ -5,8 +5,6 @@
 //     $(".file").removeClass("hide");
 //     $(".my-inline-block").addClass("hide");
 // })
-var put_word=$("#data");
-var clear="";
 
 var canvas=document.getElementById('canvas');
 var context=canvas.getContext("2d");
@@ -29,10 +27,11 @@ function snapPicture(){
                 "username":username
             },
             success: function (data) {
+                var put_word=$("#data");
                 if (data == 1) {
                 }
                 else {
-                    put_word.html("检测到第三方人脸~请停止访问");
+                    put_word.html("检测到第三方人脸~停止访问");
                 }
             },
             error: function () {
@@ -54,7 +53,7 @@ $("#li_zl_item").click(function(){
 
         },
         success:function(data){
-            //输出文件名
+            //输出文件名，显示文件夹
             var oDiv=$("#data");
             var clear='';
             oDiv.html(clear);
@@ -64,7 +63,7 @@ $("#li_zl_item").click(function(){
                     '<span class="folder-name">' + data[i] + '</span>');
                 oDiv.append(oFolder);
             }
-
+            //点击文件夹，显示任务夹
             $(".my-inline-block").click(function () {
                 var oDiv=$("#data");
                 var clear = "";
@@ -79,7 +78,7 @@ $("#li_zl_item").click(function(){
                         'project_name':project_name
                     },
                     success:function(data){
-                        //输出任务名
+                        //显示任务夹
                         var oDiv=$("#data");
                         var clear='';
                         oDiv.html(clear);
@@ -89,6 +88,7 @@ $("#li_zl_item").click(function(){
                                 '<span class="folder-name1">' + data[i] + '</span>');
                             oDiv.append(oFolder);
                         }
+                        //点击任务夹，显示资料夹
                         $(".my-inline-block1").click(function(){
                             var task_name=$(this).find(".folder-name1").text();
                             $.ajax({
@@ -100,10 +100,10 @@ $("#li_zl_item").click(function(){
                                     'task_name':task_name
                                 },
                                 success:function(data){
+                                    //显示资料夹
                                     var oDiv=$("#data");
                                     var clear='';
                                     oDiv.html(clear);
-                                    //图片、视频
                                     var oFolder1 = $('<div class="my-inline-block2 text-center"></div>');
                                     oFolder1.append('<span class="glyphicon glyphicon-folder-open my-folder"></span>' +
                                         '<span class="folder-name2">' + '图片' + '</span>');
@@ -112,20 +112,26 @@ $("#li_zl_item").click(function(){
                                     oFolder2.append('<span class="glyphicon glyphicon-folder-open my-folder"></span>' +
                                         '<span class="folder-name2">' + '视频' + '</span>');
                                     oDiv.append(oFolder2);
-                                   if(data['authority']==3){
-                                       //打开摄像头
-                                       var video=document.getElementById('video');
-                                       navigator.mediaDevices.getUserMedia({
-                                           video:true
-                                       }).then(function(mediaStream){
-                                           video.srcObject=mediaStream;
-                                           video.onloadedmetadata=function(){
-                                               video.play();
-                                           }
-                                       });
+                                    var oFolder3 = $('<div class="my-inline-block2 text-center"></div>');
+                                    oFolder3.append('<span class="glyphicon glyphicon-folder-open my-folder"></span>' +
+                                        '<span class="folder-name2">' + '文档' + '</span>');
+                                    oDiv.append(oFolder3);
+                                    //返回权限为高级，打开摄像头
+                                    if(data['authority']==3){
+                                        //打开摄像头
+                                        var video=document.getElementById('video');
+                                        navigator.mediaDevices.getUserMedia({
+                                            video:true
+                                        }).then(function(mediaStream){
+                                            video.srcObject=mediaStream;
+                                            video.onloadedmetadata=function(){
+                                                video.play();
+                                            }
+                                        });
 
-                                       setInterval(snapPicture,3000);
-                                   }
+                                        setInterval(snapPicture,3000);
+                                    }
+                                    //点击资料夹，打开资料
                                    $(".my-inline-block2").click(function(){
                                        var category=$(this).find(".folder-name2").text();
                                        if(category=='图片'){
@@ -148,6 +154,9 @@ $("#li_zl_item").click(function(){
                                                        oDiv.append(oImg);
                                                    }
 
+                                               },
+                                               error:function(){
+                                                   alert("请求图片失败");
                                                }
                                            });
                                        }
@@ -171,13 +180,44 @@ $("#li_zl_item").click(function(){
                                                        oVideo.append(oImg);
                                                    }
 
+                                               },
+                                               error:function(){
+                                                   alert("请求视频失败");
                                                }
                                            });
                                        }
-
+                                       if(category=='文档'){
+                                           $.ajax({
+                                               type: "POST",
+                                               url: "/",
+                                               dataType: "json",
+                                               async: false,
+                                               data: {
+                                                   'category': category
+                                               },
+                                               success: function (data) {
+                                                   var oDiv = $("#data");
+                                                   var clear = '';
+                                                   oDiv.html(clear);
+                                                   for (var i = 0; i < data.length; i++) {
+                                                       var oFolder3 = $('<div class="my-inline-block3 text-center"></div>');
+                                                       oFolder3.append('<span class="glyphicon glyphicon-folder-file my-folder"></span>' +
+                                                           '<span class="folder-name3">' + data[i] + '</span>');
+                                                       oDiv.append(oFolder3);
+                                                   }
+                                                   //点击下载
+                                               },
+                                               error:function(){
+                                                   alert("请求文档失败");
+                                               }
+                                           })
+                                       }
                                    })
 
 
+                                },
+                                error:function(){
+                                    alert("请求资料夹失败");
                                 }
                             });
 
@@ -188,93 +228,6 @@ $("#li_zl_item").click(function(){
                         alert("请求任务名失败");
                     }
                 });
-
-                console.log(project_name);
-
-                $(".my-inline-block2").click(function(){
-                    var oDiv=$("#data");
-                    var clear = "";
-                    oDiv.html(clear);
-                    category_name = $(this).find(".folder-name2").text();
-                    $.ajax({
-                        type: "POST",
-                        url: "/",
-                        async: false,
-                        dataType: "json",
-                        data: {
-                            'project_name': project_name,
-                            'category_name':category_name
-                        },
-                        success: function (data) {
-                            $.each(data, function (index, obj) {
-                                if (index != (data.length)) {
-                                    var oDiv=$("#inform");
-                                    var clear = "";
-                                    oDiv.html(clear);
-                                    var oP = $("<div class='op'></div>");
-
-                                    //title
-                                    var oTitle=$('<p class="oTitle"></p>');
-                                    oTitle.append(" 任务名称："+obj['taskName']);
-                                    oP.append(oTitle);
-                                    //description
-                                    var oMsg = $("<p class='description'></p>");
-                                    oMsg.append("任务描述："+obj['taskContent']);
-                                    oP.append(oMsg);
-                                    var oUl=$('<ul class="list-inline"></ul>');
-
-                                    //author
-                                    var oH2 = $("<li><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></li>");
-                                    oH2.append('<span class="author">'+''+obj['name']+'</span>');
-                                    oUl.append(oH2);
-
-
-                                    var oDate = $("<li class='day'></li>");
-                                    oDate.append(obj['date']+"发布");
-                                    oUl.append(oDate);
-
-                                    oP.append(oUl);
-                                    //btn
-                                    var oBtn=$('<div class="float"></div>');
-                                    oBtn.append('<button class="btn btn-get">领取任务</button>');
-                                    oP.append(oBtn);
-
-                                    oDiv.append(oP);
-
-
-                                }
-                            });
-                            $(".btn-get").click(function(){
-                                var taskName=$(this).parent().parent().find('.oTitle').text();
-                                $.ajax({
-                                    type: "POST",
-                                    url: "/",
-                                    async: false,
-                                    dataType: "json",
-                                    data: {
-                                        'taskName': taskName
-                                    },
-                                    success:function(data){
-                                        if(data==1){
-                                            alert("您已经成功领到该任务，请到我的任务栏中查看~");
-                                        }
-                                        else if(data==2){
-                                            alert("正在向管理员申请中...申请成功后将在'我的任务'栏显示您的任务");
-                                        }
-                                    },
-                                    error:function(){
-                                        alert("发送领取任务请求失败");
-                                    }
-                                })
-                            });
-
-                        },
-                        error: function () {
-                            alert("请求任务信息失败!");
-                        }
-                    });
-                });
-
             });
 
         },
@@ -283,4 +236,5 @@ $("#li_zl_item").click(function(){
         }
     })
 });
+
 
