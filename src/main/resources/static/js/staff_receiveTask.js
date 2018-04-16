@@ -53,7 +53,11 @@
                                     var oMsg = $("<p class='description'></p>");
                                     oMsg.append("任务描述："+obj['taskContent']);
                                     oP.append(oMsg);
+                                    //deadLine
+                                    var oDeadline=$("<p class='deadLine'></p>");
+                                    oDeadline.append("任务截止时间："+obj['deadLine']);
                                     oDiv.append(oP);
+
 
 
                                 }

@@ -94,9 +94,10 @@ $("#li_tz_item").click(function(){
                                 var oMsg = $("<p class='description'></p>");
                                 oMsg.append("任务描述："+obj['taskContent']);
                                 oP.append(oMsg);
+                                //author
                                 var oUl=$('<ul class="list-inline"></ul>');
 
-                                //author
+
                                 var oH2 = $("<li><img src='img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></li>");
                                 oH2.append('<span class="author">'+''+obj['promulgator']+'</span>');
                                 oUl.append(oH2);
@@ -105,6 +106,10 @@ $("#li_tz_item").click(function(){
                                 var oDate = $("<li class='day'></li>");
                                 oDate.append(obj['releaseTime']+"发布");
                                 oUl.append(oDate);
+
+                                var oDeadline=$("<li class='deadline'></li>");
+                                oDeadline.append("需要在："+obj['deadLine']+"前完成");
+                                oUl.append(oDeadline);
 
                                 oP.append(oUl);
                                 //btn
