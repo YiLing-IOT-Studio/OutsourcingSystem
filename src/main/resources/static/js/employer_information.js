@@ -10,6 +10,7 @@ $(document).ajaxSend(function(e, xhr, options) {
     var header = 'X-CSRF-TOKEN';
     xhr.setRequestHeader(header, token);
 });
+$("#li_xx_item").click(function(){
     $.ajax({
         type:"POST",
         url:"/getOutsourcingUserInfo",
@@ -81,7 +82,9 @@ $(document).ajaxSend(function(e, xhr, options) {
             });
         },
         error:function(){
-           alert("人员信息查询请求失败!");
+            alert("人员信息查询请求失败!");
         }
 
-    })
+    });
+});
+
