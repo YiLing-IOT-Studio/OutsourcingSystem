@@ -1,7 +1,10 @@
 /**
  * Created by 杨玉卿 on 2018/4/10.
  */
-
+/*关闭video*/
+var video=document.getElementById('video');
+video.pause();
+video.css("visibility","hidden");
 var tBody=$("#tBody");
     $.ajax({
         type:"get",

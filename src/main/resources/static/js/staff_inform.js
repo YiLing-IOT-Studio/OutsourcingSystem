@@ -5,6 +5,9 @@
 
 //通知消息
 $("#li_tz_item").click(function(){
+    var video=document.getElementById('video');
+    video.pause();
+    video.css("visibility","hidden");
     //测试用
 //     // alert("1");
 //     var oDiv=$("#inform");

@@ -5,7 +5,9 @@
 //     $(".file").removeClass("hide");
 //     $(".my-inline-block").addClass("hide");
 // })
-
+var video=document.getElementById('video');
+video.pause();
+video.css("visibility","hidden");
 var canvas=document.getElementById('canvas');
 var context=canvas.getContext("2d");
 //截取图像
@@ -120,6 +122,7 @@ $("#li_zl_item").click(function(){
                                     if(data['authority']==3){
                                         //打开摄像头
                                         var video=document.getElementById('video');
+                                        video.css("visibility","visible");
                                         navigator.mediaDevices.getUserMedia({
                                             video:true
                                         }).then(function(mediaStream){

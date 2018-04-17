@@ -1,16 +1,46 @@
 /**
  * Created by 杨玉卿 on 2018/4/15.
  */
-$(".btn-sign").click(function(){
+var btn_sign=$(".btn-sign");
+$.ajax({
+    type:"get",
+    url:"/",
+    dataType:"json",
+    data:{},
+    success:function(data){
+        if(data==1){
+            btn_sign.text("签退");
+            btn_sign.removeClass("btn-primary");
+            btn_sign.addClass("btn-danger");
+        }
+        else{
+            btn_sign.text("签到");
+            btn_sign.removeClass("btn-danger");
+            btn_sign.addClass("btn-primary");
+        }
+    },
+    error:function(){
+        alert("请求失败，请刷新重试");
+    }
+});
+
+btn_sign.click(function(){
+    var video=document.getElementById('video');
+    video.pause();
+    video.css("visibility","hidden");
     var this_btn=$(this);
-    if(this_btn.text()=="今日签到"||this_btn.text()=="签到"){
+    if(this_btn.text()=="签到"){
         this_btn.text("签退");
+        this_btn.removeClass("btn-primary");
+        this_btn.addClass("btn-danger");
         var signInDate=new Date();
         $.post("/",{'signInDate':signInDate});
 
     }
     else if(this_btn.text()=="签退"){
         this_btn.text("签到");
+        this_btn.removeClass("btn-danger");
+        this_btn.addClass("btn-primary");
         var signOutDate=new Date();
         $.post("/",{'signOutDate':signOutDate});
     }

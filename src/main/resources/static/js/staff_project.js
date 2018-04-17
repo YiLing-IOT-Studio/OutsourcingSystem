@@ -1,6 +1,7 @@
 /**
  * Created by 杨玉卿 on 2018/4/10.
  */
+
 //填充数据类
 function fillData(data){
     var kBody=$("#kBody");
@@ -55,6 +56,9 @@ function fillData(data){
     })
 }
 $("#li_xm_item").click(function(){
+    var video=document.getElementById('video');
+    video.pause();
+    video.css("visibility","hidden");
     $.ajax({
         type:"get",
         url:'/getOutsourcing',
