@@ -58,7 +58,7 @@
                 </a>
                 <div id="nickname">
                     <p id="personName" th:text="${userName}"></p>
-                    <button  class="btn btn-sign btn-primary">签到</button>
+                    <button type="submit"  class="btn btn-sign btn-danger">签到</button>
                 </div>
             </div>
             <div class="funcList">
@@ -73,31 +73,72 @@
                 </ul>
             </div>
         </div>
-        <div class="mainRight tab-content col-md-10">
+        <div class="mainRight tab-content col-md-offset-1 col-md-8">
             <div class="tab-pane fade in  active" id="info">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">个人档</a></li>
                     <li class="active">个人资料</li>
                 </ol>
-                <div class="panel panel-primary">
+                <div class="panel panel-success">
                     <!-- Default panel contents -->
-                    <div class="panel-heading">个人档案</div>
+                    <div class="panel-heading text-center">个人资料</div>
+                    <div class="panel-body bg-success">
+                        <div id="profile">
+                            <p class="text-right">
+                                <button class="btn btn-info" id="edit"><span class="glyphicon glyphicon-pencil"></span> 编辑</button>
+                            </p>
+                            <strong>昵称:</strong>
+                            <p id="nick_name1"></p>
+                            <strong>真实姓名:</strong>
+                            <p id="true_name1"></p>
+                            <strong>性别:</strong>
+                            <p id="gender1"></p>
+                            <strong>电话:</strong>
+                            <p id="telephone1"></p>
+                            <strong>保密协议签订:</strong>
+                            <p id="promise"></p>
+                            <strong>合同签订:</strong>
+                            <p id="contract"></p>
+                            <strong>个人介绍:</strong>
+                            <p id="introduce1"></p>
+                        </div>
+                        <div id="second_profile">
+                            <form name="update_profile" id="update_profile">
+                                <div class="form-group">
+                                    <label for="nick_name">昵称</label>
+                                    <input type="text" name="name" id="nick_name" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="true_name">真实姓名</label>
+                                    <input type="text" name="name" id="true_name" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">性别</label>
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option>男</option>
+                                        <option>女</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone">电话</label>
+                                    <input type="text" name="name" id="telephone" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">个人介绍</label>
+                                    <textarea id="introduce" name="introduce" class="form-control" ></textarea>
+                                </div>
 
-                    <!-- Table -->
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>电话</th>
-                            <th>是否签订保密协议</th>
-                            <th>合同签订情况</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tBody">
-                        </tbody>
-                    </table>
+                                <button class="btn btn-success btn-block" id="save">保存</button>
+
+
+                            </form>
+                        </div>
+
+
+
+                    </div>
+
                 </div>
             </div>
 

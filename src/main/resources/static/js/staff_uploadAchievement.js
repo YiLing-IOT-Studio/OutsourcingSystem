@@ -8,7 +8,7 @@ $(document).ajaxSend(function(e, xhr, options) {
 });
 var video=document.getElementById('video');
 video.pause();
-video.css("visibility","hidden");
+$("#video").css("visibility","hidden");
 $("#uplBtn").click(function(event){
     var pattern=/^\d{1,3}$/;
     event.preventDefault();

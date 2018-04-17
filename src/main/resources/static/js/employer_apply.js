@@ -88,7 +88,7 @@ $.ajax({
                 oAgree.click(function(){
                     $.ajax({
                         type:"post",
-                        url:"/",
+                        url:"/？",
                         dataType:"json",
                         async:false,
                         data:{

@@ -58,7 +58,7 @@ function fillData(data){
 $("#li_xm_item").click(function(){
     var video=document.getElementById('video');
     video.pause();
-    video.css("visibility","hidden");
+    $("#video").css("visibility","hidden");
     $.ajax({
         type:"get",
         url:'/getOutsourcing',

@@ -6,7 +6,7 @@
     $("#li_rw_item").click(function(){
         var video=document.getElementById('video');
         video.pause();
-        video.css("visibility","hidden");
+        $("#video").css("visibility","hidden");
         $.ajax({
             type:"POST",
             url:"/receiveTask/getTask",

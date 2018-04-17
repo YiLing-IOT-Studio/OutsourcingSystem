@@ -7,7 +7,7 @@
 // })
 var video=document.getElementById('video');
 video.pause();
-video.css("visibility","hidden");
+$("#video").css("visibility","hidden");
 var canvas=document.getElementById('canvas');
 var context=canvas.getContext("2d");
 //截取图像
