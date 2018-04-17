@@ -24,7 +24,7 @@ oBtn1.click(function(){
     oDate.append('<label>截止日期：</label>'+
         '<div class="form-group">'+
         "<div class='input-group date'  id='datetimepicker1' >"+
-        "<input type='text' class='form-control' id='deadLine'/>"+
+        "<input type='text' class='form-control' id='deadLine' name='missionDeadLine'/>"+
         '<span class="input-group-addon">'+
         '<span class="glyphicon glyphicon-calendar"></span>'+
         '</span>'+

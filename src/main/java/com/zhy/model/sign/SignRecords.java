@@ -16,7 +16,7 @@ public class SignRecords {
     /**
      * 接包人名
      */
-    private String username;
+    private String phone;
 
     /**
      * 接包人签到时间
@@ -37,5 +37,14 @@ public class SignRecords {
      * 接包人签到时间字符串
      */
     private String str_time;
+
+    public SignRecords() {
+    }
+
+    public SignRecords(String phone, long come_time) {
+        this.phone = phone;
+        this.come_time = come_time;
+    }
+
 
 }

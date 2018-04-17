@@ -25,6 +25,6 @@ public class ApplyForOutsourcing {
     /**
      * 接包状态
      */
-    private int state;
+    private String state;
 
 }

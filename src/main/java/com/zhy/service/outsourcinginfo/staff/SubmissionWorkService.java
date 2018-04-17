@@ -55,7 +55,7 @@ public class SubmissionWorkService {
                 int pid = orgZTreeService.selectIdByOutsourcingName(dynamicInformation.getName());
                 int id = orgZTreeService.selectIdByPidAndPhone(pid, dynamicInformation.getUploader());
                 TimeUtil timeUtil = new TimeUtil();
-                OrgZTree orgZTree = new OrgZTree(id, timeUtil.longToStringTime(Long.parseLong(fileName)), dynamicInformation.getUploader(), false);
+                OrgZTree orgZTree = new OrgZTree(id, timeUtil.longToSixStringTime(Long.parseLong(fileName)), dynamicInformation.getUploader(), false);
                 orgZTreeService.saveOrgTree(orgZTree);
                 System.out.println("动态说明加入项目文件夹信息：" + orgZTree.toString());
 

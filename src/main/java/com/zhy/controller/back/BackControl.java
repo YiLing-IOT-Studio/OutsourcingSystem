@@ -1,14 +1,11 @@
 package com.zhy.controller.back;
 
-import com.zhy.service.outsourcinginfo.GetUserName;
+import com.zhy.service.mybatis.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +20,12 @@ import java.security.Principal;
 public class BackControl {
 
     @Autowired
-    GetUserName getUserName;
+    UserRegisterService userRegisterService;
 
     @GetMapping("/index")
     public String index(Model model, @AuthenticationPrincipal Principal principal){
 
-        String userName = getUserName.getUsername(principal.getName());
+        String userName = userRegisterService.getUserNameByPhone(principal.getName());
         model.addAttribute("userName", userName);
 
         return "project";
@@ -55,7 +52,7 @@ public class BackControl {
         System.out.println("跳到管理界面的X-CSRF-TOKEN：" + token);
         response.setHeader("X-CSRF-TOKEN",token);
 
-        String userName = getUserName.getUsername(principal.getName());
+        String userName = userRegisterService.getUserNameByPhone(principal.getName());
         model.addAttribute("userName", userName);
 
         return "manager";
@@ -68,13 +65,15 @@ public class BackControl {
 
     @GetMapping("/staff")
     public String staff(Model model, @AuthenticationPrincipal Principal principal){
-        String userName = getUserName.getUsername(principal.getName());
+        String userName = userRegisterService.getUserNameByPhone(principal.getName());
         model.addAttribute("userName", userName);
         return "staff";
     }
 
     @GetMapping("/admin")
-    public String admin(){
+    public String admin(Model model, @AuthenticationPrincipal Principal principal){
+        String userName = userRegisterService.getUserNameByPhone(principal.getName());
+        model.addAttribute("userName", userName);
         return "admin";
     }
 }

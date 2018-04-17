@@ -21,4 +21,21 @@ public interface SignRecordsService {
      */
     List<SignRecords> findByStartAndEndTime(Map<String, Long> map);
 
+    /**
+     *签到
+     * @param phone 手机号
+     * @param signDate 签到时间
+     * @return
+     */
+    int saveSignInRecord(String phone, String signDate);
+
+    /**
+     * 签退
+     * @param phone 手机号
+     * @param signDate 签退时间
+     * @return
+     */
+    int saveSignOutRecord(String phone, String signDate);
+
+
 }

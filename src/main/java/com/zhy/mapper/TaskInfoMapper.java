@@ -15,16 +15,23 @@ import java.util.List;
 @Mapper
 public interface TaskInfoMapper {
 
-    @Insert("insert into taskinfo(projectName, promulgator, taskName, taskContent, authority, releaseTime, taskState) " +
-                                                    "values(#{projectName}, #{promulgator}, #{taskName}, #{taskContent}, #{authority}, #{releaseTime}, #{taskState})")
+    @Insert("insert into taskinfo(projectName, promulgator, taskName, taskContent, authority, releaseTime, taskState, missionDeadLine) " +
+                                                    "values(#{projectName}, #{promulgator}, #{taskName}, #{taskContent}, #{authority}, #{releaseTime}, #{taskState}, #{missionDeadLine})")
     int saveTaskInfo(TaskInfo taskInfo);
 
     @Select("select t.taskName from taskinfo t where projectName=#{projectName}")
     List<String> getTaskNameByProjectName(@Param("projectName") String projectName);
 
-    @Select("select * from taskinfo where projectName=#{projectName} and taskState in (\"待领取\",\"申请中\")")
-    List<TaskInfo> getTaskInfoByProjectNameAndTaskState(@Param("projectName") String projectName);
+    @Select("select * from taskinfo where projectName=#{projectName} and taskState=#{taskState}")
+    List<TaskInfo> getTaskInfoByProjectName(@Param("projectName") String projectName, @Param("taskState") String taskState);
 
     @Update("update taskinfo set taskState=#{taskState} where taskName=#{taskName} and projectName=#{projectName}")
     int updateTaskState(@Param("taskName") String taskName, @Param("projectName") String projectName, @Param("taskState") String taskState);
+
+    @Select("select t.id,t.taskState from taskinfo t where projectName=#{projectName} and taskName=#{taskName}")
+    TaskInfo selectTaskState(@Param("taskName") String taskName, @Param("projectName") String projectName);
+
+    @Select("select * from taskinfo where id=#{id}")
+    TaskInfo selectTaskInfoById(@Param("id") int id);
+
 }

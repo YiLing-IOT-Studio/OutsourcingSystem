@@ -33,9 +33,8 @@ public class GetSignRecords {
 
         String comeTime = request.getParameter("sTime");
         String leaveTime = request.getParameter("eTime");
-        System.out.println("时间段：" + comeTime  + " 到 " + leaveTime);
 
-        Map<String, Long> map = timeUtil.stringToLongTimeMap(comeTime, leaveTime);
+        Map<String, Long> map = timeUtil.fourStringToLongTimeMap(comeTime, leaveTime);
 
         List<SignRecords> allSignRecords = signRecordsService.findByStartAndEndTime(map);
 

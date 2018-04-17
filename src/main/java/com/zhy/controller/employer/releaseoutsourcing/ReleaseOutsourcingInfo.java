@@ -45,10 +45,10 @@ public class ReleaseOutsourcingInfo {
         int progress = 0;
         String state = "报名中";
 
-        long registrationDeadline = timeUtil.stringToLongTime(request.getParameter("enterTime"));
-        long projectDeadline = timeUtil.stringToLongTime(request.getParameter("finishedTime"));
+        long registrationDeadline = timeUtil.fourStringToLongTime(request.getParameter("enterTime"));
+        long projectDeadline = timeUtil.fourStringToLongTime(request.getParameter("finishedTime"));
         long publishTimeForLong = Long.parseLong(request.getParameter("publishTime"))/1000;
-        String publishTimeForString = timeUtil.longToStringTime(publishTimeForLong);
+        String publishTimeForString = timeUtil.longToSixStringTime(publishTimeForLong);
         System.out.println("项目发布时间：" + publishTimeForString);
 
         //上传文件的保存路径

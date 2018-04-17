@@ -34,11 +34,12 @@ public class ReleaseTaskController {
         String taskName = request.getParameter("taskName");
         String taskContent = request.getParameter("taskContent");
         String authority = request.getParameter("authority");
+        String missionDeadLine = request.getParameter("missionDeadLine");
 
         Date now = new Date();
         TimeUtil timeUtil = new TimeUtil();
 
-        TaskInfo taskInfo = new TaskInfo(projectName, principal.getName(), taskName, taskContent, authority, timeUtil.longToStringTime(now.getTime()), TaskState.TASK_AWAIT);
+        TaskInfo taskInfo = new TaskInfo(projectName, principal.getName(), taskName, taskContent, authority, timeUtil.longToSixStringTime(now.getTime()), TaskState.TASK_AWAIT, missionDeadLine);
 
         //保存任务
         int releaseResult = taskInfoService.saveTaskInfo(taskInfo);

@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * @author: zhangocean
  * @Date: Created in 16:26 2018/4/8
- * Describe: 文件上传
+ * Describe: 文件上传工具
  */
 public class FileUtil {
 

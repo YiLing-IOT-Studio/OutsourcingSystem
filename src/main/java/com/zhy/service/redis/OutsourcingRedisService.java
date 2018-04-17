@@ -2,6 +2,7 @@ package com.zhy.service.redis;
 
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.repository.redis.OutsourcingRedisRepository;
+import com.zhy.service.mybatis.UserRegisterService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ public class OutsourcingRedisService {
 
     @Autowired
     OutsourcingRedisRepository outsourcingRedisRepository;
+    @Autowired
+    UserRegisterService userRegisterService;
 
     /**
      * 将每一页查询到的外包信息集合储存到redis中
@@ -52,6 +55,10 @@ public class OutsourcingRedisService {
 
         List<OutsourcingInfo> list = outsourcingRedisRepository.getOutsourcingList(selectPageList);
         Map<String, Integer> pageMapInfo = outsourcingRedisRepository.getOutsourcingPage(pageMap);
+
+        for(OutsourcingInfo o : list){
+            o.setPublisher(userRegisterService.getUserNameByPhone(o.getPublisher()));
+        }
 
         JSONArray jsonArray = JSONArray.fromObject(list);
         jsonArray.add(pageMapInfo);

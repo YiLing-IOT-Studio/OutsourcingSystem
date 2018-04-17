@@ -1,9 +1,32 @@
 (function() {
     //查看外包信息
-    allMsg();
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+    function getMyDate(str) {
+        var oDate = new Date(str),
+            oYear = oDate.getFullYear(),
+            oMonth = oDate.getMonth() + 1,
+            oDay = oDate.getDate(),
+            oHour = oDate.getHours(),
+            oMin = oDate.getMinutes(),
+            oSen = oDate.getSeconds(),
+            oTime = oYear + '/' + getzf(oMonth) + '/' + getzf(oDay) + ' ' + getzf(oHour) + ':' + getzf(oMin) + ':' + getzf(oSen); //最后拼接时间
+        return oTime;
+    };
+    //补0操作
+    function getzf(num) {
+        if (parseInt(num) < 10) {
+            num = '0' + num;
+        }
+        return num;
+    }
 
+    allMsg();
     function allMsg() {
-        $.get('http://localhost:7070/get', function(data) {
+        $.post('/manager/getAllOutsourcing',{}, function(data) {
             $('#tBody').empty();
             for (i in data) {
                 var row = $('<tr>' +
@@ -12,8 +35,8 @@
                     '<td>' + data[i].state + '</td>' +
                     '<td>' + data[i].progress + '%</td>' +
                     '<td>' + data[i].publishTime + '</td>' +
-                    '<td>' + data[i].registrationDeadline + '</td>' +
-                    '<td>' + data[i].projectDeadline + '</td>' +
+                    '<td>' + getMyDate(data[i].registrationDeadline*1000) + '</td>' +
+                    '<td>' + getMyDate(data[i].projectDeadline*1000) + '</td>' +
                     '<td><a class="contractor" data-index="' + data[i].id + '" href="#">查看所有接包人/编辑</a></td>' +
                     '<td><a class="more" data-index="' + data[i].id + '" href="#">查看更多信息/编辑</a></td>' +
                     '</tr>');
@@ -25,7 +48,7 @@
                 conPost(thisHead);
 
                 function conPost(con) {
-                    $.post('http://localhost:7070/post', {
+                    $.post('/manager/getAllUserInfo', {
                         name: con
                     }, function(data) {
                         var moreMsg = $('.moreMsg');
@@ -38,12 +61,12 @@
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-telegram"></i>' +
                             '<label>外包名：</label>' +
-                            '<span>' + data.name + '</span>' +
+                            '<span>' + data[0].name + '</span>' +
                             '</div>' +
                             '<div class="col-sm-6">' +
                             '<i class="fa fa-user-o publisher"></i>' +
                             '<label>发包者：</label>' +
-                            '<span>' + data.publisher + '</span>' +
+                            '<span>' + data[0].publisher + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
@@ -54,19 +77,19 @@
                             '</div>' +
                             '</form>');
                         moreMsg.append(conHead);
-                        for (i in data.contractor) {
+                        for (i in data[0].contractor) {
                             var sex, promise, contact;
-                            if (data.contractor[i].gender == 'lady') {
+                            if (data[0].contractor[i].gender == 'lady') {
                                 sex = '女';
                             } else {
                                 sex = '男';
                             }
-                            if (data.contractor[i].promise == 'true') {
+                            if (data[0].contractor[i].promise == 'true') {
                                 promise = 'ok';
                             } else {
                                 promise = 'remove';
                             }
-                            if (data.contractor[i].contact == 'true') {
+                            if (data[0].contractor[i].contract == 'true') {
                                 contact = 'ok';
                             } else {
                                 contact = 'remove';
@@ -75,7 +98,7 @@
                                 '<div class="alert alert-warning col-sm-12" role="alert">' +
                                 '<div class="col-sm-12">' +
                                 '<label>姓名：</label>' +
-                                '<span>' + data.contractor[i].name + '</span>' +
+                                '<span>' + data[0].contractor[i].name + '</span>' +
                                 '</div>' +
                                 '<div class="col-sm-12">' +
                                 '<label>性别：</label>' +
@@ -83,15 +106,11 @@
                                 '</div>' +
                                 '<div class="col-sm-12">' +
                                 '<label>电话：</label>' +
-                                '<span>' + data.contractor[i].phone + '</span>' +
+                                '<span>' + data[0].contractor[i].phone + '</span>' +
                                 '</div>' +
                                 '<div class="col-sm-12">' +
                                 '<label>负责项目：</label>' +
-                                '<span>' + data.contractor[i].project + '</span>' +
-                                '</div>' +
-                                '<div class="col-sm-12">' +
-                                '<label>分工细则：</label>' +
-                                '<span>' + data.contractor[i].task + '</span>' +
+                                '<span>' + data[0].contractor[i].project + '</span>' +
                                 '</div>' +
                                 '<div class="col-sm-12">' +
                                 '<label>是否签订保密协议：</label>' +
@@ -101,26 +120,25 @@
                                 '<label>合同签订情况：</label>' +
                                 '<span class="glyphicon glyphicon-' + contact + '"></span>' +
                                 '</div>' +
-                                '<button type="button" class="btn btn-danger pull-right conBtn" data-id="' + data.contractor[i].id + '">编辑</button>' +
+                                '<button type="button" class="btn btn-danger pull-right conBtn" data-id="' + data[0].contractor[i].id + '">编辑</button>' +
                                 '</div>');
                             $('.form').append(oneCon);
                         }
-                        alert('df');
                         $('.conBtn').click(function() {
-                            var id = $(this).attr('data-id');
+                            var id = $(this).attr('data-id')-1;
                             $('.form').empty();
                             var sex, promise, contact;
-                            if (data.contractor[id].gender == 'lady') {
+                            if (data[0].contractor[id].gender == 'lady') {
                                 sex = '女';
                             } else {
                                 sex = '男';
                             }
-                            if (data.contractor[id].promise == 'true') {
+                            if (data[0].contractor[id].promise == 'true') {
                                 promise = 'ok';
                             } else {
                                 promise = 'remove';
                             }
-                            if (data.contractor[id].contact == 'true') {
+                            if (data[0].contractor[id].contract == 'true') {
                                 contact = 'ok';
                             } else {
                                 contact = 'remove';
@@ -131,7 +149,7 @@
                                 '<div class="col-sm-12">' +
                                 '<div class="col-sm-6 form-group">' +
                                 '<label for="name">姓名：</label>' +
-                                '<input type="text" class="form-control" id="name" name="name" value="' + data.contractor[id].name + '">' +
+                                '<input type="text" class="form-control" id="name" name="name" value="' + data[0].contractor[id].name + '">' +
                                 '</div>' +
                                 '<div class="col-sm-6 form-group">' +
                                 '<label for="gender">性别：</label>' +
@@ -141,19 +159,13 @@
                                 '<div class="col-sm-12">' +
                                 '<div class="col-sm-12 form-group">' +
                                 '<label for="phone">电话：</label>' +
-                                '<input type="text" class="form-control" id="phone" name="phone" value="' + data.contractor[id].phone + '">' +
+                                '<input type="text" class="form-control" id="phone" name="phone" value="' + data[0].contractor[id].phone + '">' +
                                 '</div>' +
                                 '</div>' +
                                 '<div class="col-sm-12">' +
                                 '<div class="col-sm-12 form-group">' +
                                 '<label for="project">负责项目：</label>' +
-                                '<input type="text" class="form-control" id="project" name="project" value="' + data.contractor[id].project + '">' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="col-sm-12">' +
-                                '<div class="col-sm-12 form-group">' +
-                                '<label for="task">分工细则：</label>' +
-                                '<input type="text" class="form-control" id="task" name="task" value="' + data.contractor[id].task + '">' +
+                                '<input type="text" class="form-control" id="project" name="project" value="' + data[0].contractor[id].project + '">' +
                                 '</div>' +
                                 '</div>' +
                                 '<div class="col-sm-12">' +
@@ -166,7 +178,7 @@
                                 '<span class="glyphicon glyphicon-' + contact + '"></span>' +
                                 '</div>' +
                                 '</div>' +
-                                '<button type="button" class="btn btn-danger pull-right sub" data-name="' + data.name + '" data-id="' + data.contractor[id].id + '">提交</button>' +
+                                '<button type="button" class="btn btn-danger pull-right sub" data-name="' + data[0].name + '" data-id="' + data[0].contractor[id].id + '">提交</button>' +
                                 '</form>' +
                                 '</div>' +
                                 '</div>');
@@ -191,7 +203,7 @@
                 morePost(th);
 
                 function morePost(th) {
-                    $.post('http://localhost:6060/post', {
+                    $.post('/manager/getOneOutsourcingById', {
                         data: th
                     }, function(data) {
                         var moreMsg = $('.moreMsg');
@@ -199,6 +211,7 @@
                         $('.table').addClass('hidden');
                         moreMsg.removeClass('hidden');
                         $('.title').html('更多信息/编辑');
+                        console.log(data[0].progress);
                         var msg = $('<form class="col-sm-8 form col-center-block" action="">' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-6">' +
@@ -272,14 +285,14 @@
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-hourglass-start"></i>' +
                             '<label>报名截止时间：</label>' +
-                            '<span>' + data[0].registrationDeadline + '</span>' +
+                            '<span>' + getMyDate(data[0].registrationDeadline*1000) + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col-sm-12">' +
                             '<div class="col-sm-12">' +
                             '<i class="fa fa-hourglass-end"></i>' +
                             '<label>项目截止时间：</label>' +
-                            '<span>' + data[0].projectDeadline + '</span>' +
+                            '<span>' + getMyDate(data[0].projectDeadline*1000) + '</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="btnBox col-sm-3 pull-right">' +
@@ -401,53 +414,53 @@
 
         })
     }
-    //申请批复
-    apply();
-
-    function apply() {
-        $.get('', function(data) {
-            // data = JSON.parse(data);
-            $(".allMsg").empty();
-            for (i in data) {
-                var respondEmail = $('<div class="one">' +
-                    '<div class="alert alert-danger clearfix" role="alert">' +
-                    '<span>' +
-                    '<button type="button" class="btn btn-default applicant" data-name="' + data[i].applicant + '">' + data[i].applicant + '</button>' +
-                    '申请成为发包人</span>' +
-                    '<div class="pull-right checkBox" data-index="' + data[i].id + '">' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>');
-                $(".allMsg").append(respondEmail);
-                if (data[i].status) {
-                    $('.checkBox').eq(i).html('<button class="btn btn-danger">' + data[i].status + '</button>');
-                } else {
-                    $('.checkBox').eq(i).html('<button class="btn btn-primary agree">同意</button>' +
-                        '<button class="btn btn-danger disagree">拒绝</button>');
-                }
-            }
-            $('.applicant').click(function() {
-                var _this = $(this);
-                $.post('', {
-                    name: _this.attr('data-name')
-                }, function(data) {
-
-                })
-            })
-
-            function check($name, url, result) {
-                $("." + $name).click(function() {
-                    var _this = $(this).parent();
-                    $.post(url, {
-                        id: _this.attr("data-index"),
-                        result: result
-                    }, function() {
-                        respond();
-                    })
-                });
-            }
-            check('agree', '', 'true');
-            check('disagree', '', 'false');
-        });
-    }
+    // 申请批复
+    // apply();
+    //
+    // function apply() {
+    //     $.get('', function(data) {
+    //         // data = JSON.parse(data);
+    //         $(".allMsg").empty();
+    //         for (i in data) {
+    //             var respondEmail = $('<div class="one">' +
+    //                 '<div class="alert alert-danger clearfix" role="alert">' +
+    //                 '<span>' +
+    //                 '<button type="button" class="btn btn-default applicant" data-name="' + data[i].applicant + '">' + data[i].applicant + '</button>' +
+    //                 '申请成为发包人</span>' +
+    //                 '<div class="pull-right checkBox" data-index="' + data[i].id + '">' +
+    //                 '</div>' +
+    //                 '</div>' +
+    //                 '</div>');
+    //             $(".allMsg").append(respondEmail);
+    //             if (data[i].status) {
+    //                 $('.checkBox').eq(i).html('<button class="btn btn-danger">' + data[i].status + '</button>');
+    //             } else {
+    //                 $('.checkBox').eq(i).html('<button class="btn btn-primary agree">同意</button>' +
+    //                     '<button class="btn btn-danger disagree">拒绝</button>');
+    //             }
+    //         }
+    //         $('.applicant').click(function() {
+    //             var _this = $(this);
+    //             $.post('', {
+    //                 name: _this.attr('data-name')
+    //             }, function(data) {
+    //
+    //             })
+    //         })
+    //
+    //         function check($name, url, result) {
+    //             $("." + $name).click(function() {
+    //                 var _this = $(this).parent();
+    //                 $.post(url, {
+    //                     id: _this.attr("data-index"),
+    //                     result: result
+    //                 }, function() {
+    //                     respond();
+    //                 })
+    //             });
+    //         }
+    //         check('agree', '', 'true');
+    //         check('disagree', '', 'false');
+    //     });
+    // }
 })()

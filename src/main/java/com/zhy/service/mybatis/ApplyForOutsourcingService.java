@@ -20,20 +20,42 @@ public interface ApplyForOutsourcingService {
      * @param phone 手机号
      * @return
      */
-    ApplyForOutsourcing selectByIdAndPhone(String outsourcingName, String phone);
+    ApplyForOutsourcing selectByNameAndPhone(String outsourcingName, String phone);
 
     /**
      * 保存接包人申请外包信息
-     * @param outsourcingName 外包名
+     * @param id 外包的id
      * @param phone 手机号
      * @return 保存成功为1
      */
     int applyForOutsourcing(int id, String phone);
 
     /**
-     * 通过手机号获得外包名
+     * 通过手机号获得申请的外包信息
      * @param phone 手机号
      * @return 外包名
      */
-    List<String> selectByPhone(@Param("phone") String phone);
+    List<ApplyForOutsourcing> selectByPhone(String phone);
+
+    /**
+     * 通过手机号获得项目名
+     * @param phone 手机号
+     * @return
+     */
+    List<String> selectOutsourcingByPhoneAndState(String phone);
+
+    /**
+     * 通过外包名获得在申请中的所有手机号
+     * @param outsourcingName
+     * @return
+     */
+    List<String> getPhoneByNameOnApply(String outsourcingName);
+
+    /**
+     * 通过外包名获取所有已完成或已接包的所有接包人手机号
+     * @param name
+     * @return
+     */
+    List<String> getPhoneByNameOnFinishAndAccepted(String name);
+
 }

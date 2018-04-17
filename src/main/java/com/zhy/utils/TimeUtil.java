@@ -9,33 +9,53 @@ import java.util.Map;
 /**
  * @author: zhangocean
  * @Date: Created in 15:31 2018/4/3
- * Describe:
+ * Describe: 时间处理工具
  */
 public class TimeUtil {
 
-    public String longToStringTime(long time){
+    /**
+     * 将long型的数转换成 "yyyy/MM/dd HH:mm:ss" 型
+     * @param time 毫秒型的时间
+     * @return "yyyy/MM/dd HH:mm:ss" 型的时间
+     */
+    public String longToSixStringTime(long time){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date(time);
+        return simpleDateFormat.format(date);
+    }
+
+    /**
+     * 将 "yyyy/MM/dd" 型的时间转换成long型的时间
+     * @param time "yyyy/MM/dd"型的时间
+     * @return long型的时间
+     * @throws ParseException
+     */
+    public long fourStringToLongTime(String time) throws ParseException {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        return simpleDateFormat.parse(time).getTime()/1000;
+    }
+
+    /**
+     * 将 "yyyy/MM/dd HH:mm:ss" 型的时间转换成long的时间
+     * @param time "yyyy/MM/dd HH:mm:ss" 型的时间
+     * @return long型的时间
+     * @throws ParseException
+     */
+    public long sixStringToLongTime(String time) throws ParseException {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-        Date date = new Date(time);
-        System.out.println("long型时间转换成date型：" + date);
-        String newTime = simpleDateFormat.format(date);
-
-        return newTime;
+        return simpleDateFormat.parse(time).getTime()/1000;
     }
 
-    public long stringToLongTime(String time) throws ParseException {
-
-        System.out.println("String time is : " + time);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        long longTime = simpleDateFormat.parse(time).getTime()/1000;
-        System.out.println("Long time is : " + longTime);
-
-        return longTime;
-    }
-
-    public Map<String, Long> stringToLongTimeMap(String cTime, String lTime) throws ParseException {
-
+    /**
+     * 将两个 "yyyy/MM/dd" 型的时间转换成long型的时间并放在 Map 中
+     * @param cTime 起始时间
+     * @param lTime 截止时间
+     * @return long型时间的集合
+     * @throws ParseException
+     */
+    public Map<String, Long> fourStringToLongTimeMap(String cTime, String lTime) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         //一天有86400秒
         long oneDayLongTime = 86400;
@@ -46,6 +66,38 @@ public class TimeUtil {
         map.put("comeTime", comeTime);
         map.put("leaveTime", leaveTime);
         return map;
+    }
+
+    /**
+     * 将long型时间拼接成 *天*时*分*秒 的形式
+     * @param time long型的秒级数
+     * @return 拼接后的数
+     */
+    public String longToStrTime(long time){
+        String strTime = "";
+        long theTime = 0;
+        if(time >= 86400){
+            theTime = time/86400;
+            System.out.println("time > 86400 的theTime is " + theTime);
+            strTime += theTime + "天";
+            time -= 86400*theTime;
+        }
+        if(time >= 3600){
+            theTime = time/3600;
+            System.out.println("time > 3600 的theTime is " + theTime);
+            strTime += theTime + "时";
+            time -= 3600*theTime;
+        }
+        if(time >= 60) {
+            theTime = time/60;
+            System.out.println("time > 60 的theTime is " + theTime);
+            strTime += theTime + "分";
+            time -= 60*theTime;
+        }
+        if(time != 0){
+            strTime += time + "秒";
+        }
+        return strTime;
     }
 
 }

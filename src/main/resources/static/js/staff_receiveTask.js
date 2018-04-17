@@ -9,7 +9,7 @@
         $("#video").css("visibility","hidden");
         $.ajax({
             type:"POST",
-            url:"/receiveTask/getTask",
+            url:"/myTask/showOutsourcingInfo",
             dataType:"json",
             async: false,
             data:{
@@ -34,7 +34,7 @@
                     console.log(project_name);
                     $.ajax({
                         type: "POST",
-                        url: "/",
+                        url: "/myTask/getMyTask",
                         async: false,
                         dataType: "json",
                         data: {
@@ -58,7 +58,7 @@
                                     oP.append(oMsg);
                                     //deadLine
                                     var oDeadline=$("<p class='deadLine'></p>");
-                                    oDeadline.append("任务截止时间："+obj['deadLine']);
+                                    oDeadline.append("任务截止时间："+obj['missionDeadLine']);
                                     oDiv.append(oP);
 
 

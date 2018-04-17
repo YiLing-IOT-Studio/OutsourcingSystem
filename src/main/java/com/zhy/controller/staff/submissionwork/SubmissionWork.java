@@ -42,7 +42,7 @@ public class SubmissionWork {
         //获得当前时间并转换成字符串型
         TimeUtil timeUtil = new TimeUtil();
         Date now = new Date();
-        String stringTime = timeUtil.longToStringTime(now.getTime());
+        String stringTime = timeUtil.longToSixStringTime(now.getTime());
 
         DynamicInformation dynamicInformation = new DynamicInformation(outsourcingName, principal.getName(), stringTime,
                                                 Integer.valueOf(progress), fileDescription);

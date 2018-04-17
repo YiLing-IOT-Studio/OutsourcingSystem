@@ -6,22 +6,19 @@ import com.zhy.component.outsourcing.dealwithstring.CutOutString;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.repository.mybatis.OutsourcingRepository;
 import com.zhy.service.mybatis.OutsourcingInfoService;
-import com.zhy.service.outsourcinginfo.GetUserName;
+import com.zhy.service.mybatis.UserRegisterService;
 import com.zhy.service.redis.OutsourcingRedisService;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +49,8 @@ public class GetAllOutsourcingInfo {
     OutsourcingInfoService outsourcingInfoService;
     @Autowired
     OutsourcingRedisService outsourcingRedisService;
+    @Autowired
+    UserRegisterService userRegisterService;
 
     /**
      * 通过项目分类、项目状态、项目金额、项目类型查询相关外包信息
@@ -158,18 +157,9 @@ public class GetAllOutsourcingInfo {
 
         List<OutsourcingInfo> queryPagingMessageResult = outsourcingRepository.queryPagingMessage(map);
 
-        List<String> outsourcingName = new ArrayList<>();
-        int i=0;
-        for(OutsourcingInfo outsourcingInfo : queryPagingMessageResult){
-            outsourcingName.add(outsourcingInfo.getName());
-            i++;
-        }
-        logger.info("查询第 " + startPage + " 页的外包信息，该页需要显示 " + pageSize + " 条外包信息，这" + pageSize + "条外包信息的外包名是：" + outsourcingName.toString());
-
         int countList = outsourcingInfoService.countAll();
         Map<String, Integer> countPageMap = countPage.countPageInt(countList, pageSize);
 
-        //向redis中储存当前页的所有外包信息
         outsourcingRedisService.saveByListAndMap(queryPagingMessageResult, countPageMap);
         //向redis中储存所有外包信息
         outsourcingRedisService.saveAllOutsourcingList(outsourcingInfoService.findAllOutsourcing());

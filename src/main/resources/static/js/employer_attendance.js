@@ -60,17 +60,33 @@ function fillData(data){
 
             //姓名
             var kName= $('<td></td>');
-            kName.append(obj['username']);
+            kName.append(obj['phone']);
             tr.append(kName);
 
             //签到时间
             var kSignIn= $('<td></td>');
-            kSignIn.append(obj['come_time']);
+            var date=new Date(obj['come_time']);
+            var Y= date.getFullYear() + '/';
+            var M= (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '/';
+            var D = date.getDate() + ' ';
+            var h = date.getHours() + ':';
+            var m = date.getMinutes() + ':';
+            var s = date.getSeconds();
+            var signInTime=Y+M+D+h+m+s;
+            kSignIn.append(signInTime);
             tr.append(kSignIn);
 
             //签退时间
             var kSignOut= $('<td></td>');
-            kSignOut.append(obj['leave_time']);
+            var date=new Date(obj['leave_time']);
+            var Y= date.getFullYear() + '/';
+            var M= (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '/';
+            var D = date.getDate() + ' ';
+            var h = date.getHours() + ':';
+            var m = date.getMinutes() + ':';
+            var s = date.getSeconds();
+            var signOutTime=Y+M+D+h+m+s;
+            kSignOut.append(signOutTime);
             tr.append(kSignOut);
 
             //总时间

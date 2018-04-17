@@ -3,7 +3,7 @@ package com.zhy.constant;
 /**
  * @author: zhangocean
  * @Date: 2018/4/15 14:18
- * Describe:
+ * Describe: 任务状态
  */
 public interface TaskState {
 

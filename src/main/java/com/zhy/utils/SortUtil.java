@@ -79,8 +79,8 @@ public class SortUtil {
             long o1Time = 0;
             long o2Time = 0;
             try {
-                o1Time = timeUtil.stringToLongTime(o1.getPublishTime());
-                o2Time = timeUtil.stringToLongTime(o2.getPublishTime());
+                o1Time = timeUtil.sixStringToLongTime(o1.getPublishTime());
+                o2Time = timeUtil.sixStringToLongTime(o2.getPublishTime());
             } catch (ParseException e) {
                 e.printStackTrace();
             }

@@ -3,7 +3,7 @@ package com.zhy.constant;
 /**
  * @author: zhangocean
  * @Date: 2018/4/15 11:46
- * Describe:
+ * Describe: 文件后缀
  */
 public interface FileSuffx {
 

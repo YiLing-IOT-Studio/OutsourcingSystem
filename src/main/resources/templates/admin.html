@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="drop-down">
-                            <a id="username" href="#"><span sec:authentication="name"></span><span class="caret" id="caret"></span></a>
+                            <a id="username" href="#"><span th:text="${userName}"></span><span class="caret" id="caret"></span></a>
                             <ul class="drop-down-content">
                                 <li><a href="#">账号管理</a></li>
                                 <li><a href="#">消息</a></li>
@@ -70,10 +70,10 @@
             <div class="leftSide col-md-2">
                 <div class="personalInfo">
                     <a href="#info" class="headPortrait">
-                        <img src="../static/img/headPortrait.png" id="headPortrait" />
+                        <img src="img/headPortrait.png" id="headPortrait" />
                     </a>
                     <div id="nickname">
-                        <p id="personName" sec:authentication="name"></p>
+                        <p id="personName" th:text="${userName}"></p>
                         <!--<a href="#info" class="manageBtn">账号管理</a>-->
                     </div>
                 </div>
@@ -417,7 +417,7 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-    <script src="../static/js/manager_respond.js"></script>
+    <script src="js/manager_respond.js"></script>
 </body>
 
 </html>

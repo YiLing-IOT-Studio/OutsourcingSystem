@@ -11,13 +11,13 @@ var video=document.getElementById('video');
 //个人资料填充
 function profile(data){
     $("#nick_name1").text(data['nick_name']);
-    $("#true_name1").text(data['true_name']);
+    $("#true_name1").text(data['name']);
     if(data['gender']=='gentleman'){
         data['gender']='男';
     }
     else{data['gender']='女'}
     $("#gender1").text(data['gender']);
-    $("#telephone1").text(data['telephone1']);
+    $("#telephone1").text(data['phone']);
     $("#introduce1").text(data['introduction']);
     if(data['promise']==true){
         data['promise']='已签订';
@@ -34,7 +34,7 @@ function profile(data){
 //初始时加载一次资料信息
 $.ajax({
     type:"get",
-    url:"/",
+    url:"/staff/getUserInfo",
     dataType:"json",
     data:{},
     success:function(data){

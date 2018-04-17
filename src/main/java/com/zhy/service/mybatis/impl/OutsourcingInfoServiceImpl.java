@@ -4,6 +4,7 @@ import com.zhy.mapper.OutsourcingInfoMapper;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.model.outsourcing.OutsourcingUserInfo;
 import com.zhy.service.mybatis.OutsourcingInfoService;
+import com.zhy.service.mybatis.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ public class OutsourcingInfoServiceImpl implements OutsourcingInfoService{
 
     @Autowired
     private OutsourcingInfoMapper outsourcingInfoMapper;
+    @Autowired
+    UserRegisterService userRegisterService;
 
     @Override
     public int countSearchText(String searchText) {
@@ -77,5 +80,35 @@ public class OutsourcingInfoServiceImpl implements OutsourcingInfoService{
     @Override
     public OutsourcingInfo selectByName(String name) {
         return outsourcingInfoMapper.selectByName(name);
+    }
+
+    @Override
+    public List<OutsourcingInfo> getAllNameAndRankByPhoneOnApply(String phone) {
+        return outsourcingInfoMapper.getAllNameAndRankByPhoneOnApply(phone);
+    }
+
+    @Override
+    public List<OutsourcingInfo> getAllOutsourcing() {
+
+        List<OutsourcingInfo> outsourcingInfoList = outsourcingInfoMapper.getAllOutsourcing();
+
+        for(OutsourcingInfo o : outsourcingInfoList){
+            o.setPublisher(userRegisterService.getUserNameByPhone(o.getPublisher()));
+        }
+
+        return outsourcingInfoList;
+    }
+
+    @Override
+    public OutsourcingInfo getOutsourcingById(int id) {
+
+        OutsourcingInfo outsourcing = outsourcingInfoMapper.getOutsourcingById(id);
+        outsourcing.setPublisher(userRegisterService.getUserNameByPhone(outsourcing.getPublisher()));
+        return outsourcing;
+    }
+
+    @Override
+    public String getPublisherByName(String name) {
+        return outsourcingInfoMapper.getPublisherByName(name);
     }
 }

@@ -22,4 +22,5 @@ public interface OutsourcingUserInfoMapper {
 
     @Select("select * from outsourcinguserinfo where phone=#{phone}")
     OutsourcingUserInfo getUserInfoByPhone(@Param("phone") String phone);
+
 }

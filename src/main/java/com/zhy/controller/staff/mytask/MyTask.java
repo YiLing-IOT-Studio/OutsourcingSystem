@@ -1,8 +1,12 @@
-package com.zhy.controller.staff.TaskInfo;
+package com.zhy.controller.staff.mytask;
 
+import com.zhy.constant.ApplyState;
 import com.zhy.constant.TaskState;
+import com.zhy.model.outsourcing.ApplyForOutsourcing;
+import com.zhy.model.task.StaffTask;
 import com.zhy.model.task.TaskInfo;
 import com.zhy.service.mybatis.ApplyForOutsourcingService;
+import com.zhy.service.mybatis.StaffTaskService;
 import com.zhy.service.mybatis.TaskInfoService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +20,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.security.Principal;
 import java.util.List;
 
+import static com.zhy.constant.TaskState.TASK_FINISH;
+
 /**
  * @author: zhangocean
- * @Date: 2018/4/15 14:00
- * Describe: 接包人领取任务
+ * @Date: 2018/4/15 21:21
+ * Describe:
  */
 @Controller
-@RequestMapping("/receiveTask")
-public class ReceiveTask {
+@RequestMapping("/myTask")
+public class MyTask {
 
     @Autowired
     ApplyForOutsourcingService applyForOutsourcingService;
+    @Autowired
+    StaffTaskService staffTaskService;
     @Autowired
     TaskInfoService taskInfoService;
 
@@ -42,24 +50,21 @@ public class ReceiveTask {
         return jsonArray;
     }
 
-    @PostMapping("/showTaskInfo")
+    @PostMapping("/getMyTask")
     @ResponseBody
-    public JSONArray showTaskInfo(@RequestParam("project_name") String projectName, @AuthenticationPrincipal Principal principal){
+    public JSONArray getMyTask(@RequestParam("project_name") String projectName,
+                                @AuthenticationPrincipal Principal principal){
 
-        List<TaskInfo> taskInfoList = taskInfoService.getTaskInfoByProjectName(projectName);
+        List<StaffTask> staffTasks = staffTaskService.selectTidByPhoneAndState(principal.getName());
+
+        for(StaffTask staffTask : staffTasks){
+            System.out.println( "staffTask 's id is " + staffTask.getTaskId());
+        }
+        List<TaskInfo> taskInfoList = taskInfoService.getMyTask(staffTasks, projectName);
 
         JSONArray jsonArray = JSONArray.fromObject(taskInfoList);
-        System.out.println("用户" + principal.getName() + "可领取的任务有：" + jsonArray.toString());
+        System.out.println(principal.getName() + "的任务有：" + jsonArray);
         return jsonArray;
-    }
-
-    @PostMapping("/getTask")
-    @ResponseBody
-    public int getTask(@RequestParam("taskName") String taskName,
-                       @RequestParam("projectName2") String projectName,
-                       @AuthenticationPrincipal Principal principal){
-
-        return taskInfoService.updateTaskState(taskName, projectName, principal.getName(), TaskState.TASK_APPLY);
 
     }
 

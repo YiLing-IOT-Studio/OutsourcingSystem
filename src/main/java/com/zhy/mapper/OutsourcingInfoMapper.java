@@ -42,5 +42,17 @@ public interface OutsourcingInfoMapper {
     String selectNameById(@Param("id") int id);
 
     @Select("select * from outsourcinginfo where name=#{name}")
-    OutsourcingInfo selectByName(String name);
+    OutsourcingInfo selectByName(@Param("name") String name);
+
+    @Select("select o.name,o.rank from outsourcinginfo where phone=#{phone} and state=#{\"报名中\"}")
+    List<OutsourcingInfo> getAllNameAndRankByPhoneOnApply(@Param("phone") String phone);
+
+    @Select("select * from outsourcinginfo")
+    List<OutsourcingInfo> getAllOutsourcing();
+
+    @Select("select * from outsourcinginfo where id=#{id}")
+    OutsourcingInfo getOutsourcingById(@Param("id") int id);
+
+    @Select("select o.publisher from outsourcinginfo o where name=#{name}")
+    String getPublisherByName(@Param("name") String name);
 }

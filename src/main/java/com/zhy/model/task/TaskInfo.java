@@ -43,6 +43,11 @@ public class TaskInfo {
     private String releaseTime;
 
     /**
+     * 任务截止时间
+     */
+    private String missionDeadLine;
+
+    /**
      * 任务状态
      */
     private String taskState;
@@ -50,7 +55,7 @@ public class TaskInfo {
     public TaskInfo() {
     }
 
-    public TaskInfo(String projectName, String promulgator, String taskName, String taskContent, String authority, String releaseTime, String taskState) {
+    public TaskInfo(String projectName, String promulgator, String taskName, String taskContent, String authority, String releaseTime, String taskState, String missionDeadLine) {
         this.projectName = projectName;
         this.promulgator = promulgator;
         this.taskName = taskName;
@@ -58,5 +63,6 @@ public class TaskInfo {
         this.authority = authority;
         this.releaseTime = releaseTime;
         this.taskState = taskState;
+        this.missionDeadLine = missionDeadLine;
     }
 }

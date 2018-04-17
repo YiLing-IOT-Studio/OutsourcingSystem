@@ -1,47 +1,53 @@
 /**
  * Created by 杨玉卿 on 2018/4/15.
  */
-var btn_sign=$(".btn-sign");
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+    xhr.setRequestHeader(header, token);
+});
 $.ajax({
-    type:"get",
-    url:"/",
-    dataType:"json",
-    data:{},
-    success:function(data){
-        if(data==1){
+    type: "get",
+    url: "/sign/getSignState",
+    dataType: "json",
+    data: {},
+    success: function (data) {
+        if (data == 1) {
             btn_sign.text("签退");
             btn_sign.removeClass("btn-danger");
             btn_sign.addClass("btn-primary");
         }
-        else{
+        else {
             btn_sign.text("签到");
             btn_sign.removeClass("btn-primary");
             btn_sign.addClass("btn-danger");
         }
     },
-    error:function(){
+    error: function () {
         alert("error");
     }
 });
+var video=document.getElementById('video');
+video.pause();
+$("#video").css("visibility","hidden");
+$(".btn-sign").click(function() {
+    var btn_sign = $(".btn-sign");
 
-btn_sign.click(function(){
-    var video=document.getElementById('video');
-    video.pause();
-    $("#video").css("visibility","hidden");
-    var this_btn=$(this);
-    if(this_btn.text()=="签到"){
-        this_btn.text("签退");
-        this_btn.removeClass("btn-danger");
-        this_btn.addClass("btn-primary");
-        var signInDate=new Date();
-        $.post("/",{'signInDate':signInDate});
+
+
+    if (btn_sign.text() == "签到") {
+        btn_sign.text("签退");
+        btn_sign.removeClass("btn-danger");
+        btn_sign.addClass("btn-primary");
+        var signInDate = new Date();
+        $.post("/sign/signIn", {'signInDate': signInDate});
 
     }
-    else if(this_btn.text()=="签退"){
-        this_btn.text("签到");
-        this_btn.removeClass("btn-primary");
-        this_btn.addClass("btn-danger");
-        var signOutDate=new Date();
-        $.post("/",{'signOutDate':signOutDate});
+    else if (btn_sign.text() == "签退") {
+        btn_sign.text("签到");
+        btn_sign.removeClass("btn-primary");
+        btn_sign.addClass("btn-danger");
+        var signOutDate = new Date();
+        $.post("/sign/signOut", {'signOutDate': signOutDate});
     }
 });

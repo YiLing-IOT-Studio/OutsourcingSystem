@@ -16,7 +16,8 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface UserRegisterMapper {
 
-    @Insert("insert into user(phone, username, password, gender, obey) values(#{phone}, #{username}, #{password}, #{gender}, #{obey})")
+    @Insert("insert into user(phone, username, password, gender, obey) " +
+            "values(#{phone}, #{username}, #{password}, #{gender}, #{obey})")
     int insert(User user);
 
     @Insert("insert into user_role(User_id, Role_id) values (#{userId}, #{roleId})")

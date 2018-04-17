@@ -37,7 +37,7 @@ public class ReleaseResourceService {
         //发布时间
         TimeUtil timeUtil = new TimeUtil();
         Date now = new Date();
-        String nowTimeForString = timeUtil.longToStringTime(now.getTime());
+        String nowTimeForString = timeUtil.longToSixStringTime(now.getTime());
 
         ResourceInfo resourceInfo = new ResourceInfo(projectName, promulgator, taskName, nowTimeForString);
 

@@ -1,5 +1,6 @@
 package com.zhy.service.outsourcinginfo.staff;
 
+import com.zhy.model.outsourcing.ApplyForOutsourcing;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.service.mybatis.ApplyForOutsourcingService;
 import com.zhy.service.mybatis.OutsourcingInfoService;
@@ -24,12 +25,13 @@ public class GetOutsourcingService {
 
     public List<OutsourcingInfo> getOutsourcingInfo(String phone){
 
-        List<String> outsourcingNames = applyForOutsourcingService.selectByPhone(phone);
+        List<ApplyForOutsourcing> list = applyForOutsourcingService.selectByPhone(phone);
         List<OutsourcingInfo> outsourcingInfoList = new ArrayList<>();
         OutsourcingInfo outsourcingInfo;
 
-        for(String outsourcingName : outsourcingNames){
-            outsourcingInfo = outsourcingInfoService.selectByName(outsourcingName);
+        for(ApplyForOutsourcing applyForOutsourcing : list){
+            outsourcingInfo = outsourcingInfoService.selectByName(applyForOutsourcing.getOutsourcingName());
+            outsourcingInfo.setState(applyForOutsourcing.getState());
             outsourcingInfoList.add(outsourcingInfo);
         }
 

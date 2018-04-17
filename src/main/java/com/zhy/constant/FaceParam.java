@@ -3,7 +3,7 @@ package com.zhy.constant;
 /**
  * @author: zhangocean
  * @Date: Created in 19:51 2018/3/24
- * Describe: 人脸认证
+ * Describe: 人脸认证参数
  */
 public interface FaceParam {
 

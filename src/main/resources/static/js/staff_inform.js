@@ -107,11 +107,11 @@ $("#li_tz_item").click(function(){
 
 
                                 var oDate = $("<li class='day'></li>");
-                                oDate.append(obj['releaseTime']+"发布");
+                                oDate.append("发布时间：" + obj['releaseTime']);
                                 oUl.append(oDate);
 
                                 var oDeadline=$("<li class='deadline'></li>");
-                                oDeadline.append("需要在："+obj['deadLine']+"前完成");
+                                oDeadline.append("截止时间：" + obj['missionDeadLine']);
                                 oUl.append(oDeadline);
 
                                 oP.append(oUl);
@@ -145,14 +145,20 @@ $("#li_tz_item").click(function(){
                                 },
                                 success:function(data){
                                     if(data==1){
-                                        alert("您已经成功领到该任务，请到我的任务栏中查看~");
+                                        alert("任务申请成功，请等待审核");
                                     }
                                     else if(data==2){
-                                        alert("正在向管理员申请中...申请成功后将在'我的任务'栏显示您的任务");
+                                        alert("任务正在申请中，请等待审核");
+                                    }
+                                    else if (data==3){
+                                        alert("您已成功领取该任务");
+                                    }
+                                    else{
+                                        alert("任务申请失败");
                                     }
                                 },
                                 error:function(){
-                                    alert("发送领取任务请求失败");
+                                    alert("领取任务请求失败，请重试");
                                 }
                             })
                         });

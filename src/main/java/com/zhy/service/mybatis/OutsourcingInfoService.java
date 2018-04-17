@@ -72,4 +72,30 @@ public interface OutsourcingInfoService {
      * @return 外包信息
      */
     OutsourcingInfo selectByName(String name);
+
+    /**
+     * 通过手机号查找该手机号发布的所有报名中的外包
+     * @param phone
+     * @return
+     */
+    List<OutsourcingInfo> getAllNameAndRankByPhoneOnApply(String phone);
+
+    /**
+     * 获得所有的外包信息
+     * @return
+     */
+    List<OutsourcingInfo> getAllOutsourcing();
+
+    /**
+     * 通过id查找外包信息
+     * @return
+     */
+    OutsourcingInfo getOutsourcingById(int id);
+
+    /**
+     * 通过外包名获得发布者
+     * @param name
+     * @return
+     */
+    String getPublisherByName(String name);
 }
