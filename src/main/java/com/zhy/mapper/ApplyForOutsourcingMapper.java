@@ -1,10 +1,7 @@
 package com.zhy.mapper;
 
 import com.zhy.model.outsourcing.ApplyForOutsourcing;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,4 +32,7 @@ public interface ApplyForOutsourcingMapper {
 
     @Select("select a.phone from applyforoutsourcing a where outsourcingname=#{outsourcingName} and state=#{state}")
     List<String> getPhoneByNameAndState(@Param("outsourcingName") String outsourcingName, @Param("state") String state);
+
+//    @Update("update applyforoutsourcing set state=#{state}")
+//    void passForOutsourcing(@Param("state") String state, );
 }

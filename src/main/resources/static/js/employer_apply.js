@@ -41,8 +41,9 @@ $.ajax({
                 oTd5.append(oDisagree);
                 oTr.append(oTd5);
                 var oInfo=$("<div class='modal'></div>");
+
                 var oName=$("<p></p>");
-                oName.append("姓名:"+obj['proposer']);
+                oName.append("<span class='glyphicon glyphicon-user red'></span>"+"姓名:"+obj['proposer']);
                 oInfo.append(oName);
                 var oGender=$("<p></p>")
                 if(obj['gender']=="gentleman") {
@@ -51,10 +52,10 @@ $.ajax({
                 else{
                     obj['gender']="女";
                 }
-                oGender.append("性别:"+obj['gender']);
+                oGender.append("<span class='glyphicon glyphicon-asterisk red'></span>"+"性别:"+obj['gender']);
                 oInfo.append(oGender);
                 var oPhone=$("<p></p>");
-                oPhone.append("电话:"+obj['phone']);
+                oPhone.append("<span class='glyphicon glyphicon-earphone red'></span>"+"电话:"+obj['phone']);
                 oInfo.append(oPhone);
                 var oAgreement=$("<p></p>");
                 if(obj['promise']=="true")
@@ -64,7 +65,7 @@ $.ajax({
                 else{
                     obj['promise']="未签订";
                 }
-                oAgreement.append("是否签订保密协议:"+obj['promise']);
+                oAgreement.append("<span class='glyphicon glyphicon-envelope red'></span>"+"是否签订保密协议:"+obj['promise']);
                 oInfo.append(oAgreement);
                 var oContract=$("<p></p>");
                 if(obj['contract']=="true")
@@ -74,23 +75,27 @@ $.ajax({
                 else{
                     obj['contract']="未签订";
                 }
-                oContract.append("是否签订合同:"+obj['contract']);
+                oContract.append("<span class='glyphicon glyphicon-envelope red'></span>"+"是否签订合同:"+obj['contract']);
                 oInfo.append(oContract);
 
-                var oClose=$("<div class='text-right'><button class='btn btn-primary'>确定</button></div>");
+                var oClose=$("<div class='text-right'><button class='btn btn-success'>确定</button></div>");
                 oInfo.append(oClose);
                 oDiv.append(oInfo);
 
                 oCheck.click(function(){
-                    showFun(oInfo);
+                    oInfo.css('display','block');
+                    var bg = document.getElementById("bg");
+                    bg.style.display = "block";
                     oClose.click(function(){
-                        hideFun(oInfo);
+                        oInfo.css('display','none');
+                        var bg = document.getElementById("bg");
+                        bg.style.display = "none";
                     });
                 });
                 oAgree.click(function(){
                     $.ajax({
                         type:"post",
-                        url:"/？",
+                        url:"/apply/agreeAndDisAgree",
                         dataType:"json",
                         async:false,
                         data:{
@@ -109,7 +114,7 @@ $.ajax({
                 oDisagree.click(function(){
                     $.ajax({
                         type:"post",
-                        url:"/",
+                        url:"/apply/agreeAndDisAgree",
                         dataType:"json",
                         async:false,
                         data:{

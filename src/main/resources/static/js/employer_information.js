@@ -19,6 +19,8 @@ $("#li_xx_item").click(function(){
             "staff_information":"staff_information"
         },
         success:function(data){
+            var tBody=$("#tBody");
+            tBody.html("");
             $.each(data, function (index, obj) {
                 if (index != (data.length)) {
                     var tr= $('<tr></tr>');

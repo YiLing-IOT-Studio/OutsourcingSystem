@@ -11,9 +11,7 @@ import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -72,5 +70,18 @@ public class ApplyForAgree {
         System.out.println("外包申请情况：" + jsonArray);
         return jsonArray;
     }
+
+    @PostMapping("/agreeAndDisAgree")
+    @ResponseBody
+    public void agreeAndDisAgree(@RequestParam("projectName") String projectName,
+                                    @RequestParam("proposer") String proposer,
+                                        @RequestParam("result") String result){
+
+
+
+
+    }
+
+
 
 }
