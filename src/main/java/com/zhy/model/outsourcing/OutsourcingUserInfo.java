@@ -37,11 +37,6 @@ public class OutsourcingUserInfo {
     private String project;
 
     /**
-     * 分工细则
-     */
-    private String task;
-
-    /**
      * 保密协议签订情况
      */
     private String promise;

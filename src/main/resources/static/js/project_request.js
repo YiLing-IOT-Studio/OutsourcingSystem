@@ -48,11 +48,6 @@ function putIn(data){
             Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['publishTime']+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
             sec.append(Details);
 
-            //进度条
-            var fix_string=obj['progress']+'%';
-            var progress=$('<div class="progress"></div>');
-            progress.append('<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;width:'+fix_string+';">'+fix_string+'</div>');
-            sec.append(progress);
             //报名申请
             var oBtn = $("<div class='text-right'></div>");
             var oBtnHtml = $('<button type="button" class="btn btn-primary more" data-index="' + obj['id'] + '" data-toggle="modal" data-target="#myModal' + obj['id'] + '">查看详细信息</button>')

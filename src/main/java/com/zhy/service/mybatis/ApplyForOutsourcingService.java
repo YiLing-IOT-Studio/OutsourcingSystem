@@ -49,7 +49,7 @@ public interface ApplyForOutsourcingService {
      * @param outsourcingName
      * @return
      */
-    List<String> getPhoneByNameOnApply(String outsourcingName);
+    List<String> getPhoneByNameAndState(String outsourcingName, String state);
 
     /**
      * 通过外包名获取所有已完成或已接包的所有接包人手机号

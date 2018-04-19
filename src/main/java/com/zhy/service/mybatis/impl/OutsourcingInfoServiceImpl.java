@@ -83,8 +83,8 @@ public class OutsourcingInfoServiceImpl implements OutsourcingInfoService{
     }
 
     @Override
-    public List<OutsourcingInfo> getAllNameAndRankByPhoneOnApply(String phone) {
-        return outsourcingInfoMapper.getAllNameAndRankByPhoneOnApply(phone);
+    public List<OutsourcingInfo> getAllNameAndRankByPhoneAndState(String phone, String state) {
+        return outsourcingInfoMapper.getAllNameAndRankByPhoneAndState(phone, state);
     }
 
     @Override

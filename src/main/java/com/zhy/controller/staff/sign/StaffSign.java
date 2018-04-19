@@ -50,6 +50,7 @@ public class StaffSign {
     @ResponseBody
     public int getSignState(@AuthenticationPrincipal Principal principal){
 
+        System.out.println("获得当前签到状态返回值：" + signStateService.getSignState(principal.getName()));
         return signStateService.getSignState(principal.getName());
 
     }

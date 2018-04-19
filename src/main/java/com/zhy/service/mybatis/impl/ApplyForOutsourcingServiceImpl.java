@@ -77,8 +77,8 @@ public class ApplyForOutsourcingServiceImpl implements ApplyForOutsourcingServic
     }
 
     @Override
-    public List<String> getPhoneByNameOnApply(String outsourcingName) {
-        return applyForOutsourcingMapper.getPhoneByNameOnApply(outsourcingName);
+    public List<String> getPhoneByNameAndState(String outsourcingName, String state) {
+        return applyForOutsourcingMapper.getPhoneByNameAndState(outsourcingName, state);
     }
 
     @Override

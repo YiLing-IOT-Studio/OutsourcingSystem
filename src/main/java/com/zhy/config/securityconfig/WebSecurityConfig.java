@@ -64,6 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .formLogin().loginPage("/login_register").failureUrl("/login_register?error").defaultSuccessUrl("/faceCheck")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login_register");
+//        http.csrf().disable();
 
     }
     

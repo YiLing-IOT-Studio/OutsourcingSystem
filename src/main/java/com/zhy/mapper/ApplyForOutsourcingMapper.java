@@ -33,6 +33,6 @@ public interface ApplyForOutsourcingMapper {
     @Select("select a.phone from applyforoutsourcing a where outsourcingname=#{name} and state in (\"已接包\",\"已完成\")")
     List<String> getPhoneByNameOnFinishAndAccepted(@Param("name") String name);
 
-    @Select("select a.phone from applyforoutsourcing a where outsourcingname=#{outsourcingName} and state=#{\"待审核\"}")
-    List<String> getPhoneByNameOnApply(@Param("outsourcingName") String outsourcingName);
+    @Select("select a.phone from applyforoutsourcing a where outsourcingname=#{outsourcingName} and state=#{state}")
+    List<String> getPhoneByNameAndState(@Param("outsourcingName") String outsourcingName, @Param("state") String state);
 }

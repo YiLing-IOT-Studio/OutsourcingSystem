@@ -7,6 +7,7 @@
         var video=document.getElementById('video');
         video.pause();
         $("#video").css("visibility","hidden");
+
         $.ajax({
             type:"POST",
             url:"/myTask/showOutsourcingInfo",
@@ -27,7 +28,8 @@
                     oDiv.append(oFolder);
                 }
                 $(".my-inline-block").click(function () {
-                    var oDiv=$("#inform");
+
+                    var oDiv=$("#task");
                     var clear = "";
                     oDiv.html(clear);
                     var project_name = $(this).find(".folder-name").text();
@@ -43,7 +45,8 @@
                         success: function (data) {
                             $.each(data, function (index, obj) {
                                 if (index != (data.length)) {
-                                    var oDiv=$("#inform");
+
+                                    var oDiv=$("#task");
                                     var clear = "";
                                     oDiv.html(clear);
                                     var oP = $("<div class='op'></div>");
@@ -59,6 +62,7 @@
                                     //deadLine
                                     var oDeadline=$("<p class='deadLine'></p>");
                                     oDeadline.append("任务截止时间："+obj['missionDeadLine']);
+                                    oP.append(oDeadline);
                                     oDiv.append(oP);
 
 

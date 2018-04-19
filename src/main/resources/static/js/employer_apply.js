@@ -3,7 +3,7 @@
  */
 $.ajax({
     type:"get",
-    url:"/",
+    url:"/apply/applyForOutsourcing",
     dataType:"json",
     async:false,
     data:{},
@@ -23,7 +23,7 @@ $.ajax({
                 oTd1.append(projectName);
                 oTr.append(oTd1);
                 var oTd2=$("<td></td>");
-                oTd2.append(obj['tank']);
+                oTd2.append(obj['rank']);
                 oTr.append(oTd2);
                 var oTd3=$("<td></td>");
                 var proposer=obj['proposer'];

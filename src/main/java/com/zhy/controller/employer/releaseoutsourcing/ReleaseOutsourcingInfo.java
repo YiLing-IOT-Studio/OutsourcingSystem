@@ -41,7 +41,7 @@ public class ReleaseOutsourcingInfo {
         String category = request.getParameter("category");
         int amount = Integer.parseInt(request.getParameter("money"));
         String requirement = request.getParameter("requirement");
-        String publisher = request.getParameter("publisher");
+        String publisher = principal.getName();
         int progress = 0;
         String state = "报名中";
 

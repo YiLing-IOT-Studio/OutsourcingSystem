@@ -78,7 +78,7 @@ public interface OutsourcingInfoService {
      * @param phone
      * @return
      */
-    List<OutsourcingInfo> getAllNameAndRankByPhoneOnApply(String phone);
+    List<OutsourcingInfo> getAllNameAndRankByPhoneAndState(String phone, String state);
 
     /**
      * 获得所有的外包信息

@@ -10,25 +10,24 @@ var video=document.getElementById('video');
     $("#second_profile").css('display','none');
 //个人资料填充
 function profile(data){
-    $("#nick_name1").text(data['nick_name']);
-    $("#true_name1").text(data['name']);
-    if(data['gender']=='gentleman'){
-        data['gender']='男';
+    $("#true_name1").text(data[0].name);
+    if(data[0].gender=='gentleman'){
+        data[0].gender='男';
     }
-    else{data['gender']='女'}
-    $("#gender1").text(data['gender']);
-    $("#telephone1").text(data['phone']);
-    $("#introduce1").text(data['introduction']);
-    if(data['promise']==true){
-        data['promise']='已签订';
+    else{data[0].gender='女'}
+    $("#gender1").text(data[0].gender);
+    $("#telephone1").text(data[0].phone);
+    $("#introduce1").text(data[0].introduce);
+    if(data[0].promise=="true"){
+        data[0].promise='已签订';
     }
-    else{data['promise']='未签订';}
-    $("#promise").text(data['promise']);
-    if(data['contract']==true){
-        data['contract']='已签订';
+    else{data[0].promise='未签订';}
+    $("#promise").text(data[0].promise);
+    if(data[0].contract=="true"){
+        data[0].contract='已签订';
     }
-    else{data['contract']='未签订';}
-    $("#contract").text(data['contract']);
+    else{data[0].contract='未签订';}
+    $("#contract").text(data[0].contract);
 
 }
 //初始时加载一次资料信息
@@ -41,7 +40,7 @@ $.ajax({
        profile(data);
     },
     error:function(){
-        alert("error");
+        alert("请求失败1");
     }
 });
 //编辑状态
@@ -70,7 +69,7 @@ $.ajax({
                     profile(data);
                 },
                 error:function(){
-                    alert("error");
+                    alert("请求失败2");
                 }
             })
         }

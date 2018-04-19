@@ -165,7 +165,7 @@ public class GetAllOutsourcingInfo {
         outsourcingRedisService.saveAllOutsourcingList(outsourcingInfoService.findAllOutsourcing());
 
         JSONArray jsonArray = JSONArray.fromObject(outsourcingRedisService.getPageJsonArray());
-
+        System.out.println(jsonArray);
         return jsonArray;
     }
 }
