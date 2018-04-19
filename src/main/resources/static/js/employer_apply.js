@@ -36,7 +36,9 @@ $.ajax({
                 var oTd5=$("<td></td>");
                 var oAgree=$('<button class="btn btn-primary">同意</button>');
                 var oDisagree=$('<button class="btn btn-danger">拒绝</button>');
-                oTd5.append(oAgree+'&nbsp;&nbsp;&nbsp;&nbsp;'+oDisagree);
+                oTd5.append(oAgree);
+                oTd5.append("&nbsp;&nbsp;");
+                oTd5.append(oDisagree);
                 oTr.append(oTd5);
                 var oInfo=$("<div class='modal'></div>");
                 var oName=$("<p></p>");

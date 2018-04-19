@@ -43,12 +43,13 @@
                             'project_name': project_name
                         },
                         success: function (data) {
+                            var oDiv=$("#task");
+                            var clear = "";
+                            oDiv.html(clear);
                             $.each(data, function (index, obj) {
                                 if (index != (data.length)) {
 
-                                    var oDiv=$("#task");
-                                    var clear = "";
-                                    oDiv.html(clear);
+
                                     var oP = $("<div class='op'></div>");
 
                                     //title

@@ -35,7 +35,7 @@ function putIn(data){
 
             // 主体
             var SelfIntro = $('<div></div>');
-            SelfIntro.append(obj['content'] + '<br/>');
+            SelfIntro.append("项目简述："+obj['content'] + '<br/>'+"项目要求："+obj['requirement']);
             sec.append(SelfIntro);
 
             //金额
@@ -45,7 +45,7 @@ function putIn(data){
 
             //其他信息
             var Details=$('<p></p>');
-            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['publishTime']+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['requirement']);
+            Details.append(obj['publisher']+'&nbsp;&nbsp;&nbsp;&nbsp;'+obj['publishTime']);
             sec.append(Details);
 
             //报名申请

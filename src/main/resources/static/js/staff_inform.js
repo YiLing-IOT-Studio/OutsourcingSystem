@@ -81,11 +81,12 @@ $("#li_tz_item").click(function(){
                         'project_name': project_name
                     },
                     success: function (data) {
+                        var oDiv=$("#inform");
+                        var clear = "";
+                        oDiv.html(clear);
                         $.each(data, function (index, obj) {
                             if (index != (data.length)) {
-                                var oDiv=$("#inform");
-                                var clear = "";
-                                oDiv.html(clear);
+
                                 var oP = $("<div class='op'></div>");
 
                                 //title
