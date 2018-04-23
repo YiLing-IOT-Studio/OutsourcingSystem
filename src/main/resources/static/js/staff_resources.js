@@ -5,16 +5,18 @@
 //     $(".file").removeClass("hide");
 //     $(".my-inline-block").addClass("hide");
 // })
-var video=document.getElementById('video');
-video.pause();
-$("#video").css("visibility","hidden");
+
+
 var canvas=document.getElementById('canvas');
 var context=canvas.getContext("2d");
 //截取图像
 function snapPicture(){
+    var video=document.getElementById('video');
+    $("#video").css("visibility","visible");
     context.drawImage(video,0,0,100,100);
-    video.style.display="none";
-    canvas.style.display="inline-block";
+    canvas.style.display="none";
+    // var canvas1=$("#canvas");
+    // canvas1.css("display")
     var imgData = canvas.toDataURL();
     //获取图像在前端截取22位以后的字符串作为图像数据
     var imgData1 = imgData.substring(22);
@@ -22,7 +24,7 @@ function snapPicture(){
     console.log(username);
     $.ajax({
             type: "POST",
-            url: '/',
+            url: '/sendFaceToLookRes',
             dataType: 'json',
             async:false,
             data: {"img": imgData1,
@@ -33,7 +35,7 @@ function snapPicture(){
                 if (data == 1) {
                 }
                 else {
-                    put_word.html("检测到第三方人脸~停止访问");
+                    put_word.html("<h2 class='col-center-block'>检测到第三方人脸~停止访问</h2>");
                 }
             },
             error: function () {
@@ -43,12 +45,18 @@ function snapPicture(){
 
 
 }
-
+var time1;
 //资料库
 $("#li_zl_item").click(function(){
+    window.clearInterval(time1);
+
+    var video=document.getElementById('video');
+    video.pause();
+    $("#video").css("visibility","hidden");
+
     $.ajax({
         type:"POST",
-        url:"/",
+        url:"/myTask/showOutsourcingInfo",
         dataType:"json",
         async: false,
         data:{
@@ -73,7 +81,7 @@ $("#li_zl_item").click(function(){
                 var project_name = $(this).find(".folder-name").text();
                 $.ajax({
                     type:"POST",
-                    url:"/",
+                    url:"/myTask/getMyTask",
                     dataType:"json",
                     async: false,
                     data:{
@@ -85,9 +93,9 @@ $("#li_zl_item").click(function(){
                         var clear='';
                         oDiv.html(clear);
                         for(var i=0;i<data.length;i++) {
-                            var oFolder = $('<div class="my-inline-block1 text-center"></div>');
+                            var oFolder = $('<div class="my-inline-block1"></div>');
                             oFolder.append('<span class="glyphicon glyphicon-folder-close my-folder"></span>' +
-                                '<span class="folder-name1">' + data[i] + '</span>');
+                                '<span class="folder-name1">' + data[i].taskName + '</span>');
                             oDiv.append(oFolder);
                         }
                         //点击任务夹，显示资料夹
@@ -95,10 +103,11 @@ $("#li_zl_item").click(function(){
                             var task_name=$(this).find(".folder-name1").text();
                             $.ajax({
                                 type:"POST",
-                                url:"/",
+                                url:"/getTaskRank",
                                 dataType:"json",
                                 async: false,
                                 data:{
+                                    'projectName':project_name,
                                     'task_name':task_name
                                 },
                                 success:function(data){
@@ -119,20 +128,25 @@ $("#li_zl_item").click(function(){
                                         '<span class="folder-name2">' + '文档' + '</span>');
                                     oDiv.append(oFolder3);
                                     //返回权限为高级，打开摄像头
-                                    if(data['authority']==3){
+                                    if(data==3){
+
                                         //打开摄像头
+                                        var video1=$('#video');
+                                        video1.css("visibility","visible");
+//打开摄像头
                                         var video=document.getElementById('video');
-                                        video.css("visibility","visible");
                                         navigator.mediaDevices.getUserMedia({
                                             video:true
                                         }).then(function(mediaStream){
                                             video.srcObject=mediaStream;
-                                            video.onloadedmetadata=function(){
+                                            console.log(video.srcObject);
+                                            video.onloadedmetadata=function() {
                                                 video.play();
+
                                             }
                                         });
 
-                                        setInterval(snapPicture,3000);
+                                        time1=setInterval(snapPicture,3000);
                                     }
                                     //点击资料夹，打开资料
                                    $(".my-inline-block2").click(function(){
@@ -140,11 +154,11 @@ $("#li_zl_item").click(function(){
                                        if(category=='图片'){
                                            $.ajax({
                                                type:"POST",
-                                               url:"/",
+                                               url:"/getResource?category=picture",
                                                dataType:"json",
                                                async: false,
                                                data:{
-                                                   'category':category
+                                                   'projectName':project_name
                                                },
                                                success:function(data){
                                                    var oDiv=$("#data");
@@ -153,6 +167,7 @@ $("#li_zl_item").click(function(){
                                                    //图片
                                                    for(var i in data){
                                                        var src=data[i];
+                                                        alert(src);
                                                        var oImg=$("<img src='"+src+"' class='picture'/>");
                                                        oDiv.append(oImg);
                                                    }
@@ -166,11 +181,11 @@ $("#li_zl_item").click(function(){
                                        if(category=='视频'){
                                            $.ajax({
                                                type:"POST",
-                                               url:"/",
+                                               url:"/getResource?category=video",
                                                dataType:"json",
                                                async: false,
                                                data:{
-                                                   'category':category
+                                                   'projectName':project_name
                                                },
                                                success:function(data){
                                                    var oDiv=$("#data");
@@ -192,11 +207,11 @@ $("#li_zl_item").click(function(){
                                        if(category=='文档'){
                                            $.ajax({
                                                type: "POST",
-                                               url: "/",
+                                               url: "/getResource?category=document",
                                                dataType: "json",
                                                async: false,
                                                data: {
-                                                   'category': category
+                                                   'projectName':project_name
                                                },
                                                success: function (data) {
                                                    var oDiv = $("#data");

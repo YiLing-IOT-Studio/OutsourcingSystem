@@ -25,7 +25,7 @@ public interface OutsourcingUserInfoService {
      * @param phone 手机号
      * @return 接包用户者信息
      */
-    OutsourcingUserInfo getUserInfoByPhone(String phone);
+    OutsourcingUserInfo getUserInfoByPhoneAndProjectName(String phone, String projectName);
 
     /**
      * 通过一些手机号获得该手机号的接包人的所有信息
@@ -34,4 +34,18 @@ public interface OutsourcingUserInfoService {
      * @return
      */
     List<Map<String, Object>> getUserInfoByPhones(List<String> phones, String outsourcingName);
+
+    /**
+     * 通过手机号获得用户所有信息
+     * @param phone 手机号
+     * @return 用户所有信息
+     */
+    List<Map<String, String>> getAllUserInfoByPhone(String phone);
+
+    /**
+     * 通过手机号更新整个OutsourcingUserInfo表
+     * @param outsourcingUserInfo
+     */
+    void updateUserInfoByPhone(OutsourcingUserInfo outsourcingUserInfo);
+
 }

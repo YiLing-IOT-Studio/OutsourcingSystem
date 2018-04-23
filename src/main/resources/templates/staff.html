@@ -10,11 +10,11 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--css-->
-    <link href="../static/css/staff.css" rel="stylesheet"/>
-    <link href="../static/css/folder.css" rel="stylesheet"/>
-    <link href="../static/css/msg.css" rel="stylesheet"/>
-    <link href="../static/css/loading.css" rel="stylesheet">
-    <link href="../static/css/faceCheck.css" rel="stylesheet">
+    <link href="css/staff.css" rel="stylesheet"/>
+    <link href="css/folder.css" rel="stylesheet"/>
+    <link href="css/msg.css" rel="stylesheet"/>
+    <link href="css/loading.css" rel="stylesheet">
+    <link href="css/faceCheck.css" rel="stylesheet">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -54,7 +54,7 @@
         <div class="leftSide col-md-2">
             <div class="personalInfo">
                 <a href="#info" class="headPortrait">
-                    <img src="../static/img/headPortrait.png" id="headPortrait"/>
+                    <img src="img/headPortrait.png" id="headPortrait"/>
                 </a>
                 <div id="nickname">
                     <p id="personName" th:text="${userName}"></p>
@@ -88,36 +88,32 @@
                             <div class="text-right">
                                 <button class="btn btn-info" id="edit"><span class="glyphicon glyphicon-pencil"></span> 编辑</button>
                             </div>
-                            <div>
-                                <strong>姓名:</strong>
+                            <div class="col-md-6">
+                                <strong><span class="glyphicon glyphicon-user red"></span> 姓名:</strong>
                                 <span id="true_name1"></span>
                             </div>
-                            <div>
-                                <strong>性别:</strong>
+                            <div  class="col-md-6">
+                                <strong><span class="glyphicon glyphicon-asterisk red"></span> 性别:</strong>
                                 <span id="gender1"></span>
                             </div>
-                            <div>
-                                <strong>电话:</strong>
+                            <div class="col-md-6">
+                                <strong><span class="glyphicon glyphicon-phone-alt red"></span> 电话:</strong>
                                 <span id="telephone1"></span>
                             </div>
-                            <div>
-                                <strong>公司:</strong>
-                                <span id="company"></span>
+                            <div class="col-md-6">
+                                <strong><span class="glyphicon glyphicon-credit-card red"></span> 公司:</strong>
+                                <span id="company1"></span>
                             </div>
-                            <div>
-                                <strong>职业:</strong>
-                                <span id="job"></span>
+                            <div class="col-md-12">
+                                <strong><span class="glyphicon glyphicon-send red"></span> 职业:</strong>
+                                <span id="job1"></span>
                             </div>
-                            <div>
-                                <strong>保密协议签订:</strong>
+                            <div class="col-md-12">
+                                <strong><span class="glyphicon glyphicon-tree-conifer red"></span> 保密协议签订:</strong>
                                 <span id="promise"></span>
                             </div>
-                             <div>
-                                <strong>合同签订:</strong>
-                                <span id="contract"></span>
-                            </div>
-                            <div>
-                                <strong>个人介绍:</strong>
+                            <div class="col-md-12">
+                                <strong><span class="glyphicon glyphicon-tree-deciduous red"></span> 个人介绍:</strong>
                                 <span id="introduce1"></span>
                             </div>
                         </div>
@@ -125,7 +121,7 @@
                             <form name="update_profile" id="update_profile">
                                 <div class="form-group">
                                     <label for="true_name">姓名</label>
-                                    <input type="text" name="name" id="true_name" class="form-control"/>
+                                    <input type="text" name="name" id="true_name" class="form-control" value=""/>
                                 </div>
                                 <div class="form-group">
                                     <label for="gender">性别</label>
@@ -135,8 +131,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="telephone">电话</label>
-                                    <input type="text" name="name" id="telephone" class="form-control"/>
+                                    <label for="company">公司</label>
+                                    <input type="text" name="company" id="company" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="job">职业</label>
+                                    <input type="text" name="job" id="job" class="form-control"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="introduce">个人介绍</label>
@@ -211,7 +211,7 @@
                         </div>
                     </form>
                 </div>
-                <p id="loading"><img src="../static/img/loading.gif"/></p>
+                <p id="loading"><img src="img/loading.gif"/></p>
             </div>
             <div class="tab-pane fade" id="resources"  style="position:relative;">
                 <div id="shoot" style="position:absolute;top:0;right:0;">
@@ -232,12 +232,12 @@
         <p class="text-center">Copyright &copy; 2018 智能外包管理平台. All Rights Reserved | Design by <span>杨玉卿&张海洋&田宇</span></p>
     </div>
     <p id="bg"></p>
-    <script src="../static/js/staff_sign.js"></script>
-    <script src="../static/js/staff_info.js"></script>
-    <script src="../static/js/staff_project.js"></script>
-    <script src="../static/js/staff_receiveTask.js"></script>
-    <script src="../static/js/staff_resources.js"></script>
-    <script src="../static/js/staff_uploadAchievement.js"></script>
-    <script src="../static/js/staff_inform.js"></script>
+    <script src="js/staff_sign.js"></script>
+    <script src="js/staff_info.js"></script>
+    <script src="js/staff_project.js"></script>
+    <script src="js/staff_receiveTask.js"></script>
+    <script src="js/staff_resources.js"></script>
+    <script src="js/staff_uploadAchievement.js"></script>
+    <script src="js/staff_inform.js"></script>
 </body>
 </html>

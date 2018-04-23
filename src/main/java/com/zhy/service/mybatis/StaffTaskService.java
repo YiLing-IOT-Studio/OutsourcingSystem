@@ -35,4 +35,12 @@ public interface StaffTaskService {
      * @return 任务id
      */
     List<StaffTask> selectTidByPhoneAndState(String phone);
+
+    /**
+     * 通过任务id和状态获得所有申请该任务的手机号
+     * @param taskId 任务id
+     * @param state 任务状态
+     * @return
+     */
+    List<String> getPhoneByTaskIdAndState(int taskId, String state);
 }

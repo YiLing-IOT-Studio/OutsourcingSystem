@@ -58,4 +58,17 @@ public interface TaskInfoService {
      */
     List<TaskInfo> getMyTask(List<StaffTask> staffTask, String projectName);
 
+    /**
+     * 通过任务名获得任务安全等级
+     * @return
+     */
+    int getAuthorityByTaskNameAndProjectName(String taskName, String projectName);
+
+    /**
+     * 通过任务Id获得所有任务id
+     * @param phone
+     * @return
+     */
+    List<TaskInfo> getTaskInfoByPhone(String phone);
+
 }

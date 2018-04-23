@@ -8,6 +8,11 @@ package com.zhy.constant;
 public interface ApplyState {
 
     /**
+     * 接包状态--未通过
+     */
+    String APPLYSTATE_NotPass = "未通过";
+
+    /**
      * 接包状态--待审核
      */
     String APPLYSTATE_APPLY = "待审核";

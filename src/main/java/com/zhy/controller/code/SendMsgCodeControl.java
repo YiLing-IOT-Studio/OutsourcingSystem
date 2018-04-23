@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
+
+import static java.lang.Thread.sleep;
 
 /**
  * @author: zhangocean
@@ -37,12 +40,12 @@ public class SendMsgCodeControl {
         request.getSession().setAttribute("trueMsgCode", trueMsgCode);
 
         SendSmsResponse sendSmsResponse = null;
-//        try {
-//            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
-//        } catch (ClientException e) {
-//            e.printStackTrace();
-//            return 0;
-//        }
+        try {
+            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            return 0;
+        }
 
         return 1;
 

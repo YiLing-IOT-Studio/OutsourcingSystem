@@ -34,4 +34,9 @@ public interface TaskInfoMapper {
     @Select("select * from taskinfo where id=#{id}")
     TaskInfo selectTaskInfoById(@Param("id") int id);
 
+    @Select("select t.authority from taskinfo t where taskName=#{taskName} and projectName=#{projectName}")
+    String getAuthorityByTaskName(@Param("taskName") String taskName, @Param("projectName") String projectName);
+
+    @Select("select * from taskinfo where promulgator=#{phone}")
+    List<TaskInfo> getTaskInfoByPhone(@Param("phone") String phone);
 }

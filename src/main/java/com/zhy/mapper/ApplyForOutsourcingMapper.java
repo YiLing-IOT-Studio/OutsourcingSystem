@@ -33,6 +33,6 @@ public interface ApplyForOutsourcingMapper {
     @Select("select a.phone from applyforoutsourcing a where outsourcingname=#{outsourcingName} and state=#{state}")
     List<String> getPhoneByNameAndState(@Param("outsourcingName") String outsourcingName, @Param("state") String state);
 
-//    @Update("update applyforoutsourcing set state=#{state}")
-//    void passForOutsourcing(@Param("state") String state, );
+    @Update("update applyforoutsourcing set state=#{state} where phone=#{proposer} and outsourcingname=#{projectName}")
+    void applyForLoan(@Param("state") String state, @Param("projectName") String projectName, @Param("proposer") String proposer);
 }

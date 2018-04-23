@@ -4,6 +4,7 @@ import com.zhy.model.outsourcing.OutsourcingUserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +21,12 @@ public interface OutsourcingUserInfoMapper {
     @Select("select * from outsourcinguserinfo where mangerphone=#{mangerPhone}")
     List<OutsourcingUserInfo> selectAllOutsourcingUserInfoByMangerPhone(@Param("mangerPhone") String mangerPhone);
 
-    @Select("select * from outsourcinguserinfo where phone=#{phone}")
-    OutsourcingUserInfo getUserInfoByPhone(@Param("phone") String phone);
+    @Select("select * from outsourcinguserinfo where phone=#{phone} and project=#{project}")
+    OutsourcingUserInfo getUserInfoByPhoneAndProjectName(@Param("phone") String phone, @Param("project") String project);
 
+    @Select("select * from outsourcinguserinfo where phone=#{phone}")
+    List<OutsourcingUserInfo> getAllOutsourcingUserInfoByPhone(@Param("phone") String phone);
+
+    @Update("update outsourcinguserinfo set name=#{name},gender=#{gender} where phone=#{phone}")
+    void updateAllNameAndGenderBuPhone(OutsourcingUserInfo outsourcingUserInfo);
 }

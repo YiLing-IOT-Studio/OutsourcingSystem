@@ -1,10 +1,7 @@
 package com.zhy.mapper;
 
 import com.zhy.model.register.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,6 +17,9 @@ public interface UserRegisterMapper {
             "values(#{phone}, #{username}, #{password}, #{gender}, #{obey})")
     int insert(User user);
 
+    @Update("update user set username=#{username},gender=#{gender},company=#{company},profession=#{profession},introduce=#{introduce} where phone=#{phone}")
+    void updateUserInfo(User user);
+
     @Insert("insert into user_role(User_id, Role_id) values (#{userId}, #{roleId})")
     void insertRoleToUser(@Param("userId") int userId, @Param("roleId") int roleId);
 
@@ -34,4 +34,10 @@ public interface UserRegisterMapper {
 
     @Select("select username from user where phone=#{phone}")
     String getUserNameByPhone(@Param("phone") String phone);
+
+    @Select("select phone from user where username=#{userName}")
+    String getPhoneByUserName(@Param("userName") String userName);
+
+    @Select("select * from user where phone=#{phone}")
+    User getUserInfoByPhone(@Param("phone") String phone);
 }

@@ -14,7 +14,6 @@ $("#myTaskName").focus(function(){
     var oDiv=$("#myTaskName");
     oDiv.html("");
     var projectName=$("#projectName").val();
-    console.log(projectName);
     $.ajax({
         type:"get",
         url:"/resource/getTaskNameByProjectName",

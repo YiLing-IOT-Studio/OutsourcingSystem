@@ -80,6 +80,21 @@ public class UserRegisterServiceImpl implements UserRegisterService {
         return userRegisterMapper.getUserNameByPhone(phone);
     }
 
+    @Override
+    public String getPhoneByUserName(String userName) {
+        return userRegisterMapper.getPhoneByUserName(userName);
+    }
+
+    @Override
+    public User getUserInfoByPhone(String phone) {
+        return userRegisterMapper.getUserInfoByPhone(phone);
+    }
+
+    @Override
+    public void updateUserInfo(User user) {
+        userRegisterMapper.updateUserInfo(user);
+    }
+
     private int findUserIdByPhone(String phone){
         return userRegisterMapper.selectUserIdByPhone(phone);
     }

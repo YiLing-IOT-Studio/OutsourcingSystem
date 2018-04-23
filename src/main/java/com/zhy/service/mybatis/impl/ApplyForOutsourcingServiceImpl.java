@@ -85,4 +85,19 @@ public class ApplyForOutsourcingServiceImpl implements ApplyForOutsourcingServic
     public List<String> getPhoneByNameOnFinishAndAccepted(String name) {
         return applyForOutsourcingMapper.getPhoneByNameOnFinishAndAccepted(name);
     }
+
+    @Override
+    public int applyForLoan(String projectName, String proposer, String result) {
+
+        if("1".equals(result)){
+            applyForOutsourcingMapper.applyForLoan(ApplyState.APPLYSTATE_ACCEPTED, projectName, proposer);
+            return 1;
+        }
+        if("0".equals(result)){
+            applyForOutsourcingMapper.applyForLoan(ApplyState.APPLYSTATE_NotPass, projectName, proposer);
+            return 1;
+        }
+        return 0;
+
+    }
 }

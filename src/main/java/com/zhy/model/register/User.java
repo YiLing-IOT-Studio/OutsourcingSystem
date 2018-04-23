@@ -39,6 +39,21 @@ public class User {
      */
     private String obey;
 
+    /**
+     * 公司
+     */
+    private String company;
+
+    /**
+     * 职业
+     */
+    private String profession;
+
+    /**
+     * 个人介绍
+     */
+    private String introduce;
+
     private List<Role> roles;
 
 
@@ -51,5 +66,26 @@ public class User {
         this.password = password;
         this.gender = gender;
         this.obey = obey;
+    }
+
+    public User(String phone, String username, String password, String gender, String obey, String company, String profession, String introduce, List<Role> roles) {
+        this.phone = phone;
+        this.username = username;
+        this.password = password;
+        this.gender = gender;
+        this.obey = obey;
+        this.company = company;
+        this.profession = profession;
+        this.introduce = introduce;
+        this.roles = roles;
+    }
+
+    public User(String phone, String username, String gender, String company, String profession, String introduce) {
+        this.phone = phone;
+        this.username = username;
+        this.gender = gender;
+        this.company = company;
+        this.profession = profession;
+        this.introduce = introduce;
     }
 }

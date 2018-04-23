@@ -34,4 +34,10 @@ public class StaffTaskServiceImpl implements StaffTaskService{
         return staffTaskMapper.selectTidByPhoneAndState(phone);
     }
 
+    @Override
+    public List<String> getPhoneByTaskIdAndState(int taskId, String state) {
+
+        return staffTaskMapper.getPhoneByTaskIdAndState(taskId, state);
+    }
+
 }

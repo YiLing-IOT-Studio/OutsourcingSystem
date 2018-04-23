@@ -93,4 +93,20 @@ public class TaskInfoServiceImpl implements TaskInfoService {
         return myTasks;
     }
 
+    @Override
+    public int getAuthorityByTaskNameAndProjectName(String taskName, String projectName) {
+
+        String authority = taskInfoMapper.getAuthorityByTaskName(taskName, projectName);
+
+        if("高".equals(authority)){
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public List<TaskInfo> getTaskInfoByPhone(String phone) {
+        return taskInfoMapper.getTaskInfoByPhone(phone);
+    }
+
 }

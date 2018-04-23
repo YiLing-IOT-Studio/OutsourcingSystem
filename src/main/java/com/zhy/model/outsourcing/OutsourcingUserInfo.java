@@ -46,4 +46,12 @@ public class OutsourcingUserInfo {
      */
     private String contract;
 
+    public OutsourcingUserInfo() {
+    }
+
+    public OutsourcingUserInfo(String phone, String name, String gender) {
+        this.phone = phone;
+        this.name = name;
+        this.gender = gender;
+    }
 }

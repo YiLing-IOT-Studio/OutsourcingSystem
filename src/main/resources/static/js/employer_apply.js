@@ -1,11 +1,16 @@
 /**
  * Created by 杨玉卿 on 2018/4/15.
  */
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+    xhr.setRequestHeader(header, token);
+});
 $.ajax({
-    type:"get",
-    url:"/apply/applyForOutsourcing",
+    type:"post",
+    url:"/applyForOutsourcing",
     dataType:"json",
-    async:false,
+
     data:{},
     success:function(data){
         //清空
@@ -23,6 +28,15 @@ $.ajax({
                 oTd1.append(projectName);
                 oTr.append(oTd1);
                 var oTd2=$("<td></td>");
+                if(obj['rank']==1){
+                    obj['rank']="★";
+                }
+                else if(obj['rank']==2){
+                    obj['rank']="★★";
+                }
+                else{
+                    obj['rank']="★★★";
+                }
                 oTd2.append(obj['rank']);
                 oTr.append(oTd2);
                 var oTd3=$("<td></td>");
@@ -45,7 +59,7 @@ $.ajax({
                 var oName=$("<p></p>");
                 oName.append("<span class='glyphicon glyphicon-user red'></span>"+"姓名:"+obj['proposer']);
                 oInfo.append(oName);
-                var oGender=$("<p></p>")
+                var oGender=$("<p></p>");
                 if(obj['gender']=="gentleman") {
                     obj['gender']="男";
                 }
@@ -94,13 +108,15 @@ $.ajax({
                 });
                 oAgree.add(oDisagree).click(function(event){
                     var tag=event.target.innerHTML;
-                    if(tag=="同意"){tag="agree"}
-                    else{tag="disagree"}
+                    if(tag=="同意"){tag=1}
+                    else{tag=0}
+                    var str="/agreeForOutsourcing?tag="+tag;
+
                     $.ajax({
                         type:"post",
-                        url:"/apply/agreeAndDisAgree?tag",
+                        url:str,
+
                         dataType:"json",
-                        async:false,
                         data:{
                             'projectName':projectName,
                             'proposer':proposer
@@ -127,10 +143,10 @@ $.ajax({
     }
 });
 $.ajax({
-    type:"get",
-    url:"/",
+    type:"post",
+    url:"/applyForTask",
     dataType:"json",
-    async:false,
+
     data:{},
     success:function(data){
         //清空
@@ -152,6 +168,15 @@ $.ajax({
                 oTd1.append(taskName);
                 oTr.append(oTd1);
                 var oTd2=$("<td></td>");
+                if(obj['rank']==1){
+                    obj['rank']="★";
+                }
+                else if(obj['rank']==2){
+                    obj['rank']="★★";
+                }
+                else{
+                    obj['rank']="★★★";
+                }
                 oTd2.append(obj['rank']);
                 oTr.append(oTd2);
                 var oTd3=$("<td></td>");
@@ -223,13 +248,15 @@ $.ajax({
                 });
                 oAgree.add(oDisagree).click(function(event){
                     var tag=event.target.innerHTML;
-                    if(tag=="同意"){tag="agree"}
-                    else{tag="disagree"}
+                    if(tag=="同意"){tag=1}
+                    else{tag=0}
+                    var str="/agreeForTask?tag="+tag;
                     $.ajax({
                         type:"post",
-                        url:"/apply/agreeAndDisAgree?tag",
+                        url:str,
                         dataType:"json",
-                        async:false,
+
+                        contentType: "application/json;charset=utf-8",
                         data:{
                             'projectName':projectName,
                             'taskName':taskName,

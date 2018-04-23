@@ -32,8 +32,6 @@ snap.onclick=function(){
     var imgData1 = imgData.substring(22);
     var username=$.cookie("username");
     var flag=$.cookie("flag");
-    console.log(username);
-    console.log(flag);
     if(flag==0) {
         $.ajax({
             type: "POST",
@@ -45,11 +43,14 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("注册成功！");
-                    window.location.replace("http://localhost:80/login_register")
+                    // window.location.replace("http://localhost:80/login_register")
+                    window.location.replace("http://119.23.202.55:80/login_register")
                 }
                 else {
                     alert("注册失败，请重试~");
-                    window.location.replace("http://localhost:80/faceCheck")
+                    // window.location.replace("http://localhost:80/faceCheck")
+                    window.location.replace("http://119.23.202.55:80/faceCheck")
+
                 }
             },
             error: function () {
@@ -68,11 +69,13 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("登录成功！");
-                    window.location.replace("http://localhost:80/index")
+                    // window.location.replace("http://localhost:80/index")
+                    window.location.replace("http://119.23.202.55:80/index")
                 }
                 else {
                     alert("没有这张脸，请重试！");
-                    window.location.replace("http://localhost:80/faceCheck")
+                    // window.location.replace("http://localhost:80/faceCheck")
+                    window.location.replace("http://119.23.202.55:80/faceCheck")
                 }
             },
             error: function () {

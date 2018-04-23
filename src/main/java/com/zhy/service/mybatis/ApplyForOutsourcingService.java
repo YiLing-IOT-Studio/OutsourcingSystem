@@ -58,4 +58,10 @@ public interface ApplyForOutsourcingService {
      */
     List<String> getPhoneByNameOnFinishAndAccepted(String name);
 
+    /**
+     * 对批复结果进行审核
+     * @return
+     */
+    int applyForLoan(String projectName, String proposer, String result);
+
 }

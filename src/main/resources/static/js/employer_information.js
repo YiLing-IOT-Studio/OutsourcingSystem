@@ -4,19 +4,18 @@
 //取出cookie，设置请求头
 
 var tBody=$("#tBody");
-$(document).ajaxSend(function(e, xhr, options) {
-    //从cookie里取出token值
-    var token = $.cookie('token');
-    var header = 'X-CSRF-TOKEN';
-    xhr.setRequestHeader(header, token);
-});
+// $(document).ajaxSend(function(e, xhr, options) {
+//     //从cookie里取出token值
+//     var token = $.cookie('token');
+//     var header = 'X-CSRF-TOKEN';
+//     xhr.setRequestHeader(header, token);
+// });
 $("#li_xx_item").click(function(){
     $.ajax({
         type:"POST",
         url:"/getOutsourcingUserInfo",
         dataType:"json",
         data:{
-            "staff_information":"staff_information"
         },
         success:function(data){
             var tBody=$("#tBody");

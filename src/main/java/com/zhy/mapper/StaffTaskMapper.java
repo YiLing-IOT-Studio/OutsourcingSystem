@@ -28,4 +28,7 @@ public interface StaffTaskMapper {
     @Select("select t.taskId,t.state from staff_task t where phone=#{phone} and state in (\"进行中\",\"已完成\")")
     List<StaffTask> selectTidByPhoneAndState(@Param("phone") String phone);
 
+    @Select("select s.phone from staff_task s where taskId=#{taskId} and state=#{state}")
+    List<String> getPhoneByTaskIdAndState(@Param("taskId") int taskId, @Param("state") String state);
+
 }

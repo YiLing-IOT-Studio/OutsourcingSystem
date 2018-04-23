@@ -3,6 +3,7 @@ package com.zhy.service.mybatis.impl;
 import com.zhy.mapper.OutsourcingUserInfoMapper;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.model.outsourcing.OutsourcingUserInfo;
+import com.zhy.model.register.User;
 import com.zhy.service.mybatis.OutsourcingInfoService;
 import com.zhy.service.mybatis.OutsourcingUserInfoService;
 import com.zhy.service.mybatis.UserRegisterService;
@@ -35,8 +36,8 @@ public class OutsourcingUserInfoServiceImpl implements OutsourcingUserInfoServic
     }
 
     @Override
-    public OutsourcingUserInfo getUserInfoByPhone(String phone) {
-        return outsourcingUserInfoMapper.getUserInfoByPhone(phone);
+    public OutsourcingUserInfo getUserInfoByPhoneAndProjectName(String phone, String projectName) {
+        return outsourcingUserInfoMapper.getUserInfoByPhoneAndProjectName(phone, projectName);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class OutsourcingUserInfoServiceImpl implements OutsourcingUserInfoServic
         List<OutsourcingUserInfo> list = new ArrayList<>();
         OutsourcingUserInfo outsourcingUserInfo;
         for(String phone : phones){
-            outsourcingUserInfo = outsourcingUserInfoMapper.getUserInfoByPhone(phone);
+            outsourcingUserInfo = outsourcingUserInfoMapper.getUserInfoByPhoneAndProjectName(phone, outsourcingName);
             outsourcingUserInfo.setPhone(userRegisterService.getUserNameByPhone(outsourcingUserInfo.getPhone()));
             list.add(outsourcingUserInfo);
         }
@@ -59,5 +60,34 @@ public class OutsourcingUserInfoServiceImpl implements OutsourcingUserInfoServic
         objectList.add(map);
 
         return objectList;
+    }
+
+    @Override
+    public  List<Map<String, String>> getAllUserInfoByPhone(String phone) {
+
+        User user = userRegisterService.getUserInfoByPhone(phone);
+        List<Map<String, String>> list = new ArrayList<>();
+        Map<String, String> map = new HashMap<>();
+        map.put("name", user.getUsername());
+        map.put("gender", user.getGender());
+        map.put("phone", user.getPhone());
+        if (user.getCompany() != null){
+            map.put("company", user.getCompany());
+        }
+        if (user.getProfession() != null){
+            map.put("profession", user.getProfession());
+        }
+        if (user.getIntroduce() != null){
+            map.put("introduce", user.getIntroduce());
+        }
+        map.put("obey", user.getObey());
+        list.add(map);
+
+        return list;
+    }
+
+    @Override
+    public void updateUserInfoByPhone(OutsourcingUserInfo outsourcingUserInfo) {
+        outsourcingUserInfoMapper.updateAllNameAndGenderBuPhone(outsourcingUserInfo);
     }
 }

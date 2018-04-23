@@ -64,7 +64,6 @@ $("#mySubmit").click(function(event){
     var pattern=/\d+/;
     var money_value=$("#money").val();
     var my_form = new FormData(publishForm);
-    alert("!");
     if($("#myName").val()==""){
         alert("请填写项目名称~");
     }
@@ -97,7 +96,6 @@ $("#mySubmit").click(function(event){
     }
 
     else{
-        alert("!");
         $.ajax({
             type:"post",
             url:"/releaseOutsourcing",

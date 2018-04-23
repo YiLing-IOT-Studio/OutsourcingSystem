@@ -45,4 +45,24 @@ public interface UserRegisterService {
      */
     String getUserNameByPhone(String phone);
 
+    /**
+     * 通过用户名获得手机号
+     * @param userName 用户名
+     * @return 手机号
+     */
+    String getPhoneByUserName(String userName);
+
+    /**
+     * 通过手机号获得用户信息
+     * @param phonr
+     * @return
+     */
+    User getUserInfoByPhone(String phonr);
+
+    /**
+     * 更改用户信息
+     * @param user 用户
+     */
+    void updateUserInfo(User user);
+
 }
