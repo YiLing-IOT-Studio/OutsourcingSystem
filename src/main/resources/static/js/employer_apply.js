@@ -6,6 +6,7 @@ var header = $("meta[name='_csrf_header']").attr("content");
 $(document).ajaxSend(function(e, xhr, options) {
     xhr.setRequestHeader(header, token);
 });
+
 $.ajax({
     type:"post",
     url:"/applyForOutsourcing",
@@ -16,6 +17,9 @@ $.ajax({
         //清空
         var oDiv=$("#firstBody");
         oDiv.html("");
+        if(data.length==0){
+            oDiv.html("<tr><td class='alert alert-warning' colspan='5'>当前无申请信息！</td> </tr>");
+        }
         //插入
         $.each(data,function(index,obj){
             if(index!=(data.length)){
@@ -152,6 +156,9 @@ $.ajax({
         //清空
         var oDiv=$("#secondBody");
         oDiv.html("");
+        if(data.length==0){
+            oDiv.html("<tr><td class='alert alert-warning' colspan='6'>当前无申请信息！</td> </tr>");
+        }
         //插入
         $.each(data,function(index,obj){
             if(index!=(data.length)){
@@ -283,23 +290,5 @@ $.ajax({
 
         });
     }
-})
-//测试用
-// var oDiv=$("#firstBody");
-// alert("!");
-// var oCheck=$('<button class="btn btn-info">详细信息</button>');
-// oDiv.append(oCheck);
-// oCheck.click(function(){
-//     alert("!");
-// })
-//modal
-function showFun(info) {
-    var bg = document.getElementById("bg");
-    info.style.display = "block";
-    bg.style.display = "block";
-}
-function hideFun(info){
-    var bg = document.getElementById("bg");
-    info.style.display = "none";
-    bg.style.display = "none";
-}
+});
+

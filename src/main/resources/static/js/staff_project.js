@@ -6,6 +6,9 @@
 function fillData(data){
     var kBody=$("#kBody");
     kBody.html('');
+    if(data.length==0){
+        kBody.html("<div class='alert alert-warning'>暂无项目信息，请先接包再查看项目情况</div>");
+    }
     $.each(data,function(index,obj){
         if (index != (data.length)) {
             var tr= $('<tr></tr>');

@@ -11,6 +11,9 @@ $("#chart-tab").click(function(){
         data:{},
         success:function(data){
             oDiv.html("");
+            if(data.length==0){
+                oDiv.html("<div class='alert alert-warning'>暂无项目进度统计信息</div>");
+            }
             for(i in data) {
                 //项目名
                 var oTitle = $("<h4></h4>");

@@ -20,6 +20,9 @@ $("#li_xx_item").click(function(){
         success:function(data){
             var tBody=$("#tBody");
             tBody.html("");
+            if(data.length==0){
+                oDiv.html("<tr><td class='alert alert-warning' colspan='7'>暂无接包人员</td> </tr>");
+            }
             $.each(data, function (index, obj) {
                 if (index != (data.length)) {
                     var tr= $('<tr></tr>');

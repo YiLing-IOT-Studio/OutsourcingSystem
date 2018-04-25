@@ -50,6 +50,9 @@ $(function () {
 function fillData(data){
     var kBody=$("#kBody");
     kBody.html('');
+    if(data.length==0){
+        kBody.html("<tr><td class='alert alert-info' colspan='5'>该时间段无签到信息！</td> </tr>");
+    }
     $.each(data,function(index,obj){
         if (index != (data.length)) {
             var tr= $('<tr></tr>');

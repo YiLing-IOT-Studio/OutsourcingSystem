@@ -21,6 +21,9 @@
                 var oDiv=$("#task");
                 var clear='';
                 oDiv.html(clear);
+                if(data.length==0){
+                    oDiv.html("<div class='alert alert-warning'>无外包信息可查看，请先接包并等待发包人审批通过</div>");
+                }
                 for(var i=0;i<data.length;i++) {
                     var oFolder = $('<div class="my-inline-block text-center"></div>');
                     oFolder.append('<span class="glyphicon glyphicon-folder-close my-folder"></span>' +
@@ -46,6 +49,9 @@
                             var oDiv=$("#task");
                             var clear = "";
                             oDiv.html(clear);
+                            if(data.length==0){
+                                oDiv.html("<div class='alert alert-warning'>您还没有任务信息，请先申请任务或耐心等待发包人审批结果</div>");
+                            }
                             $.each(data, function (index, obj) {
                                 if (index != (data.length)) {
 

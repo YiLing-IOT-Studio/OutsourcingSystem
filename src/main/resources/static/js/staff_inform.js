@@ -8,44 +8,6 @@ $("#li_tz_item").click(function(){
     var video=document.getElementById('video');
     video.pause();
     $("#video").css("visibility","hidden");
-    //测试用
-//     // alert("1");
-//     var oDiv=$("#inform");
-//     var clear = "";
-//     oDiv.html(clear);
-//     var oP = $("<div class='op'></div>");
-//
-// //title
-//     var oTitle=$('<p class="oTitle"></p>');
-//     oTitle.append(" 任务名称："+"前端编写网站"+'');
-//     oP.append(oTitle);
-// //description
-//     var oMsg = $("<p class='description'></p>");
-//     oMsg.append("任务描述："+"前端编写网站前端编写网站前端编写网站前端编写网站前端编写网站前端编写网站");
-//     oP.append(oMsg);
-//     var oUl=$('<ul class="list-inline"></ul>');
-//
-// //author
-//     var oH2 = $("<li><img src='../static/img/emoji" + (parseInt(Math.random() * 5, 10) + 1) + ".png'></li>");
-//     oH2.append('<span class="author">'+''+"杨玉卿"+'</span>');
-//     oUl.append(oH2);
-//
-//
-//     var oDate = $("<li class='day'></li>");
-//     oDate.append("2018/2/5 12:00"+"发布");
-//     oUl.append(oDate);
-//
-//     oP.append(oUl);
-// //btn
-//     var oBtn=$('<div class="float"></div>');
-//     oBtn.append('<button class="btn btn-get">领取任务</button>');
-//     oP.append(oBtn);
-//
-//     oDiv.append(oP);
-//     $(".btn-get").click(function(){
-//         var taskName=$(this).parent().parent().find('.oTitle').text();
-//         alert(taskName);
-//     });
     $.ajax({
         type:"POST",
         url:"/receiveTask/showOutsourcingInfo",
@@ -59,6 +21,9 @@ $("#li_tz_item").click(function(){
             var oDiv=$("#inform");
             var clear='';
             oDiv.html(clear);
+            if(data.length==0){
+                oDiv.html("<div class='alert alert-warning'>您还没有接包或审批未通过，暂无外包信息通知</div>");
+            }
             for(var i=0;i<data.length;i++) {
                 var oFolder = $('<div class="my-inline-block text-center"></div>');
                 oFolder.append('<span class="glyphicon glyphicon-folder-close my-folder"></span>' +
@@ -84,6 +49,9 @@ $("#li_tz_item").click(function(){
                         var oDiv=$("#inform");
                         var clear = "";
                         oDiv.html(clear);
+                        if(data.length==0){
+                            oDiv.html("<div class='alert alert-warning'>发包人还没有发布任务信息，请耐心等待</div>");
+                        }
                         $.each(data, function (index, obj) {
                             if (index != (data.length)) {
 

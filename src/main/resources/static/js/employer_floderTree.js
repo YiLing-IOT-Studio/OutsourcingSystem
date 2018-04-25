@@ -1,10 +1,22 @@
 //定义点击节点事件
 function zTreeOnClick(event, treeId, treeNode){
     //获得被点击的节点的id，name信息
-    var name=treeNode.name;
-    alert(name);
     var tid=treeNode.id;
-    alert(tid);
+    $.ajax({
+        type:"post",
+        url:"/",
+        dataType:"json",
+        data:{
+            'tid':tid
+        },
+        success:function(){
+
+        },
+        error:function(){
+            alert("请求失败");
+        }
+    })
+
 }
 //设置
 var setting = {
