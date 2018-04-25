@@ -11,7 +11,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--login_register.css-->
-    <link href="css/login_register.css" rel="stylesheet"/>
+    <link href="../static/css/login_register.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -25,13 +25,13 @@
         <div class="tab-content">
             <!--login-->
             <div role="tabpanel" class="tab-pane fade in active" id="login">
+                <div th:if="${param.registerSuccess}" class="text-center">
+                    <p  class="alert alert-success text-align" role="alert">注册成功，请登录</p>
+                </div>
+                <div th:if="${param.registerError}"  class="text-center">
+                    <p  class="alert alert-danger text-align" role="alert">注册失败，请重新注册</p>
+                </div>
                 <div class="col-md-offset-3 col-md-9 col-xs-12">
-                    <div th:if="${param.registerSuccess}">
-                        <span>注册成功，请登录</span>
-                    </div>
-                    <div th:if="${param.registerError}">
-                        <span>注册失败，请重新注册</span>
-                    </div>
                     <form class="form-horizontal" id="login_form" th:action="@{/login_register}" method="post">
                         <div class="row">
                             <h2 class="col-sm-offset-2 col-sm-4 text-center">登录</h2>
@@ -83,12 +83,16 @@
                             </div>
                             <div class="col-sm-6"></div>
                         </div>
-                        <div th:if="${param.error}">
-                                <p>手机号或密码错误</p>
-                        </div>
+
                     </form>
                 </div>
+                <div th:if="${param.error}" class="col-md-12 text-center col-xs-12">
+                    <p class="alert alert-danger text-align" role="alert">手机号或密码错误</p>
+                </div>
+
+
             </div>
+
             <!--register-->
             <div role="tabpanel" class="tab-pane fade" id="sign_up">
                 <div class="col-md-offset-3 col-md-9 col-xs-12">
@@ -202,7 +206,7 @@
     <!--jquery:cookie-->
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!--js-->
-    <script src="js/login_validate.js"></script>
+    <script src="../static/js/login_validate.js"></script>
 
 
 
