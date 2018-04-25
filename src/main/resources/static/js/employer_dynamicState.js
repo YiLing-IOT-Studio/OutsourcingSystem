@@ -18,7 +18,7 @@ $("#follow-tab").click(function(){
             var clear = "";
             oDiv.html(clear);
             if(data.length==0){
-                oDiv.html("<div class='alert alert-warning'>还没创建外包项目？点击‘发布新外包’栏即可创建属于您的新外包项目！</div>");
+                oDiv.html("<div class='alert alert-warning'>暂无外包项目，需发布新外包后方可查看</div>");
             }
             for(var i=0;i<data.length;i++) {
 
@@ -50,7 +50,7 @@ $("#follow-tab").click(function(){
                         var clear = "";
                         oDiv.html(clear);
                         if(data.length==0){
-                            oDiv.html("<div class='alert alert-warning'>暂无上传信息，您可以尝试点击‘发布任务’栏，发布外包具体任务或稍后查看项目动态</div>");
+                            oDiv.html("<div class='alert alert-warning'>暂无上传信息，待任务负责人上传工作成果后即可查看</div>");
                         }
                         $.each(data, function (index, obj) {
                             if (index != (data.length)) {

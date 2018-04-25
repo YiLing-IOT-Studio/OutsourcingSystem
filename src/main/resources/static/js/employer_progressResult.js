@@ -12,7 +12,7 @@ $("#chart-tab").click(function(){
         success:function(data){
             oDiv.html("");
             if(data.length==0){
-                oDiv.html("<div class='alert alert-warning'>暂无项目进度统计信息</div>");
+                oDiv.html("<div class='alert alert-warning'>暂无项目进度统计信息，待任务负责人上传工作成果后可查看</div>");
             }
             for(i in data) {
                 //项目名

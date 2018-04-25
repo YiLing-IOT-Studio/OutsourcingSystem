@@ -22,7 +22,7 @@ $("#li_tz_item").click(function(){
             var clear='';
             oDiv.html(clear);
             if(data.length==0){
-                oDiv.html("<div class='alert alert-warning'>您还没有接包或审批未通过，暂无外包信息通知</div>");
+                oDiv.html("<div class='alert alert-warning'>您可能还没有接包或审批未通过，暂无外包信息通知</div>");
             }
             for(var i=0;i<data.length;i++) {
                 var oFolder = $('<div class="my-inline-block text-center"></div>');
@@ -50,7 +50,7 @@ $("#li_tz_item").click(function(){
                         var clear = "";
                         oDiv.html(clear);
                         if(data.length==0){
-                            oDiv.html("<div class='alert alert-warning'>发包人还没有发布任务信息，请耐心等待</div>");
+                            oDiv.html("<div class='alert alert-warning'>还没有任务信息发布，请耐心等待</div>");
                         }
                         $.each(data, function (index, obj) {
                             if (index != (data.length)) {

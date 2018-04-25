@@ -46,6 +46,9 @@ function initTree(){
         data : {
         },
         success: function(data){
+            if(data.length==0){
+                $("#treeDemo").html("<li><p class='alert alert-warning'>暂无工作文件夹，需发布外包后查看</p></li>");
+            }
             var i;
             for(i in data){
                 if(data[i].parent==true){

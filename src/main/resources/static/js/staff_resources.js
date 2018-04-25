@@ -67,6 +67,9 @@ $("#li_zl_item").click(function(){
             var oDiv=$("#data");
             var clear='';
             oDiv.html(clear);
+            if(data.length==0){
+                oDiv.html("<div class='alert alert-warning'>您可能还没有接包或审批未通过，暂无外包信息通知</div>");
+            }
             for(var i=0;i<data.length;i++) {
                 var oFolder = $('<div class="my-inline-block text-center"></div>');
                 oFolder.append('<span class="glyphicon glyphicon-folder-close my-folder"></span>' +
@@ -92,6 +95,9 @@ $("#li_zl_item").click(function(){
                         var oDiv=$("#data");
                         var clear='';
                         oDiv.html(clear);
+                        if(data.length==0){
+                            oDiv.html("<div class='alert alert-warning'>还没有任务信息发布，请耐心等待</div>");
+                        }
                         for(var i=0;i<data.length;i++) {
                             var oFolder = $('<div class="my-inline-block1"></div>');
                             oFolder.append('<span class="glyphicon glyphicon-folder-close my-folder"></span>' +
@@ -115,6 +121,9 @@ $("#li_zl_item").click(function(){
                                     var oDiv=$("#data");
                                     var clear='';
                                     oDiv.html(clear);
+                                    if(data.length==0){
+                                        oDiv.html("<div class='alert alert-warning'>还没有任务资料上传，请耐心等待</div>");
+                                    }
                                     var oFolder1 = $('<div class="my-inline-block2 text-center"></div>');
                                     oFolder1.append('<span class="glyphicon glyphicon-folder-open my-folder"></span>' +
                                         '<span class="folder-name2">' + '图片' + '</span>');
@@ -164,6 +173,9 @@ $("#li_zl_item").click(function(){
                                                    var oDiv=$("#data");
                                                    var clear='';
                                                    oDiv.html(clear);
+                                                   if(data.length==0){
+                                                       oDiv.html("<div class='alert alert-warning'>无上传图片资料</div>");
+                                                   }
                                                    //图片
                                                    for(var i in data){
                                                        var src=data[i];
@@ -191,7 +203,10 @@ $("#li_zl_item").click(function(){
                                                    var oDiv=$("#data");
                                                    var clear='';
                                                    oDiv.html(clear);
-                                                   //图片
+                                                   //视频
+                                                   if(data.length==0){
+                                                       oDiv.html("<div class='alert alert-warning'>无上传视频资料</div>");
+                                                   }
                                                    for(var i in data){
                                                        var src=data[i];
                                                        var oVideo=$("<video src='"+src+"' class='video'></video>");
@@ -217,6 +232,9 @@ $("#li_zl_item").click(function(){
                                                    var oDiv = $("#data");
                                                    var clear = '';
                                                    oDiv.html(clear);
+                                                   if(data.length==0){
+                                                       oDiv.html("<div class='alert alert-warning'>无上传文档资料</div>");
+                                                   }
                                                    for (var i = 0; i < data.length; i++) {
                                                        var oFolder3 = $('<div class="my-inline-block3 text-center"></div>');
                                                        oFolder3.append('<span class="glyphicon glyphicon-folder-file my-folder"></span>' +

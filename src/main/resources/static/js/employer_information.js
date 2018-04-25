@@ -21,7 +21,7 @@ $("#li_xx_item").click(function(){
             var tBody=$("#tBody");
             tBody.html("");
             if(data.length==0){
-                oDiv.html("<tr><td class='alert alert-warning' colspan='7'>暂无接包人员</td> </tr>");
+                tBody.html("<tr><td class='alert alert-warning' colspan='7'>暂无接包人</td> </tr>");
             }
             $.each(data, function (index, obj) {
                 if (index != (data.length)) {

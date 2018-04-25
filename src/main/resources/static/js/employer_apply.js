@@ -18,7 +18,7 @@ $.ajax({
         var oDiv=$("#firstBody");
         oDiv.html("");
         if(data.length==0){
-            oDiv.html("<tr><td class='alert alert-warning' colspan='5'>当前无申请信息！</td> </tr>");
+            oDiv.html("<tr><td class='alert alert-warning' colspan='5'>当前无申请信息！</td></tr>");
         }
         //插入
         $.each(data,function(index,obj){

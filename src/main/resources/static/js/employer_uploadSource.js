@@ -26,6 +26,9 @@ $("#myTaskName").focus(function(){
         success:function(data){
             var oDiv=$("#myTaskName");
             oDiv.html("");
+            if(data.length==0){
+                alert("该外包还没有创建任务，请先为外包创建任务，再上传任务对应的资料！");
+            }
             for(var i in data){
                 var my_option=$("<option></option>");
                 my_option.append(data[i]);
