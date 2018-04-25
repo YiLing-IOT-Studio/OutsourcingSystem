@@ -28,27 +28,50 @@ $.ajax({
         alert("签到请求失败");
     }
 });
-var video=document.getElementById('video');
-video.pause();
-$("#video").css("visibility","hidden");
-$(".btn-sign").click(function() {
-    var btn_sign = $(".btn-sign");
 
-
-
+btn_sign.click(function() {
+    var video=document.getElementById('video');
+    video.pause();
+    $("#video").css("visibility","hidden");
     if (btn_sign.text() == "签到") {
-        btn_sign.text("签退");
-        btn_sign.removeClass("btn-primary");
-        btn_sign.addClass("btn-danger");
         var signInDate = new Date();
-        $.post("/sign/signIn", {'signInDate': signInDate});
+        $.ajax({
+            type:"post" ,
+            url:"/sign/signIn",
+            dataType:"json",
+            data:{
+                'signInDate': signInDate
+            },
+            success:function(){
+                btn_sign.text("签退");
+                btn_sign.removeClass("btn-primary");
+                btn_sign.addClass("btn-danger");
+            },
+            error:function(){
+                alert("签到失败！请重试");
+            }
 
+        });
     }
     else if (btn_sign.text() == "签退") {
-        btn_sign.text("签到");
-        btn_sign.removeClass("btn-danger");
-        btn_sign.addClass("btn-primary");
+
         var signOutDate = new Date();
-        $.post("/sign/signOut", {'signOutDate': signOutDate});
+        $.ajax({
+            type:"post" ,
+            url:"/sign/signOut",
+            dataType:"json",
+            data:{
+                'signOutDate': signOutDate
+            },
+            success:function(){
+                btn_sign.text("签到");
+                btn_sign.removeClass("btn-danger");
+                btn_sign.addClass("btn-primary");
+            },
+            error:function(){
+                alert("签退失败！请重试");
+            }
+        });
+
     }
 });
