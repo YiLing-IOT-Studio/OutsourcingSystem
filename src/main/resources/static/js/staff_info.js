@@ -1,90 +1,108 @@
 /**
  * Created by 杨玉卿 on 2018/4/10.
  */
-//设置个人资料初始状态
-    $("#profile").css('display','block');
-    $("#second_profile").css('display','none');
-    function initialData2(){
-        $("#true_name").val($("#true_name1").text());
-        $("#gender").val($("#gender1").text());
-        $("#company").val($("#company1").text());
-        $("#job").val($("#job1").text());
-        $("#introduce").val($("#introduce1").text());
-    }
-
-//个人资料填充
-function profile(data){
-    $("#true_name1").text(data[0].name);
-    if(data[0].gender=='gentleman'){
-        data[0].gender='男';
-    }
-    else{data[0].gender='女'}
-    $("#gender1").text(data[0].gender);
-    $("#telephone1").text(data[0].phone);
-    $("#company1").text(data[0].company);
-    $("#job1").text(data[0].job);
-    $("#introduce1").text(data[0].introduce);
-    if(data[0].obey=="on"){
-        data[0].obey='遵守协议';
-    }
-    else{data[0].obey='未签订';}
-    $("#promise").text(data[0].obey);
-
-
-}
-//初始时加载一次资料信息
-function initialData1(){
-    $.ajax({
+//加载个人信息
+$.ajax({
         type:"post",
         url:"/staff/getUserInfo",
         dataType:"json",
-        async:false,
         data:{},
         success:function(data){
-            profile(data);
+            //显示资料部分
+            $("#profile").css('display','block');
+            //隐藏编辑部分
+            $("#second_profile").css('display','none');
+            //填充资料信息
+            $("#true_name1").text(data[0].myName);
+            if(data[0].gender=='gentleman'){
+                data[0].gender='男';
+            }
+            else{data[0].gender='女'}
+            $("#gender1").text(data[0].gender);
+            $("#telephone1").text(data[0].username);
+            $("#company1").text(data[0].company);
+            $("#job1").text(data[0].job);
+            $("#introduce1").text(data[0].introduce);
+            if(data[0].obey=="on"){
+                data[0].obey='遵守协议';
+            }
+            else{data[0].obey='未签订';}
+            $("#promise").text(data[0].obey);
+
+            $("#true_name").val(data[0].myName);
+            $("#gender").val(data[0].gender);
+            $("#company").val(data[0].company);
+            $("#job").val(data[0].job);
+            $("#introduce").val(data[0].introduce);
+
         },
         error:function(){
             alert("请求失败");
         }
-    });
-}
-initialData1();
-initialData2();
-$("#li_info_item").click(function(){
-    /*关闭video*/
-    var video=document.getElementById('video');
-    video.pause();
-    $("#video").css("visibility","hidden");
-//设置个人资料初始状态
-    $("#profile").css('display','block');
-    $("#second_profile").css('display','none');
-
 });
-//编辑状态
-    $("#edit").click(function(){
-        $("#second_profile").css('display','block');
-
-        $("#profile").css('display','none');
-
-    });
-    //保存时传一次更新后的个人资料
+//点击编辑
+$("#edit").click(function(){
+    //已有资料隐藏
+    $("#second_profile").css('display','block');
+    //修改资料显示
+    $("#profile").css('display','none');
+    //用户修改信息..
+    //点击保存
     $("#save").click(function(event){
-        if($("#nick_name").val()==""||$("#true_name").val()==""||$("#telephone").val()==""||$("#introduce").val()==""){
+        //阻止表单默认提交
+        event.preventDefault();
+        //判断修改信息是否含有空选项
+        if($("#true_name").val()==""||$("#company").val()==""||$("#job").val()==""||$("#introduce").val()==""){
             alert("您的资料还未填写完整，请填写完整后提交!");
-            event.preventDefault();
         }
+        //提交修改资料
         else{
-            var profile=new FormData(update_profile);
+            //获取修改资料
+            var staff_name=$("#true_name").val(),
+                staff_gender=$("#gender").val(),
+                staff_company=$("#company").val(),
+                staff_job=$("#job").val(),
+                staff_introduce=$("#introduce").val();
+            //发送给服务器
             $.ajax({
                 type:'post',
-                url:'/updateUserInfo',
+                url:'/',
                 dataType:"json",
-                data:profile,
-                processData: false,
-                contentType: false,
+                data:{
+                    "staff_name":staff_name,
+                    "staff_gender":staff_gender,
+                    "staff_company":staff_company,
+                    "staff_job":staff_job,
+                    "staff_introduce":staff_introduce
+                },
                 success:function(data){
-                    //显示保存后的个人信息
-                    profile(data);
+                    //保存后...
+                    //显示资料部分
+                    $("#profile").css('display','block');
+                    //隐藏编辑部分
+                    $("#second_profile").css('display','none');
+                    //填充资料信息
+                    $("#true_name1").text(data[0].myName);
+                    if(data[0].gender=='gentleman'){
+                        data[0].gender='男';
+                    }
+                    else{data[0].gender='女'}
+                    $("#gender1").text(data[0].gender);
+                    $("#telephone1").text(data[0].username);
+                    $("#company1").text(data[0].company);
+                    $("#job1").text(data[0].job);
+                    $("#introduce1").text(data[0].introduce);
+                    if(data[0].obey=="on"){
+                        data[0].obey='遵守协议';
+                    }
+                    else{data[0].obey='未签订';}
+                    $("#promise").text(data[0].obey);
+
+                    $("#true_name").val(data[0].myName);
+                    $("#gender").val(data[0].gender);
+                    $("#company").val(data[0].company);
+                    $("#job").val(data[0].job);
+                    $("#introduce").val(data[0].introduce);
                 },
                 error:function(){
                     alert("请求失败");
@@ -92,4 +110,54 @@ $("#li_info_item").click(function(){
             })
         }
     });
+
+});
+//点击个人档
+$("#li_info_item").click(function(){
+    /*关闭video*/
+    var video=document.getElementById('video');
+    video.pause();
+    $("#video").css("visibility","hidden");
+    //加载个人资料信息
+    $.ajax({
+        type:"post",
+        url:"/staff/getUserInfo",
+        dataType:"json",
+        data:{},
+        success:function(data){
+            //显示资料部分
+            $("#profile").css('display','block');
+            //隐藏编辑部分
+            $("#second_profile").css('display','none');
+            //填充资料信息
+            $("#true_name1").text(data[0].myName);
+            if(data[0].gender=='gentleman'){
+                data[0].gender='男';
+            }
+            else{data[0].gender='女'}
+            $("#gender1").text(data[0].gender);
+            $("#telephone1").text(data[0].username);
+            $("#company1").text(data[0].company);
+            $("#job1").text(data[0].job);
+            $("#introduce1").text(data[0].introduce);
+            if(data[0].obey=="on"){
+                data[0].obey='遵守协议';
+            }
+            else{data[0].obey='未签订';}
+            $("#promise").text(data[0].obey);
+
+            $("#true_name").val(data[0].myName);
+            $("#gender").val(data[0].gender);
+            $("#company").val(data[0].company);
+            $("#job").val(data[0].job);
+            $("#introduce").val(data[0].introduce);
+        },
+        error:function(){
+            alert("请求失败");
+        }
+    });
+});
+
+
+
 

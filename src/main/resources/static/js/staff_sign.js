@@ -1,11 +1,11 @@
 /**
  * Created by 杨玉卿 on 2018/4/15.
  */
-var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
-$(document).ajaxSend(function(e, xhr, options) {
-    xhr.setRequestHeader(header, token);
-});
+// var token = $("meta[name='_csrf']").attr("content");
+// var header = $("meta[name='_csrf_header']").attr("content");
+// $(document).ajaxSend(function(e, xhr, options) {
+//     xhr.setRequestHeader(header, token);
+// });
 var btn_sign = $(".btn-sign");
 $.ajax({
     type: "get",
