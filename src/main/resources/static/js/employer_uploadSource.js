@@ -22,7 +22,6 @@ $("#myTaskName").focus(function(){
         data:{
             'projectName':projectName
         },
-        beforeSend:function(){},
         success:function(data){
             var oDiv=$("#myTaskName");
             oDiv.html("");
@@ -62,8 +61,12 @@ $("#uplBtn").click(function(event){
             async:false,
             processData: false,
             contentType: false,
-            beforeSend:function(){
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('csrf_');
                 showFun();
+            },
+            headers: {
+                'csrf_':$("meta[name='_csrf']").attr("content")
             },
             success:function(data){
                 hideFun();

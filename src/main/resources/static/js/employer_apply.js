@@ -1,11 +1,21 @@
 /**
  * Created by 杨玉卿 on 2018/4/15.
  */
-var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
-$(document).ajaxSend(function(e, xhr, options) {
-    xhr.setRequestHeader(header, token);
-});
+// var token = $("meta[name='_csrf']").attr("content");
+// var header_string = $("meta[name='_csrf_header']").attr("content");
+// $(document).ajaxSend(function(e, xhr, options) {
+//     xhr.setRequestHeader(header, token);
+// });
+//设置AJAX的全局默认选项
+$.ajaxSetup( {
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader('csrf_');
+    },
+    headers: {
+        'csrf_':$("meta[name='_csrf']").attr("content")
+    },
+    global:true
+} );
 
 $.ajax({
     type:"post",

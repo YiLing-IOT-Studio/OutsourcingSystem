@@ -1,11 +1,6 @@
 /**
  * Created by 杨玉卿 on 2018/4/10.
  */
-var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
-$(document).ajaxSend(function(e, xhr, options) {
-    xhr.setRequestHeader(header, token);
-});
 var video=document.getElementById('video');
 video.pause();
 $("#video").css("visibility","hidden");
@@ -38,10 +33,13 @@ $("#uplBtn").click(function(event){
             data:form,
             processData: false,
             contentType: false,
-            beforeSend:function(){
+            beforeSend:function(xhr){
+                xhr.setRequestHeader('csrf_');
                 showFun();
             },
-
+            headers: {
+                'csrf_':$("meta[name='_csrf']").attr("content")
+            },
             success:function(data){
                 hideFun();
                 if(data==1){
