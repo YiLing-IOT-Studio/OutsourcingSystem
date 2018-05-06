@@ -111,6 +111,8 @@ $("#li_info_item").click(function(){
     var video=document.getElementById('video');
     video.pause();
     $("#video").css("visibility","hidden");
+    window.clearInterval(time1);
+
     //加载个人资料信息
     $.ajax({
         type:"post",

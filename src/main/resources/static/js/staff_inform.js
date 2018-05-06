@@ -12,6 +12,8 @@ $("#li_tz_item").click(function(){
     var video=document.getElementById('video');
     video.pause();
     $("#video").css("visibility","hidden");
+    window.clearInterval(time1);
+
     $.ajax({
         type:"POST",
         url:"/receiveTask/showOutsourcingInfo",

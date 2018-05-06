@@ -1,13 +1,7 @@
 /**
  * Created by 杨玉卿 on 2018/4/15.
  */
-//设置AJAX的全局默认选项
-$.ajaxSetup( {
-    beforeSend: function(xhr) {
-        xhr.setRequestHeader('X-CSRF-TOKEN',$("meta[name='_csrf']").attr("content"));
-    },
-    global:true
-} );
+
 var btn_sign = $(".btn-sign");
 $.ajax({
     type: "get",
@@ -32,6 +26,7 @@ $.ajax({
 });
 
 btn_sign.click(function() {
+    window.clearInterval(time1);
     var video=document.getElementById('video');
     video.pause();
     $("#video").css("visibility","hidden");
