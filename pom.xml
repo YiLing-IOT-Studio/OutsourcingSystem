@@ -150,18 +150,9 @@
 		<dependency>
 			<groupId>com.baidu.aip</groupId>
 			<artifactId>java-sdk</artifactId>
-			<version>4.1.1</version>
+			<version>4.3.0</version>
 		</dependency>
-		<dependency>
-			<groupId>aliyun-java-sdk-dysmsapi</groupId>
-			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-			<version>1.0.0-SANPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>aliyun-java-sdk-dysmsapi</groupId>
-			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-			<version>1.0.0-SANPSHOT</version>
-		</dependency>
+
 		<dependency>
 			<groupId>net.sf.jtidy</groupId>
 			<artifactId>jtidy</artifactId>

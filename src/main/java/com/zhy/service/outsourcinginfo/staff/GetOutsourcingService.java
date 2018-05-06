@@ -1,8 +1,8 @@
 package com.zhy.service.outsourcinginfo.staff;
 
-import com.zhy.model.outsourcing.ApplyForOutsourcing;
+import com.zhy.model.outsourcing.StaffOutsourcing;
 import com.zhy.model.outsourcing.OutsourcingInfo;
-import com.zhy.service.mybatis.ApplyForOutsourcingService;
+import com.zhy.service.mybatis.StaffOutsourcingService;
 import com.zhy.service.mybatis.OutsourcingInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,19 +19,19 @@ import java.util.List;
 public class GetOutsourcingService {
 
     @Autowired
-    ApplyForOutsourcingService applyForOutsourcingService;
+    StaffOutsourcingService staffOutsourcingService;
     @Autowired
     OutsourcingInfoService outsourcingInfoService;
 
     public List<OutsourcingInfo> getOutsourcingInfo(String phone){
 
-        List<ApplyForOutsourcing> list = applyForOutsourcingService.selectByPhone(phone);
+        List<StaffOutsourcing> list = staffOutsourcingService.selectByPhone(phone);
         List<OutsourcingInfo> outsourcingInfoList = new ArrayList<>();
         OutsourcingInfo outsourcingInfo;
 
-        for(ApplyForOutsourcing applyForOutsourcing : list){
-            outsourcingInfo = outsourcingInfoService.selectByName(applyForOutsourcing.getOutsourcingName());
-            outsourcingInfo.setState(applyForOutsourcing.getState());
+        for(StaffOutsourcing staffOutsourcing : list){
+            outsourcingInfo = outsourcingInfoService.selectByName(staffOutsourcing.getOutsourcingName());
+            outsourcingInfo.setState(staffOutsourcing.getState());
             outsourcingInfoList.add(outsourcingInfo);
         }
 

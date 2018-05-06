@@ -2,7 +2,7 @@ package com.zhy.controller.staff.TaskInfo;
 
 import com.zhy.constant.TaskState;
 import com.zhy.model.task.TaskInfo;
-import com.zhy.service.mybatis.ApplyForOutsourcingService;
+import com.zhy.service.mybatis.StaffOutsourcingService;
 import com.zhy.service.mybatis.TaskInfoService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import java.util.List;
 public class ReceiveTask {
 
     @Autowired
-    ApplyForOutsourcingService applyForOutsourcingService;
+    StaffOutsourcingService staffOutsourcingService;
     @Autowired
     TaskInfoService taskInfoService;
 
@@ -35,7 +35,7 @@ public class ReceiveTask {
     public JSONArray showOutsourcingInfo(@AuthenticationPrincipal Principal principal){
 
         //查找当前接包人已接的所有外包名
-        List<String> outsourcedByPhone = applyForOutsourcingService.selectOutsourcingByPhoneAndState(principal.getName());
+        List<String> outsourcedByPhone = staffOutsourcingService.selectOutsourcingByPhoneAndState(principal.getName());
 
         JSONArray jsonArray = JSONArray.fromObject(outsourcedByPhone);
         System.out.println("用户" + principal.getName() + "进行中的外包有：" + jsonArray.toString());

@@ -1,14 +1,12 @@
 /**
  * Created by YYQ on 2018/3/18.
  */
-
-
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
-        xhr.setRequestHeader(header, token);
-    });
-
+$.ajaxSetup( {
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-TOKEN',$("meta[name='_csrf']").attr("content"));
+    },
+    global:true
+} );
 //打开摄像头
 var video=document.getElementById('video');
 navigator.mediaDevices.getUserMedia({
@@ -43,13 +41,13 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("注册成功！");
-                    // window.location.replace("http://localhost:80/login_register")
-                    window.location.replace("http://119.23.202.55:80/login_register")
+                     window.location.replace("http://localhost:80/login_register")
+                    //window.location.replace("http://119.23.202.55:80/login_register")
                 }
                 else {
                     alert("注册失败，请重试~");
-                    // window.location.replace("http://localhost:80/faceCheck")
-                    window.location.replace("http://119.23.202.55:80/faceCheck")
+                     window.location.replace("http://localhost:80/faceCheck")
+                    // window.location.replace("http://119.23.202.55:80/faceCheck")
 
                 }
             },
@@ -69,13 +67,13 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("登录成功！");
-                    // window.location.replace("http://localhost:80/index")
-                    window.location.replace("http://119.23.202.55:80/index")
+                     window.location.replace("http://localhost:80/index")
+                    // window.location.replace("http://119.23.202.55:80/index")
                 }
                 else {
                     alert("没有这张脸，请重试！");
-                    // window.location.replace("http://localhost:80/faceCheck")
-                    window.location.replace("http://119.23.202.55:80/faceCheck")
+                     window.location.replace("http://localhost:80/faceCheck")
+                    //window.location.replace("http://119.23.202.55:80/faceCheck")
                 }
             },
             error: function () {

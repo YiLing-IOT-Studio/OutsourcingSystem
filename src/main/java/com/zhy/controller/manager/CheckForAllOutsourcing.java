@@ -1,12 +1,9 @@
 package com.zhy.controller.manager;
 
-import com.zhy.model.outsourcing.ApplyForOutsourcing;
 import com.zhy.model.outsourcing.OutsourcingInfo;
-import com.zhy.model.outsourcing.OutsourcingUserInfo;
-import com.zhy.service.mybatis.ApplyForOutsourcingService;
+import com.zhy.service.mybatis.StaffOutsourcingService;
 import com.zhy.service.mybatis.OutsourcingInfoService;
 import com.zhy.service.mybatis.OutsourcingUserInfoService;
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +24,7 @@ public class CheckForAllOutsourcing {
     @Autowired
     OutsourcingInfoService outsourcingInfoService;
     @Autowired
-    ApplyForOutsourcingService applyForOutsourcingService;
+    StaffOutsourcingService staffOutsourcingService;
     @Autowired
     OutsourcingUserInfoService outsourcingUserInfoService;
 
@@ -50,7 +47,7 @@ public class CheckForAllOutsourcing {
     @PostMapping("/getAllUserInfo")
     public @ResponseBody JSONArray getAllUserInfo(@RequestParam("name") String outsourcingName){
 
-        List<String> phones = applyForOutsourcingService.getPhoneByNameOnFinishAndAccepted(outsourcingName);
+        List<String> phones = staffOutsourcingService.getPhoneByNameOnFinishAndAccepted(outsourcingName);
 
         List<Map<String, Object>> outsourcingUserInfos = outsourcingUserInfoService.getUserInfoByPhones(phones, outsourcingName);
 

@@ -40,12 +40,12 @@ public class SendMsgCodeControl {
         request.getSession().setAttribute("trueMsgCode", trueMsgCode);
 
         SendSmsResponse sendSmsResponse = null;
-        try {
-            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
-        } catch (ClientException e) {
-            e.printStackTrace();
-            return 0;
-        }
+//        try {
+//            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
+//        } catch (ClientException e) {
+//            e.printStackTrace();
+//            return 0;
+//        }
 
         return 1;
 

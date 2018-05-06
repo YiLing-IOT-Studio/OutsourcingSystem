@@ -4,10 +4,7 @@
 //设置AJAX的全局默认选项
 $.ajaxSetup( {
     beforeSend: function(xhr) {
-        xhr.setRequestHeader('csrf_');
-    },
-    headers: {
-        'csrf_':$("meta[name='_csrf']").attr("content")
+        xhr.setRequestHeader('X-CSRF-TOKEN',$("meta[name='_csrf']").attr("content"));
     },
     global:true
 } );

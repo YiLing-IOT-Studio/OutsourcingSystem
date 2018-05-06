@@ -1,6 +1,6 @@
 package com.zhy.controller.employer.applyforagree;
 
-import com.zhy.constant.ApplyState;
+import com.zhy.constant.OutsourcingState;
 import com.zhy.constant.TaskState;
 import com.zhy.model.outsourcing.OutsourcingInfo;
 import com.zhy.model.outsourcing.OutsourcingUserInfo;
@@ -13,7 +13,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +30,7 @@ public class ApplyForAgree {
     @Autowired
     OutsourcingInfoService outsourcingInfoService;
     @Autowired
-    ApplyForOutsourcingService applyForOutsourcingService;
+    StaffOutsourcingService staffOutsourcingService;
     @Autowired
     OutsourcingUserInfoService outsourcingUserInfoService;
     @Autowired
@@ -53,7 +52,7 @@ public class ApplyForAgree {
         Map<String, Object> map;
 
         for(OutsourcingInfo o : outsourcingInfoList){
-            phones = applyForOutsourcingService.getPhoneByNameAndState(o.getName(), ApplyState.APPLYSTATE_APPLY);
+            phones = staffOutsourcingService.getPhoneByNameAndState(o.getName(), OutsourcingState.APPLYSTATE_APPLY);
             if(!phones.isEmpty()){
                 map = new HashMap<>();
                 map.put("projectName", o.getName());
@@ -112,14 +111,14 @@ public class ApplyForAgree {
 
     @RequestMapping("/agreeForOutsourcing")
     @ResponseBody
-    public String agreeForOutsourcing(@Param("tag") String tag,
+    public int agreeForOutsourcing(@Param("tag") String tag,
                                       @RequestParam("projectName") String projectName,
                                       @RequestParam("proposer") String proposer){
 
-        int applyResult = applyForOutsourcingService.applyForLoan(projectName, userRegisterService.getPhoneByUserName(proposer), tag);
+        int applyResult = staffOutsourcingService.applyForLoan(projectName, userRegisterService.getPhoneByUserName(proposer), tag);
         System.out.println("审批结果：" + applyResult);
 
-        return "1";
+        return applyResult;
     }
 
     @RequestMapping("/agreeForTask")

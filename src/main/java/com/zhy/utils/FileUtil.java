@@ -28,6 +28,7 @@ public class FileUtil {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             logger.info("上传文件路径不存在");
+            return 0;
         }
         try {
             out.write(file);

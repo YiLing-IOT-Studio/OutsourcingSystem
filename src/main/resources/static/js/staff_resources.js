@@ -1,12 +1,6 @@
 /**
  * Created by 杨玉卿 on 2018/4/10.
  */
-// $(".my-inline-block").click(function(){
-//     $(".file").removeClass("hide");
-//     $(".my-inline-block").addClass("hide");
-// })
-
-
 var canvas=document.getElementById('canvas');
 var context=canvas.getContext("2d");
 //截取图像
@@ -20,7 +14,7 @@ function snapPicture(){
     var imgData = canvas.toDataURL();
     //获取图像在前端截取22位以后的字符串作为图像数据
     var imgData1 = imgData.substring(22);
-    var username=$.cookie("username");
+
     console.log(username);
     $.ajax({
             type: "POST",
@@ -28,7 +22,7 @@ function snapPicture(){
             dataType: 'json',
             async:false,
             data: {"img": imgData1,
-                "username":username
+
             },
             success: function (data) {
                 var put_word=$("#data");
@@ -156,6 +150,7 @@ $("#li_zl_item").click(function(){
                                         });
 
                                         time1=setInterval(snapPicture,3000);
+
                                     }
                                     //点击资料夹，打开资料
                                    $(".my-inline-block2").click(function(){

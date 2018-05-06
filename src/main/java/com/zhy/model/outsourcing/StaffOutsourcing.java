@@ -8,7 +8,7 @@ import lombok.Data;
  * Describe: 申请接包信息
  */
 @Data
-public class ApplyForOutsourcing {
+public class StaffOutsourcing {
 
     private long id;
 

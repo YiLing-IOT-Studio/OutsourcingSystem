@@ -81,6 +81,11 @@ public class OutsourcingInfo implements Serializable{
     private String prospectus;
 
     /**
+     * 项目合同保存路径
+     */
+    private String contract;
+
+    /**
      * 外包进度
      */
     private int progress;
@@ -89,7 +94,7 @@ public class OutsourcingInfo implements Serializable{
     public OutsourcingInfo() {
     }
 
-    public OutsourcingInfo(String state, String name, int rank, String category, String content, String publisher, String publishTime, String requirement, long registrationDeadline, long projectDeadline, int amount, String prospectus, int progress) {
+    public OutsourcingInfo(String state, String name, int rank, String category, String content, String publisher, String publishTime, String requirement, long registrationDeadline, long projectDeadline, int amount, String prospectus, int progress, String contract) {
         this.state = state;
         this.name = name;
         this.rank = rank;
@@ -103,5 +108,6 @@ public class OutsourcingInfo implements Serializable{
         this.amount = amount;
         this.prospectus = prospectus;
         this.progress = progress;
+        this.contract = contract;
     }
 }

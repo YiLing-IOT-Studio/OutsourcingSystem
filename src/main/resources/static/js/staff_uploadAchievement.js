@@ -34,7 +34,7 @@ $("#uplBtn").click(function(event){
             processData: false,
             contentType: false,
             beforeSend:function(xhr){
-                xhr.setRequestHeader('csrf_');
+                xhr.setRequestHeader('X-CSRF-TOKEN',$("meta[name='_csrf']").attr("content"));
                 showFun();
             },
             headers: {

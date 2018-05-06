@@ -1,11 +1,8 @@
 package com.zhy.controller.staff.mytask;
 
-import com.zhy.constant.ApplyState;
-import com.zhy.constant.TaskState;
-import com.zhy.model.outsourcing.ApplyForOutsourcing;
 import com.zhy.model.task.StaffTask;
 import com.zhy.model.task.TaskInfo;
-import com.zhy.service.mybatis.ApplyForOutsourcingService;
+import com.zhy.service.mybatis.StaffOutsourcingService;
 import com.zhy.service.mybatis.StaffTaskService;
 import com.zhy.service.mybatis.TaskInfoService;
 import net.sf.json.JSONArray;
@@ -20,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.security.Principal;
 import java.util.List;
 
-import static com.zhy.constant.TaskState.TASK_FINISH;
-
 /**
  * @author: zhangocean
  * @Date: 2018/4/15 21:21
@@ -32,7 +27,7 @@ import static com.zhy.constant.TaskState.TASK_FINISH;
 public class MyTask {
 
     @Autowired
-    ApplyForOutsourcingService applyForOutsourcingService;
+    StaffOutsourcingService staffOutsourcingService;
     @Autowired
     StaffTaskService staffTaskService;
     @Autowired
@@ -43,7 +38,7 @@ public class MyTask {
     public JSONArray showOutsourcingInfo(@AuthenticationPrincipal Principal principal){
 
         //查找当前接包人已接的所有外包名
-        List<String> outsourcedByPhone = applyForOutsourcingService.selectOutsourcingByPhoneAndState(principal.getName());
+        List<String> outsourcedByPhone = staffOutsourcingService.selectOutsourcingByPhoneAndState(principal.getName());
 
         JSONArray jsonArray = JSONArray.fromObject(outsourcedByPhone);
         System.out.println("用户" + principal.getName() + "进行中的外包有：" + jsonArray.toString());

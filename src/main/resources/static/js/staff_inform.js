@@ -2,7 +2,11 @@
  * Created by 杨玉卿 on 2018/4/10.
  */
 
-
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+    xhr.setRequestHeader(header, token);
+});
 //通知消息
 $("#li_tz_item").click(function(){
     var video=document.getElementById('video');

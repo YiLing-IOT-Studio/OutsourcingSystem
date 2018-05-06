@@ -7,17 +7,12 @@ var mySearch=$("#search");
 var amountSort=$("#amount_sort");
 var timeSort=$("#time_sort");
 var clear='';
-//把令牌值先直接保存在cookie里,以待传给manager页面
-var token=$("meta[name='_csrf']").attr("content");
-$.cookie('token',token);
-$(function(){
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(event,xhr,options) {
-        xhr.setRequestHeader(header, token);
-    });
-    // ajaxTest(1);
-})
+$.ajaxSetup( {
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-TOKEN',$("meta[name='_csrf']").attr("content"));
+    },
+    global:true
+} );
 //填充数据类
 function putIn(data){
     put_word.html(clear);

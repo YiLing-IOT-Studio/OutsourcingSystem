@@ -1,7 +1,6 @@
 package com.zhy.service.mybatis;
 
-import com.zhy.model.outsourcing.ApplyForOutsourcing;
-import org.apache.ibatis.annotations.Param;
+import com.zhy.model.outsourcing.StaffOutsourcing;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
  * Describe:
  */
 @Service
-public interface ApplyForOutsourcingService {
+public interface StaffOutsourcingService {
 
     /**
      * 通过外包名和登录用户手机号查看外包
@@ -20,7 +19,7 @@ public interface ApplyForOutsourcingService {
      * @param phone 手机号
      * @return
      */
-    ApplyForOutsourcing selectByNameAndPhone(String outsourcingName, String phone);
+    StaffOutsourcing selectByNameAndPhone(String outsourcingName, String phone);
 
     /**
      * 保存接包人申请外包信息
@@ -35,7 +34,7 @@ public interface ApplyForOutsourcingService {
      * @param phone 手机号
      * @return 外包名
      */
-    List<ApplyForOutsourcing> selectByPhone(String phone);
+    List<StaffOutsourcing> selectByPhone(String phone);
 
     /**
      * 通过手机号获得项目名

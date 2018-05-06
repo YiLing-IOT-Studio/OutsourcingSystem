@@ -41,17 +41,13 @@ public class FaceCheckController {
         response.setContentType("text/html;charset=utf-8");
 
         String img = request.getParameter("img");
-//        String phone = request.getParameter("username");
-        String phone = "19940790216";
+        String phone = request.getParameter("username");
 
         System.out.println("tag：" + tag);
-        System.out.println("img：" + img);
         System.out.println("phone：" + phone);
 
-        AipFace client = new AipFace(FaceParam.APP_ID, FaceParam.API_KEY, FaceParam.SECRET_KEY);
-
         if (register.equals(tag)){
-            boolean registerResult = registerService.registerService(client, img, phone, response);
+            boolean registerResult = registerService.registerService(img, phone);
             if(registerResult){
                 return "1";
             } else {
@@ -59,7 +55,7 @@ public class FaceCheckController {
             }
         }
         else if(login.equals(tag)){
-            boolean loginResult = loginService.loginService(client, img, phone, response);
+            boolean loginResult = loginService.loginService(img, phone);
             if(loginResult){
                 return "1";
             }else {

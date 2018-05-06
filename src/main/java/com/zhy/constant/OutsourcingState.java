@@ -5,12 +5,12 @@ package com.zhy.constant;
  * @Date: 2018/4/15 22:06
  * Describe:接包状态
  */
-public interface ApplyState {
+public interface OutsourcingState {
 
     /**
      * 接包状态--未通过
      */
-    String APPLYSTATE_NotPass = "未通过";
+    String APPLYSTATE_NOTPASS = "未通过";
 
     /**
      * 接包状态--待审核

@@ -1,6 +1,6 @@
 package com.zhy.controller.staff.applyinfo;
 
-import com.zhy.service.mybatis.ApplyForOutsourcingService;
+import com.zhy.service.mybatis.StaffOutsourcingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,13 +21,13 @@ import java.security.Principal;
 public class Apply {
 
     @Autowired
-    ApplyForOutsourcingService applyForOutsourcingService;
+    StaffOutsourcingService staffOutsourcingService;
 
     @PostMapping("/applyForOutsourcing")
     @ResponseBody
     public int applyForOutsourcing(@RequestParam String id, @AuthenticationPrincipal Principal principal){
 
-        int applyResult = applyForOutsourcingService.applyForOutsourcing(Integer.parseInt(id), principal.getName());
+        int applyResult = staffOutsourcingService.applyForOutsourcing(Integer.parseInt(id), principal.getName());
         System.out.println("applyResult is " + applyResult);
 
         return applyResult;

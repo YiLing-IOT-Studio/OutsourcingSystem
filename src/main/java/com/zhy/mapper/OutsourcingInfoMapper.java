@@ -19,8 +19,8 @@ import java.util.List;
 public interface OutsourcingInfoMapper {
 
     @Insert("insert into " +
-            "outsourcinginfo(state,name,rank,category,content,publisher,publishTime,requirement,registrationDeadline,projectDeadline,amount,prospectus,progress) " +
-            "value(#{state},#{name},#{rank},#{category},#{content},#{publisher},#{publishTime},#{requirement},#{registrationDeadline},#{projectDeadline},#{amount},#{prospectus},#{progress})")
+            "outsourcinginfo(state,name,rank,category,content,publisher,publishTime,requirement,registrationDeadline,projectDeadline,amount,prospectus,progress,contract) " +
+            "value(#{state},#{name},#{rank},#{category},#{content},#{publisher},#{publishTime},#{requirement},#{registrationDeadline},#{projectDeadline},#{amount},#{prospectus},#{progress},#{contract})")
     int saveOutsourcingInfo(OutsourcingInfo outsourcingInfo);
 
     @Select("select count(*) from outsourcinginfo where name like '%' #{searchText} '%'")

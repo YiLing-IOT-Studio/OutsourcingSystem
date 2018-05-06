@@ -1,15 +1,7 @@
 /**
  * Created by 杨玉卿 on 2018/4/12.
  */
-//测试用
-// for(var i=0;i<10;i++){
-//     var oDiv=$("select");
-//     var my_option=$("<option></option>");
-//     my_option.append(i);
-//     // my_option.attr('value',i);
-//     // console.log(my_option.value);
-//     oDiv.append(my_option);
-// }
+
 $("#myTaskName").focus(function(){
     var oDiv=$("#myTaskName");
     oDiv.html("");
@@ -62,7 +54,7 @@ $("#uplBtn").click(function(event){
             processData: false,
             contentType: false,
             beforeSend: function(xhr) {
-                xhr.setRequestHeader('csrf_');
+                xhr.setRequestHeader('X-CSRF-TOKEN',$("meta[name='_csrf']").attr("content"));
                 showFun();
             },
             headers: {
