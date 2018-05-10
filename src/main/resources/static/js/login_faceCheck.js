@@ -41,13 +41,13 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("注册成功！");
-                     window.location.replace("http://localhost:80/login_register")
-                    //window.location.replace("http://119.23.202.55:80/login_register")
+                    window.location.replace("http://localhost:80/login_register")
+                    // window.location.replace("https://www.zhyocean.cn/login_register")
                 }
                 else {
                     alert("注册失败，请重试~");
-                     window.location.replace("http://localhost:80/faceCheck")
-                    // window.location.replace("http://119.23.202.55:80/faceCheck")
+                    window.location.replace("http://localhost:80/faceCheck")
+                     // window.location.replace("https://www.zhyocean.cn/faceCheck")
 
                 }
             },
@@ -68,12 +68,12 @@ snap.onclick=function(){
                 if (data == 1) {
                     alert("登录成功！");
                      window.location.replace("http://localhost:80/index")
-                    // window.location.replace("http://119.23.202.55:80/index")
+                   // window.location.replace("https://www.zhyocean.cn/index")
                 }
                 else {
                     alert("没有这张脸，请重试！");
-                     window.location.replace("http://localhost:80/faceCheck")
-                    //window.location.replace("http://119.23.202.55:80/faceCheck")
+                    window.location.replace("http://localhost:80/faceCheck")
+                    // window.location.replace("https://www.zhyocean.cn/faceCheck")
                 }
             },
             error: function () {

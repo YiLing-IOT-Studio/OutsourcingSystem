@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * @author: zhangocean
  * @Date: Created in 12:58 2018/5/6
- * Describe: 时间处理工具
+ * Describe: 人脸识别工具
  */
 public class HttpUtil {
 
