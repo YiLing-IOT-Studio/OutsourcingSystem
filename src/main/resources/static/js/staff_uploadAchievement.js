@@ -1,9 +1,14 @@
 /**
  * Created by 杨玉卿 on 2018/4/10.
  */
-var video=document.getElementById('video');
-video.pause();
-$("#video").css("visibility","hidden");
+$("#li_cg_item").click(function(){
+    var video=document.getElementById('video');
+    video.pause();
+    $("#video").css("visibility","hidden");
+    window.clearInterval(time1);
+
+});
+
 $("#uplBtn").click(function(event){
     var pattern=/^\d{1,3}$/;
     event.preventDefault();

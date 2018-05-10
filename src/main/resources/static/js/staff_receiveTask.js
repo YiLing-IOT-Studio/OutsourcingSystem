@@ -6,6 +6,7 @@
         var video=document.getElementById('video');
         video.pause();
         $("#video").css("visibility","hidden");
+        window.clearInterval(time1);
 
         $.ajax({
             type:"POST",
