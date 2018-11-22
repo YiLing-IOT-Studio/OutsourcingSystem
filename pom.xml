@@ -179,6 +179,7 @@
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
+		<finalName>OutsourcingSystem</finalName>
 	</build>
 
 

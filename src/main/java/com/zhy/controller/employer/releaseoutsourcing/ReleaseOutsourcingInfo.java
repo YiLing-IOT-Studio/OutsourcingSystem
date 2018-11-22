@@ -30,7 +30,6 @@ public class ReleaseOutsourcingInfo {
     @PostMapping("/releaseOutsourcing")
     @ResponseBody
     public int releaseOutsourcing(@RequestParam("inputFile") MultipartFile file,
-                                  @RequestParam("") MultipartFile file1,
                                   HttpServletRequest request,
                                   @AuthenticationPrincipal Principal principal) throws ParseException, IOException {
 
@@ -58,13 +57,13 @@ public class ReleaseOutsourcingInfo {
         System.out.println("项目计划实施书保存路径：" + filePath + fileName);
 
         //项目合同保存路径
-        String fileName1 = file1.getOriginalFilename();
+        String fileName1 = file.getOriginalFilename();
         String filePath1 = this.getClass().getResource("/").getPath().substring(1) + "项目合同/" + name + "/";
         System.out.println("项目合同保存路径：" + filePath1);
 
         OutsourcingInfo outsourcingInfo = new OutsourcingInfo(state, name, rank, category, content, publisher, publishTimeForString, requirement, registrationDeadline, projectDeadline, amount, filePath+fileName, progress, filePath1+fileName1);
         //保存外包信息
-        int releaseResult = releaseOutsourcingService.releaseOutsourcing(outsourcingInfo, principal.getName(), file, filePath, fileName, file1, filePath1, fileName1);
+        int releaseResult = releaseOutsourcingService.releaseOutsourcing(outsourcingInfo, principal.getName(), file, filePath, fileName, file, filePath1, fileName1);
 
         if(releaseResult == 1){
             return 1;

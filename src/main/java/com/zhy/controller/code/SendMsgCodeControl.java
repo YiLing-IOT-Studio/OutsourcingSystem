@@ -40,12 +40,12 @@ public class SendMsgCodeControl {
         request.getSession().setAttribute("trueMsgCode", trueMsgCode);
 
         SendSmsResponse sendSmsResponse = null;
-//        try {
-//            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
-//        } catch (ClientException e) {
-//            e.printStackTrace();
-//            return 0;
-//        }
+        try {
+            sendSmsResponse = sendSmsResponse(phone, trueMsgCode);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            return 0;
+        }
 
         return 1;
 
@@ -57,7 +57,7 @@ public class SendMsgCodeControl {
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
         //"***"分别填写自己的AccessKey ID和Secret
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIm61eZNIRtrXi", "uMXKqd1WhPH6bWL8SIf9hscfeHY8qo");
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIMsFKkrsR6Fzf", "z56UvT6EfvqX5FWVFZUmCqK6uDTgCa");
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", "Dysmsapi", "dysmsapi.aliyuncs.com");
         IAcsClient acsClient = new DefaultAcsClient(profile);
         SendSmsRequest request = new SendSmsRequest();
@@ -66,7 +66,7 @@ public class SendMsgCodeControl {
         //此处填写已申请的短信签名
         request.setSignName("张海洋ocean");
         //此处填写获得的短信模版CODE
-        request.setTemplateCode("SMS_129759213");
+        request.setTemplateCode("SMS_121906352");
         //笔者的短信模版中有${code}, 因此此处对应填写验证码
         request.setTemplateParam("{\"code\":\"" + code + "\"}");
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);

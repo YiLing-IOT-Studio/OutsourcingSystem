@@ -145,7 +145,6 @@ $.ajax({
     type:"post",
     url:"/applyForTask",
     dataType:"json",
-
     data:{},
     success:function(data){
         //清空

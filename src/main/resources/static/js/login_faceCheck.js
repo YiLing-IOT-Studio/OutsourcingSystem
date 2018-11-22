@@ -1,3 +1,13 @@
+//本地测试
+var faceCheckPath = "http://localhost:8080/faceCheck";
+var indexPath = "http://localhost:8080/index";
+var registerSuccess = "http://localhost:8080/login_register";
+
+//上线环境
+// var faceCheckPath = "https://www.zhyocean.cn:8080/faceCheck";
+// var indexPath = "https://www.zhyocean.cn:8080/index";
+// var registerSuccess = "https://www.zhyocean.cn:8080/login_register";
+
 /**
  * Created by YYQ on 2018/3/18.
  */
@@ -41,13 +51,13 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("注册成功！");
-                    window.location.replace("http://localhost:80/login_register")
-                    // window.location.replace("https://www.zhyocean.cn/login_register")
+                    // window.location.replace(registerSuccess)
+                    window.location.replace(registerSuccess)
                 }
                 else {
                     alert("注册失败，请重试~");
-                    window.location.replace("http://localhost:80/faceCheck")
-                     // window.location.replace("https://www.zhyocean.cn/faceCheck")
+                    // window.location.replace(faceCheckPath)
+                     window.location.replace(faceCheckPath)
 
                 }
             },
@@ -67,13 +77,13 @@ snap.onclick=function(){
             success: function (data) {
                 if (data == 1) {
                     alert("登录成功！");
-                     window.location.replace("http://localhost:80/index")
-                   // window.location.replace("https://www.zhyocean.cn/index")
+                     // window.location.replace(indexPath)
+                   window.location.replace(indexPath)
                 }
                 else {
                     alert("没有这张脸，请重试！");
-                    window.location.replace("http://localhost:80/faceCheck")
-                    // window.location.replace("https://www.zhyocean.cn/faceCheck")
+                    // window.location.replace(faceCheckPath)
+                    window.location.replace(faceCheckPath)
                 }
             },
             error: function () {

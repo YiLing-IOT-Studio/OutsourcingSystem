@@ -1,10 +1,7 @@
 package com.zhy.mapper;
 
 import com.zhy.model.outsourcing.OutsourcingUserInfo;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,6 +14,9 @@ import java.util.List;
 @Mapper
 @Repository
 public interface OutsourcingUserInfoMapper {
+
+    @Insert("insert into outsourcinguserinfo values(#{name},#{gender},#{managerPhone},#{phone},#{project},#{promise},#{contract})")
+    void saveUserInfo(OutsourcingUserInfo outsourcingUserInfo);
 
     @Select("select * from outsourcinguserinfo where mangerphone=#{mangerPhone}")
     List<OutsourcingUserInfo> selectAllOutsourcingUserInfoByMangerPhone(@Param("mangerPhone") String mangerPhone);

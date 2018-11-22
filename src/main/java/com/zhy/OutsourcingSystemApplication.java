@@ -1,14 +1,14 @@
 package com.zhy;
 
-import org.apache.catalina.Container;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
@@ -30,17 +30,18 @@ import java.util.concurrent.TimeUnit;
 @ImportResource(locations = {"classpath:static/config/myKaptcher.xml"})
 public class OutsourcingSystemApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(OutsourcingSystemApplication.class, args);
 	}
 
 //	@Component
-//	public static class CustomServletContainer implements EmbeddedServletContainerCustomizer{
+//	public static class CustomServletContainer implements EmbeddedServletContainerCustomizer {
 //
 //		@Override
 //		public void customize(ConfigurableEmbeddedServletContainer container) {
-//			container.setPort(443);
-//			container.setSessionTimeout(1, TimeUnit.MINUTES);
+//			container.setPort(8080);
+//			container.setSessionTimeout(120, TimeUnit.MINUTES);
 //		}
 //	}
 //
@@ -66,10 +67,10 @@ public class OutsourcingSystemApplication {
 //	public Connector httpConnector(){
 //		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
 //		connector.setScheme("http");
-//		connector.setPort(80);
+//		connector.setPort(1314);
 //		//设置为false，则会自动从http跳转到https
 //		connector.setSecure(false);
-//		connector.setRedirectPort(443);
+//		connector.setRedirectPort(8080);
 //		return connector;
 //	}
 }

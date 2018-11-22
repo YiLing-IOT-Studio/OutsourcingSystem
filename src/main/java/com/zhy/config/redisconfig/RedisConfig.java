@@ -69,7 +69,7 @@ public class RedisConfig {
 //        jedisConnectionFactory.setTimeout(5000);
 //        jedisConnectionFactory.setHostName("127.0.0.1");
 //        jedisConnectionFactory.setDatabase(0);
-//        jedisConnectionFactory.setPassword("zhang1997LOVE");
+//        jedisConnectionFactory.setPassword("zhang1997");
 //        jedisConnectionFactory.setPort(6379);
 //        return jedisConnectionFactory;
 //    }
